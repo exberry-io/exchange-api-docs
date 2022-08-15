@@ -2,7 +2,324 @@
 
 ## Coming Soon... :hammer\_pick:
 
-* 2022-05-16✔️
+### Place Order&#x20;
+
+On place order new fields will be added:&#x20;
+
+* accountType: House/ Client&#x20;
+* parties: array of parties, the concept is identical the the parties element in [FIX protocol ](https://fiximate.fixtrading.org/en/FIX.Latest/cmp1012.html?find=PartyIDSource)
+
+Party specification:&#x20;
+
+
+
+| Name   |        | Description                         |
+| ------ | ------ | ----------------------------------- |
+| id     | String | <p>Party id<br>Max length = 20 </p> |
+| source | Char   | Party source                        |
+| role   | Int    | Party role                          |
+
+Sample
+
+{% tabs %}
+{% tab title="placeOrder" %}
+```javascript
+{
+  "q": "v1/exchange.market/placeOrder",
+  "sid": 1,
+  "d": {
+    "orderType": "Limit",
+    "side": "Buy",
+    "quantity": 1.3,
+    "price": 100.33,
+    "instrument": "INS1",
+    "mpOrderId": 1001,
+    "timeInForce": "GTC",
+    "accountType": "House",
+    "parties": [
+      {
+        "id": "veryCoolStringId",
+        "source": "D",
+        "role": 12
+      },
+      {
+        "id": "user123",
+        "source": "D",
+        "role": 13
+      }
+    ]
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+### Trade Entry
+
+Trade Entry️ enable to report about trades that were done between market participants out of the order book.&#x20;
+
+This is going to impact [#orderbookdepth](../market-data.md#orderbookdepth "mention") and [#executionreports](../private-data-api.md#executionreports "mention")
+
+Samples
+
+{% tabs %}
+{% tab title="orderBookDepth" %}
+<pre class="language-json"><code class="lang-json">{
+  "q": "v1/exchange.market/orderBookDepth",
+  "sid": 10,
+  "d": {
+    "eventId": 29969,
+    "messageType": "TradeReport",
+    "tradeType": "Block",
+    "matchId": 12345,
+    "eventTimestamp": 1565790374956123123,
+    "instrument": "AMZ",
+    "buyMpId": "12",
+    "sellMpId": "13",
+<strong>    "quantity": 1,
+</strong>    "price": 1.22,
+    "trackingNumber": 100
+  }
+}</code></pre>
+{% endtab %}
+
+{% tab title="executionReport" %}
+```javascript
+{
+  "q": "v1/exchange.market/executionReports",
+  "sid": 104,
+  "d": {
+    "messageType": "TradeReport",
+    "tradeType": "Block",
+    "side": "Buy",
+    "instrument": "INS1",
+    "quantity": 1,
+    "price": 1,
+    "eventTimestamp": 1620913727891980000,
+    "eventId": 454,
+    "matchId": 12345,
+    "tradingMode": "ON",
+    "accountType": "Client",
+    "parties": [
+      {
+        "id": "abc456",
+        "source": "D",
+        "role": 38
+      },
+      {
+        "id": "4455",
+        "source": "D",
+        "role": 12
+      }
+    ],
+    "trackingNumber": 34272768
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+### Trades Cancellation&#x20;
+
+Trade cancellation enable to cancel trades that were done on the last business day .&#x20;
+
+This is going to impact [#orderbookdepth](../market-data.md#orderbookdepth "mention") and [#executionreports](../private-data-api.md#executionreports "mention")
+
+Samples
+
+{% tabs %}
+{% tab title="orderBookDepth" %}
+<pre class="language-json"><code class="lang-json">{
+  "q": "v1/exchange.market/orderBookDepth",
+  "sid": 10,
+  "d": {
+    "eventId": 29969,
+    "messageType": "TradeCancel",
+    "matchId": 12345,
+    "eventTimestamp": 1565790374956123123,
+    "instrument": "AMZ",
+    "buyMpId": "12",
+    "sellMpId": "13",
+<strong>    "quantity": 1,
+</strong>    "price": 1.22,
+    "trackingNumber": 100
+  }
+}</code></pre>
+{% endtab %}
+
+{% tab title="executionReport" %}
+```javascript
+{
+  "q": "v1/exchange.market/executionReports",
+  "sid": 104,
+  "d": {
+    "messageType": "TradeCancel",
+    "tradeType": "Block",    //only in case of trade entry
+    "side": "Buy",
+    "instrument": "INS1",
+    "quantity": 1,
+    "price": 1,
+    "eventTimestamp": 1620913727891980000,
+    "eventId": 454,
+    "matchId": 12345,
+    "tradingMode": "ON",
+    "accountType": "Client",
+    "parties": [
+      {
+        "id": "abc456",
+        "source": "D",
+        "role": 38
+      },
+      {
+        "id": "4455",
+        "source": "D",
+        "role": 12
+      }
+    ],
+    "trackingNumber": 34272768
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+
+
+### Reporting - Trades API&#x20;
+
+New version is going to be release to [#trades](../reporting-api.md#trades "mention") API.\
+Previous version is still supported but will not include new developments, we encourage you to migrate to the new version.  &#x20;
+
+{% hint style="info" %}
+endpoint: v2/exchange.reporting/mp/trades
+{% endhint %}
+
+In the new version each record will be one of the following `actionType`:
+
+* MatchedTrade for order book trade&#x20;
+* TradeReport for trade entry trade
+* TradeCancel for trade cancellation (separate records will be returned for cancellation)
+
+Samples
+
+{% tabs %}
+{% tab title="MatchedTrade " %}
+```json
+{
+  "q": "v2/exchange.reporting/mp/trades",
+  "sid": 10,
+  "d": {
+    "eventId": 925,
+    "timestamp": "2021-12-15T21:02:45.189982",
+    "actionType": "MatchedTrade"
+    "orderId": 643,
+    "mpOrderId": 1631632596945,
+    "mpId": 1958681073,
+    "mpName": "Participant1",
+    "instrumentId": 14,
+    "instrument": "INS1",
+    "side": "Buy",
+    "price": 100.5,
+    "quantity": 1.25,
+    "matchId": 413,
+    "tradingMode": "CT",
+    "userId": "UATUserTest1"
+    "accountId": 555,
+    "accountType" : "Client",
+    "parties": [
+      {
+        "id": "abc456",
+        "source": "D",
+        "role": 38
+      },
+      {
+        "id": "4455",
+        "source": "D",
+        "role": 12
+      }
+    ],
+    "makerTaker": "Taker" 
+  }
+}
+```
+{% endtab %}
+
+{% tab title="TradeReport " %}
+```javascript
+{
+  "q": "v2/exchange.reporting/mp/trades",
+  "sid": 10,
+  "d": {
+    "eventId": 925,
+    "timestamp": "2021-12-15T21:02:45.189982",
+    "actionType": "TradeReport"
+    "mpId": 1958681073,
+    "mpName": "Participant1",
+    "instrumentId": 14,
+    "instrument": "INS1",
+    "side": "Buy",
+    "price": 100.5,
+    "quantity": 1.25,
+    "matchId": 413,
+    "tradingMode": "CT",
+    "accountType" : "Client",
+    "parties": [
+      {
+        "id": "abc456",
+        "source": "D",
+        "role": 38
+      },
+      {
+        "id": "4455",
+        "source": "D",
+        "role": 12
+      }
+    ],
+      "tradeType" : "Block",
+  }
+}
+```
+{% endtab %}
+
+{% tab title="TradeCancel " %}
+```json
+{
+  "q": "v2/exchange.reporting/mp/trades",
+  "sid": 10,
+  "d": {
+    "eventId": 925,
+    "timestamp": "2021-12-15T21:02:45.189982",
+    "actionType": "TradeCancel"
+    "mpId": 1958681073,
+    "mpName": "Participant1",
+    "instrumentId": 14,
+    "instrument": "INS1",
+    "side": "Buy",
+    "price": 100.5,
+    "quantity": 1.25,
+    "matchId": 413,
+    "tradingMode": "CT",
+    "accountType" : "Client",
+    "parties": [
+      {
+        "id": "abc456",
+        "source": "D",
+        "role": 38
+      },
+      {
+        "id": "4455",
+        "source": "D",
+        "role": 12
+      }
+    ],
+    "tradeType" : "Block",
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+
 
 ## 2022-05-16✔️
 
