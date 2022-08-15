@@ -56,7 +56,7 @@ on execution reports same fields were added in addition to:
 ```
 {% endtab %}
 
-{% tab title="exec" %}
+{% tab title="executionReports" %}
 {% code overflow="wrap" %}
 ```json
 {
@@ -102,6 +102,8 @@ on execution reports same fields were added in addition to:
 {% endcode %}
 {% endtab %}
 {% endtabs %}
+
+## Trade Entry
 
 Trade Entry️ enable to report about trades that were done between market participants out of the order book.&#x20;
 
