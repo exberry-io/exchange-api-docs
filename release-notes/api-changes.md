@@ -2,7 +2,9 @@
 
 ## Coming Soon... :hammer\_pick:
 
-* ### 2022-05-16✔️
+* 2022-05-16✔️
+
+## 2022-05-16✔️
 
 `replaceOrder` API is now available, it allows cancel and add new order in a single command.
 
