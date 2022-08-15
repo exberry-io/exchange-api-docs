@@ -2,7 +2,7 @@
 
 ## Coming Soon... :hammer\_pick:
 
-### Place Order&#x20;
+### Place Order & Execution Reports&#x20;
 
 On place order new fields will be added:&#x20;
 
@@ -19,7 +19,10 @@ Party specification:&#x20;
 | source | Char   | Party source                        |
 | role   | Int    | Party role                          |
 
-Sample
+on execution reports same fields were added in addition to:
+
+* mpId: market participant ID
+* mpName: market participant name&#x20;
 
 {% tabs %}
 {% tab title="placeOrder" %}
@@ -52,15 +55,57 @@ Sample
 }
 ```
 {% endtab %}
-{% endtabs %}
 
-### Trade Entry
+{% tab title="exec" %}
+{% code overflow="wrap" %}
+```json
+{
+  "q": "v1/exchange.market/executionReports",
+  "sid": 103,
+  "d": {
+    "messageType": "Add",
+    "orderId": 43,
+    "mpOrderId": 13,
+    "orderType": "Limit",
+    "side": "Buy",
+    "instrument": "TSTUSD",
+    "quantity": 1.3,
+    "price": 100.33,
+    "timeInForce": "GTC",
+    "orderTimestamp": 1660572732860184300,
+    "filledQuantity": 0,
+    "remainingOpenQuantity": 1.3,
+    "removedQuantity": 0,
+    "marketModel": "T",
+    "userId": "UserTest1",
+    "eventTimestamp": 1660572732860184300,
+    "eventId": 68,
+    "trackingNumber": 50401152,
+    "mpId": 12345,
+    "mpName": "Name1",
+    "accountType": "House",
+    "parties": [
+      {
+        "id": "veryCoolStringId",
+        "source": "D",
+        "role": 12
+      },
+      {
+        "id": "user123",
+        "source": "D",
+        "role": 13
+      }
+    ]
+  }
+}
+```
+{% endcode %}
+{% endtab %}
+{% endtabs %}
 
 Trade Entry️ enable to report about trades that were done between market participants out of the order book.&#x20;
 
 This is going to impact [#orderbookdepth](../market-data.md#orderbookdepth "mention") and [#executionreports](../private-data-api.md#executionreports "mention")
-
-Samples
 
 {% tabs %}
 {% tab title="orderBookDepth" %}
@@ -125,7 +170,7 @@ Trade cancellation enable to cancel trades that were done on the last business d
 
 This is going to impact [#orderbookdepth](../market-data.md#orderbookdepth "mention") and [#executionreports](../private-data-api.md#executionreports "mention")
 
-Samples
+
 
 {% tabs %}
 {% tab title="orderBookDepth" %}
@@ -200,7 +245,7 @@ In the new version each record will be one of the following `actionType`:
 * TradeReport for trade entry trade
 * TradeCancel for trade cancellation (separate records will be returned for cancellation)
 
-Samples
+
 
 {% tabs %}
 {% tab title="MatchedTrade " %}
