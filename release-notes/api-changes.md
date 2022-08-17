@@ -2,9 +2,9 @@
 
 ## Coming Soon... :hammer\_pick:
 
-### Place Order & Execution Reports&#x20;
+### Place Order & Execution Reports & massOrderStatus&#x20;
 
-On place order new fields will be added:&#x20;
+On `placeOrder` and `exeutionReports` new optional fields will be added:&#x20;
 
 * accountType: House/ Client&#x20;
 * parties: array of parties, the concept is identical the the parties element in [FIX protocol ](https://fiximate.fixtrading.org/en/FIX.Latest/cmp1012.html?find=PartyIDSource)
@@ -19,7 +19,7 @@ Party specification:&#x20;
 | source | Char   | Party source                        |
 | role   | Int    | Party role                          |
 
-on execution reports same fields were added in addition to:
+on `executionReports` and `massOrderStatus` those fields were added:
 
 * mpId: market participant ID
 * mpName: market participant name&#x20;
