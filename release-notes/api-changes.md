@@ -268,7 +268,7 @@ In the new version each record will be one of the following `actionType`:
     "side": "Buy",
     "price": 100.5,
     "quantity": 1.25,
-    "matchId": 413,
+    "tradeId": 413,
     "tradingMode": "CT",
     "userId": "UATUserTest1"
     "accountId": 555,
@@ -307,7 +307,7 @@ In the new version each record will be one of the following `actionType`:
     "side": "Buy",
     "price": 100.5,
     "quantity": 1.25,
-    "matchId": 413,
+    "tradeId": 413,
     "tradingMode": "CT",
     "accountType" : "Client",
     "parties": [
@@ -344,7 +344,7 @@ In the new version each record will be one of the following `actionType`:
     "side": "Buy",
     "price": 100.5,
     "quantity": 1.25,
-    "matchId": 413,
+    "tradeId": 413,
     "tradingMode": "CT",
     "accountType" : "Client",
     "parties": [
