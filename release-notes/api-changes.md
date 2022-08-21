@@ -2,6 +2,16 @@
 
 ## Coming Soon... :hammer\_pick:
 
+New Fields In Place Order & Execution Reports & massOrderStatus
+
+* Market Participant Group - The ability to access all private data API for a group of market participants, or all market participants.&#x20;
+* [New fields in placeOrder , exeutionReports and massOrderStatus](api-changes.md#place-order-and-execution-reports-and-massorderstatus)
+* [Trade Entry](api-changes.md#trade-entry)
+* [Trade Cancellation](api-changes.md#trades-cancellation)&#x20;
+* [Reporting - New version of Trades API](api-changes.md#reporting-trades-api)&#x20;
+
+
+
 ### Place Order & Execution Reports & massOrderStatus&#x20;
 
 On `placeOrder` and `exeutionReports` new optional fields will be added:&#x20;
