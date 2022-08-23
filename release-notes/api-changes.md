@@ -257,7 +257,17 @@ In the new version each record will be one of the following `actionType`:
 * TradeReport for trade entry trade
 * TradeCancel for trade cancellation (separate records will be returned for cancellation)
 
+Additional changes:
 
+* `matchId` renamed to `tradeId`
+* `executedPrice` renamed to  `price`
+* `executedQuantity` renamed to `quantity`
+* New fields&#x20;
+  * `tradeType` - EFRP/Block/Other (only for TradeReport trades)
+  * `makerTaker`
+  * `accountType`&#x20;
+  * `parties`
+*
 
 {% tabs %}
 {% tab title="MatchedTrade " %}
