@@ -54,7 +54,37 @@ qualifier: `v1/exchange.market/placeOrder`
 | <p>userId</p><p><code>optional</code></p>                    | String     | Reference data only which is not being used in the exchange. 20 characters length, \[a-z,A-Z,0-9]                                                                                                                                       |
 | accountId `optional`                                         | Integer    | Account ID of the order                                                                                                                                                                                                                 |
 | <p>accountType<br><strong></strong><code>optional</code></p> | Enum       | Account type Client or House                                                                                                                                                                                                            |
-| parties `optional`                                           | \[] Object | <p>Array of party objects, each single party is built from:<br> • id - Party id<br> • source - Party source <br> • role - Party role<br><br>Sample: [ { "id":"id1", "source":"D", "role":12 } ]</p>                                     |
+| parties `optional`                                           | \[] Object | Array of party objects, see details below                                                                                                                                                                                               |
+
+Party specification:&#x20;
+
+| Name   |        | Description                         |
+| ------ | ------ | ----------------------------------- |
+| id     | String | <p>Party id<br>Max length = 20 </p> |
+| source | Char   | Party source                        |
+| role   | Int    | Party role                          |
+
+Sample:
+
+```json
+{
+    "parties": [
+      {
+        "id": "ID123",
+        "source": "D",
+        "role": 12
+      },
+      {
+        "id": "user123",
+        "source": "D",
+        "role": 13
+      }
+    ]
+  }
+}
+```
+
+
 
 ### **Response**
 

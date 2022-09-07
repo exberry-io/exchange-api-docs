@@ -43,6 +43,8 @@ Note: There are no request parameters.
 | removedQuantity       | Quantity that was removed with modifyOrder request                                                                                          |
 | lastEventTimestamp    | Last order event timestamp (in nanoseconds) in GMT                                                                                          |
 | lastEventId           | Last event that was used to calculate order state                                                                                           |
+| mpId                  | MP Id                                                                                                                                       |
+| mpName                | MP name                                                                                                                                     |
 
 ### **Error Codes**
 
@@ -88,7 +90,9 @@ Note: There are no request parameters.
     "marketModel": "T",
     "userId": "UATUserTest10",
     "lastEventTimestamp": 1617875864297023000,
-    "lastEventId": 33
+    "lastEventId": 33,
+    "mpId": 1958681073,
+    "mpName": "Participant1"
   }
 }
 ```
@@ -109,13 +113,15 @@ Note: There are no request parameters.
 
 ## **executionReports**
 
-Any participant can use the `executionReports`API to subscribe to its own orders events.\
+Any participant can use the `executionReports`API to subscribe to its own orders and trades events.\
 There are few message types used in this API:
 
 * **Add**
 * **Cancelled**
 * **Executed**
 * **Modified**
+* **TradeReport**
+* **TradeCancel**
 
 {% hint style="info" %}
 `endpoint: v1/exchange.market/executionReports`
@@ -129,34 +135,39 @@ There are few message types used in this API:
 
 ### **Response**
 
-| Message Type | Field                 | Description                                                                                                                                                                  |
-| ------------ | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| All          | messageType           | <p>One of the below values:</p><ul><li><strong>Add</strong></li><li><strong>Cancelled</strong></li><li><strong>Executed</strong></li><li><strong>Modified</strong></li></ul> |
-| All          | orderId               | Exchange order ID                                                                                                                                                            |
-| All          | mpOrderId             | Same as in `placeOrder` request                                                                                                                                              |
-| All          | orderType             | Same as in `placeOrder` request                                                                                                                                              |
-| All          | side                  | Same as in `placeOrder` request                                                                                                                                              |
-| All          | instrument            | Same as in `placeOrder` request                                                                                                                                              |
-| All          | quantity              | Same as in `placeOrder` request                                                                                                                                              |
-| All          | price                 | Same as in `placeOrder` request                                                                                                                                              |
-| All          | timeInForce           | Same as in `placeOrder` request                                                                                                                                              |
-| All          | expiryDate            | Same as in `placeOrder` request                                                                                                                                              |
-| All          | orderTimestamp        | Order creation timestamp (in nanoseconds) in GMT                                                                                                                             |
-| All          | marketModel           | <p>A - (Auction) when order was placed during auction</p><p>T - (Trading) when order was placed on continues trading mode</p>                                                |
-| All          | userId                | Same as in `placeOrder` request                                                                                                                                              |
-| All          | accountId             | Same as in `placeOrder` request                                                                                                                                              |
-| All          | filledQuantity        | Total filled quantity                                                                                                                                                        |
-| All          | remainingOpenQuantity | <p>Remaining open quantity.</p><p><span class="math">quantity - filledQuantity - removedQuantity</span></p>                                                                  |
-| All          | removedQuantity       | Quantity that was removed with modifyOrder request                                                                                                                           |
-| All          | eventTimestamp        | Event timestamp (in nanoseconds) in GMT                                                                                                                                      |
-| All          | eventId               | Sequence identifier per instrument for the event                                                                                                                             |
-| All          | trackingNumber        | Event tracking number                                                                                                                                                        |
-| Executed     | lastFilledQuantity    | Matched quantity                                                                                                                                                             |
-| Executed     | lastFilledPrice       | Matched price (maker order price).                                                                                                                                           |
-| Executed     | mathchId              | Unique ID for the match                                                                                                                                                      |
-| Executed     | tradingMode           | <p>IA - (Scheduled Intraday Auction) -When execution was as part of auction<br>CT (Continuous Trading) - When execution was done on a regular trading</p>                    |
-| Cancelled    | cancelledQuantity     | The cancelled quantity in the current cancelled event                                                                                                                        |
-| Modified     | lastRemovedQuantity   | Removed quantity on current event                                                                                                                                            |
+| Message Type                                              | Field                 | Description                                                                                                                                                                                                                                            |
+| --------------------------------------------------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| All                                                       | messageType           | <p>One of the below values:</p><ul><li><strong>Add</strong></li><li><strong>Cancelled</strong></li><li><strong>Executed</strong></li><li><strong>Modified</strong></li><li><strong>TradeReport</strong></li><li><strong>TradeCancel</strong></li></ul> |
+| All                                                       | side                  | Same as in `placeOrder` request                                                                                                                                                                                                                        |
+| All                                                       | instrument            | Same as in `placeOrder` request                                                                                                                                                                                                                        |
+| All                                                       | quantity              | Same as in `placeOrder` request                                                                                                                                                                                                                        |
+| All                                                       | price                 | Same as in `placeOrder` request                                                                                                                                                                                                                        |
+| All                                                       | mpId                  | MP Id                                                                                                                                                                                                                                                  |
+| All                                                       | mpName                | MP name                                                                                                                                                                                                                                                |
+| All                                                       | accountType           | Same as in `placeOrder` request                                                                                                                                                                                                                        |
+| All                                                       | parties               | Same as in `placeOrder` request                                                                                                                                                                                                                        |
+| All                                                       | eventId               | Sequence identifier per instrument for the event                                                                                                                                                                                                       |
+| All                                                       | eventTimestamp        | Event timestamp (in nanoseconds) in GMT                                                                                                                                                                                                                |
+| All                                                       | trackingNumber        | Event tracking number                                                                                                                                                                                                                                  |
+| <p>Add <br>Cancelled Executed Modified</p>                | orderId               | Exchange order ID                                                                                                                                                                                                                                      |
+| <p>Add <br>Cancelled Executed Modified</p>                | mpOrderId             | Same as in `placeOrder` request                                                                                                                                                                                                                        |
+| <p>Add <br>Cancelled Executed Modified</p>                | orderType             | Same as in `placeOrder` request                                                                                                                                                                                                                        |
+| <p>Add <br>Cancelled Executed Modified</p>                | timeInForce           | Same as in `placeOrder` request                                                                                                                                                                                                                        |
+| <p>Add <br>Cancelled Executed Modified</p>                | expiryDate            | Same as in `placeOrder` request                                                                                                                                                                                                                        |
+| <p>Add <br>Cancelled Executed Modified</p>                | orderTimestamp        | Order creation timestamp (in nanoseconds) in GMT                                                                                                                                                                                                       |
+| <p>Add <br>Cancelled Executed Modified</p>                | marketModel           | <p>A - (Auction) when order was placed during auction</p><p>T - (Trading) when order was placed on continues trading mode</p>                                                                                                                          |
+| <p>Add <br>Cancelled Executed Modified<br>TradeCancel</p> | userId                | Same as in `placeOrder` request                                                                                                                                                                                                                        |
+| <p>Add <br>Cancelled Executed Modified<br>TradeCancel</p> | accountId             | Same as in `placeOrder` request                                                                                                                                                                                                                        |
+| <p>Add <br>Cancelled Executed Modified</p>                | filledQuantity        | Total filled quantity                                                                                                                                                                                                                                  |
+| <p>Add <br>Cancelled Executed Modified</p>                | remainingOpenQuantity | <p>Remaining open quantity.</p><p><span class="math">quantity - filledQuantity - removedQuantity</span></p>                                                                                                                                            |
+| <p>Add <br>Cancelled Executed Modified</p>                | removedQuantity       | Quantity that was removed with modifyOrder request                                                                                                                                                                                                     |
+| Executed                                                  | lastFilledQuantity    | Matched quantity                                                                                                                                                                                                                                       |
+| Executed                                                  | lastFilledPrice       | Matched price (maker order price).                                                                                                                                                                                                                     |
+| <p>Executed<br>TradeReport<br>TradeCancel</p>             | mathchId              | Unique ID for the match                                                                                                                                                                                                                                |
+| <p>Executed<br>TradeReport<br>TradeCancel</p>             | tradingMode           | <p>IA - (Scheduled Intraday Auction) -When execution was as part of auction<br>CT (Continuous Trading) - When execution was done on a regular trading<br>ON -  Trade Reporting (On Exchange)</p>                                                       |
+| Cancelled                                                 | cancelledQuantity     | The cancelled quantity in the current cancelled event                                                                                                                                                                                                  |
+| Modified                                                  | lastRemovedQuantity   | Removed quantity on current event                                                                                                                                                                                                                      |
+| <p>TradeReport<br>TradeCancel</p>                         | tradeType             | <p>EFRP/Block/Other<br>On TradeCancel it will be shown only for TradeReport cancellation </p>                                                                                                                                                          |
 
 ### **Error Codes**
 
@@ -207,7 +218,9 @@ There are few message types used in this API:
     "userId": "UATUserTest1",
     "eventTimestamp": 1620913727891980000,
     "eventId": 454,
-    "trackingNumber": 34272768
+    "trackingNumber": 34272768,
+    "mpId": 1958681073,
+    "mpName": "Participant1"
   }
 }
 ```
@@ -237,7 +250,9 @@ There are few message types used in this API:
     "eventTimestamp": 1620913521839426000,
     "eventId": 453,
     "cancelledQuantity": 0.5,
-    "trackingNumber": 34271264
+    "trackingNumber": 34271264,
+    "mpId": 1958681073,
+    "mpName": "Participant1"
   }
 }
 ```
@@ -270,7 +285,9 @@ There are few message types used in this API:
     "lastFilledPrice": 100.33,
     "matchId": 24,
     "tradingMode": "CT",
-    "trackingNumber": 34272544
+    "trackingNumber": 34272544,
+    "mpId": 1958681073,
+    "mpName": "Participant1"
   }
 }
 ```
@@ -300,7 +317,9 @@ There are few message types used in this API:
     "eventTimestamp": 1620913512564134000,
     "eventId": 452,
     "lastRemovedQuantity": 0.8,
-    "trackingNumber": 34271040
+    "trackingNumber": 34271040,
+    "mpId": 1958681073,
+    "mpName": "Participant1"
   }
 }
 ```
