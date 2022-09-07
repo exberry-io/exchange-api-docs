@@ -10,7 +10,7 @@ Note: This API is accessible via a separated websocket endpoint, not the one use
 Any participant can use the `orders` API to retrieve the full list of all its own orders .
 
 {% hint style="info" %}
-`endpoint: v1/`exchange.reporting/mp/orders
+qualifier: `v1/`exchange.reporting/mp/orders
 {% endhint %}
 
 ### Request
@@ -118,7 +118,7 @@ Each execution will be represented as 2 trades.
 Note: `userId` and `accountId` will be populated with values only for orders captured after Dec 14 2021
 
 {% hint style="info" %}
-`endpoint: v1/`exchange.reporting/mp/trades
+qualifier: `v1/`exchange.reporting/mp/trades
 {% endhint %}
 
 ### Request

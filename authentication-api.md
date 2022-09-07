@@ -7,7 +7,7 @@ The `createSession` API lets you authenticate to exchange API.
 Prior to any exchange API call you must create a valid session, this session remains active as long as WebSocket connection remains open. Any market participant connected to exchange will be provided with 1 (or more) set of `apiKey` and `secret`, each `apiKey` is assigned with the relevant permissions.
 
 {% hint style="info" %}
-`endpoint: exchange.market/createSession`
+qualifier: `exchange.market/createSession`
 {% endhint %}
 
 ### **Request**
