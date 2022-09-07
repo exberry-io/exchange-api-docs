@@ -15,22 +15,20 @@ The `orderBookDepth` stream provides the full order book depth data. This stream
 \
 The `orderBookDepth` publish only raw data without any aggregation, hence in order to determine the current state of an order, the subscriber needs to maintain the updated order state as per all the messages for that order.
 
-There are few message types used to get real time market data:
+There are few message types used to build the accurate book state:
 
-* **Add**&#x20;
-* **Cancelled**&#x20;
-* **Executed**&#x20;
-* **Modified**&#x20;
-* **InstrumentStatus**&#x20;
-* **TradeReport**&#x20;
-* **TradeCancel**&#x20;
+* **Add**
+* **Cancelled**
+* **Executed**
+* **Modified**
+* **InstrumentStatus**
 
 There is 1 message types used to get indicative prices during auctions:
 
 * **AuctionIndicativeEP**
 
 **Anonymous vs Pseudonymous**\
-Exchange can configure this stream to be anonymous or pseudonymous (mp`Id` is published but not any other market participant details).\
+\*\*\*\*Exchange can configure this stream to be anonymous or pseudonymous (mp`Id` is published but not any other market participant details).\
 For anonymous configured streams all the `mpId` and `mpOrderId` data will not be published, except to the market participant that placed the order which will see only its own `mpId` and `mpOrderId` data.
 
 {% hint style="info" %}
@@ -154,24 +152,6 @@ This message is sent only on real time during auctions and will not be sent if s
 | bestSellPrice     | In case of No match - the lowest sell order price                                                                         |
 | bestSellQuantity  | In case of No match - the lowest sell order quantity                                                                      |
 
-#### Trade Report **Message**
-
-Trade report Message indicates that Trade Entry️ was captured, it means that trade was done between market participants out of the order book.&#x20;
-
-| Field          | Description                                                             |
-| -------------- | ----------------------------------------------------------------------- |
-| messageType    | **TradeReport**                                                         |
-| eventId        | Identifier for the event, unique per instrument                         |
-| eventTimestamp | Event timestamp (in nanoseconds) in GMT                                 |
-| instrument     | Instrument symbol                                                       |
-| tradeType      | EFRP/Block/Other                                                        |
-| matchId        | <p>Trade Id<br>This will use the same sequence as order book trades</p> |
-| quantity       | Trade quantity                                                          |
-| price          | Trade price                                                             |
-| buyMpId        | Buy MP Id                                                               |
-| sellMpId       | Sell MP Id                                                              |
-| trackingNumber | Event tracking number                                                   |
-
 ### **Error Codes**
 
 | Code | Message                                         |
@@ -183,7 +163,7 @@ Trade report Message indicates that Trade Entry️ was captured, it means that t
 | 1200 | `General error`                                 |
 | 1201 | `Wrong trackingNumber`                          |
 
-### **Orders Messages Samples**
+### **Samples**
 
 {% tabs %}
 {% tab title="Subscription" %}
@@ -286,11 +266,7 @@ Trade report Message indicates that Trade Entry️ was captured, it means that t
 }
 ```
 {% endtab %}
-{% endtabs %}
 
-### **Orders Messages Samples**
-
-{% tabs %}
 {% tab title="InstrumentStatus" %}
 ```json
 {
@@ -325,49 +301,6 @@ Trade report Message indicates that Trade Entry️ was captured, it means that t
     "bestBuyQuantity": 0,
     "bestSellPrice": 0,
     "bestSellQuantity": 0
-  }
-}
-```
-{% endtab %}
-
-{% tab title="Executed" %}
-```javascript
-{
-  "q": "v1/exchange.market/orderBookDepth",
-  "sid": 10,
-  "d": {
-    "eventId": 29969,
-    "messageType": "TradeReport",
-    "tradeType": "Block",
-    "matchId": 12345,
-    "eventTimestamp": 1565790374956123123,
-    "instrument": "AMZ",
-    "buyMpId": "12",
-    "sellMpId": "13",
-    "quantity": 1,
-    "price": 1.22,
-    "trackingNumber": 100
-  }
-}
-```
-{% endtab %}
-
-{% tab title="TradeCancel" %}
-```javascript
-{
-  "q": "v1/exchange.market/orderBookDepth",
-  "sid": 10,
-  "d": {
-    "eventId": 29969,
-    "messageType": "TradeCancel",
-    "matchId": 12345,
-    "eventTimestamp": 1565790374956123123,
-    "instrument": "AMZ",
-    "buyMpId": "12",
-    "sellMpId": "13",
-    "quantity": 1,
-    "price": 1.22,
-    "trackingNumber": 100
   }
 }
 ```
