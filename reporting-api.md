@@ -15,11 +15,11 @@ Any participant can use the `orders` API to retrieve the full list of all its ow
 
 ### Request
 
-| Parameter | Type           | Description                                                                                              |
-| --------- | -------------- | -------------------------------------------------------------------------------------------------------- |
-| dateFrom  | DateTime (GMT) | <p>Search for orders where <em>Created At ≥ dateFrom</em><br>Format:<br>YYYY-MM-DDThh:mm:ss[.SSS]</p>    |
-| dateTo    | DateTime (GMT) | <p>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format:<br>YYYY-MM-DDThh:mm:ss[.SSS]</p> |
-| status    | eNum           | <p>Order status (Active/ Executed/Cancelled )</p><p>Empty Status = All statuses</p>                      |
+| Parameter | Type           | Description                                                                                           |
+| --------- | -------------- | ----------------------------------------------------------------------------------------------------- |
+| dateFrom  | DateTime (GMT) | <p>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p>    |
+| dateTo    | DateTime (GMT) | <p>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p> |
+| status    | eNum           | <p>Order status (Active/ Executed/Cancelled )</p><p>Empty Status = All statuses</p>                   |
 
 ### **Response**
 
@@ -123,10 +123,10 @@ Note: `userId` and `accountId` will be populated with values only for orders cap
 
 ### Request
 
-| Parameter | Type           | Description                                                                                              |
-| --------- | -------------- | -------------------------------------------------------------------------------------------------------- |
-| dateFrom  | DateTime (GMT) | <p>Search for orders where <em>Created At ≥ dateFrom</em><br>Format:<br>YYYY-MM-DDThh:mm:ss[.SSS]</p>    |
-| dateTo    | DateTime (GMT) | <p>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format:<br>YYYY-MM-DDThh:mm:ss[.SSS]</p> |
+| Parameter | Type           | Description                                                                                           |
+| --------- | -------------- | ----------------------------------------------------------------------------------------------------- |
+| dateFrom  | DateTime (GMT) | <p>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p>    |
+| dateTo    | DateTime (GMT) | <p>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p> |
 
 ### **Response**
 

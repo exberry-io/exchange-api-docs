@@ -36,23 +36,25 @@ Time in force:
 | Market |  ❌  |  ❌  |  ✔️ |  ✔️ |  ❌  |
 
 {% hint style="info" %}
-`endpoint: v1/exchange.market/placeOrder`
+qualifier: `v1/exchange.market/placeOrder`
 {% endhint %}
 
 ### **Request**
 
-| Parameter                                     | Type     | Description                                                                                                                                                                                                                             |
-| --------------------------------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| mpOrderId                                     | Long     | Unique market participant order ID                                                                                                                                                                                                      |
-| <p>userId</p><p><code>optional</code></p>     | String   | Reference data only which is not being used in the exchange. 20 characters length, \[a-z,A-Z,0-9]                                                                                                                                       |
-| orderType                                     | Enum     | Order type Limit or Market                                                                                                                                                                                                              |
-| side                                          | Enum     | Order side Buy or Sell                                                                                                                                                                                                                  |
-| instrument                                    | String   | Instrument identifier                                                                                                                                                                                                                   |
-| quantity                                      | Decimal  | Order quantity                                                                                                                                                                                                                          |
-| price `optional`                              | Decimal  | The price of the Limit order. For Market order this will not be sent.                                                                                                                                                                   |
-| timeInForce                                   | Enum     | <p>GTC, GTD, FOK, IOC, GAA for Limit order</p><p>FOK, IOC - for Market order</p>                                                                                                                                                        |
-| <p>expiryDate</p><p><code>optional</code></p> | UTC Time | <p>Required only for GTD orders - expiration date and time in seconds, in GMT.<br>In case that trading is halted or market is closed at expiry date - the order will be cancelled (even that cancelOrder requests are not allowed).</p> |
-| accountId `optional`                          | Integer  | Account ID of the order                                                                                                                                                                                                                 |
+| Parameter                                                    | Type       | Description                                                                                                                                                                                                                             |
+| ------------------------------------------------------------ | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| mpOrderId                                                    | Long       | Unique market participant order ID                                                                                                                                                                                                      |
+| orderType                                                    | Enum       | Order type Limit or Market                                                                                                                                                                                                              |
+| side                                                         | Enum       | Order side Buy or Sell                                                                                                                                                                                                                  |
+| instrument                                                   | String     | Instrument identifier                                                                                                                                                                                                                   |
+| quantity                                                     | Decimal    | Order quantity                                                                                                                                                                                                                          |
+| price `optional`                                             | Decimal    | The price of the Limit order. For Market order this will not be sent.                                                                                                                                                                   |
+| timeInForce                                                  | Enum       | <p>GTC, GTD, FOK, IOC, GAA for Limit order</p><p>FOK, IOC - for Market order</p>                                                                                                                                                        |
+| <p>expiryDate</p><p><code>optional</code></p>                | UTC Time   | <p>Required only for GTD orders - expiration date and time in seconds, in GMT.<br>In case that trading is halted or market is closed at expiry date - the order will be cancelled (even that cancelOrder requests are not allowed).</p> |
+| <p>userId</p><p><code>optional</code></p>                    | String     | Reference data only which is not being used in the exchange. 20 characters length, \[a-z,A-Z,0-9]                                                                                                                                       |
+| accountId `optional`                                         | Integer    | Account ID of the order                                                                                                                                                                                                                 |
+| <p>accountType<br><strong></strong><code>optional</code></p> | Enum       | Account type Client or House                                                                                                                                                                                                            |
+| parties `optional`                                           | \[] Object | <p>Array of party objects, each single party is built from:<br> • id - Party id<br> • source - Party source <br> • role - Party role<br><br>Sample: [ { "id":"id1", "source":"D", "role":12 } ]</p>                                     |
 
 ### **Response**
 
@@ -87,13 +89,12 @@ Time in force:
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```json
 {
     "q":"v1/exchange.market/placeOrder",
     "sid": 1,
     "d":{
            "mpOrderId": 123,   
-           "userId": "1",
            "orderType": "Limit",
            "side": "Buy",
            "instrument": "BTC",
@@ -144,7 +145,7 @@ If you send a valid order to cancel, you should receive a response that confirms
 Non-valid cancel order will be responded with the error message.
 
 {% hint style="info" %}
-`endpoint: v1/exchange.market/cancelOrder`
+qualifier: `v1/exchange.market/cancelOrder`
 {% endhint %}
 
 ### **Request**
@@ -230,7 +231,7 @@ If you send a valid request, you should receive a response that confirms the num
 Non-valid cancel order will be responded with the error message.
 
 {% hint style="info" %}
-`endpoint: v1/exchange.market/massCancel`
+qualifier: `v1/exchange.market/massCancel`
 {% endhint %}
 
 ### **Request**
@@ -312,7 +313,7 @@ If you send a valid order to modify, you should receive a response that confirms
 Non-valid modify order requests will be responded with the error message.
 
 {% hint style="info" %}
-`endpoint: v1/exchange.market/modifyOrder`
+qualifier: `v1/exchange.market/modifyOrder`
 {% endhint %}
 
 ### **Request**
@@ -402,7 +403,7 @@ If you send a valid order to be replaced, you should receive a response that con
 Non-valid replace order requests will be responded with the error message.
 
 {% hint style="info" %}
-`endpoint: v1/exchange.market/replaceOrder`
+qualifier: `v1/exchange.market/replaceOrder`
 {% endhint %}
 
 ### **Request**

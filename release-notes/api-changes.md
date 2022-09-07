@@ -2,7 +2,38 @@
 
 ## Coming Soon... :hammer\_pick:
 
-New Fields In Place Order & Execution Reports & massOrderStatus
+New API: Get SettlementPrices to retrieve the settlement prices for all instruments.&#x20;
+
+{% tabs %}
+{% tab title="Request" %}
+```json
+{
+  "q": "v1/exchange.marketdata/getSettlementPrices",
+  "sid": 10,
+  "d": {
+    "symbols": [
+      "INS1",
+      "INS2"
+    ]
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```json
+{
+  "q": "v1/exchange.marketdata/getSettlementPrices",
+  "sid": 10,
+  "d": {
+    "symbol": "INS1",
+    "price": 1.235,
+    "lastUpdate": 1662562767855670300
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
 
 * Market Participant Group - The ability to access all private data API for a group of market participants, or all market participants.&#x20;
 * [New fields in placeOrder , exeutionReports and massOrderStatus](api-changes.md#place-order-and-execution-reports-and-massorderstatus)
