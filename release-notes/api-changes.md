@@ -2,7 +2,7 @@
 
 ## Coming Soon... :hammer\_pick:
 
-New API: Get SettlementPrices to retrieve the settlement prices for all instruments.&#x20;
+New API: Get Settlement Prices to retrieve the settlement prices for all instruments or for a specific list of instruments.&#x20;
 
 {% tabs %}
 {% tab title="Request" %}
@@ -28,12 +28,24 @@ New API: Get SettlementPrices to retrieve the settlement prices for all instrume
   "d": {
     "symbol": "INS1",
     "price": 1.235,
-    "lastUpdate": 1662562767855670300
+    "lastUpdate": 1662638980158
   }
 }
 ```
 {% endtab %}
+
+{% tab title="Last Message" %}
+```json
+{
+  "sig": 1,
+  "q": "v1/exchange.marketdata/getSettlementPrices",
+  "sid": 10
+}
+```
+{% endtab %}
 {% endtabs %}
+
+## 2022-08-31✔️
 
 * Market Participant Group - The ability to access all private data API for a group of market participants, or all market participants.&#x20;
 * [New fields in placeOrder , exeutionReports and massOrderStatus](api-changes.md#place-order-and-execution-reports-and-massorderstatus)
@@ -43,7 +55,7 @@ New API: Get SettlementPrices to retrieve the settlement prices for all instrume
 
 
 
-### Place Order & Execution Reports & massOrderStatus&#x20;
+**Place Order & Execution Reports & massOrderStatus**&#x20;
 
 On `placeOrder` and `exeutionReports` new optional fields will be added:&#x20;
 
@@ -144,7 +156,7 @@ on `executionReports` and `massOrderStatus` those fields were added:
 {% endtab %}
 {% endtabs %}
 
-### Trade Entry
+**Trade Entry**
 
 Trade Entry️ enable to report about trades that were done between market participants out of the order book.&#x20;
 
@@ -207,7 +219,7 @@ This is going to impact [#orderbookdepth](../market-data.md#orderbookdepth "ment
 {% endtab %}
 {% endtabs %}
 
-### Trades Cancellation&#x20;
+**Trades Cancellation**&#x20;
 
 Trade cancellation enable to cancel trades that were done on the last business day .&#x20;
 
