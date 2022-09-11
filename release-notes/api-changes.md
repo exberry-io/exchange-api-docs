@@ -438,13 +438,12 @@ This is going to impact [#orderbookdepth](../market-data.md#orderbookdepth "ment
 
 
 
-### Reporting - Trades API&#x20;
-
+**Reporting - Trades API**\
 New version is going to be release to [#trades](../reporting-api.md#trades "mention") API.\
 Previous version is still supported but will not include new developments, we encourage you to migrate to the new version.  &#x20;
 
 {% hint style="info" %}
-endpoint: v2/exchange.reporting/mp/trades
+qualifier: v2/exchange.reporting/mp/trades
 {% endhint %}
 
 In the new version each record will be one of the following `actionType`:
