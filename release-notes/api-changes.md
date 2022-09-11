@@ -45,6 +45,180 @@ New API: Get Settlement Prices to retrieve the settlement prices for all instrum
 {% endtab %}
 {% endtabs %}
 
+This stream is a real time stream for getting all the trades data&#x20;
+
+Available messages in that stream :&#x20;
+
+* MatchedTrade: for order book trade&#x20;
+* TradeReport: for trade entry trade&#x20;
+* TradeCancel: for trade cancellation (separate records will be returned for cancellation)
+
+
+
+Fields list&#x20;
+
+| Field          | Description                                                                                                                                                                        | Order Book | Trade Entry | Trade Cancel |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------: | :---------: | :----------: |
+| eventId        |  Event Id                                                                                                                                                                          |      V     |      V      |       V      |
+| timestamp      | Event timestamp (in nanoseconds) in GMT                                                                                                                                            |      V     |      V      |       V      |
+| actionType     | <p>MatchedTrade </p><p>TradeReport </p><p>TradeCancel</p>                                                                                                                          |      V     |      V      |       V      |
+| orderId        | Order id initiated the trade                                                                                                                                                       |      V     |             |              |
+| mpOrderId      | From source order                                                                                                                                                                  |      V     |             |              |
+| mpId           |  MP Id                                                                                                                                                                             |      V     |      V      |       V      |
+| mpName         | MP Name                                                                                                                                                                            |      V     |      V      |       V      |
+| instrumentId   |  Instrument id                                                                                                                                                                     |      V     |      V      |       V      |
+| Instrument     | instrument symbol                                                                                                                                                                  |      V     |      V      |       V      |
+| side           |  Buy/ Sell                                                                                                                                                                         |      V     |      V      |       V      |
+| price          |  Trade price                                                                                                                                                                       |      V     |      V      |       V      |
+| quantity       |  Trade quantity                                                                                                                                                                    |      V     |      V      |       V      |
+| tradeId        | matchId                                                                                                                                                                            |      V     |      V      |       V      |
+| tradingMode    | IA - (Scheduled Intraday Auction) -When execution was as part of auction CT (Continuous Trading) - When execution was done on a regular trading ON - Trade Reporting (On Exchange) |      V     |      V      |       V      |
+| accountType    | Optional, From source order                                                                                                                                                        |      V     |      V      |       V      |
+| parties        | Optional, From source order                                                                                                                                                        |      V     |      V      |     `opt`    |
+| tradeType      | EFRP/Block/Other                                                                                                                                                                   |            |      V      |     `opt`    |
+| makerTaker     | <p><strong>Taker</strong> if order was never resting on the book for that trade <br><strong>Maker</strong> if order was resting on the book for that trade</p>                     |      V     |             |              |
+| tradeDate      | <p>Date of the business day of that trade<br>Format: YYY-MM-DD</p>                                                                                                                 |            |             |              |
+| trackingNumber |  Tracking number                                                                                                                                                                   |            |             |              |
+
+Samples:
+
+{% tabs %}
+{% tab title="Subscription" %}
+```json
+{
+  "q": "v1/exchange.market/trades",
+  "sid": 16,
+  "d": {
+    "trackingNumber": 12345
+  }
+}
+```
+{% endtab %}
+
+{% tab title="MatchedTrade " %}
+```json
+{
+  "q": "v1/exchange.market/trades",
+  "sid": 16,
+  "d": {
+    "eventId": 23,
+    "timestamp": 1662905104172275200,
+    "actionType": "MatchedTrade",
+    "orderId": 18,
+    "mpOrderId": 46,
+    "mpId": 2087505339,
+    "mpName": "mp1",
+    "instrumentId": 963,
+    "instrument": "ABC1",
+    "side": "Sell",
+    "price": 100.48,
+    "quantity": 0.3,
+    "tradeId": 3,
+    "tradingMode": "CT",
+    "accountType": "Client",
+    "parties": [
+      {
+        "id": "TST1",
+        "source": "D",
+        "role": 12
+      },
+      {
+        "id": "1234",
+        "source": "D",
+        "role": 38
+      }
+    ],
+    "makerTaker": "Maker",
+    "tradeDate": "2022-09-11",
+    "trackingNumber": 217814816
+  }
+}
+```
+{% endtab %}
+
+{% tab title="TradeReport " %}
+```javascript
+{
+  "q": "v1/exchange.market/trades",
+  "sid": 16,
+  "d": {
+    "eventId": 27,
+    "timestamp": 1662906852364973300,
+    "actionType": "TradeReport",
+    "mpId": 2087505339,
+    "mpName": "mp1",
+    "instrumentId": 963,
+    "instrument": "ABC1",
+    "side": "Buy",
+    "price": 1.1234,
+    "quantity": 10,
+    "tradeId": 5,
+    "tradingMode": "ON",
+    "accountType": "Client",
+    "parties": [
+      {
+        "id": "1234",
+        "source": "D",
+        "role": 38
+      }
+    ],
+    "tradeType": "Block",
+    "tradeDate": "2022-09-11",
+    "trackingNumber": 217819392
+  }
+}
+```
+{% endtab %}
+
+{% tab title="TradeCancel " %}
+```json
+{
+  "q": "v1/exchange.market/trades",
+  "sid": 16,
+  "d": {
+    "eventId": 26,
+    "timestamp": 1662906282293290000,
+    "actionType": "TradeCancel",
+    "mpId": 2087505339,
+    "mpName": "mp1",
+    "instrumentId": 963,
+    "instrument": "ABC1",
+    "side": "Buy",
+    "price": 100.48,
+    "quantity": 0.3,
+    "tradeId": 4,
+    "tradingMode": "CT",
+    "tradeDate": "2022-09-11",
+    "trackingNumber": 217818208
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+
+
+## 2022-05-16✔️
+
+`replaceOrder` API is now available, it allows cancel and add new order in a single command.
+
+See [#replaceorder](../trading-api.md#replaceorder "mention")
+
+##
+
+## 20
+
+
+
+{% tabs %}
+{% tab title="Subscription" %}
+```json
+{ "q": "v1/exchange.market/trades", "sid": 16, "d": { "trackingNumber": 0 } }
+
+```
+{% endtab %}
+{% endtabs %}
+
 ## 2022-08-31✔️
 
 * Market Participant Group - The ability to access all private data API for a group of market participants, or all market participants.&#x20;
