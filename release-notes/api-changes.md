@@ -45,17 +45,17 @@ New API: Get Settlement Prices to retrieve the settlement prices for all instrum
 {% endtab %}
 {% endtabs %}
 
-This stream is a real time stream for getting all the trades data&#x20;
+New `trades` API that is a real time stream for getting all the trades data&#x20;
+
+{% hint style="info" %}
+`qualifier: v1/exchange.market/trades`
+{% endhint %}
 
 Available messages in that stream :&#x20;
 
 * MatchedTrade: for order book trade&#x20;
 * TradeReport: for trade entry trade&#x20;
 * TradeCancel: for trade cancellation (separate records will be returned for cancellation)
-
-
-
-Fields list&#x20;
 
 | Field          | Description                                                                                                                                                                        | Order Book | Trade Entry | Trade Cancel |
 | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------: | :---------: | :----------: |
@@ -197,27 +197,6 @@ Samples:
 {% endtabs %}
 
 
-
-## 2022-05-16✔️
-
-`replaceOrder` API is now available, it allows cancel and add new order in a single command.
-
-See [#replaceorder](../trading-api.md#replaceorder "mention")
-
-##
-
-## 20
-
-
-
-{% tabs %}
-{% tab title="Subscription" %}
-```json
-{ "q": "v1/exchange.market/trades", "sid": 16, "d": { "trackingNumber": 0 } }
-
-```
-{% endtab %}
-{% endtabs %}
 
 ## 2022-08-31✔️
 
