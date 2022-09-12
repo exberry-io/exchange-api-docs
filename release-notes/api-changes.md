@@ -2,6 +2,8 @@
 
 ## Coming Soon... :hammer\_pick:
 
+On [#trades-v2](../reporting-api.md#trades-v2 "mention")new field was added: `tradeDate`
+
 New API: Get Settlement Prices to retrieve the settlement prices for all instruments or for a specific list of instruments.&#x20;
 
 {% tabs %}
