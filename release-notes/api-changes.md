@@ -2,51 +2,6 @@
 
 ## Coming Soon... :hammer\_pick:
 
-On [#trades-v2](../reporting-api.md#trades-v2 "mention")new field was added: `tradeDate`
-
-New API: Get Settlement Prices to retrieve the settlement prices for all instruments or for a specific list of instruments.&#x20;
-
-{% tabs %}
-{% tab title="Request" %}
-```json
-{
-  "q": "v1/exchange.marketdata/getSettlementPrices",
-  "sid": 10,
-  "d": {
-    "symbols": [
-      "INS1",
-      "INS2"
-    ]
-  }
-}
-```
-{% endtab %}
-
-{% tab title="Response" %}
-```json
-{
-  "q": "v1/exchange.marketdata/getSettlementPrices",
-  "sid": 10,
-  "d": {
-    "symbol": "INS1",
-    "price": 1.235,
-    "lastUpdate": 1662638980158
-  }
-}
-```
-{% endtab %}
-
-{% tab title="Last Message" %}
-```json
-{
-  "sig": 1,
-  "q": "v1/exchange.marketdata/getSettlementPrices",
-  "sid": 10
-}
-```
-{% endtab %}
-{% endtabs %}
-
 New `trades` API that is a real time stream for getting all the trades data&#x20;
 
 {% hint style="info" %}
@@ -198,7 +153,56 @@ Samples:
 {% endtab %}
 {% endtabs %}
 
+## 2022-09-13✔️
 
+* On FIX API:
+  * LOGON message can now be sent with a simple password authentication&#x20;
+  * New tags on NewOrderSingle (MsgType = D) and ExecutionReport (MsgType = 8)
+    * AccountType (581)&#x20;
+    * Parties component
+* On [#trades-v2](../reporting-api.md#trades-v2 "mention")new field was added: `tradeDate`
+* New API: Get Settlement Prices to retrieve the settlement prices for all instruments or for a specific list of instruments.&#x20;
+
+{% tabs %}
+{% tab title="Request" %}
+```json
+{
+  "q": "v1/exchange.marketdata/getSettlementPrices",
+  "sid": 10,
+  "d": {
+    "symbols": [
+      "INS1",
+      "INS2"
+    ]
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```json
+{
+  "q": "v1/exchange.marketdata/getSettlementPrices",
+  "sid": 10,
+  "d": {
+    "symbol": "INS1",
+    "price": 1.235,
+    "lastUpdate": 1662638980158
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Last Message" %}
+```json
+{
+  "sig": 1,
+  "q": "v1/exchange.marketdata/getSettlementPrices",
+  "sid": 10
+}
+```
+{% endtab %}
+{% endtabs %}
 
 ## 2022-08-31✔️
 

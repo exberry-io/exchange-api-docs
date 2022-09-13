@@ -2,16 +2,26 @@
 
 ### LOGON (_MsgType = A_)
 
-| Tag  | Name             | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ---- | ---------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 98   | EncryptMethod    | Y        | 0 = NONE                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| 108  | HeartBtInt       | Y        | Hearbeat interval in seconds                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| 553  | Username         | Y        | apiKey                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| 554  | Password         | Y        | <p><code>HMAC SHA256 signature</code> computed using provided <code>secret</code> key and message. (See how to compute below).</p><p><code>Message = "apiKey":$apiKey,"timestamp":$SendingTime(52)</code><br>Example:<br><code>Message = "apiKey":"1234567abcdz","timestamp":"20210625-15:47:07.473000"</code></p><p><code>secret = MySecretKey</code></p><p><code>signature = ef15c2600af634a83c3e5ada5f80478153fea0f684e640db2bb5edc91aa43a44</code></p> |
-| 141  | ResetSeqNumFlag  | N        | <p>Does client and server should reset sequence numbers</p><p>Y= Reset MsgSeqNum to 1</p><p>N = Do not reset MsgSeqNum</p>                                                                                                                                                                                                                                                                                                                                 |
-| 1137 | DefaultApplVerID | Y        | <p>Fix version</p><p>9 = FIX50SP2</p>                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Tag  | Name             | Required | Description                                                                                                                                                                            |
+| ---- | ---------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 98   | EncryptMethod    | Y        | <p>Method of encryption</p><p>0 = None / Other </p><p>99 = Custom </p>                                                                                                                 |
+| 108  | HeartBtInt       | Y        | Hearbeat interval in seconds                                                                                                                                                           |
+| 553  | Username         | Y        | apiKey                                                                                                                                                                                 |
+| 554  | Password         | Y        | <p><mark style="color:blue;">NEW</mark> <mark style="color:red;"></mark> When EncryptMethod (98) = 0 : secret key <br>When EncryptMethod (98) = 99 : digital signature (see below)</p> |
+| 141  | ResetSeqNumFlag  | N        | <p>Does client and server should reset sequence numbers</p><p>Y= Reset MsgSeqNum to 1</p><p>N = Do not reset MsgSeqNum</p>                                                             |
+| 1137 | DefaultApplVerID | Y        | <p>Fix version</p><p>9 = FIX50SP2</p>                                                                                                                                                  |
 
-How to compute the signature
+How to compute the signature\
+HMAC SHA256 signature computed using provided secret key and message.\
+\
+Example:
+
+```
+Message = "apiKey":$apiKey,"timestamp":$SendingTime(52)
+Message = "apiKey":"1234567abcdz","timestamp":"20210625-15:47:07.473000"
+secret = MySecretKey
+signature = ef15c2600af634a83c3e5ada5f80478153fea0f684e640db2bb5edc91aa43a44
+```
 
 ```
 $ echo -n '"apiKey":"1234567abcdz","timestamp":"20210625-15:47:07.473000"' | openssl dgst -sha256 -hmac 'MySecretKey'
