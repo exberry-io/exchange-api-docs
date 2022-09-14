@@ -54,7 +54,7 @@ qualifier: `v1/exchange.market/placeOrder`
 | <p>userId</p><p><code>optional</code></p>                    | String     | Reference data only which is not being used in the exchange. 20 characters length, \[a-z,A-Z,0-9]                                                                                                                                       |
 | accountId `optional`                                         | Integer    | Account ID of the order                                                                                                                                                                                                                 |
 | <p>accountType<br><strong></strong><code>optional</code></p> | Enum       | Account type Client or House                                                                                                                                                                                                            |
-| parties `optional`                                           | \[] Object | Array of party objects, see details below                                                                                                                                                                                               |
+| parties `optional`                                           | \[] Object | <p>Array of party objects, see details below.<br>Max number of parties =20 </p>                                                                                                                                                         |
 
 Party specification:&#x20;
 
