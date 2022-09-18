@@ -288,7 +288,7 @@ Trade report Message indicates that Trade Entry️ was captured, it means that t
 {% endtab %}
 {% endtabs %}
 
-### **Orders Messages Samples**
+### **Other Messages Samples**
 
 {% tabs %}
 {% tab title="InstrumentStatus" %}
@@ -330,7 +330,7 @@ Trade report Message indicates that Trade Entry️ was captured, it means that t
 ```
 {% endtab %}
 
-{% tab title="Executed" %}
+{% tab title="TradeReport" %}
 ```javascript
 {
   "q": "v1/exchange.market/orderBookDepth",

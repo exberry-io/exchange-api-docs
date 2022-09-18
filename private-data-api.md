@@ -180,7 +180,7 @@ qualifier: `v1/exchange.market/executionReports`
 | 1200 | `General error`                                 |
 | 1201 | `Wrong trackingNumber`                          |
 
-### **Samples**
+### **Orders Messages Samples**
 
 {% tabs %}
 {% tab title="Subscription" %}
@@ -320,6 +320,74 @@ qualifier: `v1/exchange.market/executionReports`
     "trackingNumber": 34271040,
     "mpId": 1958681073,
     "mpName": "Participant1"
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+### **Other Messages Samples**
+
+{% tabs %}
+{% tab title="TradeReport" %}
+```javascript
+{
+  "q": "v1/exchange.market/executionReports",
+  "sid": 121,
+  "d": {
+    "messageType": "TradeReport",
+    "side": "Buy",
+    "instrument": "ABC1",
+    "quantity": 10,
+    "price": 1.1234,
+    "accountType": "Client",
+    "parties": [
+      {
+        "id": "1234",
+        "source": "D",
+        "role": 38
+      }
+    ],
+    "eventTimestamp": 1663490089515144400,
+    "eventId": 31,
+    "matchId": 8,
+    "tradeType": "Block",
+    "tradingMode": "ON",
+    "trackingNumber": 219954560,
+    "mpId": 2087505339,
+    "mpName": "MP1"
+  }
+}
+```
+{% endtab %}
+
+{% tab title="TradeCancel" %}
+```javascript
+{
+  "q": "v1/exchange.market/executionReports",
+  "sid": 121,
+  "d": {
+    "messageType": "Cancelled",
+    "orderId": 2,
+    "mpOrderId": 1,
+    "orderType": "Limit",
+    "side": "Sell",
+    "instrument": "ABC4",
+    "quantity": 0.3,
+    "price": 100.48,
+    "timeInForce": "GTC",
+    "orderTimestamp": 1662997067465939500,
+    "filledQuantity": 0,
+    "remainingOpenQuantity": 0,
+    "removedQuantity": 0,
+    "marketModel": "T",
+    "accountId": 10,
+    "eventTimestamp": 1662998446000199200,
+    "eventId": 4,
+    "cancelledQuantity": 0.3,
+    "trackingNumber": 218169568,
+    "mpId": 2087505339,
+    "mpName": "MP1"
   }
 }
 ```
