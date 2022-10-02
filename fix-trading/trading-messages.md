@@ -4,6 +4,13 @@
 
 ### Client Initiated Messages
 
+| Message                                                                              | MsgType | Usage                                                                     |
+| ------------------------------------------------------------------------------------ | ------- | ------------------------------------------------------------------------- |
+| [NewOrderSingle](trading-messages.md#newordersingle-msgtype-d)                       | D       | Allows the MP to submit a new order                                       |
+| [OrderCancelRequest](trading-messages.md#ordercancelrequest-msgtype-f)               | F       | Allows the MP to cancel an active order                                   |
+| [OrderCancelReplaceRequest](trading-messages.md#ordercancelreplacerequest-msgtype-g) | G       | Allows the MP to [modify ](../trading-api.md#modifyorder)an active order  |
+| [OrderMassCancelRequest](trading-messages.md#ordermasscancelrequest-msgtype-q)       | q       | Allows the MP to mass cancel all active orders for a specific instrument  |
+
 ### Server Initiated Messages
 
 | Message                                                                         | MsgType | Usage                                                                                     |

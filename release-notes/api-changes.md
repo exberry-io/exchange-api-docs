@@ -2,6 +2,10 @@
 
 ## Coming Soon... :hammer\_pick:
 
+Drop Copy for FIX GW - see [here](../fix-trading/trading-messages-1.md)&#x20;
+
+
+
 New `trades` API that is a real time stream for getting all the trades data&#x20;
 
 {% hint style="info" %}
