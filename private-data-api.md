@@ -1,6 +1,10 @@
 # Private Data API
 
-Private data API enables market participants to receive additional copies of the trading activity. This interface may also be used by clients to download the current status of all their active orders.
+Private data API enables market participants to receive additional copies of the trading activity. This interface may also be used by participants to download the current status of all their active orders.
+
+**Data Eligibility**&#x20;
+
+Private data API can be consumed for single market participant (MP) or for group of MPs that are pre-configured by exchange operations team.
 
 Notes:
 
@@ -394,7 +398,7 @@ qualifier: `v1/exchange.market/executionReports`
 {% endtab %}
 {% endtabs %}
 
-## Trades
+## Trades <mark style="color:blue;">NEW</mark>
 
 `trades` API allows to get a real time stream for all the trades data&#x20;
 

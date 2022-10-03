@@ -3,6 +3,10 @@
 Reporting API enables market participants to easily retrieve orders and executions data.\
 This API is close to real time API, allows to access historical data as well up to date data.
 
+**Data Eligibility**&#x20;
+
+Reporting API can be consumed for single market participant (MP) or for group of MPs that are pre-configured by exchange operations team.
+
 Note: This API is accessible via a separated websocket endpoint, not the one used for Trading & Market Data API.
 
 ## Orders
@@ -136,26 +140,27 @@ Each record will be one of the following `actionType`:
 * TradeReport for trade entry trade
 * TradeCancel for trade cancellation (separate records will be returned for cancellation)
 
-| Field        | Description                                                                                                                                                                        | Order Book | Trade Entry | Trade Cancel |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------: | :---------: | :----------: |
-| eventId      |  Event Id                                                                                                                                                                          |      V     |      V      |       V      |
-| timestamp    | <p>Trade event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</p>                                                                                        |      V     |      V      |       V      |
-| actionType   | <p>MatchedTrade </p><p>TradeReport </p><p>TradeCancel</p>                                                                                                                          |      V     |      V      |       V      |
-| orderId      | Order id initiated the trade                                                                                                                                                       |      V     |             |              |
-| mpOrderId    | From source order                                                                                                                                                                  |      V     |             |              |
-| mpId         |  MP Id                                                                                                                                                                             |      V     |      V      |       V      |
-| mpName       | MP Name                                                                                                                                                                            |      V     |      V      |       V      |
-| instrumentId |  Instrument id                                                                                                                                                                     |      V     |      V      |       V      |
-| Instrument   | instrument symbol                                                                                                                                                                  |      V     |      V      |       V      |
-| side         |  Buy/ Sell                                                                                                                                                                         |      V     |      V      |       V      |
-| price        |  Trade price                                                                                                                                                                       |      V     |      V      |       V      |
-| quantity     |  Trade quantity                                                                                                                                                                    |      V     |      V      |       V      |
-| tradeId      | matchId                                                                                                                                                                            |      V     |      V      |       V      |
-| tradingMode  | IA - (Scheduled Intraday Auction) -When execution was as part of auction CT (Continuous Trading) - When execution was done on a regular trading ON - Trade Reporting (On Exchange) |      V     |      V      |       V      |
-| accountType  | Optional, From source order                                                                                                                                                        |      V     |      V      |       V      |
-| parties      | Optional, From source order                                                                                                                                                        |      V     |      V      |     `opt`    |
-| tradeType    | EFRP/Block/Other                                                                                                                                                                   |            |      V      |     `opt`    |
-| makerTaker   | <p><strong>Taker</strong> if order was never resting on the book for that trade <br><strong>Maker</strong> if order was resting on the book for that trade</p>                     |      V     |             |              |
+| Field                                                     | Description                                                                                                                                                                        | Order Book | Trade Entry | Trade Cancel |
+| --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------: | :---------: | :----------: |
+| eventId                                                   |  Event Id                                                                                                                                                                          |      V     |      V      |       V      |
+| timestamp                                                 | <p>Trade event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</p>                                                                                        |      V     |      V      |       V      |
+| actionType                                                | <p>MatchedTrade </p><p>TradeReport </p><p>TradeCancel</p>                                                                                                                          |      V     |      V      |       V      |
+| orderId                                                   | Order id initiated the trade                                                                                                                                                       |      V     |             |              |
+| mpOrderId                                                 | From source order                                                                                                                                                                  |      V     |             |              |
+| mpId                                                      |  MP Id                                                                                                                                                                             |      V     |      V      |       V      |
+| mpName                                                    | MP Name                                                                                                                                                                            |      V     |      V      |       V      |
+| instrumentId                                              |  Instrument id                                                                                                                                                                     |      V     |      V      |       V      |
+| Instrument                                                | instrument symbol                                                                                                                                                                  |      V     |      V      |       V      |
+| side                                                      |  Buy/ Sell                                                                                                                                                                         |      V     |      V      |       V      |
+| price                                                     |  Trade price                                                                                                                                                                       |      V     |      V      |       V      |
+| quantity                                                  |  Trade quantity                                                                                                                                                                    |      V     |      V      |       V      |
+| tradeId                                                   | matchId                                                                                                                                                                            |      V     |      V      |       V      |
+| tradingMode                                               | IA - (Scheduled Intraday Auction) -When execution was as part of auction CT (Continuous Trading) - When execution was done on a regular trading ON - Trade Reporting (On Exchange) |      V     |      V      |       V      |
+| accountType                                               | Optional, From source order                                                                                                                                                        |      V     |      V      |       V      |
+| parties                                                   | Optional, From source order                                                                                                                                                        |      V     |      V      |     `opt`    |
+| tradeType                                                 | EFRP/Block/Other                                                                                                                                                                   |            |      V      |     `opt`    |
+| makerTaker                                                | <p><strong>Taker</strong> if order was never resting on the book for that trade <br><strong>Maker</strong> if order was resting on the book for that trade</p>                     |      V     |             |              |
+| <p><mark style="color:blue;">NEW</mark><br>tradeDate </p> | <p>Date of the business day of that trade<br>Format: YYY-MM-DD</p>                                                                                                                 |      V     |      V      |       V      |
 
 ### **Error Codes**
 
@@ -189,7 +194,7 @@ Each record will be one of the following `actionType`:
   "sid": 10,
   "d": {
     "eventId": 925,
-    "timestamp": "2021-12-15T21:02:45.189982",
+    "timestamp": "2022-10-03T21:02:45.189982",
     "actionType": "MatchedTrade"
     "orderId": 643,
     "mpOrderId": 1631632596945,
@@ -217,7 +222,8 @@ Each record will be one of the following `actionType`:
         "role": 12
       }
     ],
-    "makerTaker": "Taker" 
+    "makerTaker": "Taker" ,
+    "tradeDate": "2022-10-03"
   }
 }
 ```
@@ -230,7 +236,7 @@ Each record will be one of the following `actionType`:
   "sid": 10,
   "d": {
     "eventId": 925,
-    "timestamp": "2021-12-15T21:02:45.189982",
+    "timestamp": "2022-10-03T21:02:45.189982",
     "actionType": "TradeReport"
     "mpId": 1958681073,
     "mpName": "Participant1",
@@ -255,6 +261,7 @@ Each record will be one of the following `actionType`:
       }
     ],
       "tradeType" : "Block",
+      "tradeDate": "2022-10-03"
   }
 }
 ```
@@ -267,7 +274,7 @@ Each record will be one of the following `actionType`:
   "sid": 10,
   "d": {
     "eventId": 925,
-    "timestamp": "2021-12-15T21:02:45.189982",
+    "timestamp": "2022-10-03T21:02:45.189982",
     "actionType": "TradeCancel"
     "mpId": 1958681073,
     "mpName": "Participant1",
@@ -292,6 +299,7 @@ Each record will be one of the following `actionType`:
       }
     ],
     "tradeType" : "Block",
+    "tradeDate": "2022-10-03"
   }
 }
 ```
