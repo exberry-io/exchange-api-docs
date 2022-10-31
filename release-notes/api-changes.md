@@ -2,7 +2,41 @@
 
 ## Coming Soon... :hammer\_pick:
 
+EOD event is now being published on 2 APIs
 
+orderBookDepth
+
+```json
+{
+  "q": "v2/exchange.market/orderBookDepth",
+  "sid": 10,
+  "d": {
+    "messageType": "CalendarEndOfDay",
+    "eventTimestamp": 1667248263443774000,
+    "calendarId": 2082487149,
+    "calendarName": "Test1",
+    "eodDate": "2022-10-31",
+    "trackingNumber": 234773792
+  }
+}
+```
+
+trades:
+
+```json
+{
+  "q": "v1/exchange.market/trades",
+  "sid": 16,
+  "d": {
+    "actionType": "CalendarEndOfDay",
+    "timestamp": 1667248263443774000,
+    "trackingNumber": 234773792,
+    "calendarId": 2082487149,
+    "calendarName": "Test1",
+    "eodDate": "2022-10-31"
+  }
+}
+```
 
 ## 2022-10-03✔️
 
