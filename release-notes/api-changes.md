@@ -2,7 +2,10 @@
 
 ## Coming Soon... :hammer\_pick:
 
-EOD event is now being published on 2 APIs
+## 2022-11-01✔️
+
+* [#tradecapturereport-ae](../fix-trading/trading-messages-1.md#tradecapturereport-ae "mention") now support Snapshot + Updates (Subscribe)
+* EOD event is now being published on 2 APIs:
 
 orderBookDepth
 
