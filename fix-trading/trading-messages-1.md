@@ -46,11 +46,11 @@ MP name will always be added as additional party with the below parameters:
 ```
 {% endcode %}
 
-| Tag | Name                    | Required | Description                                                |
-| --- | ----------------------- | -------- | ---------------------------------------------------------- |
-| 568 | TradeRequestID          | Y        | Trade Capture Report Request ID                            |
-| 569 | TradeRequestType        | Y        | <p>Type of Trade Capture Report. </p><p>0 = All Trades</p> |
-| 263 | SubscriptionRequestType | Y        | <p>Subscription Request Type. </p><p>0 = Snapshot</p>      |
+| Tag | Name                    | Required | Description                                                                                 |
+| --- | ----------------------- | -------- | ------------------------------------------------------------------------------------------- |
+| 568 | TradeRequestID          | Y        | Trade Capture Report Request ID                                                             |
+| 569 | TradeRequestType        | Y        | <p>Type of Trade Capture Report. </p><p>0 = All Trades</p>                                  |
+| 263 | SubscriptionRequestType | Y        | <p>Subscription Request Type. </p><p>0 = Snapshot<br>1 = Snapshot + Updates (Subscribe)</p> |
 
 ### **TradeCaptureReportRequestAck** _(AQ)_
 
