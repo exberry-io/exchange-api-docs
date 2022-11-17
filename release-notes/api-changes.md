@@ -2,6 +2,128 @@
 
 ## Coming Soon... :hammer\_pick:
 
+
+
+## 2022-11-21  :hammer\_pick:&#x20;
+
+### Trading API
+
+From now negative prices are allowed, if you want to make sure that no negative process will be sent for a specific instrument you should configure that minimum price to be 0.0001 or so. \
+
+
+### Strategy Trades&#x20;
+
+Strategy trades are sent with 2 models:
+
+* Single Security: reports the strategy trade as is
+* Individual leg of a multi-leg security: reports the underlying legs of the strategy&#x20;
+
+Each strategy related trade will be sent with the following new parameters:
+
+* multiLegReportingType:
+  * SingleSecurity for parent trade&#x20;
+  * IndividualLeg for legs trades&#x20;
+* tradeLegRefId: leg index
+* multiLegDifferentialPrice: Parent trade price
+* multiLegStrategyInstrumentId: Parent trade instrument Id
+* multiLegStrategyTradeId: Parent trade Id
+
+Strategy Trade Sample
+
+```json
+{
+  "q": "v1/exchange.market/trades",
+  "sid": 155,
+  "d": {
+    "actionType": "TradeReport",
+    "timestamp": 1668524835153741000,
+    "trackingNumber": 69920,
+    "eventId": 1,
+    "mpId": 2087505415,
+    "mpName": "Test1",
+    "instrumentId": 17,
+    "instrument": "Test1Feb-Mar23",
+    "side": "Buy",
+    "price": 3,
+    "quantity": 10,
+    "tradeId": 1,
+    "tradingMode": "ON",
+    "accountType": "Client",
+    "parties": [
+      {
+        "id": "33",
+        "source": "D",
+        "role": 38
+      }
+    ],
+    "tradeType": "EFRP",
+    "tradeDate": "2022-11-15",
+    "multiLegReportingType": "SingleSecurity"
+  }
+}
+```
+
+Strategy Leg Trade Sample
+
+```json
+{
+  "q": "v1/exchange.market/trades",
+  "sid": 155,
+  "d": {
+    "actionType": "TradeReport",
+    "timestamp": 1668524835153741000,
+    "trackingNumber": 70176,
+    "mpId": 2087505415,
+    "mpName": "Test1",
+    "instrumentId": 14,
+    "instrument": "Test1Feb23",
+    "side": "Buy",
+    "price": 1.5,
+    "quantity": 10,
+    "tradeId": 1,
+    "tradingMode": "ON",
+    "accountType": "Client",
+    "parties": [
+      {
+        "id": "33",
+        "source": "D",
+        "role": 38
+      }
+    ],
+    "tradeType": "EFRP",
+    "tradeDate": "2022-11-15",
+    "multiLegReportingType": "IndividualLeg",
+    "tradeLegRefId": 1,
+    "multiLegDifferentialPrice": 3,
+    "multiLegStrategyInstrumentId": 17,
+    "multiLegStrategyTradeId": 1
+  }
+}
+```
+
+On FIX Drop Copy - subscriber will define the reposting type by sending MultiLegReportingType (442) :
+
+* 1 = Single security (default if not specified): only the parent trade is being sent
+* 2 = Individual leg of a multi-leg security: only the underlying legs trades are being sent
+
+Strategy Trade Sample
+
+{% code overflow="wrap" %}
+```
+8=FIXT.1.1|9=273|35=AE|49=EXBERRY|56=mastergroup|34=11|52=20221115-15:14:40.120488|568=1668525280273|912=N|487=0|828=2|55=Test1Feb-Mar23|32=10.0000|31=3.000000|75=20221115|60=20221115-15:07:15.153740|552=1|54=1|581=1|453=2|448=33|447=D|452=38|448=Test1|447=D|452=7|797=Y|570=N|1003=1|442=1|10=050|
+```
+{% endcode %}
+
+Strategy Leg Trade Sample
+
+{% code overflow="wrap" %}
+```
+8=FIXT.1.1|9=290|35=AE|49=EXBERRY|56=mastergroup|34=6|52=20221115-15:13:05.331013|568=1668525185446|912=Y|487=0|828=2|55=Test1FMar23|32=10.0000|31=-1.500000|75=20221115|60=20221115-15:07:15.153740|552=1|54=2|581=1|453=2|448=33|447=D|452=38|448=Test1|447=D|452=7|797=Y|570=N|1003=1|442=2|824=2|1522=3.000000|10=223|2022-11-01|
+```
+{% endcode %}
+
+##
+
 ## 2022-11-01✔️
 
 * [#tradecapturereport-ae](../fix-trading/trading-messages-1.md#tradecapturereport-ae "mention") now support Snapshot + Updates (Subscribe)
