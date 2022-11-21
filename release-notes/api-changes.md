@@ -8,8 +8,21 @@
 
 ### Trading API
 
-From now negative prices are allowed, if you want to make sure that no negative process will be sent for a specific instrument you should configure that minimum price to be 0.0001 or so. \
+* From now on, negative prices are allowed, if you want to make sure that no negative process will be sent for a specific instrument you should configure that minimum price to be 0.0001 or so.&#x20;
+*   FIX API:
 
+    * On Order Cancel Reject (msgType=9) in case of failure: OrdStatus(39) was missing, now will have the value 8 = Rejected
+    * On Execution Report (msgType=8) in case of rejection OrderID(37) was missing, now will have the value -1
+
+    \
+
+
+    ### Orders&#x20;
+
+    On [#massorderstatus](../private-data-api.md#massorderstatus "mention")and [#orders](../reporting-api.md#orders "mention") new fields are added
+
+    * &#x20;parties&#x20;
+    * accountType
 
 ### Strategy Trades&#x20;
 
