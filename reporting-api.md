@@ -29,31 +29,33 @@ qualifier: `v1/`exchange.reporting/mp/orders
 
 `orders` response provides close to real time list of all current orders for the requested period with the entire details of those orders.
 
-| Field                 | Description                                                                                                                                 |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| orderId               | Exchange order ID                                                                                                                           |
-| mpOrderId             | Same as in `placeOrder` request                                                                                                             |
-| instrumentId          | Instrument identifier                                                                                                                       |
-| instrument            | Same as in `placeOrder` request                                                                                                             |
-| mpId                  | Market participant identifier                                                                                                               |
-| mpName                | Market participant name                                                                                                                     |
-| status                | Order status: Active/ Executed/Cancelled                                                                                                    |
-| orderType             | Same as in `placeOrder` request                                                                                                             |
-| side                  | Same as in `placeOrder` request                                                                                                             |
-| price                 | Same as in `placeOrder` request                                                                                                             |
-| quantity              | Same as in `placeOrder` request                                                                                                             |
-| timeInForce           | Same as in `placeOrder` request                                                                                                             |
-| expiryDate            | <p>Optional<br>Order expiry date (GMT)<br>Format: YYYY-MM-DDThh:mm:ss</p>                                                                   |
-| createdAt             | <p>Order creation timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</p>                                              |
-| filledPrice           | Weighted average filled price for all fills on that order $$Sum(event.executedQuantity * event.executedPrice)/Sum(event.executedQuantity)$$ |
-| filledQuantity        | Total filled quantity                                                                                                                       |
-| remainingOpenQuantity | <p>Remaining open quantity.</p><p><span class="math">quantity - filledQuantity - removedQuantity</span></p>                                 |
-| removedQuantity       | Quantity that was removed with modifyOrder request                                                                                          |
-| marketModel           | <p>A - (Auction) when order was placed during auction</p><p>T - (Trading) when order was placed on continues trading mode</p>               |
-| userId                | Same as in `placeOrder` request                                                                                                             |
-| accountId             | Same as in `placeOrder` request                                                                                                             |
-| lastEventTimestamp    | <p>Last order event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</p>                                            |
-| lastEventId           | Last event that was used to calculate order state                                                                                           |
+| Field                                            | Description                                                                                                                                 |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| orderId                                          | Exchange order ID                                                                                                                           |
+| mpOrderId                                        | Same as in `placeOrder` request                                                                                                             |
+| instrumentId                                     | Instrument identifier                                                                                                                       |
+| instrument                                       | Same as in `placeOrder` request                                                                                                             |
+| mpId                                             | Market participant identifier                                                                                                               |
+| mpName                                           | Market participant name                                                                                                                     |
+| status                                           | Order status: Active/ Executed/Cancelled                                                                                                    |
+| orderType                                        | Same as in `placeOrder` request                                                                                                             |
+| side                                             | Same as in `placeOrder` request                                                                                                             |
+| price                                            | Same as in `placeOrder` request                                                                                                             |
+| quantity                                         | Same as in `placeOrder` request                                                                                                             |
+| timeInForce                                      | Same as in `placeOrder` request                                                                                                             |
+| expiryDate                                       | <p>Optional<br>Order expiry date (GMT)<br>Format: YYYY-MM-DDThh:mm:ss</p>                                                                   |
+| createdAt                                        | <p>Order creation timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</p>                                              |
+| filledPrice                                      | Weighted average filled price for all fills on that order $$Sum(event.executedQuantity * event.executedPrice)/Sum(event.executedQuantity)$$ |
+| filledQuantity                                   | Total filled quantity                                                                                                                       |
+| remainingOpenQuantity                            | <p>Remaining open quantity.</p><p><span class="math">quantity - filledQuantity - removedQuantity</span></p>                                 |
+| removedQuantity                                  | Quantity that was removed with modifyOrder request                                                                                          |
+| marketModel                                      | <p>A - (Auction) when order was placed during auction</p><p>T - (Trading) when order was placed on continues trading mode</p>               |
+| userId                                           | Same as in `placeOrder` request                                                                                                             |
+| accountId                                        | Same as in `placeOrder` request                                                                                                             |
+| <mark style="color:blue;">NEW</mark> parties     | Same as in `placeOrder` request                                                                                                             |
+| <mark style="color:blue;">NEW</mark> accountType | Same as in `placeOrder` request                                                                                                             |
+| lastEventTimestamp                               | <p>Last order event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</p>                                            |
+| lastEventId                                      | Last event that was used to calculate order state                                                                                           |
 
 ### **Error Codes**
 

@@ -25,30 +25,32 @@ Each `orderMassStatus`response includes`lastTrackingNumber`, the `trackingNumber
 \
 Note: There are no request parameters.
 
-| Field                 | Description                                                                                                                                 |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| messageType           | **OrderStatus**                                                                                                                             |
-| orderId               | Exchange order ID                                                                                                                           |
-| mpOrderId             | Same as in `placeOrder` request                                                                                                             |
-| orderType             | Same as in `placeOrder` request                                                                                                             |
-| side                  | Same as in `placeOrder` request                                                                                                             |
-| instrument            | Same as in `placeOrder` request                                                                                                             |
-| quantity              | Same as in `placeOrder` request                                                                                                             |
-| price                 | Same as in `placeOrder` request                                                                                                             |
-| timeInForce           | Same as in `placeOrder` request                                                                                                             |
-| expiryDate            | Same as in `placeOrder` request                                                                                                             |
-| orderTimestamp        | Order creation timestamp (in nanoseconds) in GMT                                                                                            |
-| marketModel           | <p>A - (Auction) when order was placed during auction</p><p>T - (Trading) when order was placed on continues trading mode</p>               |
-| userId                | Same as in `placeOrder` request                                                                                                             |
-| accountId             | Same as in `placeOrder` request                                                                                                             |
-| filledQuantity        | Total filled quantity                                                                                                                       |
-| filledPrice           | Weighted average filled price for all fills on that order $$Sum(event.executedQuantity * event.executedPrice)/Sum(event.executedQuantity)$$ |
-| remainingOpenQuantity | <p>Remaining open quantity.</p><p><span class="math">quantity - filledQuantity - removedQuantity</span></p>                                 |
-| removedQuantity       | Quantity that was removed with modifyOrder request                                                                                          |
-| lastEventTimestamp    | Last order event timestamp (in nanoseconds) in GMT                                                                                          |
-| lastEventId           | Last event that was used to calculate order state                                                                                           |
-| mpId                  | MP Id                                                                                                                                       |
-| mpName                | MP name                                                                                                                                     |
+| Field                                            | Description                                                                                                                                 |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| messageType                                      | **OrderStatus**                                                                                                                             |
+| orderId                                          | Exchange order ID                                                                                                                           |
+| mpOrderId                                        | Same as in `placeOrder` request                                                                                                             |
+| orderType                                        | Same as in `placeOrder` request                                                                                                             |
+| side                                             | Same as in `placeOrder` request                                                                                                             |
+| instrument                                       | Same as in `placeOrder` request                                                                                                             |
+| quantity                                         | Same as in `placeOrder` request                                                                                                             |
+| price                                            | Same as in `placeOrder` request                                                                                                             |
+| timeInForce                                      | Same as in `placeOrder` request                                                                                                             |
+| expiryDate                                       | Same as in `placeOrder` request                                                                                                             |
+| orderTimestamp                                   | Order creation timestamp (in nanoseconds) in GMT                                                                                            |
+| marketModel                                      | <p>A - (Auction) when order was placed during auction</p><p>T - (Trading) when order was placed on continues trading mode</p>               |
+| userId                                           | Same as in `placeOrder` request                                                                                                             |
+| accountId                                        | Same as in `placeOrder` request                                                                                                             |
+| <mark style="color:blue;">NEW</mark> parties     | Same as in `placeOrder` request                                                                                                             |
+| <mark style="color:blue;">NEW</mark> accountType | Same as in `placeOrder` request                                                                                                             |
+| filledQuantity                                   | Total filled quantity                                                                                                                       |
+| filledPrice                                      | Weighted average filled price for all fills on that order $$Sum(event.executedQuantity * event.executedPrice)/Sum(event.executedQuantity)$$ |
+| remainingOpenQuantity                            | <p>Remaining open quantity.</p><p><span class="math">quantity - filledQuantity - removedQuantity</span></p>                                 |
+| removedQuantity                                  | Quantity that was removed with modifyOrder request                                                                                          |
+| lastEventTimestamp                               | Last order event timestamp (in nanoseconds) in GMT                                                                                          |
+| lastEventId                                      | Last event that was used to calculate order state                                                                                           |
+| mpId                                             | MP Id                                                                                                                                       |
+| mpName                                           | MP name                                                                                                                                     |
 
 ### **Error Codes**
 
@@ -569,3 +571,102 @@ Available messages in that API:&#x20;
 ```
 {% endtab %}
 {% endtabs %}
+
+### **Strategies/ Multi Legs Handling**&#x20;
+
+Strategies trades are sent on `trades` API by 2 models:
+
+* Single Security: reports the strategy trade as is
+* Individual leg of a multi-leg security: reports the underlying legs of the strategy&#x20;
+
+Consumers can decide how to consume stratesies trades.
+
+\
+Each strategy related trade will be sent with the following new parameters:
+
+| Parameter                    | Description                                                                              |
+| ---------------------------- | ---------------------------------------------------------------------------------------- |
+| multiLegReportingType        | <ul><li>SingleSecurity for parent trade</li><li>IndividualLeg for legs trades </li></ul> |
+| tradeLegRefId                | leg index                                                                                |
+| multiLegDifferentialPrice    | Parent trade price                                                                       |
+| multiLegStrategyInstrumentId | Parent trade instrument Id                                                               |
+| multiLegStrategyTradeId      | Parent trade Id                                                                          |
+
+#### Samples
+
+{% tabs %}
+{% tab title="SingleSecurity" %}
+```json
+{
+  "q": "v1/exchange.market/trades",
+  "sid": 155,
+  "d": {
+    "actionType": "TradeReport",
+    "timestamp": 1668524835153741000,
+    "trackingNumber": 69920,
+    "eventId": 1,
+    "mpId": 2087505415,
+    "mpName": "Test1",
+    "instrumentId": 17,
+    "instrument": "Test1Feb-Mar23",
+    "side": "Buy",
+    "price": 3,
+    "quantity": 10,
+    "tradeId": 1,
+    "tradingMode": "ON",
+    "accountType": "Client",
+    "parties": [
+      {
+        "id": "33",
+        "source": "D",
+        "role": 38
+      }
+    ],
+    "tradeType": "EFRP",
+    "tradeDate": "2022-11-15",
+    "multiLegReportingType": "SingleSecurity"
+  }
+}
+```
+{% endtab %}
+
+{% tab title="IndividualLeg" %}
+```json
+{
+  "q": "v1/exchange.market/trades",
+  "sid": 155,
+  "d": {
+    "actionType": "TradeReport",
+    "timestamp": 1668524835153741000,
+    "trackingNumber": 70176,
+    "mpId": 2087505415,
+    "mpName": "Test1",
+    "instrumentId": 14,
+    "instrument": "Test1Feb23",
+    "side": "Buy",
+    "price": 1.5,
+    "quantity": 10,
+    "tradeId": 1,
+    "tradingMode": "ON",
+    "accountType": "Client",
+    "parties": [
+      {
+        "id": "33",
+        "source": "D",
+        "role": 38
+      }
+    ],
+    "tradeType": "EFRP",
+    "tradeDate": "2022-11-15",
+    "multiLegReportingType": "IndividualLeg",
+    "tradeLegRefId": 1,
+    "multiLegDifferentialPrice": 3,
+    "multiLegStrategyInstrumentId": 17,
+    "multiLegStrategyTradeId": 1
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+****
