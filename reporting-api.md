@@ -308,6 +308,97 @@ Each record will be one of the following `actionType`:
 {% endtab %}
 {% endtabs %}
 
+### <mark style="color:blue;">**NEW**</mark>** Strategies/ Multi Legs Handling**&#x20;
+
+See description and field details on Private Data API [#new-strategies-multi-legs-handling](private-data-api.md#new-strategies-multi-legs-handling "mention")
+
+#### **Samples**
+
+{% tabs %}
+{% tab title="SingleSecurity" %}
+```json
+{
+  "q": "v2/exchange.reporting/mp/trades",
+  "sid": 10,
+  "d": {
+    "eventId": 4,
+    "timestamp": "2022-11-21T16:20:13.865026",
+    "actionType": "MatchedTrade",
+    "orderId": 1,
+    "mpOrderId": 1669047601666,
+    "mpId": 2087505415,
+    "mpName": "Test1",
+    "instrumentId": 17,
+    "instrument": "Test1Feb-Mar23",
+    "side": "Sell",
+    "price": 1.3333,
+    "quantity": 1.33,
+    "tradeId": 3,
+    "tradingMode": "CT",
+    "parties": [
+      {
+        "id": "123456",
+        "source": "D",
+        "role": 38
+      },
+      {
+        "id": "ABCD",
+        "source": "D",
+        "role": 12
+      }
+    ],
+    "makerTaker": "Maker",
+    "tradeDate": "2022-11-21",
+    "multiLegReportingType": "SingleSecurity"
+  }
+}
+```
+{% endtab %}
+
+{% tab title="IndividualLeg" %}
+```json
+{
+  "q": "v2/exchange.reporting/mp/trades",
+  "sid": 10,
+  "d": {
+    "timestamp": "2022-11-21T16:20:13.865026",
+    "actionType": "MatchedTrade",
+    "mpId": 2087505415,
+    "mpName": "Test1",
+    "instrumentId": 14,
+    "instrument": "Test1Feb23",
+    "side": "Sell",
+    "price": 1.5,
+    "quantity": 1.33,
+    "tradeId": 120,
+    "tradingMode": "CT",
+    "parties": [
+      {
+        "id": "123456",
+        "source": "D",
+        "role": 38
+      },
+      {
+        "id": "ABCD",
+        "source": "D",
+        "role": 12
+      }
+    ],
+    "makerTaker": "Maker",
+    "tradeDate": "2022-11-21",
+    "multiLegReportingType": "IndividualLeg",
+    "tradeLegRefId": 1,
+    "multiLegDifferentialPrice": 1.3333,
+    "multiLegStrategyInstrumentId": 17,
+    "multiLegStrategyTradeId": 3
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+
+
 ## Trades V1 - To be Deprecated&#x20;
 
 Any participant can use the `trades` API to retrieve the full list of all its own trades.\

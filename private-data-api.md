@@ -572,7 +572,7 @@ Available messages in that API:&#x20;
 {% endtab %}
 {% endtabs %}
 
-### **Strategies/ Multi Legs Handling**&#x20;
+### <mark style="color:blue;">**NEW**</mark>** Strategies/ Multi Legs Handling**&#x20;
 
 Strategies trades are sent on `trades` API by 2 models:
 
