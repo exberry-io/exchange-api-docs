@@ -2,7 +2,28 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## 2022-12-06
 
+### Trades Reports
+
+* New filters in trade reports
+
+Filters example-
+
+```
+{
+  "q": "v2/exchange.reporting/mp/trades",
+  "sid": 10,
+  "d": {
+     "dateFrom": "2020-10-01T00:00:01",
+     "dateTo": "2022-10-01T00:00:01",
+     "mpId": 2087505425,
+     "tradeId": 42,
+     "instruments":["Sp1"],
+      "actionTypes": [ "TradeReport","TradeCancel", "MatchedTrade"]
+  }
+}
+```
 
 ## 2022-11-21  ✔️
 
@@ -519,7 +540,8 @@ This is going to impact [#orderbookdepth](../market-data.md#orderbookdepth "ment
 </strong>    "price": 1.22,
     "trackingNumber": 100
   }
-}</code></pre>
+}
+</code></pre>
 {% endtab %}
 
 {% tab title="executionReport" %}
@@ -583,7 +605,8 @@ This is going to impact [#orderbookdepth](../market-data.md#orderbookdepth "ment
 </strong>    "price": 1.22,
     "trackingNumber": 100
   }
-}</code></pre>
+}
+</code></pre>
 {% endtab %}
 
 {% tab title="executionReport" %}

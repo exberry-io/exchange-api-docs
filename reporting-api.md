@@ -127,10 +127,14 @@ qualifier: `v2/`exchange.reporting/mp/trades
 
 ### Request
 
-| Parameter | Type           | Description                                                                                           |
-| --------- | -------------- | ----------------------------------------------------------------------------------------------------- |
-| dateFrom  | DateTime (GMT) | <p>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p>    |
-| dateTo    | DateTime (GMT) | <p>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p> |
+| Parameter    | Type           | Description                                                                                                                                                                                         |
+| ------------ | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| dateFrom     | DateTime (GMT) | <p>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p>                                                                                                  |
+| dateTo       | DateTime (GMT) | <p>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p>                                                                                               |
+| instruments  | list           | Search for  the reports of instruments or list of instruments. (by symbol)                                                                                                                          |
+| mpId         | int            | Search for  the reports by MP ID.                                                                                                                                                                   |
+| tradeId      | int            | Search for the reports by TradeId.                                                                                                                                                                  |
+| auctionTypes | eNum           | <p>Search for the reports  by the type of the reports.<br>Any combinations of the below values:</p><ul><li>“MatchedTrade”</li></ul><ul><li>“TradeReportes”</li></ul><ul><li>“TradeCancel”</li></ul> |
 
 ### **Response**
 
