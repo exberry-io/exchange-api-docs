@@ -24,10 +24,10 @@ MP name will always be added as additional party with the below parameters:
 
 ### Client Initiated Messages
 
-| Message                                                                             | MsgType | Usage                                                                                              |
-| ----------------------------------------------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------- |
-| [Trades Capture Report Request](trading-messages-1.md#tradecapturereportrequest-ad) | AD      | Allows to request Trade Capture Reports from the server                                            |
-| [Order Mass Status Request](trading-messages-1.md#ordermassstatusrequest-af)        | AF      | Request message requests the status for orders matching the criteria specified within the request. |
+| Message                                                                                                           | MsgType | Usage                                                                                   |
+| ----------------------------------------------------------------------------------------------------------------- | ------- | --------------------------------------------------------------------------------------- |
+| [Trades Capture Report Request](trading-messages-1.md#tradecapturereportrequest-ad)                               | AD      | Allows to request Trade Capture Reports from the server                                 |
+| [Order Mass Status Request](trading-messages-1.md#ordermassstatusrequest-af) <mark style="color:blue;">NEW</mark> | AF      | Request the list of active orders, will response with Execution Reports (MsgType = 8 )  |
 
 ### Server Initiated Messages
 
@@ -38,6 +38,19 @@ MP name will always be added as additional party with the below parameters:
 | [Execution Report](trading-messages.md#executionreport-msgtype-8)                          | 8       | <p>Indicates one of the following: </p><ul><li>Order added to the book</li><li>Order was executed (Fully or partially)</li><li>Order canceled from book (also in case of GTD expired)</li><li>Order was modified </li></ul> |
 
 ## Messages Specifications
+
+### OrderMassStatusRequest (AF)
+
+{% code overflow="wrap" %}
+```
+8=FIXT.1.1|9=82|35=AF|49=MP1|56=EXBERRY|34=3|52=20221201-10:20:20.940000|584=1669890020940|585=7|10=097|
+```
+{% endcode %}
+
+| Tag | Name              | Required | Description                                                                                       |
+| --- | ----------------- | -------- | ------------------------------------------------------------------------------------------------- |
+| 584 | MassStatusReqID   | Y        | Order Mass Status Request ID                                                                      |
+| 585 | MassStatusReqType | Y        | <p>Type of Mass Status Report. <br>7 = Status for all orders (will return active orders only)</p> |
 
 ### **TradeCaptureReportRequest** _(AD)_
 
@@ -54,30 +67,17 @@ MP name will always be added as additional party with the below parameters:
 | 263 | SubscriptionRequestType | Y        | <p>Subscription Request Type. </p><p>0 = Snapshot<br>1 = Snapshot + Updates (Subscribe)<br>2 =  Disable previous Snapshot + Update Request (Unsubscribe)</p>                                                                                    |
 | 442 | MultiLegReportingType   | N        | <p>This determines how to publish strategy trades: <br>1 = Single security (default if not specified): only the parent trade is being sent. <br>2 = Individual leg of a multi-leg security: only the underlying legs trades are being sent.</p> |
 
-### OrderMassStatusRequest (AF)
-
-{% code overflow="wrap" %}
-```
-8=FIXT.1.1|9=82|35=AF|49=yael|56=EXBERRY|34=3|52=20221201-10:20:20.940000|584=1669890020940|585=7|10=097|
-```
-{% endcode %}
-
-| Tag | Name              | Required | Description                                                      |
-| --- | ----------------- | -------- | ---------------------------------------------------------------- |
-| 584 | MassStatusReqID   | Y        | Order Mass Status Request ID                                     |
-| 585 | MassStatusReqType | Y        | <p>Type of Mass Status Report. <br>7 = Status for all orders</p> |
-
 ### **TradeCaptureReportRequestAck** _(AQ)_
 
 {% code title="Accepted" overflow="wrap" %}
 ```
-8=FIXT.1.1|9=94|35=AQ|49=EXBERRY|56=ABX1|34=2|52=20221002-08:42:21.610692|568=1664700144316|569=0|749=0|750=0|10=243|
+8=FIXT.1.1|9=94|35=AQ|49=EXBERRY|56=ABC1|34=2|52=20221002-08:42:21.610692|568=1664700144316|569=0|749=0|750=0|10=243|
 ```
 {% endcode %}
 
 {% code title="Rejected" overflow="wrap" %}
 ```
-8=FIXT.1.1|9=95|35=AQ|49=EXBERRY|56=ABX1|34=5|52=20221002-09:02:20.774880|568=1664700144316|569=0|749=99|750=2|10=065|
+8=FIXT.1.1|9=95|35=AQ|49=EXBERRY|56=ABC1|34=5|52=20221002-09:02:20.774880|568=1664700144316|569=0|749=99|750=2|10=065|
 ```
 {% endcode %}
 
@@ -92,6 +92,8 @@ MP name will always be added as additional party with the below parameters:
 
 
 ### **TradeCaptureReport** _(AE)_
+
+**TradeCaptureReport** _(AE)- Single Leg_
 
 {% tabs %}
 {% tab title="Order Book Trade" %}

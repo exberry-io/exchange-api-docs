@@ -4,9 +4,11 @@
 
 ## 2022-12-06
 
+*
+
 ### Trades Reports
 
-* New filters in trade reports
+* New filters in trade reports [Mass Order Status Request ](../fix-trading/trading-messages-1.md#ordermassstatusrequest-af)
 
 Filters example-
 
