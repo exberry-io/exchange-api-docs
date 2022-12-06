@@ -127,14 +127,14 @@ qualifier: `v2/`exchange.reporting/mp/trades
 
 ### Request
 
-| Parameter    | Type           | Description                                                                                                                                                                                         |
-| ------------ | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| dateFrom     | DateTime (GMT) | <p>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p>                                                                                                  |
-| dateTo       | DateTime (GMT) | <p>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p>                                                                                               |
-| instruments  | list           | Search for  the reports of instruments or list of instruments. (by symbol)                                                                                                                          |
-| mpId         | int            | Search for  the reports by MP ID.                                                                                                                                                                   |
-| tradeId      | int            | Search for the reports by TradeId.                                                                                                                                                                  |
-| auctionTypes | eNum           | <p>Search for the reports  by the type of the reports.<br>Any combinations of the below values:</p><ul><li>“MatchedTrade”</li></ul><ul><li>“TradeReportes”</li></ul><ul><li>“TradeCancel”</li></ul> |
+| Parameter                                         | Type           | Description                                                                                                                                                                      |
+| ------------------------------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| dateFrom                                          | DateTime (GMT) | <p>Search for trades where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p>                                                                               |
+| dateTo                                            | DateTime (GMT) | <p>Search for trades where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p>                                                                            |
+| instruments <mark style="color:blue;">NEW</mark>  | \[]Int         | Search for trades by symbol                                                                                                                                                      |
+| mpId <mark style="color:blue;">NEW</mark>         | Int            | Search for trades by MP ID.                                                                                                                                                      |
+| tradeId <mark style="color:blue;">NEW</mark>      | Int            | Search for trades by tradeId.                                                                                                                                                    |
+| auctionTypes <mark style="color:blue;">NEW</mark> | \[]eNum        | <p>Search for trades by actionType.<br>Any combinations of the below values:</p><ul><li>“MatchedTrade”</li><li>“TradeReportes”</li><li>“TradeCancel”</li></ul><p>Empty = All</p> |
 
 ### **Response**
 
@@ -183,11 +183,15 @@ Each record will be one of the following `actionType`:
 {% tab title="Request" %}
 ```json
 {
-  "q": "v1/exchange.reporting/mp/trades",
+  "q": "v2/exchange.reporting/mp/trades",
   "sid": 10,
   "d": {
-    "dateFrom": "2021-12-15T00:00:01",
-    "dateTo": "2021-12-16T00:00:01"
+     "dateFrom": "2020-10-01T00:00:01",
+     "dateTo": "2022-10-01T00:00:01",
+     "mpId": 2087505425,
+     "tradeId": 42,
+     "instruments":["INS1", "INS2"],
+     "actionTypes": [ "TradeReport","TradeCancel", "MatchedTrade"]
   }
 }
 ```
