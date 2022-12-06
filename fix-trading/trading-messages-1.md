@@ -24,9 +24,10 @@ MP name will always be added as additional party with the below parameters:
 
 ### Client Initiated Messages
 
-| Message                                                                             | MsgType | Usage                                                   |
-| ----------------------------------------------------------------------------------- | ------- | ------------------------------------------------------- |
-| [Trades Capture Report Request](trading-messages-1.md#tradecapturereportrequest-ad) | AD      | Allows to request Trade Capture Reports from the server |
+| Message                                                                             | MsgType | Usage                                                                                              |
+| ----------------------------------------------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------- |
+| [Trades Capture Report Request](trading-messages-1.md#tradecapturereportrequest-ad) | AD      | Allows to request Trade Capture Reports from the server                                            |
+| [Order Mass Status Request](trading-messages-1.md#ordermassstatusrequest-af)        | AF      | Request message requests the status for orders matching the criteria specified within the request. |
 
 ### Server Initiated Messages
 
@@ -52,6 +53,19 @@ MP name will always be added as additional party with the below parameters:
 | 569 | TradeRequestType        | Y        | <p>Type of Trade Capture Report. </p><p>0 = All Trades</p>                                                                                                                                                                                      |
 | 263 | SubscriptionRequestType | Y        | <p>Subscription Request Type. </p><p>0 = Snapshot<br>1 = Snapshot + Updates (Subscribe)<br>2 =  Disable previous Snapshot + Update Request (Unsubscribe)</p>                                                                                    |
 | 442 | MultiLegReportingType   | N        | <p>This determines how to publish strategy trades: <br>1 = Single security (default if not specified): only the parent trade is being sent. <br>2 = Individual leg of a multi-leg security: only the underlying legs trades are being sent.</p> |
+
+### OrderMassStatusRequest (AF)
+
+{% code overflow="wrap" %}
+```
+8=FIXT.1.1|9=82|35=AF|49=yael|56=EXBERRY|34=3|52=20221201-10:20:20.940000|584=1669890020940|585=7|10=097|
+```
+{% endcode %}
+
+| Tag | Name              | Required | Description                                                      |
+| --- | ----------------- | -------- | ---------------------------------------------------------------- |
+| 584 | MassStatusReqID   | Y        | Order Mass Status Request ID                                     |
+| 585 | MassStatusReqType | Y        | <p>Type of Mass Status Report. <br>7 = Status for all orders</p> |
 
 ### **TradeCaptureReportRequestAck** _(AQ)_
 
