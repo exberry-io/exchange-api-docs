@@ -4,10 +4,6 @@
 
 ## 2022-12-06
 
-*
-
-### Trades Reports
-
 * New FIX Drop Copy Client initiated message : [Mass Order Status Request ](../fix-trading/trading-messages-1.md#ordermassstatusrequest-af)
 * Place Order validation that price must ne positive was removed
 * New Filters in   [Trades Reports](../reporting-api.md#trades-v2)  &#x20;
@@ -28,7 +24,7 @@
 
 ## 2022-11-21  ✔️
 
-### Trading API
+Trading API
 
 * From now on, negative prices are allowed, if you want to make sure that no negative process will be sent for a specific instrument you should configure that minimum price to be 0.0001 or so.&#x20;
 *   FIX API:
@@ -46,7 +42,7 @@
     * &#x20;parties&#x20;
     * accountType
 
-### Strategy Trades&#x20;
+**Strategy Trades**&#x20;
 
 Strategy trades are sent with 2 models:
 
