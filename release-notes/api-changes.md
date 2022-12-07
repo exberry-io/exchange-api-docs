@@ -22,6 +22,8 @@
 }
 ```
 
+* New errorCode on `createSession` API - 6003&#x20;
+
 ## 2022-11-21  ✔️
 
 Trading API

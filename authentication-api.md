@@ -4,7 +4,8 @@
 
 The `createSession` API lets you authenticate to exchange API.
 
-Prior to any exchange API call you must create a valid session, this session remains active as long as WebSocket connection remains open. Any market participant connected to exchange will be provided with 1 (or more) set of `apiKey` and `secret`, each `apiKey` is assigned with the relevant permissions.
+Prior to any exchange API call you must create a valid session, this session remains active as long as WebSocket connection remains open. Any market participant connected to exchange will be provided with 1 (or more) set of `apiKey` and `secret`, each `apiKey` is assigned with the relevant permissions.\
+A single WebSocket connection can have single active session at a time.
 
 {% hint style="info" %}
 qualifier: `exchange.market/createSession`
@@ -32,6 +33,7 @@ echo -n '"apiKey":"1234567abcdz","timestamp":"1558941516123"' | openssl dgst -sh
 | 6000 | `Authentication failed`       |
 | 6001 | `Wrong timestamp`             |
 | 6002 | `Missing fields: [Fieldname]` |
+| 6003 | `Create session failed`       |
 
 ### **Samples**
 
