@@ -19,11 +19,14 @@ qualifier: `v1/`exchange.reporting/mp/orders
 
 ### Request
 
-| Parameter | Type           | Description                                                                                           |
-| --------- | -------------- | ----------------------------------------------------------------------------------------------------- |
-| dateFrom  | DateTime (GMT) | <p>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p>    |
-| dateTo    | DateTime (GMT) | <p>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p> |
-| status    | eNum           | <p>Order status (Active/ Executed/Cancelled )</p><p>Empty Status = All statuses</p>                   |
+| Parameter                                         | Type           | Description                                                                                           |
+| ------------------------------------------------- | -------------- | ----------------------------------------------------------------------------------------------------- |
+| dateFrom                                          | DateTime (GMT) | <p>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p>    |
+| dateTo                                            | DateTime (GMT) | <p>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p> |
+| status                                            | eNum           | <p>Order status (Active/ Executed/Cancelled )</p><p>Empty Status = All statuses</p>                   |
+| instruments <mark style="color:blue;">NEW</mark>  | \[]String      | Search for orders by symbol                                                                           |
+| mpId <mark style="color:blue;">NEW</mark>         | int            | Search for orders by MP ID.                                                                           |
+| orderId <mark style="color:blue;">NEW</mark>      | int            | Search for orders by order ID.                                                                        |
 
 ### **Response**
 
@@ -65,6 +68,7 @@ qualifier: `v1/`exchange.reporting/mp/orders
 | 1007 | `Invalid session`                                                                                                                    |
 | 1008 | `This apiKey doesn’t have the right permission`                                                                                      |
 | 1001 | <p><code>Wrong [FieldName] format</code> or<br><code>Wrong Status</code> or<br><code>dateTo must be greater than dateFrom</code></p> |
+| 1001 | <p><code>Wrong [FieldName] format</code><br><code>instruments must be a list</code><br><code>orderId and mpId must be int</code></p> |
 
 ### **Samples**
 
@@ -72,13 +76,16 @@ qualifier: `v1/`exchange.reporting/mp/orders
 {% tab title="Request" %}
 ```javascript
 {
-  "d": {
-    "dateFrom": "2021-12-15T00:00:01",
-    "dateTo": "2021-12-16T00:00:01",
-    "status": "Active"
-  },
   "q": "v1/exchange.reporting/mp/orders",
-  "sid": 10
+  "sid": 12,
+  "d": {
+    "dateFrom": "2022-12-01T00:00:01",
+    "dateTo": "2022-12-12T00:00:01",
+    "status": "Active",
+    "instruments": ["123"],
+    "mpId": 123456,
+    "orderId": 15764
+  }
 }
 ```
 {% endtab %}
@@ -127,14 +134,15 @@ qualifier: `v2/`exchange.reporting/mp/trades
 
 ### Request
 
-| Parameter                                         | Type           | Description                                                                                                                                                                      |
-| ------------------------------------------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| dateFrom                                          | DateTime (GMT) | <p>Search for trades where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p>                                                                               |
-| dateTo                                            | DateTime (GMT) | <p>Search for trades where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p>                                                                            |
-| instruments <mark style="color:blue;">NEW</mark>  | \[]Int         | Search for trades by symbol                                                                                                                                                      |
-| mpId <mark style="color:blue;">NEW</mark>         | Int            | Search for trades by MP ID.                                                                                                                                                      |
-| tradeId <mark style="color:blue;">NEW</mark>      | Int            | Search for trades by tradeId.                                                                                                                                                    |
-| auctionTypes <mark style="color:blue;">NEW</mark> | \[]eNum        | <p>Search for trades by actionType.<br>Any combinations of the below values:</p><ul><li>“MatchedTrade”</li><li>“TradeReportes”</li><li>“TradeCancel”</li></ul><p>Empty = All</p> |
+| Parameter                                                   | Type           | Description                                                                                                                                                                             |
+| ----------------------------------------------------------- | -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| dateFrom                                                    | DateTime (GMT) | <p>Search for trades where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p>                                                                                      |
+| dateTo                                                      | DateTime (GMT) | <p>Search for trades where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</p>                                                                                   |
+| instruments                                                 | \[]String      | Search for trades by symbol                                                                                                                                                             |
+| mpId                                                        | Int            | Search for trades by MP ID.                                                                                                                                                             |
+| tradeId                                                     | Int            | Search for trades by tradeId.                                                                                                                                                           |
+| auctionTypes                                                | \[]eNum        | <p>Search for trades by actionType.<br>Any combinations of the below values:</p><ul><li>“MatchedTrade”</li><li>“TradeReportes”</li><li>“TradeCancel”</li></ul><p>Empty = All</p>        |
+| multiLegReportingTypes <mark style="color:blue;">NEW</mark> | \[]eNum        | <p>Search for trades by multiLegReportingTypes.<br>Any combinations of the below values:</p><ul><li>“SingleSecurity”</li><li>“IndividualLeg”</li><li>“None”</li></ul><p>Empty = All</p> |
 
 ### **Response**
 
@@ -146,37 +154,38 @@ Each record will be one of the following `actionType`:
 * TradeReport for trade entry trade
 * TradeCancel for trade cancellation (separate records will be returned for cancellation)
 
-| Field                                                     | Description                                                                                                                                                                        | Order Book | Trade Entry | Trade Cancel |
-| --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------: | :---------: | :----------: |
-| eventId                                                   |  Event Id                                                                                                                                                                          |      V     |      V      |       V      |
-| timestamp                                                 | <p>Trade event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</p>                                                                                        |      V     |      V      |       V      |
-| actionType                                                | <p>MatchedTrade </p><p>TradeReport </p><p>TradeCancel</p>                                                                                                                          |      V     |      V      |       V      |
-| orderId                                                   | Order id initiated the trade                                                                                                                                                       |      V     |             |              |
-| mpOrderId                                                 | From source order                                                                                                                                                                  |      V     |             |              |
-| mpId                                                      |  MP Id                                                                                                                                                                             |      V     |      V      |       V      |
-| mpName                                                    | MP Name                                                                                                                                                                            |      V     |      V      |       V      |
-| instrumentId                                              |  Instrument id                                                                                                                                                                     |      V     |      V      |       V      |
-| Instrument                                                | instrument symbol                                                                                                                                                                  |      V     |      V      |       V      |
-| side                                                      |  Buy/ Sell                                                                                                                                                                         |      V     |      V      |       V      |
-| price                                                     |  Trade price                                                                                                                                                                       |      V     |      V      |       V      |
-| quantity                                                  |  Trade quantity                                                                                                                                                                    |      V     |      V      |       V      |
-| tradeId                                                   | matchId                                                                                                                                                                            |      V     |      V      |       V      |
-| tradingMode                                               | IA - (Scheduled Intraday Auction) -When execution was as part of auction CT (Continuous Trading) - When execution was done on a regular trading ON - Trade Reporting (On Exchange) |      V     |      V      |       V      |
-| accountType                                               | Optional, From source order                                                                                                                                                        |      V     |      V      |       V      |
-| parties                                                   | Optional, From source order                                                                                                                                                        |      V     |      V      |     `opt`    |
-| tradeType                                                 | EFRP/Block/Other                                                                                                                                                                   |            |      V      |     `opt`    |
-| makerTaker                                                | <p><strong>Taker</strong> if order was never resting on the book for that trade <br><strong>Maker</strong> if order was resting on the book for that trade</p>                     |      V     |             |              |
-| <p><mark style="color:blue;">NEW</mark><br>tradeDate </p> | <p>Date of the business day of that trade<br>Format: YYY-MM-DD</p>                                                                                                                 |      V     |      V      |       V      |
+| Field                                                      | Description                                                                                                                                                                        | Order Book | Trade Entry | Trade Cancel |
+| ---------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------: | :---------: | :----------: |
+| eventId                                                    |  Event Id                                                                                                                                                                          |      V     |      V      |       V      |
+| timestamp                                                  | <p>Trade event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</p>                                                                                        |      V     |      V      |       V      |
+| actionType                                                 | <p>MatchedTrade </p><p>TradeReport </p><p>TradeCancel</p>                                                                                                                          |      V     |      V      |       V      |
+| orderId                                                    | Order id initiated the trade                                                                                                                                                       |      V     |             |              |
+| mpOrderId                                                  | From source order                                                                                                                                                                  |      V     |             |              |
+| mpId                                                       |  MP Id                                                                                                                                                                             |      V     |      V      |       V      |
+| mpName                                                     | MP Name                                                                                                                                                                            |      V     |      V      |       V      |
+| instrumentId                                               |  Instrument id                                                                                                                                                                     |      V     |      V      |       V      |
+| Instrument                                                 | instrument symbol                                                                                                                                                                  |      V     |      V      |       V      |
+| side                                                       |  Buy/ Sell                                                                                                                                                                         |      V     |      V      |       V      |
+| price                                                      |  Trade price                                                                                                                                                                       |      V     |      V      |       V      |
+| quantity                                                   |  Trade quantity                                                                                                                                                                    |      V     |      V      |       V      |
+| tradeId                                                    | matchId                                                                                                                                                                            |      V     |      V      |       V      |
+| tradingMode                                                | IA - (Scheduled Intraday Auction) -When execution was as part of auction CT (Continuous Trading) - When execution was done on a regular trading ON - Trade Reporting (On Exchange) |      V     |      V      |       V      |
+| accountType                                                | Optional, From source order                                                                                                                                                        |      V     |      V      |       V      |
+| parties                                                    | Optional, From source order                                                                                                                                                        |      V     |      V      |     `opt`    |
+| tradeType                                                  | EFRP/Block/Other                                                                                                                                                                   |            |      V      |     `opt`    |
+| makerTaker                                                 | <p><strong>Taker</strong> if order was never resting on the book for that trade <br><strong>Maker</strong> if order was resting on the book for that trade</p>                     |      V     |             |              |
+| tradeDate                                                  | <p>Date of the business day of that trade<br>Format: YYY-MM-DD</p>                                                                                                                 |      V     |      V      |       V      |
+| multiLegReportingType <mark style="color:blue;">NEW</mark> | <p>For strategy allocated trades &#x26; parent trades only </p><ul><li>For parent: “SingleSecurity”</li><li>For allocate: “IndividualLeg”</li></ul>                                |      V     |      V      |   Per trade  |
 
 ### **Error Codes**
 
-| Code | Message                                                                                                    |
-| ---- | ---------------------------------------------------------------------------------------------------------- |
-| 1    | `Temporary failure to retrieve this data`                                                                  |
-| 101  | <p><code>Missing or invalid parameter: [FieldName]</code><br><code>tradeId and mpId must be int</code></p> |
-| 1007 | `Invalid session`                                                                                          |
-| 1008 | `This apiKey doesn’t have the right permission`                                                            |
-| 1001 | <p><code>Wrong [FieldName] format</code> or<br><code>dateTo must be greater than dateFrom</code></p>       |
+| Code                                                                                  | Message                                                                                                                                                                   |
+| ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1                                                                                     | `Temporary failure to retrieve this data`                                                                                                                                 |
+| 1007                                                                                  | `Invalid session`                                                                                                                                                         |
+| 1008                                                                                  | `This apiKey doesn’t have the right permission`                                                                                                                           |
+| 1001                                                                                  | <p><code>Wrong [FieldName] format</code> or<br><code>dateTo must be greater than dateFrom</code></p>                                                                      |
+| <p><mark style="color:blue;">NEW</mark> <br><mark style="color:blue;"></mark>1001</p> | <p><code>Invalid parameter:[FieldName]</code><br><code>Instruments and multiLegReportingTypes must be a list.</code></p><p><code>tradeId and mpId must be int.</code></p> |
 
 ### **Samples**
 
@@ -192,7 +201,9 @@ Each record will be one of the following `actionType`:
      "mpId": 2087505425,
      "tradeId": 42,
      "instruments":["INS1", "INS2"],
-     "actionTypes": [ "TradeReport","TradeCancel", "MatchedTrade"]
+     "actionTypes": [ "TradeReport","TradeCancel", "MatchedTrade"],
+     "multiLegReportingTypes": ["SingleSecurity", "IndividualLeg", "None"]
+
   }
 }
 ```
@@ -234,7 +245,9 @@ Each record will be one of the following `actionType`:
       }
     ],
     "makerTaker": "Taker" ,
-    "tradeDate": "2022-10-03"
+    "tradeDate": "2022-10-03",
+    "multiLegReportingType": "SingleSecurity"
+
   }
 }
 ```
@@ -272,7 +285,9 @@ Each record will be one of the following `actionType`:
       }
     ],
       "tradeType" : "Block",
-      "tradeDate": "2022-10-03"
+      "tradeDate": "2022-10-03",
+      "multiLegReportingType": "SingleSecurity"
+
   }
 }
 ```
@@ -311,6 +326,7 @@ Each record will be one of the following `actionType`:
     ],
     "tradeType" : "Block",
     "tradeDate": "2022-10-03"
+
   }
 }
 ```

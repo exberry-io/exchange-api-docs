@@ -2,7 +2,46 @@
 
 ## Coming Soon... :hammer\_pick:
 
-## 2022-12-06
+## 2022-01-03
+
+* New Filter in   [Trades Reports](../reporting-api.md#trades-v2)&#x20;
+
+```
+  "q": "v2/exchange.reporting/mp/trades",
+  "sid": 10,
+  "d": {
+     "dateFrom": "2020-10-01T00:00:01",
+     "dateTo": "2022-10-01T00:00:01",
+     "mpId": 2087505425,
+     "tradeId": 42,
+     "instruments":["Sp1"],
+     "actionTypes": [ "TradeReport","TradeCancel", "MatchedTrade"],
+     "multiLegReportingTypes": ["SingleSecurity", "IndividualLeg", "None"]
+  }
+}
+```
+
+* New `errorCode` on `Trades V2` API - 1001
+* New filters in [orders](../reporting-api.md#orders)
+
+```
+{
+  "q": "v1/exchange.reporting/mp/orders",
+  "sid": 12,
+  "d": {
+    "dateFrom": "2022-12-01T00:00:01",
+    "dateTo": "2022-12-12T00:00:01",
+    "status": "Active",
+    "instruments": ["123"],
+    "mpId": 123456,
+    "orderId": 15764
+  }
+}
+```
+
+* New `errorCode` on `Orders` API - 1001
+
+## 2022-12-06✔️
 
 * New FIX Drop Copy Client initiated message : [Mass Order Status Request ](../fix-trading/trading-messages-1.md#ordermassstatusrequest-af)
 * Place Order validation that price must ne positive was removed
@@ -24,7 +63,7 @@
 
 * New errorCode on `createSession` API - 6003&#x20;
 
-## 2022-11-21  ✔️
+## 2022-11-21✔️
 
 Trading API
 
