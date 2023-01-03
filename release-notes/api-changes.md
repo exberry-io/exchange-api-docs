@@ -43,6 +43,10 @@
 
 ## 2022-12-06✔️
 
+* New trading mode and market model.
+
+## 2022-12-06
+
 * New FIX Drop Copy Client initiated message : [Mass Order Status Request ](../fix-trading/trading-messages-1.md#ordermassstatusrequest-af)
 * Place Order validation that price must ne positive was removed
 * New Filters in   [Trades Reports](../reporting-api.md#trades-v2)  &#x20;
