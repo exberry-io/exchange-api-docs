@@ -170,12 +170,13 @@ Each record will be one of the following `actionType`:
 
 ### **Error Codes**
 
-| Code | Message                                                                                              |
-| ---- | ---------------------------------------------------------------------------------------------------- |
-| 1    | `Temporary failure to retrieve this data`                                                            |
-| 1007 | `Invalid session`                                                                                    |
-| 1008 | `This apiKey doesn’t have the right permission`                                                      |
-| 1001 | <p><code>Wrong [FieldName] format</code> or<br><code>dateTo must be greater than dateFrom</code></p> |
+| Code | Message                                                                                                    |
+| ---- | ---------------------------------------------------------------------------------------------------------- |
+| 1    | `Temporary failure to retrieve this data`                                                                  |
+| 101  | <p><code>Missing or invalid parameter: [FieldName]</code><br><code>tradeId and mpId must be int</code></p> |
+| 1007 | `Invalid session`                                                                                          |
+| 1008 | `This apiKey doesn’t have the right permission`                                                            |
+| 1001 | <p><code>Wrong [FieldName] format</code> or<br><code>dateTo must be greater than dateFrom</code></p>       |
 
 ### **Samples**
 
