@@ -41,6 +41,7 @@
 
 * New `errorCode` on `Orders` API - 1001
 * New trading mode and market model.
+* On rejected ExecutionReport _(MsgType = 8) :_  Side (54) = 1 (Buy)
 
 ##
 
