@@ -141,7 +141,7 @@ qualifier: `v2/`exchange.reporting/mp/trades
 | instruments                                                 | \[]String      | Search for trades by symbol                                                                                                                                                             |
 | mpId                                                        | Int            | Search for trades by MP ID.                                                                                                                                                             |
 | tradeId                                                     | Int            | Search for trades by tradeId.                                                                                                                                                           |
-| auctionTypes                                                | \[]eNum        | <p>Search for trades by actionType.<br>Any combinations of the below values:</p><ul><li>“MatchedTrade”</li><li>“TradeReportes”</li><li>“TradeCancel”</li></ul><p>Empty = All</p>        |
+| actionTypes                                                 | \[]eNum        | <p>Search for trades by actionType.<br>Any combinations of the below values:</p><ul><li>“MatchedTrade”</li><li>“TradeReport”</li><li>“TradeCancel”</li></ul><p>Empty = All</p>          |
 | multiLegReportingTypes <mark style="color:blue;">NEW</mark> | \[]eNum        | <p>Search for trades by multiLegReportingTypes.<br>Any combinations of the below values:</p><ul><li>“SingleSecurity”</li><li>“IndividualLeg”</li><li>“None”</li></ul><p>Empty = All</p> |
 
 ### **Response**
