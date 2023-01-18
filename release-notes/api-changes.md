@@ -2,13 +2,15 @@
 
 ## Coming Soon... :hammer\_pick:
 
-## 2022-01-18
+
+
+## 2022-01-18 ✔️
 
 * New filed in ExecutionReport - ClOrdID(11)
 * The Rejected Execution Report can now be associated with the NewOrderSingle message. (By using ClOrdID (11) or OrigClOrdID(41))
 * OrigClOrdID(41) is now optional in  ExecutionReport&#x20;
 
-## 2022-01-03
+## 2022-01-03 ✔️
 
 * New Filter in   [Trades Reports](../reporting-api.md#trades-v2)&#x20;
 
