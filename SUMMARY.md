@@ -14,7 +14,8 @@
 * [Header & Trailer](fix-trading/header-and-trailer.md)
 * [Session Messages](fix-trading/session-messages.md)
 * [Trading Messages](fix-trading/trading-messages.md)
-* [Drop Copy (NEW)](fix-trading/trading-messages-1.md)
+* [Drop Copy](fix-trading/trading-messages-1.md)
+* [Market Data](fix-trading/market-data.md)
 
 ## Release Notes
 
