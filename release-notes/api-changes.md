@@ -15,7 +15,7 @@
   * Removed OrigClOrdID(41) from all Execution Reports except from:
     * ExecType(150) = 4(CANCELED)&#x20;
     * ExecType(150) = 5(REPLACE)
-  * Adding ClOrdID(11)
+  * Adding ClOrdID(11) in:
     * OrderMassCancelReport (r)
     * OrderCancelReject (9)
   * Changing the ClOrdID(11) to be a number only in:
