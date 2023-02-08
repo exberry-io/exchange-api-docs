@@ -219,7 +219,7 @@ Note: On server initiated massages (like ExecutionReport (8) or TradeCaptureRepo
 {% tab title="Accepted" %}
 {% code overflow="wrap" %}
 ```
-8=FIXT.1.1|9=87|35=r|49=EXBERRY|56=MP1|34=20|52=20221127-11:48:39.808764|530=1|531=1|533=0|1369=37263|10=066|
+8=FIXT.1.1|9=105|35=r|49=EXBERRY|56=Test1|34=26|52=20230208-12:59:24.189454|11=1675861165216|530=1|531=1|533=1|1369=41489|10=221|
 ```
 {% endcode %}
 {% endtab %}
@@ -227,26 +227,27 @@ Note: On server initiated massages (like ExecutionReport (8) or TradeCaptureRepo
 {% tab title="Rejected" %}
 {% code overflow="wrap" %}
 ```
-8=FIXT.1.1|9=118|35=r|49=EXBERRY|56=MP1|34=24|52=20221124-09:37:01.311422|530=1|531=0|532=1010|58=Instrument FIX not found|1369=37256|10=126|
+8=FIXT.1.1|9=136|35=r|49=EXBERRY|56=Test1|34=19|52=20230208-12:56:07.210122|11=1675860968239|530=1|531=0|532=1010|58=Instrument FIX not found|1369=41488|10=255|
 ```
 {% endcode %}
 {% endtab %}
 {% endtabs %}
 
-| Tag  | Name                   | Required | Description                                                                |
-| ---- | ---------------------- | -------- | -------------------------------------------------------------------------- |
-| 530  | MassCancelRequestType  | Y        | 1 = Cancel orders for a security                                           |
-| 531  | MassCancelResponse     | Y        | <p>0 = Cancel request rejected</p><p>1 = Cancel request succeeded</p>      |
-| 532  | MassCancelRejectReason | N        | In case of reject, specify the Exberry error code                          |
-| 533  | TotalAffectedOrders    | N        | In case of success, number of orders affected from the mass cancel request |
-| 1369 | MassActionReportID     | Y        | Unique ID of mass cancel request                                           |
-| 58   | Text                   | N        | In case of reject, specify the error message                               |
+| Tag                                     | Name                   | Required | Description                                                                |
+| --------------------------------------- | ---------------------- | -------- | -------------------------------------------------------------------------- |
+| <mark style="color:blue;">NEW</mark> 11 | ClOrdID                | Y        | Unique ID of mass cancel request                                           |
+| 530                                     | MassCancelRequestType  | Y        | 1 = Cancel orders for a security                                           |
+| 531                                     | MassCancelResponse     | Y        | <p>0 = Cancel request rejected</p><p>1 = Cancel request succeeded</p>      |
+| 532                                     | MassCancelRejectReason | N        | In case of reject, specify the Exberry error code                          |
+| 533                                     | TotalAffectedOrders    | N        | In case of success, number of orders affected from the mass cancel request |
+| 1369                                    | MassActionReportID     | Y        | Unique ID of mass cancel request                                           |
+| 58                                      | Text                   | N        | In case of reject, specify the error message                               |
 
 ### OrderCancelReject _(MsgType = 9)_
 
 {% code overflow="wrap" %}
 ```
-8=FIXT.1.1|9=125|35=9|49=EXBERRY|56=MP1|34=27|52=20221127-11:52:00.728920|37=NONE|434=1|102=1100|39=8|58=Order not found for that instrument|10=081
+8=FIXT.1.1|9=142|35=9|49=EXBERRY|56=Test1|34=2|52=20230208-12:48:17.846582|11=1675860498874|37=NONE|434=1|102=1100|39=8|58=Order not found for that instrument|10=171|
 ```
 {% endcode %}
 
