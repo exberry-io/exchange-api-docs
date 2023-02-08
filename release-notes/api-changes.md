@@ -2,6 +2,31 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## 2023-02-08 ✔️
+
+* New section added: Market Data for FIX GW - see [here ](https://app.gitbook.com/o/okJjrZYa0IvDclrhKkAo/s/-M-yqzGakbR2s9rOe4nu/\~/changes/vh4Utk97DRg2Npf936du/fix-trading/market-data)
+  * Market Data
+  * Security List
+  * Security Status
+* Additional FIX GW Changes:
+  * New Fields in [Trade Capture Reports (AE)](../fix-trading/trading-messages-1.md#tradecapturereport-ae) on trade cancellation:
+    * orderId(37)
+    * ClOrdID(11))&#x20;
+  * New field in the Order Cancel Reject(9) - ClOrdID(11)
+  * Removed OrigClOrdID(41) from all Execution Reports except from:
+    * **ExecType(150) = 4(CANCELED)**&#x20;
+    * **(ExecType(150) = 5(REPLACE)**
+  * Changing the ClOrdID(11) to be a number in:
+    * OrderMassCancelRequest (q)
+    * OrderCancelRequest (F)
+    * OrderCancelReplaceRequest (G)
+  * Deperaction of the below fields from NewOrderSingle (MsgType = D) and ExecutionReport (MsgType = 8) :&#x20;
+    * 200001 - userId
+    *   200002 - accountId&#x20;
+
+        \
+
+
 ##
 
 ## 2023-01-18 ✔️
