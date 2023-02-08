@@ -98,7 +98,7 @@ Note: On server initiated massages (like ExecutionReport (8) or TradeCaptureRepo
 | --- | ----------- | -------- | ------------------------------------------------------------------------------------ |
 | 37  | OrderID     | N        | <p>Order Id to be cancelled</p><p>Mandatory if OrigClOrdID was not specified</p>     |
 | 41  | OrigClOrdID | N        | <p>Original ClOrdID to be cancelled</p><p>Mandatory if OrderID was not specified</p> |
-| 11  | ClOrdID     | Y        | Unique ID of cancel request                                                          |
+| 11  | ClOrdID     | Y        | Unique ID of cancel request, numbers only                                            |
 | 55  | Symbol      | Y        | Instrument symbol                                                                    |
 
 ### OrderCancelReplaceRequest _(MsgType = G)_
@@ -112,7 +112,7 @@ Note: On server initiated massages (like ExecutionReport (8) or TradeCaptureRepo
 | Tag | Name     | Required | Description                                              |
 | --- | -------- | -------- | -------------------------------------------------------- |
 | 37  | OrderID  | Y        | Order Id to be modified                                  |
-| 11  | ClOrdID  | Y        | Unique ID of cancel/replace request                      |
+| 11  | ClOrdID  | Y        | Unique ID of cancel/replace request, numbers only        |
 | 55  | Symbol   | Y        | Instrument symbol                                        |
 | 38  | OrderQty | Y        | Quantity to apply on order (less than original quantity) |
 
@@ -124,11 +124,11 @@ Note: On server initiated massages (like ExecutionReport (8) or TradeCaptureRepo
 ```
 {% endcode %}
 
-| Tag | Name                  | Required | Description                      |
-| --- | --------------------- | -------- | -------------------------------- |
-| 11  | ClOrdID               | Y        | Unique ID of mass cancel request |
-| 55  | Symbol                | Y        | Instrument symbol                |
-| 530 | MassCancelRequestType | Y        | 1 = Cancel orders for a security |
+| Tag | Name                  | Required | Description                                    |
+| --- | --------------------- | -------- | ---------------------------------------------- |
+| 11  | ClOrdID               | Y        | Unique ID of mass cancel request, numbers only |
+| 55  | Symbol                | Y        | Instrument symbol                              |
+| 530 | MassCancelRequestType | Y        | 1 = Cancel orders for a security               |
 
 ### ExecutionReport _(MsgType = 8)_
 
@@ -187,8 +187,8 @@ Note: On server initiated massages (like ExecutionReport (8) or TradeCaptureRepo
 | Tag                                                     | Name             | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | ------------------------------------------------------- | ---------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 37                                                      | OrderID          | Y        | <p>Order Id<br>In case of rejection message will be -1 </p>                                                                                                                                                                                                                                                                                                                                                                                  |
-| 41                                                      | OrigClOrdID      | N        | ClOrdID of the order                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| <mark style="color:blue;">NEW</mark> 11                 | ClOrdID          | Y        | ClOrdID of the order                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| 41                                                      | OrigClOrdID      | N        | <p>ClOrdID of the cancelled/ modified order<br>Returned in case 150 (ExecType) is: <br> 4 = [Canceled]<br> 5 = [Replaced]</p>                                                                                                                                                                                                                                                                                                                |
+| <mark style="color:blue;">NEW</mark> 11                 | ClOrdID          | N        | <p>ClOrdID of the order request message.<br><br>ClOrdID  of the actual order in case 150 (ExecType) is: </p><p>0 = [New]</p><p>F = [Trade]<br>I = [Order Status]</p>                                                                                                                                                                                                                                                                         |
 | 17                                                      | ExecID           | Y        | <p>Unique identifier of execution report<br><mark style="color:blue;">NEW</mark> 0 = Case of Order Mass Status Request (AF) response</p>                                                                                                                                                                                                                                                                                                     |
 | 880                                                     | TrdMatchID       | N        | Match Id - only in case ExecType = Trade                                                                                                                                                                                                                                                                                                                                                                                                     |
 | 150                                                     | ExecType         | Y        | <p>Describes the purpose of the execution report:</p><p>8 = [Rejected]- When request is rejected</p><p>0 = [New]- When order added to the book</p><p>F = [Trade]- When order was executed (Fully or partially)</p><p>4 = [Canceled] - When order canceled from book (also in case of GTD expired)</p><p>5 = [Replaced] - when order was modified<br><mark style="color:blue;">NEW</mark> I = [Order Status] - When mass status requested</p> |
@@ -250,13 +250,14 @@ Note: On server initiated massages (like ExecutionReport (8) or TradeCaptureRepo
 ```
 {% endcode %}
 
-| Tag | Name             | Required | Description                                                                                        |
-| --- | ---------------- | -------- | -------------------------------------------------------------------------------------------------- |
-| 37  | OrderID          | Y        | orderId that was sent to be cancelled/ modified. Always “NONE”                                     |
-| 39  | OrdStatus        | Y        |  8 = Rejected                                                                                      |
-| 102 | CxlRejReason     | Y        | Specify the error code                                                                             |
-| 434 | CxlRejResponseTo | Y        | <p>Original request is :</p><p>1 = Order cancel request</p><p>2 = Order cancel/replace request</p> |
-| 58  | Text             | Y        | Specify the error message                                                                          |
+| Tag                                     | Name             | Required | Description                                                                                        |
+| --------------------------------------- | ---------------- | -------- | -------------------------------------------------------------------------------------------------- |
+| <mark style="color:blue;">NEW</mark> 11 | ClOrdID          | Y        | Unique ID of cancel request                                                                        |
+| 37                                      | OrderID          | Y        | orderId that was sent to be cancelled/ modified. Always “NONE”                                     |
+| 39                                      | OrdStatus        | Y        |  8 = Rejected                                                                                      |
+| 102                                     | CxlRejReason     | Y        | Specify the error code                                                                             |
+| 434                                     | CxlRejResponseTo | Y        | <p>Original request is :</p><p>1 = Order cancel request</p><p>2 = Order cancel/replace request</p> |
+| 58                                      | Text             | Y        | Specify the error message                                                                          |
 
 ### BusinessMessageReject _(MsgType = j)_
 
