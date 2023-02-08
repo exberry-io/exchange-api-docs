@@ -136,7 +136,8 @@ Note: On server initiated massages (like ExecutionReport (8) or TradeCaptureRepo
 {% tab title="New" %}
 {% code overflow="wrap" %}
 ```
-8=FIXT.1.1|9=255|35=8|49=EXBERRY|56=MP1|34=5|52=20221127-11:42:36.138119|17=37259|55=yael1|37=5|41=1669549352750|150=0|40=2|39=0|54=2|59=1|44=100.0|38=1.0|14=0.0|151=1.0|60=20221127-11:42:36.130166|453=3|448=123456|447=D|452=38|448=ABCD|447=D|452=12|448=MP1|447=D|452=7|10=221|
+8=FIXT.1.1|9=257|35=8|49=EXBERRY|56=MP1|34=11|52=20230208-14:52:35.748854|17=41567|55=INS1|37=8|11=1675867953922|150=0|40=2|39=0|54=2|59=1|44=1.0|38=1.00|14=0.00|151=1.00|60=20230208-14:52:35.740531|453=3|448=123456|447=D|452=38|448=ABCD|447=D|452=12|448=user|447=D|452=7|10=088|
+
 ```
 {% endcode %}
 {% endtab %}
@@ -144,7 +145,7 @@ Note: On server initiated massages (like ExecutionReport (8) or TradeCaptureRepo
 {% tab title="Rejected" %}
 {% code overflow="wrap" %}
 ```
-8=FIXT.1.1|9=121|35=8|49=EXBERRY|56=MP1|34=10|52=20221127-11:45:00.373231|17=37260|150=8|37=-1|39=8|103=1010|58=Instrument FIX not found|10=169|
+8=FIXT.1.1|9=166|35=8|49=EXBERRY|56=MP1|34=4|52=20230208-14:49:16.166387|17=41566|150=8|37=-1|11=1675867754336|39=8|103=1011|54=1|14=0|151=0|58=Permission denied for this instrument|10=037|
 ```
 {% endcode %}
 {% endtab %}
@@ -152,7 +153,7 @@ Note: On server initiated massages (like ExecutionReport (8) or TradeCaptureRepo
 {% tab title="Trade" %}
 {% code overflow="wrap" %}
 ```
- 8=FIXT.1.1|9=290|35=8|49=EXBERRY|56=MP1|34=47|52=20221127-12:00:27.256013|17=37266|55=yael1|37=7|41=1669550423866|150=F|40=2|39=2|54=1|59=1|44=100.0|38=1.0|14=1.0|151=0.0|31=100.0|32=1.0|880=4|60=20221127-12:00:27.243980|75=20221127|453=3|448=123456|447=D|452=38|448=ABCD|447=D|452=12|448=MP1|447=D|452=7|10=049|
+8=FIXT.1.1|9=290|35=8|49=EXBERRY|56=MP1|34=16|52=20230208-14:54:12.909888|17=41569|55=INS1|37=9|11=1675868051083|150=F|40=2|39=2|54=1|59=1|44=1.0|38=1.00|14=1.00|151=0.00|31=1.0|32=1.00|880=5|60=20230208-14:54:12.900801|75=20230208|453=3|448=123456|447=D|452=38|448=ABCD|447=D|452=12|448=user|447=D|452=7|10=071|
 ```
 {% endcode %}
 {% endtab %}
@@ -160,7 +161,7 @@ Note: On server initiated massages (like ExecutionReport (8) or TradeCaptureRepo
 {% tab title="Canceled" %}
 {% code overflow="wrap" %}
 ```
- 8=FIXT.1.1|9=254|35=8|49=EXBERRY|56=MP1|34=14|52=20221127-11:46:41.698965|17=37261|55=yael1|37=5|41=1669549352750|150=4|40=2|39=4|54=2|59=1|44=100.0|38=1.0|14=0.0|151=0|60=20221127-11:46:41.692550|453=3|448=123456|447=D|452=38|448=ABCD|447=D|452=12|448=MP1|447=D|452=7|10=204|
+ 8=FIXT.1.1|9=272|35=8|49=EXBERRY|56=MP1|34=24|52=20230208-14:57:46.764247|17=41571|55=INS1|37=10|41=1675868153947|11=1675868264931|150=4|40=2|39=4|54=2|59=1|44=1.0|38=1.00|14=0.00|151=0|60=20230208-14:57:46.751133|453=3|448=123456|447=D|452=38|448=ABCD|447=D|452=12|448=user|447=D|452=7|10=083|
 ```
 {% endcode %}
 {% endtab %}
@@ -168,7 +169,7 @@ Note: On server initiated massages (like ExecutionReport (8) or TradeCaptureRepo
 {% tab title="Replaced" %}
 {% code overflow="wrap" %}
 ```
-8=FIXT.1.1|9=258|35=8|49=EXBERRY|56=MP1|34=64|52=20221127-12:06:39.375990|17=37269|55=yael1|37=8|41=1669550567403|150=5|40=2|39=0|54=2|59=1|44=10.0|38=1.00|14=0.00|151=0.12|60=20221127-12:06:39.364379|453=3|448=123456|447=D|452=38|448=ABCD|447=D|452=12|448=MP1|447=D|452=7|10=156|
+8=FIXT.1.1|9=275|35=8|49=EXBERRY|56=MP1|34=38|52=20230208-15:03:11.859441|17=41573|55=INS1|37=11|41=1675868335775|11=1675868590036|150=5|40=2|39=0|54=2|59=1|44=1.0|38=1.00|14=0.00|151=0.12|60=20230208-15:03:11.850057|453=3|448=123456|447=D|452=38|448=ABCD|447=D|452=12|448=user|447=D|452=7|10=209|
 ```
 {% endcode %}
 {% endtab %}
@@ -188,7 +189,7 @@ Note: On server initiated massages (like ExecutionReport (8) or TradeCaptureRepo
 | --------------------------------------------------------------------- | ---------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 37                                                                    | OrderID          | Y        | <p>Order Id<br>In case of rejection message will be -1 </p>                                                                                                                                                                                                                                                                                                                                                                                  |
 | 41                                                                    | OrigClOrdID      | N        | <p>ClOrdID of the cancelled/ modified order<br>Returned in case 150 (ExecType) is: <br> 4 = [Canceled]<br> 5 = [Replaced]</p>                                                                                                                                                                                                                                                                                                                |
-| <mark style="color:blue;">NEW</mark> 11                               | ClOrdID          | N        | <p>ClOrdID of the order request message.<br><br>ClOrdID  of the actual order in case 150 (ExecType) is: </p><p>0 = [New]</p><p>F = [Trade]<br>I = [Order Status]</p>                                                                                                                                                                                                                                                                         |
+| <mark style="color:blue;">NEW</mark> 11                               | ClOrdID          | N        | <p>ClOrdID of the request message in case 150 (ExecType) is: <br>8 = [Rejected] </p><p>4 = [Canceled] </p><p>5 = [Replaced]<br>(In case request is done not from FIX GW it will not be returned)<br><br>ClOrdID of the order in case 150 (ExecType) is: </p><p>0 = [New]</p><p>F = [Trade]<br>I = [Order Status]</p>                                                                                                                         |
 | 17                                                                    | ExecID           | Y        | <p>Unique identifier of execution report<br><mark style="color:blue;">NEW</mark> 0 = Case of Order Mass Status Request (AF) response</p>                                                                                                                                                                                                                                                                                                     |
 | 880                                                                   | TrdMatchID       | N        | Match Id - only in case ExecType = Trade                                                                                                                                                                                                                                                                                                                                                                                                     |
 | 150                                                                   | ExecType         | Y        | <p>Describes the purpose of the execution report:</p><p>8 = [Rejected]- When request is rejected</p><p>0 = [New]- When order added to the book</p><p>F = [Trade]- When order was executed (Fully or partially)</p><p>4 = [Canceled] - When order canceled from book (also in case of GTD expired)</p><p>5 = [Replaced] - when order was modified<br><mark style="color:blue;">NEW</mark> I = [Order Status] - When mass status requested</p> |
