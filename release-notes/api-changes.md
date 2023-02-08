@@ -9,9 +9,9 @@
   * Security List
   * Security Status
 * Additional FIX GW Changes:
-  * New Fields in [Trade Capture Reports (AE)](../fix-trading/trading-messages-1.md#tradecapturereport-ae) on trade cancellation:
+  * New Fields in [Trade Capture Reports (AE)](../fix-trading/trading-messages-1.md#tradecapturereport-ae) on trade cancellation (TradeReportTransType =  1):
     * orderId(37)
-    * ClOrdID(11))&#x20;
+    * ClOrdID(11)&#x20;
   * Removed OrigClOrdID(41) from all Execution Reports except from:
     * ExecType(150) = 4(CANCELED)&#x20;
     * ExecType(150) = 5(REPLACE)
