@@ -28,7 +28,7 @@
 
 ## 2023-01-18 ✔️
 
-* New filed in ExecutionReport - ClOrdID(11)
+* New field in ExecutionReport - ClOrdID(11)
 * The Rejected Execution Report can now be associated with the NewOrderSingle message. (By using ClOrdID (11) or OrigClOrdID(41))
 * OrigClOrdID(41) is now optional in  ExecutionReport&#x20;
 
