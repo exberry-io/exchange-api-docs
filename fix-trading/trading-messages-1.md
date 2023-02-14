@@ -37,6 +37,13 @@ MP name will always be added as additional party with the below parameters:
 | [Trades Capture Report](trading-messages-1.md#tradecapturereport-ae)                       | AE      | <p>Indicates one of the following: </p><ul><li>Trade </li><li>Trade Cancellation </li></ul>                                                                                                                                 |
 | [Execution Report](trading-messages.md#executionreport-msgtype-8)                          | 8       | <p>Indicates one of the following: </p><ul><li>Order added to the book</li><li>Order was executed (Fully or partially)</li><li>Order canceled from book (also in case of GTD expired)</li><li>Order was modified </li></ul> |
 
+### Request/ Response Messages
+
+| Message                                                                                                              | Success Message                                                                                       | Failure Message                                                                      | No Result                                                                                                      |
+| -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------- |
+| [TradeCaptureReportRequest](https://docs.exberry.io/fix-trading/trading-messages-1#tradecapturereportrequest-ad)(AD) | <ul><li>TradeCaptureReportRequestAck (Accepted)(AQ)</li></ul><ul><li>TradeCaptureReport(AE)</li></ul> | <ul><li>TradeCaptureReportRequestAck (Rejected)(AQ)</li></ul>                        | <ul><li>TradeCaptureReportRequestAck(Success)(AQ)</li><li>TradeCaptureReportRequestAck(Rejected)(AQ)</li></ul> |
+| [OrderMassStatusRequest](https://docs.exberry.io/fix-trading/trading-messages-1#ordermassstatusrequest-af)(AF)       | <ul><li>Execution Reports(8)</li></ul>                                                                | <p>One of the below:</p><ul><li>BusinessMessageReject(j)</li><li>Reject(3)</li></ul> | <ul><li>Execution Reports (Rejected status)(8)</li></ul>                                                       |
+
 ## Messages Specifications
 
 ### OrderMassStatusRequest (AF)
