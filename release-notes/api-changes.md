@@ -2,6 +2,33 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## 2023-03-01
+
+* New Market Data request are now supported:
+  * Market by Order Full Depth
+  * Time & Sales&#x20;
+  * Auction Indicative Equilibrium Price&#x20;
+* **Trades Capture Report Request (AD)**:  Until this version MultiLegReportingType(442) was explicit so if subscribing using MultiLegReportingType(442) = 2 (Individual leg) you would get only strategy legs trades , if subscribing using MultiLegReportingType(442) = 1 (Single  security) you would get only strategy parent trades.\
+  From this version:
+  * If the MultiLegReportingType(442) = 1 (Single security) you will get:&#x20;
+    * All regular trades (non strategy)&#x20;
+    * Strategy trades - parent trades&#x20;
+  * If the MultiLegReportingType(442) = 2 (Individual leg) you will get:&#x20;
+    * All regular trades (non strategy)&#x20;
+    * Strategy trades - legs trades&#x20;
+  * In case noting was sent we return the same as 1 ( Single security).&#x20;
+* New field added to the Security List(y) - text(58), used in case of rejection to include error message.&#x20;
+* New fields to the Market Data Snapshot (W)  - SecurityID(48) and SecurityIDSource(22)
+* OrigClOrdID(41) - From this version, we removed this tag from Trade Capture Report when 487 (TradeReportTransType) = 0 (New)&#x20;
+* Adding "To be deprecated": label of the below fields from [placeOrder ](api-changes.md#placeorder)and derived messages&#x20;
+  * userId
+  * accountId
+  * Note: those fields are still supported, Exberry operation team will coordinate the deperaction with Exberry clients.&#x20;
+
+
+
+&#x20;
+
 ## 2023-02-08 ✔️
 
 * New section added: Market Data for FIX GW - see [here ](https://app.gitbook.com/o/okJjrZYa0IvDclrhKkAo/s/-M-yqzGakbR2s9rOe4nu/\~/changes/vh4Utk97DRg2Npf936du/fix-trading/market-data)
