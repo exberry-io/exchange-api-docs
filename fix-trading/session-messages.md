@@ -9,14 +9,14 @@
 ```
 {% endcode %}
 
-| Tag  | Name             | Required | Description                                                                                                                                                                            |
-| ---- | ---------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 98   | EncryptMethod    | Y        | <p>Method of encryption</p><p>0 = None / Other </p><p>99 = Custom </p>                                                                                                                 |
-| 108  | HeartBtInt       | Y        | Hearbeat interval in seconds                                                                                                                                                           |
-| 553  | Username         | Y        | apiKey                                                                                                                                                                                 |
-| 554  | Password         | Y        | <p><mark style="color:blue;">NEW</mark> <mark style="color:red;"></mark> When EncryptMethod (98) = 0 : secret key <br>When EncryptMethod (98) = 99 : digital signature (see below)</p> |
-| 141  | ResetSeqNumFlag  | N        | <p>Does client and server should reset sequence numbers</p><p>Y= Reset MsgSeqNum to 1</p><p>N = Do not reset MsgSeqNum</p>                                                             |
-| 1137 | DefaultApplVerID | Y        | <p>Fix version</p><p>9 = FIX50SP2</p>                                                                                                                                                  |
+| Tag  | Name             | Required | Description                                                                                                                |
+| ---- | ---------------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
+| 98   | EncryptMethod    | Y        | <p>Method of encryption</p><p>0 = None / Other </p><p>99 = Custom </p>                                                     |
+| 108  | HeartBtInt       | Y        | Hearbeat interval in seconds                                                                                               |
+| 553  | Username         | Y        | apiKey                                                                                                                     |
+| 554  | Password         | Y        | <p>When EncryptMethod (98) = 0 : secret key <br>When EncryptMethod (98) = 99 : digital signature (see below)</p>           |
+| 141  | ResetSeqNumFlag  | N        | <p>Does client and server should reset sequence numbers</p><p>Y= Reset MsgSeqNum to 1</p><p>N = Do not reset MsgSeqNum</p> |
+| 1137 | DefaultApplVerID | Y        | <p>Fix version</p><p>9 = FIX50SP2</p>                                                                                      |
 
 How to compute the signature\
 HMAC SHA256 signature computed using provided secret key and message.\

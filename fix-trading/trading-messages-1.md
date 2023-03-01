@@ -24,10 +24,10 @@ MP name will always be added as additional party with the below parameters:
 
 ### Client Initiated Messages
 
-| Message                                                                                                           | MsgType | Usage                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------- | ------- | --------------------------------------------------------------------------------------- |
-| [Trades Capture Report Request](trading-messages-1.md#tradecapturereportrequest-ad)                               | AD      | Allows to request Trade Capture Reports from the server                                 |
-| [Order Mass Status Request](trading-messages-1.md#ordermassstatusrequest-af) <mark style="color:blue;">NEW</mark> | AF      | Request the list of active orders, will response with Execution Reports (MsgType = 8 )  |
+| Message                                                                             | MsgType | Usage                                                                                   |
+| ----------------------------------------------------------------------------------- | ------- | --------------------------------------------------------------------------------------- |
+| [Trades Capture Report Request](trading-messages-1.md#tradecapturereportrequest-ad) | AD      | Allows to request Trade Capture Reports from the server                                 |
+| [Order Mass Status Request](trading-messages-1.md#ordermassstatusrequest-af)        | AF      | Request the list of active orders, will response with Execution Reports (MsgType = 8 )  |
 
 ### Server Initiated Messages
 
