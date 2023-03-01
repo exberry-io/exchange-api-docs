@@ -2,7 +2,7 @@
 
 ## Coming Soon... :hammer\_pick:
 
-## 2023-03-01
+## 2023-03-01✔️
 
 * New Market Data request are now supported:
   * Market by Order Full Depth
@@ -23,7 +23,8 @@
 * Adding "To be deprecated": label of the below fields from [placeOrder ](api-changes.md#placeorder)and derived messages&#x20;
   * userId
   * accountId
-  * Note: those fields are still supported, Exberry operation team will coordinate the deperaction with Exberry clients.&#x20;
+  * Note: those fields are still supported, Exberry operation team will coordinate the deprecation with Exberry clients.&#x20;
+* Few valiodation messaged were updated in [Trading API ](../trading-api.md)&#x20;
 
 
 
