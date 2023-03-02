@@ -446,23 +446,23 @@ qualifier: `v1/`exchange.reporting/mp/trades
 
 `trades` response provides close to real time list of all trades for the requested period with the entire details of those trades.
 
-| Field            | Description                                                                                                                                                       |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| eventId          | Event identifier of the execution                                                                                                                                 |
-| timestamp        | <p>Execution event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</p>                                                                   |
-| orderId          | Exchange order ID                                                                                                                                                 |
-| mpOrderId        | Same as in `placeOrder` request                                                                                                                                   |
-| mpId             | Market participant identifier                                                                                                                                     |
-| mpName           | Market participant name                                                                                                                                           |
-| instrumentId     | Instrument identifier                                                                                                                                             |
-| instrument       | Same as in `placeOrder` request                                                                                                                                   |
-| side             | Buy/ Sell                                                                                                                                                         |
-| executedPrice    | Trade price                                                                                                                                                       |
-| executedQuantity | Trade amount                                                                                                                                                      |
-| matchId          | Match identifier                                                                                                                                                  |
-| tradingMode      | <p>IA - (Scheduled Intraday Auction) -When execution was as part of auction</p><p>CT (Continuous Trading) - When execution was done on a regular trading mode</p> |
-| userId           | Same as in `placeOrder` request                                                                                                                                   |
-| accountId        | Same as in `placeOrder` request                                                                                                                                   |
+| Field                                                                   | Description                                                                                                                                                       |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| eventId                                                                 | Event identifier of the execution                                                                                                                                 |
+| timestamp                                                               | <p>Execution event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</p>                                                                   |
+| orderId                                                                 | Exchange order ID                                                                                                                                                 |
+| mpOrderId                                                               | Same as in `placeOrder` request                                                                                                                                   |
+| mpId                                                                    | Market participant identifier                                                                                                                                     |
+| mpName                                                                  | Market participant name                                                                                                                                           |
+| instrumentId                                                            | Instrument identifier                                                                                                                                             |
+| instrument                                                              | Same as in `placeOrder` request                                                                                                                                   |
+| side                                                                    | Buy/ Sell                                                                                                                                                         |
+| executedPrice                                                           | Trade price                                                                                                                                                       |
+| executedQuantity                                                        | Trade amount                                                                                                                                                      |
+| matchId                                                                 | Match identifier                                                                                                                                                  |
+| tradingMode                                                             | <p>IA - (Scheduled Intraday Auction) -When execution was as part of auction</p><p>CT (Continuous Trading) - When execution was done on a regular trading mode</p> |
+| <p><mark style="color:red;">To be deprecated</mark></p><p>userId</p>    | Same as in `placeOrder` request                                                                                                                                   |
+| <p><mark style="color:red;">To be deprecated</mark></p><p>accountId</p> | Same as in `placeOrder` request                                                                                                                                   |
 
 ### **Error Codes**
 
