@@ -20,6 +20,46 @@ MP name will always be added as additional party with the below parameters:
 * **Execution Reports**: No need to subscribe, assuming the credentials provided by operations team include the right permission, the Execution Reports will start to be published  once sessions is properly initiated.&#x20;
 * **Trade Capture Reports**: Explicit subscription is required, see below for more details, successful subscription will occur only if the appropriate permission was granted to connection credentials. &#x20;
 
+## **Strategies/ Multi Legs Handling**&#x20;
+
+There are 2 options for strategies trade reporting:
+
+* Send one strategy summary message with MultiLegReportingType(442) = 1 (Single security)
+* Send one individual legs messages with MultiLegReportingType(442) = 2 (Individual leg of a multi-leg security)
+
+On ExecutionReport (8) system sends only the fill of the strategy summary, while on TradeCaptureReport(AE) system allows subscriber to determine how to get the trades.&#x20;
+
+For example - for Spread instrument ABC-Feb23-Mar23 which is spread on future contracts ABC-Feb23 and ABC-Mar23.&#x20;
+
+ExecutionReport will include only ABC-Feb23-Mar23 (without any value tag 442)
+
+On TradeCaptureReport subscriber has 2 options how to get the data:
+
+**Option 1**
+
+Using MultiLegReportingType(442) = 1 (Single security) on the TradeCaptureReportRequest (AD) Single trade report will be sent:
+
+* Trade Report 1:&#x20;
+  * Symbol (55) = ABC-Feb23-Mar23
+  * MultiLegReportingType (442) = 1 (Single security)
+
+**Option 2**
+
+Using MultiLegReportingType(442) = 2 (Individual leg of a multi-leg security) on the TradeCaptureReportRequest (AD) tow trade reports will be sent:
+
+* Trade Report 1:&#x20;
+  * Symbol (55) = ABC-Feb23
+  * MultiLegReportingType (442) = 2 (Individual leg of a multi-leg security)&#x20;
+  * tradeLegRefId (824) = 1&#x20;
+  * multiLegDifferentialPrice (1522) = Trade price of the strategy&#x20;
+* Trade Report 2:&#x20;
+  * Symbol (55) = ABC-Mar23&#x20;
+  * MultiLegReportingType (442) = 2 (Individual leg of a multi-leg security)&#x20;
+  * tradeLegRefId (824) = 2&#x20;
+  * multiLegDifferentialPrice (1522) = Trade price of the strategy
+
+Trade cancellation trade reports works exactly the same as trade report.
+
 ## Supported Messages
 
 ### Client Initiated Messages
@@ -67,12 +107,12 @@ MP name will always be added as additional party with the below parameters:
 ```
 {% endcode %}
 
-| Tag | Name                    | Required | Description                                                                                                                                                                                                                                                                                          |
-| --- | ----------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 568 | TradeRequestID          | Y        | Trade Capture Report Request ID                                                                                                                                                                                                                                                                      |
-| 569 | TradeRequestType        | Y        | <p>Type of Trade Capture Report. </p><p>0 = All Trades</p>                                                                                                                                                                                                                                           |
-| 263 | SubscriptionRequestType | Y        | <p>Subscription Request Type. </p><p>0 = Snapshot<br>1 = Snapshot + Updates (Subscribe)<br>2 =  Disable previous Snapshot + Update Request (Unsubscribe)</p>                                                                                                                                         |
-| 442 | MultiLegReportingType   | N        | <p>This determines how to publish strategy trades: <br>1 = Single security (default if not specified): only the parent trade is being sent. <br>2 = Individual leg of a multi-leg security: only the underlying legs trades are being sent.<br><br>Note: Non strategy trades will always be sent</p> |
+| Tag | Name                    | Required | Description                                                                                                                                                                                                                                                                                               |
+| --- | ----------------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 568 | TradeRequestID          | Y        | Trade Capture Report Request ID                                                                                                                                                                                                                                                                           |
+| 569 | TradeRequestType        | Y        | <p>Type of Trade Capture Report. </p><p>0 = All Trades</p>                                                                                                                                                                                                                                                |
+| 263 | SubscriptionRequestType | Y        | <p>Subscription Request Type. </p><p>0 = Snapshot<br>1 = Snapshot + Updates (Subscribe)<br>2 =  Disable previous Snapshot + Update Request (Unsubscribe)</p>                                                                                                                                              |
+| 442 | MultiLegReportingType   | N        | <p>This determines how to publish strategy trades: <br>1 = Single security (default if not specified): only the parent trade is being sent. <br>2 = Individual leg of a multi-leg security: only the underlying legs trades are being sent.<br><br>Regular (Non strategy) trades will always be sent.</p> |
 
 ### **TradeCaptureReportRequestAck** _(AQ)_
 

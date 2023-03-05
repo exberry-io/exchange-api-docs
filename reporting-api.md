@@ -335,7 +335,7 @@ Each record will be one of the following `actionType`:
 
 ### **Strategies/ Multi Legs Handling**&#x20;
 
-See description and field details on Private Data API [**#Strategies/ Multi Legs Handling**](https://docs.exberry.io/private-data-api#new-strategies-multi-legs-handling)****
+See description and field details on Private Data API [**#Strategies/ Multi Legs Handling**](private-data-api.md#strategies-multi-legs-handling)****
 
 #### **Samples**
 
