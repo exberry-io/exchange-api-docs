@@ -2,9 +2,16 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## 2023-03-22✔️
+
+* New fields in the Security list _(MsgType = y)_
+* Adding a new field to Market Data Snapshot Full Refresh _(MsgType = W) -_ NumberOfOrders (346) for MBP message
+* _Adding to_ MDUpdateAction(279) **Time & Sales -** 2 = Delete: When an trade is canceled (Market Data Incremental Refresh _(MsgType = X)_)
+* _Only instruments that are active will be returned (_Market Data Request _(MsgType = V))_
+
 ## 2023-03-01✔️
 
-* New Market Data request are now supported:
+* New Market Data requests are now supported:
   * Market by Order Full Depth
   * Time & Sales&#x20;
   * Auction Indicative Equilibrium Price&#x20;
