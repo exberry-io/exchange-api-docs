@@ -409,6 +409,7 @@ Available messages in that API:&#x20;
 * MatchedTrade: for order book trade&#x20;
 * TradeReport: for trade entry trade&#x20;
 * TradeCancel: for trade cancellation (separate records will be returned for cancellation)
+* calendarEndOfDay: for End Of Day event
 
 {% hint style="info" %}
 `qualifier: v1/exchange.market/trades`
@@ -426,7 +427,7 @@ Available messages in that API:&#x20;
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------: | :---------: | :----------: |
 | eventId        |  Event Id                                                                                                                                                                                                                                                                             |      V     |      V      |       V      |
 | timestamp      | Event timestamp (in nanoseconds) in GMT                                                                                                                                                                                                                                               |      V     |      V      |       V      |
-| actionType     | <p>MatchedTrade </p><p>TradeReport </p><p>TradeCancel</p>                                                                                                                                                                                                                             |      V     |      V      |       V      |
+| actionType     | <p>MatchedTrade/ </p><p>TradeReport /</p><p>TradeCancel</p>                                                                                                                                                                                                                           |      V     |      V      |       V      |
 | orderId        | Order id initiated the trade                                                                                                                                                                                                                                                          |      V     |             |              |
 | mpOrderId      | From source order                                                                                                                                                                                                                                                                     |      V     |             |              |
 | mpId           |  MP Id                                                                                                                                                                                                                                                                                |      V     |      V      |       V      |
@@ -443,7 +444,18 @@ Available messages in that API:&#x20;
 | tradeType      | EFRP/Block/Other                                                                                                                                                                                                                                                                      |            |      V      |     `opt`    |
 | makerTaker     | <p><strong>Taker</strong> if order was never resting on the book for that trade <br><strong>Maker</strong> if order was resting on the book for that trade</p>                                                                                                                        |      V     |             |              |
 | tradeDate      | <p>Date of the business day of that trade<br>Format: YYY-MM-DD</p>                                                                                                                                                                                                                    |            |             |              |
-| trackingNumber |  Tracking number                                                                                                                                                                                                                                                                      |            |             |              |
+| trackingNumber |  Tracking number                                                                                                                                                                                                                                                                      |      V     |       V     |       V      |
+
+### **End Of Day - Response**
+
+| Field          | Description                                                                |
+| -------------- | -------------------------------------------------------------------------- |
+| actionType     | calendarEndOfDay                                                           |
+| timestamp      | Event timestamp (in nanoseconds)                                           |
+| calendarId     | Calendar Id                                                                |
+| calendarName   | Calendar name                                                              |
+| eodDate        | <p>The trade date of the day that was closed.</p><p>Format: yyyy-mm-dd</p> |
+| trackingNumber | Event tracking number                                                      |
 
 ### **Error Codes**
 
@@ -455,6 +467,8 @@ Available messages in that API:&#x20;
 | 1008 | `This apiKey doesn’t have the right permission` |
 | 1200 | `General error`                                 |
 | 1201 | `Wrong trackingNumber`                          |
+
+
 
 ### Samples
 
@@ -570,6 +584,23 @@ Available messages in that API:&#x20;
 }
 ```
 {% endtab %}
+
+{% tab title="EOD" %}
+```javascript
+{
+  "q": "v1/exchange.market/trades",
+  "sid": 14,
+  "d": {
+    "actionType": "CalendarEndOfDay",
+    "timestamp": 1681731969637411800,
+    "trackingNumber": 407833440,
+    "calendarId": 123,
+    "calendarName": "NewCalendar",
+    "eodDate": "2023-04-17"
+  }
+}
+```
+{% endtab %}
 {% endtabs %}
 
 ### **Strategies/ Multi Legs Handling**&#x20;
@@ -579,7 +610,7 @@ Strategies trades are sent on `trades` API by 2 models:
 * Single Security: reports the strategy trade as is
 * Individual leg of a multi-leg security: reports the underlying legs of the strategy&#x20;
 
-Consumers can decide how to consume stratesies trades.
+Consumers can decide how to consume strategies trades.
 
 \
 Each strategy related trade will be sent with the following new parameters:
@@ -669,4 +700,3 @@ Each strategy related trade will be sent with the following new parameters:
 {% endtab %}
 {% endtabs %}
 
-****

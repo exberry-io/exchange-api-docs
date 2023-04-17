@@ -24,6 +24,7 @@ There are few message types used to get real time market data:
 * **InstrumentStatus**&#x20;
 * **TradeReport**&#x20;
 * **TradeCancel**&#x20;
+* <mark style="color:blue;">NEW</mark> **calendarEndOfDay**
 
 There is 1 message types used to get indicative prices during auctions:
 
@@ -171,6 +172,19 @@ Trade report Message indicates that Trade Entry️ was captured, it means that t
 | buyMpId        | Buy MP Id                                                               |
 | sellMpId       | Sell MP Id                                                              |
 | trackingNumber | Event tracking number                                                   |
+
+#### <mark style="color:blue;">NEW</mark> Calendar End Of Day Message
+
+The calendar End Of Day Message indicates that the end-of-day for a specific calendar is triggered.
+
+| Field          | Description                                                                |
+| -------------- | -------------------------------------------------------------------------- |
+| messageType    | **calendarEndOfDay**                                                       |
+| eventTimestamp | Event timestamp (in nanoseconds)                                           |
+| calendarId     | Calendar Id                                                                |
+| calendarName   | Calendar name                                                              |
+| eodDate        | <p>The trade date of the day that was closed.</p><p>Format: yyyy-mm-dd</p> |
+| trackingNumber | Event tracking number                                                      |
 
 ### **Error Codes**
 
@@ -368,6 +382,23 @@ Trade report Message indicates that Trade Entry️ was captured, it means that t
     "quantity": 1,
     "price": 1.22,
     "trackingNumber": 100
+  }
+}
+```
+{% endtab %}
+
+{% tab title="EOD " %}
+```javascript
+{
+  "q": "v2/exchange.market/orderBookDepth",
+  "sid": 18,
+  "d": {
+    "messageType": "CalendarEndOfDay",
+    "eventTimestamp": 1681726468141994200,
+    "calendarId": 123,
+    "calendarName": "NewCalendar",
+    "eodDate": "2023-04-17",
+    "trackingNumber": 407807712
   }
 }
 ```
