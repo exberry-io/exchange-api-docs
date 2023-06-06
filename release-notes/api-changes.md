@@ -2,6 +2,45 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## 2023-06-06✔️
+
+### FIX API
+
+* Market Data:
+  * Symbol is now mandatory in  <mark style="color:green;">Market by Order Full Depth</mark> and <mark style="color:green;">Auction Indicative Equilibrium Price</mark> in Market Data Request (V)
+  * Adding new fields to the security list to support bonds details
+  * Adding New tags to the  <mark style="color:green;">MBOFD</mark> response:&#x20;
+    * 20028(Custom tag) - identify is this message represent real book state or temporary non real book state.
+      * Market Data Incremental Refresh (MsgType = X)
+      * <mark style="color:red;">To be deprecated</mark> Market Data Snapshot Full Refresh _(MsgType = W)_
+    * 20029(Custom tag): Market Data Snapshot Full Refresh _(MsgType = W)_- identify last message of the snapshot
+  * Adding new values to field 269 (MDEntryType) in Market Data Snapshot Full Refresh _(MsgType = W) and_ Market Data Request _(MsgType = V))_
+    * r (Reference price)
+    * v (Order book volume)
+    * f (Block trades volume)
+    * g (EFRP trades volume)
+    * o (Other trades volume)
+  * Considering Trade Entry data to the Market Data Snapshot Full Refresh _(MsgType = W) for those_ 269 (MDEntryType) _values:_
+    * B (Trade volume)
+    * 2 (Trade)
+    * 7 (Trading session high price)&#x20;
+    * 8 (Trading session Low price)
+* Drop Copy:
+  *   Changing the values for tag 442 (MultiLegReportingType) in the Trades Capture Report to be as follow:
+
+      * 1 - Single security - not strategy trade&#x20;
+      * 2 - Individual leg of a multi-leg security
+      * 3 - Multi-leg security - the parent trade of multi-leg security
+
+      On TradeCaptureReportRequest (AD) you should now specify 2 or 3. \
+
+
+### Trading API
+
+New Time In Force was added for limit order - **DAY** - Order will be automatically canceled when trading day is closed. Can be used for both FIX and WS APIs.
+
+Note: Next version we will allow configuration whether this new TIF is allowed or not.&#x20;
+
 ## 2023-03-22✔️
 
 * New fields in the Security list _(MsgType = y)_
@@ -322,28 +361,7 @@ Available messages in that stream :&#x20;
 * TradeReport: for trade entry trade&#x20;
 * TradeCancel: for trade cancellation (separate records will be returned for cancellation)
 
-| Field          | Description                                                                                                                                                                        | Order Book | Trade Entry | Trade Cancel |
-| -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :--------: | :---------: | :----------: |
-| eventId        |  Event Id                                                                                                                                                                          |      V     |      V      |       V      |
-| timestamp      | Event timestamp (in nanoseconds) in GMT                                                                                                                                            |      V     |      V      |       V      |
-| actionType     | <p>MatchedTrade </p><p>TradeReport </p><p>TradeCancel</p>                                                                                                                          |      V     |      V      |       V      |
-| orderId        | Order id initiated the trade                                                                                                                                                       |      V     |             |              |
-| mpOrderId      | From source order                                                                                                                                                                  |      V     |             |              |
-| mpId           |  MP Id                                                                                                                                                                             |      V     |      V      |       V      |
-| mpName         | MP Name                                                                                                                                                                            |      V     |      V      |       V      |
-| instrumentId   |  Instrument id                                                                                                                                                                     |      V     |      V      |       V      |
-| Instrument     | instrument symbol                                                                                                                                                                  |      V     |      V      |       V      |
-| side           |  Buy/ Sell                                                                                                                                                                         |      V     |      V      |       V      |
-| price          |  Trade price                                                                                                                                                                       |      V     |      V      |       V      |
-| quantity       |  Trade quantity                                                                                                                                                                    |      V     |      V      |       V      |
-| tradeId        | matchId                                                                                                                                                                            |      V     |      V      |       V      |
-| tradingMode    | IA - (Scheduled Intraday Auction) -When execution was as part of auction CT (Continuous Trading) - When execution was done on a regular trading ON - Trade Reporting (On Exchange) |      V     |      V      |       V      |
-| accountType    | Optional, From source order                                                                                                                                                        |      V     |      V      |       V      |
-| parties        | Optional, From source order                                                                                                                                                        |      V     |      V      |     `opt`    |
-| tradeType      | EFRP/Block/Other                                                                                                                                                                   |            |      V      |     `opt`    |
-| makerTaker     | <p><strong>Taker</strong> if order was never resting on the book for that trade <br><strong>Maker</strong> if order was resting on the book for that trade</p>                     |      V     |             |              |
-| tradeDate      | <p>Date of the business day of that trade<br>Format: YYY-MM-DD</p>                                                                                                                 |            |             |              |
-| trackingNumber |  Tracking number                                                                                                                                                                   |            |             |              |
+<table><thead><tr><th width="149">Field</th><th width="337">Description</th><th width="100" align="center">Order Book</th><th width="80" align="center">Trade Entry</th><th width="92" align="center">Trade Cancel</th></tr></thead><tbody><tr><td>eventId</td><td> Event Id </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>timestamp</td><td>Event timestamp (in nanoseconds) in GMT</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>actionType</td><td><p>MatchedTrade </p><p>TradeReport </p><p>TradeCancel</p></td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>orderId</td><td>Order id initiated the trade </td><td align="center">V</td><td align="center"> </td><td align="center"> </td></tr><tr><td>mpOrderId</td><td>From source order </td><td align="center">V</td><td align="center"> </td><td align="center"> </td></tr><tr><td>mpId</td><td> MP Id </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>mpName</td><td>MP Name </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>instrumentId</td><td> Instrument id </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>Instrument</td><td>instrument symbol</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>side</td><td> Buy/ Sell </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>price</td><td> Trade price </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>quantity</td><td> Trade quantity </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>tradeId</td><td>matchId </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>tradingMode</td><td>IA - (Scheduled Intraday Auction) -When execution was as part of auction CT (Continuous Trading) - When execution was done on a regular trading ON - Trade Reporting (On Exchange)</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>accountType</td><td>Optional, From source order </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>parties</td><td>Optional, From source order </td><td align="center">V</td><td align="center">V</td><td align="center"><code>opt</code></td></tr><tr><td>tradeType</td><td>EFRP/Block/Other</td><td align="center"> </td><td align="center">V</td><td align="center"><code>opt</code></td></tr><tr><td>makerTaker</td><td><strong>Taker</strong> if order was never resting on the book for that trade <br><strong>Maker</strong> if order was resting on the book for that trade</td><td align="center">V</td><td align="center"> </td><td align="center"> </td></tr><tr><td>tradeDate</td><td>Date of the business day of that trade<br>Format: YYY-MM-DD</td><td align="center"> </td><td align="center"> </td><td align="center"> </td></tr><tr><td>trackingNumber</td><td> Tracking number </td><td align="center"> </td><td align="center"> </td><td align="center"> </td></tr></tbody></table>
 
 Samples:
 
@@ -533,11 +551,7 @@ Party specification:&#x20;
 
 
 
-| Name   |        | Description                         |
-| ------ | ------ | ----------------------------------- |
-| id     | String | <p>Party id<br>Max length = 20 </p> |
-| source | Char   | Party source                        |
-| role   | Int    | Party role                          |
+<table><thead><tr><th width="112">Name</th><th width="165.33333333333331"></th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>String</td><td>Party id<br>Max length = 20 </td></tr><tr><td>source</td><td>Char</td><td>Party source</td></tr><tr><td>role</td><td>Int</td><td>Party role </td></tr></tbody></table>
 
 on `executionReports` and `massOrderStatus` those fields were added:
 
