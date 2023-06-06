@@ -9,14 +9,7 @@
 ```
 {% endcode %}
 
-| Tag  | Name             | Required | Description                                                                                                                |
-| ---- | ---------------- | -------- | -------------------------------------------------------------------------------------------------------------------------- |
-| 98   | EncryptMethod    | Y        | <p>Method of encryption</p><p>0 = None / Other </p><p>99 = Custom </p>                                                     |
-| 108  | HeartBtInt       | Y        | Hearbeat interval in seconds                                                                                               |
-| 553  | Username         | Y        | apiKey                                                                                                                     |
-| 554  | Password         | Y        | <p>When EncryptMethod (98) = 0 : secret key <br>When EncryptMethod (98) = 99 : digital signature (see below)</p>           |
-| 141  | ResetSeqNumFlag  | N        | <p>Does client and server should reset sequence numbers</p><p>Y= Reset MsgSeqNum to 1</p><p>N = Do not reset MsgSeqNum</p> |
-| 1137 | DefaultApplVerID | Y        | <p>Fix version</p><p>9 = FIX50SP2</p>                                                                                      |
+<table><thead><tr><th width="86">Tag</th><th width="164">Name</th><th width="114">Required</th><th>Description</th></tr></thead><tbody><tr><td>98</td><td>EncryptMethod</td><td>Y</td><td><p>Method of encryption</p><p>0 = None / Other </p><p>99 = Custom </p></td></tr><tr><td>108</td><td>HeartBtInt</td><td>Y</td><td>Hearbeat interval in seconds</td></tr><tr><td>553</td><td>Username</td><td>Y</td><td>apiKey</td></tr><tr><td>554</td><td>Password</td><td>Y</td><td>When EncryptMethod (98) = 0 : secret key <br>When EncryptMethod (98) = 99 : digital signature (see below)</td></tr><tr><td>141</td><td>ResetSeqNumFlag</td><td>N</td><td><p>Does client and server should reset sequence numbers</p><p>Y= Reset MsgSeqNum to 1</p><p>N = Do not reset MsgSeqNum</p></td></tr><tr><td>1137</td><td>DefaultApplVerID</td><td>Y</td><td><p>Fix version</p><p>9 = FIX50SP2</p></td></tr></tbody></table>
 
 How to compute the signature\
 HMAC SHA256 signature computed using provided secret key and message.\
@@ -44,9 +37,7 @@ $ echo -n '"apiKey":"1234567abcdz","timestamp":"20210625-15:47:07.473000"' | ope
 ```
 {% endcode %}
 
-| Tag | Name | Required | Description |
-| --- | ---- | -------- | ----------- |
-| 58  | Text | N        | Free text   |
+<table><thead><tr><th width="200">Tag</th><th>Name</th><th>Required</th><th>Description</th></tr></thead><tbody><tr><td>58</td><td>Text</td><td>N</td><td>Free text</td></tr></tbody></table>
 
 ### Heartbeat (_MsgType = 0)_
 
@@ -56,9 +47,7 @@ fixin 8=FIXT.1.1|9=57|35=0|49=EXBERRY|56=Target|34=7|52=20230202-13:05:20.655227
 ```
 {% endcode %}
 
-| Tag | Name      | Required | Description                                                                                             |
-| --- | --------- | -------- | ------------------------------------------------------------------------------------------------------- |
-| 112 | TestReqID | N        | <p>Required when the heartbeat is the result of a Test Request message.</p><p>ID of the TestRequest</p> |
+<table><thead><tr><th width="94">Tag</th><th width="126">Name</th><th width="118">Required</th><th>Description</th></tr></thead><tbody><tr><td>112</td><td>TestReqID</td><td>N</td><td><p>Required when the heartbeat is the result of a Test Request message.</p><p>ID of the TestRequest</p></td></tr></tbody></table>
 
 ### TestRequest (_MsgType = 1)_
 
@@ -68,9 +57,7 @@ fixin 8=FIXT.1.1|9=57|35=0|49=EXBERRY|56=Target|34=7|52=20230202-13:05:20.655227
 ```
 {% endcode %}
 
-| Tag | Name      | Required | Description           |
-| --- | --------- | -------- | --------------------- |
-| 112 | TestReqID | Y        | ID of the TestRequest |
+<table><thead><tr><th width="119">Tag</th><th width="136">Name</th><th width="137">Required</th><th>Description</th></tr></thead><tbody><tr><td>112</td><td>TestReqID</td><td>Y</td><td>ID of the TestRequest</td></tr></tbody></table>
 
 ### ResendRequest (_MsgType = 2)_
 
@@ -80,10 +67,7 @@ fixin 8=FIXT.1.1|9=57|35=0|49=EXBERRY|56=Target|34=7|52=20230202-13:05:20.655227
 ```
 {% endcode %}
 
-| Tag | Name       | Required | Description                                                                                                                                                                                                                                                                         |
-| --- | ---------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 7   | BeginSeqNo | Y        | Sequence number of first message in range to be resent                                                                                                                                                                                                                              |
-| 16  | EndSeqNo   | Y        | <p>Sequence number of last message in range to be resent.</p><p>If the request is for partial resends it will contain the last missed message sequence number.</p><p>If request is for all messages subsequent to a particular message, EndSeqNo = "0" (representing infinity).</p> |
+<table><thead><tr><th width="78">Tag</th><th width="134">Name</th><th width="103">Required</th><th>Description</th></tr></thead><tbody><tr><td>7</td><td>BeginSeqNo</td><td>Y</td><td>Sequence number of first message in range to be resent</td></tr><tr><td>16</td><td>EndSeqNo</td><td>Y</td><td><p>Sequence number of last message in range to be resent.</p><p>If the request is for partial resends it will contain the last missed message sequence number.</p><p>If request is for all messages subsequent to a particular message, EndSeqNo = "0" (representing infinity).</p></td></tr></tbody></table>
 
 ### SequenceReset (_MsgType = 4)_
 
@@ -93,10 +77,7 @@ fixin 8=FIXT.1.1|9=57|35=0|49=EXBERRY|56=Target|34=7|52=20230202-13:05:20.655227
 ```
 {% endcode %}
 
-| Tag | Name        | Required | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| --- | ----------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 123 | GapFillFlag | N        | <p>Indicates that the Sequence Reset message is replacing administrative or application messages which will not be resent.</p><p>N = Sequence Reset - Ignore MsgSeqNum (34)</p><p>Y = Gap Fill Message - MsgSeqNum (34) is valid</p><p>Exberry sends out only Y as part of the ResendRequest flow.</p><p>In case client application will send message with N, Exberry will ignore the MsgSeqNum(34) and apply the NewSeqNo(36) as the new inbound sequence</p> |
-| 36  | NewSeqNo    | Y        | Sequence number of the next message to be transmitted.                                                                                                                                                                                                                                                                                                                                                                                                         |
+<table><thead><tr><th width="79">Tag</th><th width="119">Name</th><th width="104">Required</th><th width="446">Description</th></tr></thead><tbody><tr><td>123</td><td>GapFillFlag</td><td>N</td><td><p>Indicates that the Sequence Reset message is replacing administrative or application messages which will not be resent.</p><p>N = Sequence Reset - Ignore MsgSeqNum (34)</p><p>Y = Gap Fill Message - MsgSeqNum (34) is valid</p><p>Exberry sends out only Y as part of the ResendRequest flow.</p><p>In case client application will send message with N, Exberry will ignore the MsgSeqNum(34) and apply the NewSeqNo(36) as the new inbound sequence</p></td></tr><tr><td>36</td><td>NewSeqNo</td><td>Y</td><td>Sequence number of the next message to be transmitted.</td></tr></tbody></table>
 
 ### Reject (_MsgType = 3)_
 
@@ -106,10 +87,4 @@ fixin 8=FIXT.1.1|9=57|35=0|49=EXBERRY|56=Target|34=7|52=20230202-13:05:20.655227
 ```
 {% endcode %}
 
-| Tag | Name                | Required | Description                                                                                            |
-| --- | ------------------- | -------- | ------------------------------------------------------------------------------------------------------ |
-| 98  | RefSeqNum           | _Y_      | MsgSeqNum of rejected message                                                                          |
-| 58  | Text                | N        | Exberry error message                                                                                  |
-| 373 | SessionRejectReason | N        | Error code, per [FIX specifications](https://fiximate.fixtrading.org/en/FIX.Latest\_EP266/tag373.html) |
-| 371 | RefTagID            | N        | Reference TadId caused the rejection                                                                   |
-| 372 | RefMsgType          | N        | Reference MsgType of rejected message                                                                  |
+<table><thead><tr><th width="101">Tag</th><th width="200">Name</th><th width="104">Required</th><th>Description</th></tr></thead><tbody><tr><td>98</td><td>RefSeqNum</td><td><em>Y</em></td><td>MsgSeqNum of rejected message</td></tr><tr><td>58</td><td>Text</td><td>N</td><td>Exberry error message</td></tr><tr><td>373</td><td>SessionRejectReason</td><td>N</td><td>Error code, per <a href="https://fiximate.fixtrading.org/en/FIX.Latest/cds373.html">FIX specifications</a></td></tr><tr><td>371</td><td>RefTagID</td><td>N</td><td>Reference TadId caused the rejection</td></tr><tr><td>372</td><td>RefMsgType</td><td>N</td><td>Reference MsgType of rejected message</td></tr></tbody></table>
