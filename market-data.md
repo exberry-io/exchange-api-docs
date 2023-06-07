@@ -24,7 +24,7 @@ There are few message types used to get real time market data:
 * **InstrumentStatus**&#x20;
 * **TradeReport**&#x20;
 * **TradeCancel**&#x20;
-* <mark style="color:blue;">NEW</mark> **calendarEndOfDay**
+* **calendarEndOfDay**
 
 There is 1 message types used to get indicative prices during auctions:
 
@@ -40,9 +40,7 @@ For anonymous configured streams all the `mpId` and `mpOrderId` data will not be
 
 ### **Request**
 
-| Parameter                 | Type | Description                                                                                                                                                                                                                                                                                                                  |
-| ------------------------- | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| trackingNumber `optional` | Long | <p>Determines the starting point of stream.<br>• When set to 0 - Stream will start from first event ever</p><p>• When empty - Stream will start from the next upcoming event</p><p>• When set to specific <code>trackingNumber</code>- Stream will start from the next event after the given <code>trackingNumber</code></p> |
+<table><thead><tr><th width="170.33333333333331">Parameter</th><th width="84">Type</th><th width="483.66666666666674">Description</th></tr></thead><tbody><tr><td>trackingNumber <code>optional</code></td><td>Long</td><td><p>Determines the starting point of stream.<br>• When set to 0 - Stream will start from first event ever</p><p>• When empty - Stream will start from the next upcoming event</p><p>• When set to specific <code>trackingNumber</code>- Stream will start from the next event after the given <code>trackingNumber</code></p></td></tr></tbody></table>
 
 ### **Response**
 
@@ -50,74 +48,25 @@ For anonymous configured streams all the `mpId` and `mpOrderId` data will not be
 
 Add Order Message indicates that a new order has been accepted by the exchange and was added to the book.
 
-| Field          | Description                                      |
-| -------------- | ------------------------------------------------ |
-| eventId        | Sequence identifier per instrument for the event |
-| messageType    | **Add**                                          |
-| eventTimestamp | Event timestamp (in nanoseconds) in GMT          |
-| instrument     | Instrument symbol                                |
-| orderId        | Exchange order ID                                |
-| mpId           | Market participant ID                            |
-| mpOrderId      | Market participant order ID                      |
-| side           | Buy / Sell                                       |
-| quantity       | Order quantity                                   |
-| price          | Order price                                      |
-| trackingNumber | Event tracking number                            |
+<table><thead><tr><th width="223">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Sequence identifier per instrument for the event</td></tr><tr><td>messageType</td><td><strong>Add</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>side</td><td>Buy / Sell</td></tr><tr><td>quantity</td><td>Order quantity</td></tr><tr><td>price</td><td>Order price</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### **Order Executed Message**
 
 Order Executed Message indicates that an order on the book is matched with a new coming order in whole or in part. It is possible to receive several Order Executed Messages for a single orderId.
 
-| Field            | Description                                     |
-| ---------------- | ----------------------------------------------- |
-| eventId          | Identifier for the event, unique per instrument |
-| messageType      | **Executed**                                    |
-| eventTimestamp   | Event timestamp (in nanoseconds) in GMT         |
-| instrument       | Instrument symbol                               |
-| makerMpId        | Resting order market participant ID             |
-| makerMpOrderId   | Resting order market participant order ID       |
-| makerOrderId     | Resting `orderId`                               |
-| takerMpId        | Aggressive order market participant ID          |
-| takerMpOrderId   | Aggressive order market participant order ID    |
-| takerOrderId     | Aggressive order ID                             |
-| matchId          | Unique ID for the match                         |
-| executedQuantity | Matched quantity                                |
-| executedPrice    | Matched price (maker order price).              |
-| trackingNumber   | Event tracking number                           |
+<table><thead><tr><th width="234">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>messageType</td><td><strong>Executed</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>makerMpId</td><td>Resting order market participant ID</td></tr><tr><td>makerMpOrderId</td><td>Resting order market participant order ID</td></tr><tr><td>makerOrderId</td><td>Resting <code>orderId</code></td></tr><tr><td>takerMpId</td><td>Aggressive order market participant ID</td></tr><tr><td>takerMpOrderId</td><td>Aggressive order market participant order ID</td></tr><tr><td>takerOrderId</td><td>Aggressive order ID</td></tr><tr><td>matchId</td><td>Unique ID for the match</td></tr><tr><td>executedQuantity</td><td>Matched quantity</td></tr><tr><td>executedPrice</td><td>Matched price (maker order price).</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### **Order Cancel Message**
 
 Order Cancel Message indicates that an order on the book is being cancelled. This message also sent in case of market order that was not fully filled.
 
-| Field             | Description                                     |
-| ----------------- | ----------------------------------------------- |
-| messageType       | **Cancelled**                                   |
-| eventId           | Identifier for the event, unique per instrument |
-| eventTimestamp    | Event timestamp (in nanoseconds) in GMT         |
-| instrument        | Instrument symbol                               |
-| side              | Buy/ Sell                                       |
-| orderId           | Exchange order ID                               |
-| mpId              | Market participant ID                           |
-| mpOrderId         | Market participant order ID                     |
-| cancelledQuantity | Order cancelled quantity                        |
-| trackingNumber    | Event tracking number                           |
+<table><thead><tr><th width="245">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>Cancelled</strong></td></tr><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>side</td><td>Buy/ Sell</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>cancelledQuantity</td><td>Order cancelled quantity</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### **Order Modify Message**
 
 Order Modify Message indicates that an order on the book is being modified and order quantity was reduced.
 
-| Field           | Description                                     |
-| --------------- | ----------------------------------------------- |
-| messageType     | **Modified**                                    |
-| eventId         | Identifier for the event, unique per instrument |
-| eventTimestamp  | Event timestamp (in nanoseconds) in GMT         |
-| instrument      | Instrument symbol                               |
-| orderId         | Exchange order ID                               |
-| mpId            | Market participant ID                           |
-| mpOrderId       | Market participant order ID                     |
-| removedQuantity | Order quantity that was removed                 |
-| newQuantity     | Remaining open quantity                         |
-| trackingNumber  | Event tracking number                           |
+<table><thead><tr><th width="256">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>Modified</strong></td></tr><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>removedQuantity</td><td>Order quantity that was removed</td></tr><tr><td>newQuantity</td><td>Remaining open quantity</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### **Instrument Status Message**
 
@@ -125,77 +74,30 @@ Instrument Status Message indicates that instrument status was changed.\
 This message specify only the data that was actually changed, to get the snapshot of current instruments status you should use `orderBookState`\
 Note: when creating new instrument the first message will contain `tradingStatus` and status, those will be followed with separate event for `marketStatus`
 
-| Field          | Description                                  |
-| -------------- | -------------------------------------------- |
-| messageType    | **InstrumentStatus**                         |
-| eventTimestamp | Event timestamp (in nanoseconds) in GMT      |
-| instrument     | Instrument symbol                            |
-| tradingStatus  | Trade/ Halt                                  |
-| marketStatus   | Opened/ Closed/ AuctionCall/ AuctionCrossing |
-| status         | Active/ Disabled                             |
-| trackingNumber | Event tracking number                        |
+<table><thead><tr><th width="267">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>InstrumentStatus</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>tradingStatus</td><td>Trade/ Halt</td></tr><tr><td>marketStatus</td><td>Opened/ Closed/ AuctionCall/ AuctionCrossing</td></tr><tr><td>status</td><td>Active/ Disabled</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### **Auction Indicative Equilibrium Price Message**
 
 Auction Indicative Equilibrium Price Message publish the indicative equilibrium price during an auction.\
 This message is sent only on real time during auctions and will not be sent if subscribing after the auction.
 
-| Field             | Description                                                                                                               |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| eventId           | Sequence identifier per instrument for the event                                                                          |
-| messageType       | **AuctionIndicativeEP**                                                                                                   |
-| eventTimestamp    | Event timestamp (in nanoseconds) in GMT                                                                                   |
-| instrument        | Instrument symbol                                                                                                         |
-| IndicativePrice   | The indicative price upon which the paired shares and the imbalance quantity are based                                    |
-| pairedQuantity    | The quantity to be matched at the current indicative price                                                                |
-| imbalanceQuantity | The absolute value of quantity that would remain unexecuted at the current indicative price.                              |
-| imbalanceSide     | <p>Buy - Buy side imbalance</p><p>Sell - Sell side imbalance</p><p>None - No imbalance</p><p>NA - no indicative price</p> |
-| bestBuyPrice      | In case of No match - the highest buy order price                                                                         |
-| bestBuyQuantity   | In case of No match - the highest buy order quantity                                                                      |
-| bestSellPrice     | In case of No match - the lowest sell order price                                                                         |
-| bestSellQuantity  | In case of No match - the lowest sell order quantity                                                                      |
+<table><thead><tr><th width="264">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Sequence identifier per instrument for the event</td></tr><tr><td>messageType</td><td><strong>AuctionIndicativeEP</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>IndicativePrice</td><td>The indicative price upon which the paired shares and the imbalance quantity are based</td></tr><tr><td>pairedQuantity</td><td>The quantity to be matched at the current indicative price</td></tr><tr><td>imbalanceQuantity</td><td>The absolute value of quantity that would remain unexecuted at the current indicative price.</td></tr><tr><td>imbalanceSide</td><td><p>Buy - Buy side imbalance</p><p>Sell - Sell side imbalance</p><p>None - No imbalance</p><p>NA - no indicative price</p></td></tr><tr><td>bestBuyPrice</td><td>In case of No match - the highest buy order price</td></tr><tr><td>bestBuyQuantity</td><td>In case of No match - the highest buy order quantity</td></tr><tr><td>bestSellPrice</td><td>In case of No match - the lowest sell order price</td></tr><tr><td>bestSellQuantity</td><td>In case of No match - the lowest sell order quantity</td></tr></tbody></table>
 
 #### Trade Report **Message**
 
 Trade report Message indicates that Trade Entry️ was captured, it means that trade was done between market participants out of the order book.&#x20;
 
-| Field          | Description                                                             |
-| -------------- | ----------------------------------------------------------------------- |
-| messageType    | **TradeReport**                                                         |
-| eventId        | Identifier for the event, unique per instrument                         |
-| eventTimestamp | Event timestamp (in nanoseconds) in GMT                                 |
-| instrument     | Instrument symbol                                                       |
-| tradeType      | EFRP/Block/Other                                                        |
-| matchId        | <p>Trade Id<br>This will use the same sequence as order book trades</p> |
-| quantity       | Trade quantity                                                          |
-| price          | Trade price                                                             |
-| buyMpId        | Buy MP Id                                                               |
-| sellMpId       | Sell MP Id                                                              |
-| trackingNumber | Event tracking number                                                   |
+<table><thead><tr><th width="229">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>TradeReport</strong></td></tr><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>tradeType</td><td>EFRP/Block/Other</td></tr><tr><td>matchId</td><td>Trade Id<br>This will use the same sequence as order book trades</td></tr><tr><td>quantity</td><td>Trade quantity</td></tr><tr><td>price</td><td>Trade price</td></tr><tr><td>buyMpId</td><td>Buy MP Id</td></tr><tr><td>sellMpId</td><td>Sell MP Id</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
-#### <mark style="color:blue;">NEW</mark> Calendar End Of Day Message
+#### Calendar End Of Day Message
 
 The calendar End Of Day Message indicates that the end-of-day for a specific calendar is triggered.
 
-| Field          | Description                                                                |
-| -------------- | -------------------------------------------------------------------------- |
-| messageType    | **calendarEndOfDay**                                                       |
-| eventTimestamp | Event timestamp (in nanoseconds)                                           |
-| calendarId     | Calendar Id                                                                |
-| calendarName   | Calendar name                                                              |
-| eodDate        | <p>The trade date of the day that was closed.</p><p>Format: yyyy-mm-dd</p> |
-| trackingNumber | Event tracking number                                                      |
+<table><thead><tr><th width="229">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>calendarEndOfDay</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds)</td></tr><tr><td>calendarId</td><td>Calendar Id</td></tr><tr><td>calendarName</td><td>Calendar name</td></tr><tr><td>eodDate</td><td><p>The trade date of the day that was closed.</p><p>Format: yyyy-mm-dd</p></td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 ### **Error Codes**
 
-| Code | Message                                         |
-| ---- | ----------------------------------------------- |
-| 1    | `Exchange is unavailable`                       |
-| 2    | `Stream disconnected`                           |
-| 1007 | `Invalid session`                               |
-| 1008 | `This apiKey doesn’t have the right permission` |
-| 1200 | `General error`                                 |
-| 1201 | `Wrong trackingNumber`                          |
+<table><thead><tr><th width="193">Code</th><th>Message</th></tr></thead><tbody><tr><td>1</td><td><code>Exchange is unavailable</code></td></tr><tr><td>2</td><td><code>Stream disconnected</code></td></tr><tr><td>1007</td><td><code>Invalid session</code></td></tr><tr><td>1008</td><td><code>This apiKey doesn’t have the right permission</code></td></tr><tr><td>1200</td><td><code>General error</code></td></tr><tr><td>1201</td><td><code>Wrong trackingNumber</code></td></tr></tbody></table>
 
 ### **Orders Messages Samples**
 
@@ -425,35 +327,15 @@ qualifier:`v2/exchange.market/orderBookState`
 
 #### **Order Message**
 
-| Parameter          | Type    | Description               |
-| ------------------ | ------- | ------------------------- |
-| messageType        | String  | **Order**                 |
-| orderId            | Long    | Exchange Order ID         |
-| side               | String  | Buy or Sell               |
-| instrument         | String  | Instrument identifier     |
-| quantity           | Decimal | Order quantity            |
-| price              | Decimal | Order price               |
-| lastTrackingNumber | Long    | Last event trackingNumber |
+<table><thead><tr><th width="207.33333333333331">Parameter</th><th width="135">Type</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td>String</td><td><strong>Order</strong></td></tr><tr><td>orderId</td><td>Long</td><td>Exchange Order ID</td></tr><tr><td>side</td><td>String</td><td>Buy or Sell</td></tr><tr><td>instrument</td><td>String</td><td>Instrument identifier</td></tr><tr><td>quantity</td><td>Decimal</td><td>Order quantity</td></tr><tr><td>price</td><td>Decimal</td><td>Order price</td></tr><tr><td>lastTrackingNumber</td><td>Long</td><td>Last event trackingNumber</td></tr></tbody></table>
 
 #### Instrument Status Message
 
-| Field          | Description                                  |
-| -------------- | -------------------------------------------- |
-| messageType    | **InstrumentStatus**                         |
-| eventTimestamp | Event timestamp (in nanoseconds) in GMT      |
-| instrument     | Instrument symbol                            |
-| tradingStatus  | Trade/ Halt                                  |
-| marketStatus   | Opened/ Closed/ AuctionCall/ AuctionCrossing |
-| status         | Active/ Disabled                             |
-| trackingNumber | Event tracking number                        |
+<table><thead><tr><th width="225">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>InstrumentStatus</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>tradingStatus</td><td>Trade/ Halt</td></tr><tr><td>marketStatus</td><td>Opened/ Closed/ AuctionCall/ AuctionCrossing</td></tr><tr><td>status</td><td>Active/ Disabled</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 ### **Error Codes**
 
-| Code | Message                                         |
-| ---- | ----------------------------------------------- |
-| 1    | `Temporary failure to retrieve this data`       |
-| 1007 | `Invalid session`                               |
-| 1008 | `This apiKey doesn’t have the right permission` |
+<table><thead><tr><th width="149">Code</th><th>Message</th></tr></thead><tbody><tr><td>1</td><td><code>Temporary failure to retrieve this data</code></td></tr><tr><td>1007</td><td><code>Invalid session</code></td></tr><tr><td>1008</td><td><code>This apiKey doesn’t have the right permission</code></td></tr></tbody></table>
 
 ### **Samples**
 
