@@ -4,6 +4,10 @@
 
 ## 2023-06-06✔️
 
+**Note!** From this version, there is a change in the Trades API (Both on Private Data API and Reporting API),&#x20;
+
+This field MultiLegReportingType is **always** sent
+
 ### FIX API
 
 * Market Data:
