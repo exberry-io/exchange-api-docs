@@ -519,31 +519,25 @@ On Individual legs model, each trade will be sent with the following parameters:
 ```json
 {
   "q": "v1/exchange.market/trades",
-  "sid": 155,
+  "sid": 13,
   "d": {
-    "actionType": "TradeReport",
-    "timestamp": 1668524835153741000,
-    "trackingNumber": 69920,
-    "eventId": 1,
-    "mpId": 2087505415,
-    "mpName": "Test1",
-    "instrumentId": 17,
-    "instrument": "Test1Feb-Mar23",
+    "actionType": "MatchedTrade",
+    "timestamp": 1686554476838564000,
+    "trackingNumber": 845932288,
+    "eventId": 93,
+    "orderId": 43,
+    "mpOrderId": 1564403702131,
+    "mpId": 2087505414,
+    "mpName": "user",
+    "instrumentId": 12208,
+    "instrument": "INS1",
     "side": "Buy",
-    "price": 3,
+    "price": 180,
     "quantity": 10,
-    "tradeId": 1,
-    "tradingMode": "ON",
-    "accountType": "Client",
-    "parties": [
-      {
-        "id": "33",
-        "source": "D",
-        "role": 38
-      }
-    ],
-    "tradeType": "EFRP",
-    "tradeDate": "2022-11-15",
+    "tradeId": 25,
+    "tradingMode": "CT",
+    "makerTaker": "Maker",
+    "tradeDate": "2023-06-12",
     "multiLegReportingType": "SingleSecurity"
   }
 }
@@ -554,35 +548,56 @@ On Individual legs model, each trade will be sent with the following parameters:
 ```json
 {
   "q": "v1/exchange.market/trades",
-  "sid": 155,
+  "sid": 13,
   "d": {
-    "actionType": "TradeReport",
-    "timestamp": 1668524835153741000,
-    "trackingNumber": 70176,
-    "mpId": 2087505415,
-    "mpName": "Test1",
-    "instrumentId": 14,
-    "instrument": "Test1Feb23",
+    "actionType": "MatchedTrade",
+    "timestamp": 1686554527628924000,
+    "trackingNumber": 845932896,
+    "mpId": 2087505414,
+    "mpName": "user",
+    "instrumentId": 14836,
+    "instrument": "future",
     "side": "Buy",
-    "price": 1.5,
-    "quantity": 10,
-    "tradeId": 1,
-    "tradingMode": "ON",
-    "accountType": "Client",
-    "parties": [
-      {
-        "id": "33",
-        "source": "D",
-        "role": 38
-      }
-    ],
-    "tradeType": "EFRP",
-    "tradeDate": "2022-11-15",
+    "price": 10,
+    "quantity": 7,
+    "tradeId": 8,
+    "tradingMode": "CT",
+    "makerTaker": "Maker",
+    "tradeDate": "2023-06-12",
     "multiLegReportingType": "IndividualLeg",
     "tradeLegRefId": 1,
-    "multiLegDifferentialPrice": 3,
-    "multiLegStrategyInstrumentId": 17,
-    "multiLegStrategyTradeId": 1
+    "multiLegDifferentialPrice": 10,
+    "multiLegStrategyInstrumentId": 14837,
+    "multiLegStrategyTradeId": 7
+  }
+}
+```
+{% endtab %}
+
+{% tab title="MultiLegSecurity" %}
+```json
+{
+  "q": "v1/exchange.market/trades",
+  "sid": 13,
+  "d": {
+    "actionType": "MatchedTrade",
+    "timestamp": 1686554527628924000,
+    "trackingNumber": 845932704,
+    "eventId": 24,
+    "orderId": 7,
+    "mpOrderId": 15644037020778,
+    "mpId": 2087505414,
+    "mpName": "user",
+    "instrumentId": 14837,
+    "instrument": "Spread",
+    "side": "Buy",
+    "price": 10,
+    "quantity": 7,
+    "tradeId": 7,
+    "tradingMode": "CT",
+    "makerTaker": "Maker",
+    "tradeDate": "2023-06-12",
+    "multiLegReportingType": "MultiLegSecurity"
   }
 }
 ```
