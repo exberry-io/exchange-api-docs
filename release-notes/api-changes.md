@@ -2,6 +2,12 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## 2023-06-15✔️
+
+* We made some cosmetic changes to the MD FIX documentation.&#x20;
+  * To make MBP more clear we added that MBP requires at least BID and ASK&#x20;
+  * We added the valid values to marketDepth(264) in Time & Sales and to the Auction Indicative Equilibrium Price (Imbalance)
+
 ## 2023-06-06✔️
 
 **Note!** From this version, there is a change in the Trades API (Both on Private Data API and Reporting API),&#x20;
