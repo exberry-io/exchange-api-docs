@@ -2,6 +2,39 @@
 
 ## Coming Soon... :hammer\_pick:
 
+### FIX API
+
+* Additions to the security list (Y)-
+  * New field - LegSymbol (600)  in addition to the existing LegSecurityID(602) that identify the legs of a strategy instrument.&#x20;
+  * Tick size data is now part of the message: fields (20031, 20032, 20033)
+* Changing the formula of tag OrderQty(38) in executionReports(8) to be - Original Order Qty- Removed Qty, till now it was always original quantity so in case of order modification system was not comply with `LeavesQty(151) = OrderQty(38) - CumQty(14)`
+* &#x20;Market Data Snapshot Full Refresh _(MsgType = W)_ and Market Data Incremental Refresh _(MsgType =_ X_)_
+  * <mark style="color:red;">Deprecation</mark> of OrderId(37)&#x20;
+  * Addition of MDEntryID(278)  to replace OrderId(37)
+* Removed tag 20028(Custom tag) that identifies if this tag represents real book state or a temporary non-real book state from Market Data Snapshot Full Refresh (MsgType = W) as all results will always be real book state.&#x20;
+
+### WS API
+
+* Adding to the [Reporting API -Trades ](../reporting-api.md#trades-v2)
+  * New filter - Trade date
+* _Adding a new field to the orderBookDepth -_ realBookState this field identify if this event represents real book state or a temporary non-real book state.&#x20;
+
+### _Stop & StopLimit_
+
+From this version new order types were added: Stop & Stop Limit, you can now place and cancel stop and stop limit orders. \
+Those order types are available on both WS and FIX APIs.
+
+* _Adding those New types to the:_
+  * _Place Order_&#x20;
+  * New order single(D) - (Stop=3, StopLimit=4)
+  * ExecutionReport - In FIX and WS
+* Adding the stopPrice to:
+  * _Place Order_
+  * New order single(D) - (StopPx=99)
+  * ExecutionReport - In FIX and WS
+  * Orders
+* Adding a new message type to ExecutionReport  - Suspended
+
 ## 2023-06-15✔️
 
 * We made some cosmetic changes to the MD FIX documentation.&#x20;
