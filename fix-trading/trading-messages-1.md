@@ -24,8 +24,8 @@ MP name will always be added as additional party with the below parameters:
 
 There are 2 options for strategies trade reporting:
 
-* Send one strategy summary message with MultiLegReportingType(442) = 1 (Single security)
-* Send one individual legs messages with MultiLegReportingType(442) = 2 (Individual leg of a multi-leg security)
+* Send one strategy summary message with MultiLegReportingType(442) = 3 (Multi-leg security)
+* Send individual legs messages with MultiLegReportingType(442) = 2 (Individual leg of a multi-leg security)
 
 On ExecutionReport (8) system sends only the fill of the strategy summary, while on TradeCaptureReport(AE) system allows subscriber to determine how to get the trades.&#x20;
 
@@ -37,11 +37,11 @@ On TradeCaptureReport subscriber has 2 options how to get the data:
 
 **Option 1**
 
-Using MultiLegReportingType(442) = 1 (Single security) on the TradeCaptureReportRequest (AD) Single trade report will be sent:
+Using MultiLegReportingType(442) = 3 (Multi-leg security) on the TradeCaptureReportRequest (AD) Single trade report will be sent:
 
 * Trade Report 1:&#x20;
   * Symbol (55) = ABC-Feb23-Mar23
-  * MultiLegReportingType (442) = 1 (Single security)
+  * MultiLegReportingType (442) = 3 (Multi-leg security)
 
 **Option 2**
 
@@ -57,6 +57,8 @@ Using MultiLegReportingType(442) = 2 (Individual leg of a multi-leg security) on
   * MultiLegReportingType (442) = 2 (Individual leg of a multi-leg security)&#x20;
   * tradeLegRefId (824) = 2&#x20;
   * multiLegDifferentialPrice (1522) = Trade price of the strategy
+
+**Trade Cancellation**&#x20;
 
 Trade cancellation trade reports works exactly the same as trade report.
 
