@@ -12,6 +12,7 @@
   * <mark style="color:red;">Deprecation</mark> of OrderId(37)&#x20;
   * Addition of MDEntryID(278)  to replace OrderId(37)
 * Removed tag 20028(Custom tag) that identifies if this tag represents real book state or a temporary non-real book state from Market Data Snapshot Full Refresh (MsgType = W) as all results will always be real book state.&#x20;
+* Fixing the ExecType(150) in reject in ER(8) of response to OrderMassStatusRequest(AF) - from "l" (lowercase “L”) to “I” (uppercase "I")
 
 ### WS API
 
