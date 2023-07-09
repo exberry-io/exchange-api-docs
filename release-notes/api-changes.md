@@ -2,6 +2,23 @@
 
 ## Coming Soon... :hammer\_pick:
 
+* **Stop & Stop Limit**
+  * Adding a new field stopPrice to [massOrderStatus ](../private-data-api.md#massorderstatus)message.
+  * Allow to replace and modify Stop & Stop Limit orders
+    * adding to the replace new field (stopPrice)
+    * delete this validation `Not allowed on stop or stop limit orders` from the modify and replace
+  * New validation added: stopPrice can sent only for Stop/ StopLimit orders
+    * place order
+    * New order single(D)
+    * replace order
+* **FIX Market Data**&#x20;
+  * Adding MDEntryType(269)=J(Empty book) to indicate empty order books (for both Ticker and MBOFD)
+  * In  Market Data Request (V), Both bid(MDEntryType(269)=0) and ask(MDEntryType(269)=1) must be subscribed together.
+* Fix the TrdType(828) from 99 to 0 for individual leg trade on [#tradecapturereport-ae](../fix-trading/trading-messages-1.md#tradecapturereport-ae "mention")
+* Changing the MarketModal value- from RA(Resume Auction) to UA (Unscheduled Auction)
+
+## 2023-06-21✔️
+
 ### FIX API
 
 * Additions to the security list (Y)-
