@@ -1,6 +1,6 @@
 # Introduction
 
-The FIX API meant to serve clients with FIX integration knowledge and experience, if this is not the case, it is recommended yo use [Exberry proprietary API](../) which is easier to integrate.
+The FIX API meant to serve clients with FIX integration knowledge and experience, if this is not the case, it is recommended to use [Exberry proprietary API](../) which is easier to integrate.
 
 Exberry FIX gateway enables participants:
 
