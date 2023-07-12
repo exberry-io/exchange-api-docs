@@ -2,6 +2,8 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## 2023-07-12✔️
+
 * **Stop & Stop Limit**
   * Adding a new field stopPrice to [massOrderStatus ](../private-data-api.md#massorderstatus)message.
   * Allow to replace and modify Stop & Stop Limit orders
