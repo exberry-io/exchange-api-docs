@@ -2,6 +2,22 @@
 
 ## Coming Soon... :hammer\_pick:
 
+* **FIX GW-**
+  * Adding 20029(Custom tag) to Market Data Snapshot Full Refresh _(MsgType = W) Ticker Data_ - identify last message of the snapshot
+  * Deprecate 20001 and 20002
+  * Removed MDEntrySize(271) from MarketDataIncrementalRefresh_(MsgType = X) when_ MDUpdateAction(279) = 2 (Delete)
+  * Adding TargetParties to OrderMassCancelRequest _(MsgType = q)_
+  * Adding to the TradeCaptureRepoet(AE) new fields to individual legs reports to allow association on the individual leg trade report to the multi leg strategy execution report.
+* **WS -**
+  * Adding targetParties to [massCancel](../trading-api.md#masscancel)
+  * Adding to [trades ](../private-data-api.md#trades)and [trades history API](../reporting-api.md#trades-v2) new fields to the trade report to allow association on the individual leg trade report to the multi leg strategy execution report.
+  * Adding to the [massOrderStatus ](../private-data-api.md#massorderstatus)- status field
+* #### Stop & Stop Limit - Auction & CBR-&#x20;
+  * Injections rules: till this version, auctions execution didn't trigger Stop & Stop Limit. From now on, auctions execution will trigger Stop & Stop Limit as follow:
+    * For E**quilibrium Price** auctions: After the auction, system will trigger the orders according to the auction price
+    * For **Price & Time** auctions: System will check the highest and lowest price of executed prices and will trigger accordingly.&#x20;
+  * Trigger the Stop & Stop Limit orders even in case the order is about to trigger a CBR that will halt the trading or trigger an auction.&#x20;
+
 ## 2023-07-12✔️
 
 * **Stop & Stop Limit**
