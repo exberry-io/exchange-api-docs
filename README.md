@@ -1,6 +1,6 @@
 # Introduction
 
-The exberry exchange API offers real time market data as well as the ability to trade with the exchange.
+The exberry exchange API offers real time market data as well as the ability to trade with the exchange.&#x20;
 
 The underlying technology used is [Scalecube](https://scalecube.github.io/) a Novel Open-source application-platform that addresses inherent challenges involved in the development of distributed computing.
 
@@ -14,11 +14,7 @@ Within the valid `JSON` please be aware that:
 
 ### **Request Parameters**
 
-| Parameter | Type   | Description                                                                                                                                                                                                                                   |
-| --------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| q         | String | qualifier, contains the method for the specific API call.                                                                                                                                                                                     |
-| sid       | Int    | stream identifier, for each WebSocket connection this is a unique identifier for the API call. Please note that as long as the sid was not ended (other by exchange or by consumer) this can’t be used again on the same WebSocket connection |
-| d         | Json   | data object, contain the request body                                                                                                                                                                                                         |
+<table><thead><tr><th width="134.33333333333331">Parameter</th><th width="81">Type</th><th>Description</th></tr></thead><tbody><tr><td>q</td><td>String</td><td>qualifier, contains the method for the specific API call.</td></tr><tr><td>sid</td><td>Int</td><td>stream identifier, for each WebSocket connection this is a unique identifier for the API call. Please note that as long as the sid was not ended (other by exchange or by consumer) this can’t be used again on the same WebSocket connection</td></tr><tr><td>d</td><td>Json</td><td>data object, contain the request body</td></tr></tbody></table>
 
 ```javascript
 { 
@@ -60,13 +56,7 @@ In case of short living stream (i.e. trading action), additional response will b
 
 The response will always include the below parameters:
 
-| Parameter | Description                                                                                               |
-| --------- | --------------------------------------------------------------------------------------------------------- |
-| sig       | signal will be equal to "2"                                                                               |
-| q         | from request                                                                                              |
-| errorType | internal error type that should be ignored                                                                |
-| sid       | from request                                                                                              |
-| d         | <p>data that contain errorCode and errorMessage.<br>Those are the error code and message to consider.</p> |
+<table><thead><tr><th width="146">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>sig</td><td>signal will be equal to "2"</td></tr><tr><td>q</td><td>from request</td></tr><tr><td>errorType</td><td>internal error type that should be ignored</td></tr><tr><td>sid</td><td>from request</td></tr><tr><td>d</td><td>data that contain errorCode and errorMessage.<br>Those are the error code and message to consider.</td></tr></tbody></table>
 
 ```javascript
 {
@@ -95,8 +85,4 @@ In order to close active stream need to send a message with `sig:3` in addition 
 
 sig parameter summary table:
 
-| sig | Description                               |
-| --- | ----------------------------------------- |
-| 1   | Stream closed with success                |
-| 2   | Stream closed with failure                |
-| 3   | Stream was closed due to consumer request |
+<table><thead><tr><th width="89">sig</th><th>Description</th></tr></thead><tbody><tr><td>1</td><td>Stream closed with success</td></tr><tr><td>2</td><td>Stream closed with failure</td></tr><tr><td>3</td><td>Stream was closed due to consumer request</td></tr></tbody></table>

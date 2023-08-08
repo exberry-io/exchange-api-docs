@@ -107,7 +107,7 @@ Each record will be one of the following `actionType`:
 * TradeReport for trade entry trade
 * TradeCancel for trade cancellation (separate records will be returned for cancellation)
 
-<table><thead><tr><th width="150">Field</th><th width="337">Description</th><th width="100" align="center">Order Book</th><th width="80" align="center">Trade Entry</th><th width="92" align="center">Trade Cancel</th></tr></thead><tbody><tr><td>eventId</td><td> Event Id </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>timestamp</td><td>Trade event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>actionType</td><td><p>MatchedTrade </p><p>TradeReport </p><p>TradeCancel</p></td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>orderId</td><td>Order id initiated the trade </td><td align="center">V</td><td align="center"> </td><td align="center"> </td></tr><tr><td>mpOrderId</td><td>From source order </td><td align="center">V</td><td align="center"> </td><td align="center"> </td></tr><tr><td>mpId</td><td> MP Id </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>mpName</td><td>MP Name </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>instrumentId</td><td> Instrument id </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>Instrument</td><td>instrument symbol</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>side</td><td> Buy/ Sell </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>price</td><td> Trade price </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>quantity</td><td> Trade quantity </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>tradeId</td><td>matchId </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>tradingMode</td><td>IA - (Scheduled Intraday Auction) -When execution was as part of auction CT (Continuous Trading) - When execution was done on a regular trading ON - Trade Reporting (On Exchange)<br>UA- (Unscheduled Auction) - When execution was as part of auction after halt or autoHalt</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>accountType</td><td>Optional, From source order </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>parties</td><td>Optional, From source order </td><td align="center">V</td><td align="center">V</td><td align="center"><code>opt</code></td></tr><tr><td>tradeType</td><td>EFRP/Block/Other</td><td align="center"> </td><td align="center">V</td><td align="center"><code>opt</code></td></tr><tr><td>makerTaker</td><td><strong>Taker</strong> if order was never resting on the book for that trade <br><strong>Maker</strong> if order was resting on the book for that trade</td><td align="center">V</td><td align="center"> </td><td align="center"> </td></tr><tr><td>tradeDate </td><td>Date of the business day of that trade<br>Format: YYY-MM-DD</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td><p><mark style="color:blue;">CHANGED</mark></p><p>multiLegReportingType </p></td><td><ul><li>SingleSecurity: non strategy</li><li>MultiLegSecurity: strategy </li><li>IndividualLeg: strategy leg </li></ul><p>For more details see <a href="https://docs.exberry.io/private-data-api#strategies-multi-legs-handling">here</a></p></td><td align="center">V</td><td align="center">V</td><td align="center">Per trade</td></tr></tbody></table>
+<table><thead><tr><th width="150">Field</th><th width="337">Description</th><th width="100" align="center">Order Book</th><th width="80" align="center">Trade Entry</th><th width="92" align="center">Trade Cancel</th></tr></thead><tbody><tr><td>eventId</td><td> Event Id </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>timestamp</td><td>Trade event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>actionType</td><td><p>MatchedTrade </p><p>TradeReport </p><p>TradeCancel</p></td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>orderId</td><td>Order id initiated the trade </td><td align="center">V</td><td align="center"> </td><td align="center"> </td></tr><tr><td>mpOrderId</td><td>From source order </td><td align="center">V</td><td align="center"> </td><td align="center"> </td></tr><tr><td>mpId</td><td> MP Id </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>mpName</td><td>MP Name </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>instrumentId</td><td> Instrument id </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>Instrument</td><td>instrument symbol</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>side</td><td> Buy/ Sell </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>price</td><td> Trade price </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>quantity</td><td> Trade quantity </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>tradeId</td><td>matchId </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>tradingMode</td><td>IA - (Scheduled Intraday Auction) -When execution was as part of auction CT (Continuous Trading) - When execution was done on a regular trading ON - Trade Reporting (On Exchange)<br>UA- (Unscheduled Auction) - When execution was as part of auction after halt or autoHalt</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>accountType</td><td>Optional, From source order </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>parties</td><td>Optional, From source order </td><td align="center">V</td><td align="center">V</td><td align="center"><code>opt</code></td></tr><tr><td>tradeType</td><td>EFRP/Block/Other</td><td align="center"> </td><td align="center">V</td><td align="center"><code>opt</code></td></tr><tr><td>makerTaker</td><td><strong>Taker</strong> if order was never resting on the book for that trade <br><strong>Maker</strong> if order was resting on the book for that trade</td><td align="center">V</td><td align="center"> </td><td align="center"> </td></tr><tr><td>tradeDate </td><td>Date of the business day of that trade<br>Format: YYY-MM-DD</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>multiLegReportingType </td><td><ul><li>SingleSecurity: non strategy</li><li>MultiLegSecurity: strategy </li><li>IndividualLeg: strategy leg </li></ul><p>For more details see <a href="https://docs.exberry.io/private-data-api#strategies-multi-legs-handling">here</a></p></td><td align="center">V</td><td align="center">V</td><td align="center">Per trade</td></tr><tr><td><mark style="color:blue;">NEW</mark><br>multiLegStrategyInstrument</td><td><p>For strategy allocated trades only</p><p>Parent instrument symbol</p></td><td align="center">V</td><td align="center">V</td><td align="center">Per trade</td></tr><tr><td><mark style="color:blue;">NEW</mark><br>multiLegStrategyOrderId</td><td><p>For strategy allocated trades only</p><p>Parent orderId</p></td><td align="center">V</td><td align="center">V</td><td align="center">Per trade</td></tr><tr><td><mark style="color:blue;">NEW</mark><br>multiLegStrategyMpOrderId</td><td><p>For strategy allocated trades only</p><p>Parent mpOrderId</p></td><td align="center">V</td><td align="center">V</td><td align="center">Per trade</td></tr></tbody></table>
 
 ### **Error Codes**
 
@@ -299,38 +299,29 @@ See description and field details on Private Data API [**#Strategies/ Multi Legs
 ```json
 {
   "q": "v2/exchange.reporting/mp/trades",
-  "sid": 10,
+  "sid": 12,
   "d": {
-    "timestamp": "2022-11-21T16:20:13.865026",
+    "timestamp": "2023-07-23T07:12:14.129503",
     "actionType": "MatchedTrade",
-    "mpId": 2087505415,
-    "mpName": "Test1",
-    "instrumentId": 14,
-    "instrument": "Test1Feb23",
-    "side": "Sell",
-    "price": 1.5,
-    "quantity": 1.33,
-    "tradeId": 120,
+    "mpId": 2087505414,
+    "mpName": "USER",
+    "instrumentId": 5,
+    "instrument": "INS1",
+    "side": "Buy",
+    "price": 3602879701896397,
+    "quantity": 10,
+    "tradeId": 6,
     "tradingMode": "CT",
-    "parties": [
-      {
-        "id": "123456",
-        "source": "D",
-        "role": 38
-      },
-      {
-        "id": "ABCD",
-        "source": "D",
-        "role": 12
-      }
-    ],
     "makerTaker": "Maker",
-    "tradeDate": "2022-11-21",
+    "tradeDate": "2023-07-23",
     "multiLegReportingType": "IndividualLeg",
     "tradeLegRefId": 1,
-    "multiLegDifferentialPrice": 1.3333,
-    "multiLegStrategyInstrumentId": 17,
-    "multiLegStrategyTradeId": 3
+    "multiLegDifferentialPrice": 10000,
+    "multiLegStrategyInstrumentId": 14837,
+    "multiLegStrategyInstrument": "Spread",
+    "multiLegStrategyTradeId": 11,
+    "multiLegStrategyOrderId": 21,
+    "multiLegStrategyMpOrderId": 1564403702311
   }
 }
 ```

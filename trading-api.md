@@ -135,7 +135,7 @@ Sample:
 
 #### General
 
-Stop & StopLimit are not allowed to placed during auction. <mark style="color:red;">REMOVED</mark> ~~and not allowed to be modified/replaced.~~
+Stop & StopLimit are not allowed to be placed during an auction.&#x20;
 
 Replacement of Stop & StopLimit is allowed only before injection.&#x20;
 
@@ -158,19 +158,32 @@ The Stop and StopLimit orders will be injected into the order book by those rule
 * An incoming Stop / StopLimit Order will be injected immediately  if the stop price is already met.
   * Order will be immediately injected only in case there was an order book execution since last time market opened. (so on 24/7 it will always take last execution and non 24 hours calendars it will only use executed trade since today market open.)
 * If taker order is executed against multiple resting orders, The Stop / StopLimit orders must be injected into order book only after place (taker) order operation is completed. If during any execution, the stop price is triggered, the order must be injected into order book. Even in case that after place (taker) order operation is completed the price has changed and it no longer meets the rules of the trigger, the order will still be injected into the book.
+* <mark style="color:blue;">NEW</mark> System will inject orders that were triggered only when the marketStatus = "Opened" & tradingStatus = "Trade".
+  * When it might happen:
+    * on auction ends and it changes the market status from `AuctionCrossing` to `Opened`
+    * on auto calendar event (start time) and the market status changes to `Opened`
+    * on manual calendar changes and the market status changes to `Opened`
+    * on manual resume and the trading status changes to `TRADE`
+    * on auto resume and the trading status changes to `TRADE`
+* <mark style="color:blue;">NEW</mark> After auction system will triggered Stop and Stop Limit orders according to the auction price (for Equilibrium Price Auctions) or according to the highest and lowest execution prices (for Price & Time Auction)
 
-**Some Edge Cases**
+<mark style="color:red;">**REMOVED**</mark>** **~~**Some Edge Cases**~~
 
-* Case which the order will be canceled without being inject into the book:
-  * For GTD Stop Limit’s with expiryDate in case order was not triggered until expiryDate, it will be expired without being injected into the book.
-*   **Order will not injected although stopPrice was triggered:** &#x20;
+* ~~Case which the order will be canceled without being inject into the book:~~
+  * ~~For GTD Stop Limit’s with expiryDate in case order was not triggered until expiryDate, it will be expired without being injected into the book.~~
+*   ~~**Order will not injected although stopPrice was triggered:**~~ &#x20;
 
-    * In case the market price that triggered the stop/ stopLimit orders is received as a result of an auction.&#x20;
-    * In case that the trade that supposed to trigger the orders, triggered also a CBR that halted the trading.&#x20;
+    * ~~In case the market price that triggered the stop/ stopLimit orders is received as a result of an auction.~~&#x20;
+    * ~~In case that the trade that supposed to trigger the orders, triggered also a CBR that halted the trading.~~&#x20;
 
-    In those cases the status of the order we remain Suspended until it is triggered once again.
-* **Order will be injected not immediately:**&#x20;
-  * In case that the trade that supposed to trigger the orders, triggered also a CBR that open auction, the stop/ stop limit will be injected only after auction is completed.&#x20;
+    ~~In those cases the status of the order we remain Suspended until it is triggered once again.~~
+*   ~~**Order will be injected not immediately:**~~&#x20;
+
+    * ~~In case that the trade that supposed to trigger the orders, triggered also a CBR that open auction, the stop/ stop limit will be injected only after auction is completed.~~&#x20;
+
+    ####
+
+
 
 ## cancelOrder
 
@@ -246,6 +259,21 @@ qualifier: `v1/exchange.market/cancelOrder`
 
 The `massCancel` API is used to cancel all the active order and suspended orders for specific instrument for specific market participant.
 
+<mark style="color:blue;">NEW</mark> MPs can specify the targetParties they wish to target the mass order cancel by specifying the targetParties.&#x20;
+
+If no targetParties are defined: the system cancels all orders of the symbol of the MP.
+
+If multiple targetParty objects are in a request, the system cancels orders with all targetParties.
+
+_For example:_
+
+* _Order1 has party1_
+* _Order2 has party1 and party2_
+* _Order3 has party1, party2 and party3_
+* _Order4 has no parties_
+
+_A mass cancel request with targetParties(party1 and party2) will cancel order 2 and 3._
+
 If you send a valid request, you should receive a response that confirms the number of orders that were cancelled.
 
 Non-valid cancel order will be responded with the error message.
@@ -256,19 +284,21 @@ qualifier: `v1/exchange.market/massCancel`
 
 ### **Request**
 
-| Parameter  | Type   | Description           |
-| ---------- | ------ | --------------------- |
-| instrument | String | Instrument identifier |
+<table><thead><tr><th width="182">Parameter</th><th width="185.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>instrument</td><td>String</td><td>Instrument identifier</td></tr><tr><td><mark style="color:blue;">NEW</mark> targetParties</td><td>[] TargetParty Objects</td><td>Array of party objects, see details below.<br>Max number of targetParties =20 </td></tr></tbody></table>
+
+<mark style="color:blue;">NEW</mark> TargetParty specification:&#x20;
+
+<table><thead><tr><th width="180">Name</th><th width="120.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>TargetParty id</td></tr><tr><td>source</td><td>char</td><td>TargetParty source</td></tr><tr><td>role</td><td>int</td><td>TargetParty role</td></tr></tbody></table>
+
+
 
 ### **Response**
 
-| Parameter      | Type | Description                          |
-| -------------- | ---- | ------------------------------------ |
-| numberOfOrders | Int  | Number of orders that were cancelled |
+<table><thead><tr><th width="192">Parameter</th><th width="96.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>numberOfOrders</td><td>Int</td><td>Number of orders that were cancelled</td></tr></tbody></table>
 
 ### **Error Codes**
 
-<table><thead><tr><th width="129">Code</th><th>Message</th></tr></thead><tbody><tr><td>1</td><td><code>Exchange is unavailable</code></td></tr><tr><td>1001 </td><td><code>Wrong [FieldName]</code></td></tr><tr><td>1003</td><td><code>Market is closed</code></td></tr><tr><td>1004</td><td><code>Instrument trading is not allowed</code></td></tr><tr><td>1007</td><td><code>Invalid session</code></td></tr><tr><td>1008</td><td><code>Insufficient permissions</code></td></tr><tr><td>1009</td><td><code>Instrument trading is halt</code></td></tr><tr><td>1010</td><td><code>Instrument [Instrument] not found</code></td></tr><tr><td>1011</td><td><code>Permission denied for this instrument</code></td></tr><tr><td>1018 </td><td><code>Trading is not allowed</code></td></tr><tr><td>1030</td><td><code>Trading is not allowed during crossing</code></td></tr><tr><td>1103</td><td><code>Missing fields: [Fieldname]</code></td></tr></tbody></table>
+<table><thead><tr><th width="129">Code</th><th>Message</th></tr></thead><tbody><tr><td>1</td><td><code>Exchange is unavailable</code></td></tr><tr><td>1001 </td><td><code>Wrong [FieldName]</code></td></tr><tr><td>1003</td><td><code>Market is closed</code></td></tr><tr><td>1004</td><td><code>Instrument trading is not allowed</code></td></tr><tr><td>1007</td><td><code>Invalid session</code></td></tr><tr><td>1008</td><td><code>Insufficient permissions</code></td></tr><tr><td>1009</td><td><code>Instrument trading is halt</code></td></tr><tr><td>1010</td><td><code>Instrument [Instrument] not found</code></td></tr><tr><td>1011</td><td><code>Permission denied for this instrument</code></td></tr><tr><td>1018 </td><td><code>Trading is not allowed</code></td></tr><tr><td>1030</td><td><code>Trading is not allowed during crossing</code></td></tr><tr><td><mark style="color:blue;">NEW</mark> 1032</td><td><code>Account not found</code><br><code>Party is not allowed</code></td></tr><tr><td>1103</td><td><code>Missing fields: [Fieldname]</code></td></tr></tbody></table>
 
 ### **Samples**
 
@@ -413,7 +443,7 @@ qualifier: `v1/exchange.market/replaceOrder`
 
 ### **Error Codes**
 
-<table><thead><tr><th width="138">Code</th><th>Message</th></tr></thead><tbody><tr><td>1</td><td><code>Exchange is unavailable</code></td></tr><tr><td>1000</td><td><code>Missing fields: [Fieldname]</code></td></tr><tr><td>1001</td><td><p><code>Wrong [FieldName]</code> or</p><p><code>Order must contain a positive quantity</code> or<br><code>Limit order must contain a positive price</code>or<br><code>Latest expiryDate is one year</code> or<br><code>Wrong timeInForce</code> or <br><code>Wrong expiryDate</code> or<br><code>Order [FieldName] must be less than [maxLong/10^ fieldPrecision]</code> or<br><code>Order [FieldName] must be above than [minLong/10^ fieldPrecision]</code></p></td></tr><tr><td>1003</td><td><code>Market is closed</code></td></tr><tr><td>1004</td><td><code>Instrument trading is not allowed</code></td></tr><tr><td>1005</td><td><code>Quantity precision is[QuantityPrecision]</code> or<br><code>Price precision is[PricePrecision]</code></td></tr><tr><td>1006</td><td><code>Minimum order quantity is [MinOrderQuantity]</code> or<br><code>Maximum order quantity is [MaxOrderQuantity]</code> or<br><code>Quantity increment is [quantityIncrement]</code></td></tr><tr><td>1007</td><td><code>Invalid session</code></td></tr><tr><td>1008</td><td><code>Insufficient permissions</code></td></tr><tr><td>1009</td><td><code>Instrument trading is halt</code></td></tr><tr><td>1010 </td><td><code>Instrument [Instrument] not found</code></td></tr><tr><td>1011</td><td><code>Permission denied for this instrument</code></td></tr><tr><td>1012</td><td><code>Price breaches [FieldName] of [FieldValue]</code></td></tr><tr><td>1013</td><td><code>Maximum order value is [maxOrderValue]</code></td></tr><tr><td>1014</td><td>​<code>Price tick size is [tickSize]</code></td></tr><tr><td>1017</td><td><code>This order exceeds maxDepth</code></td></tr><tr><td>1018 </td><td><code>Trading is not allowed</code></td></tr><tr><td>1030</td><td><code>Trading is not allowed during crossing</code> or<br><code>Only [Allowed TIF] limit orders are allowed</code></td></tr><tr><td>1031 </td><td><code>GAA is allowed only during auction</code></td></tr><tr><td>1100</td><td><code>Order not found for that instrument</code></td></tr><tr><td><mark style="color:red;">CHANGED</mark> 1019</td><td><code>Stop or Stop limit can be replaced only while suspended</code></td></tr><tr><td><mark style="color:blue;">NEW</mark> 1001</td><td><code>[Limit|Market] order must not specify stopPrice</code></td></tr></tbody></table>
+<table><thead><tr><th width="138">Code</th><th>Message</th></tr></thead><tbody><tr><td>1</td><td><code>Exchange is unavailable</code></td></tr><tr><td>1000</td><td><code>Missing fields: [Fieldname]</code></td></tr><tr><td>1001</td><td><p><code>Wrong [FieldName]</code> or</p><p><code>Order must contain a positive quantity</code> or<br><code>Limit order must contain a positive price</code>or<br><code>Latest expiryDate is one year</code> or<br><code>Wrong timeInForce</code> or <br><code>Wrong expiryDate</code> or<br><code>Order [FieldName] must be less than [maxLong/10^ fieldPrecision]</code> or<br><code>Order [FieldName] must be above than [minLong/10^ fieldPrecision]</code></p></td></tr><tr><td>1003</td><td><code>Market is closed</code></td></tr><tr><td>1004</td><td><code>Instrument trading is not allowed</code></td></tr><tr><td>1005</td><td><code>Quantity precision is[QuantityPrecision]</code> or<br><code>Price precision is[PricePrecision]</code></td></tr><tr><td>1006</td><td><code>Minimum order quantity is [MinOrderQuantity]</code> or<br><code>Maximum order quantity is [MaxOrderQuantity]</code> or<br><code>Quantity increment is [quantityIncrement]</code></td></tr><tr><td>1007</td><td><code>Invalid session</code></td></tr><tr><td>1008</td><td><code>Insufficient permissions</code></td></tr><tr><td>1009</td><td><code>Instrument trading is halt</code></td></tr><tr><td>1010 </td><td><code>Instrument [Instrument] not found</code></td></tr><tr><td>1011</td><td><code>Permission denied for this instrument</code></td></tr><tr><td>1012</td><td><code>Price breaches [FieldName] of [FieldValue]</code></td></tr><tr><td>1013</td><td><code>Maximum order value is [maxOrderValue]</code></td></tr><tr><td>1014</td><td>​<code>Price tick size is [tickSize]</code></td></tr><tr><td>1017</td><td><code>This order exceeds maxDepth</code></td></tr><tr><td>1018 </td><td><code>Trading is not allowed</code></td></tr><tr><td>1030</td><td><code>Trading is not allowed during crossing</code> or<br><code>Only [Allowed TIF] limit orders are allowed</code></td></tr><tr><td>1031 </td><td><code>GAA is allowed only during auction</code></td></tr><tr><td>1100</td><td><code>Order not found for that instrument</code></td></tr><tr><td>1019</td><td><code>Stop or Stop limit can be replaced only while suspended</code></td></tr><tr><td>1001</td><td><code>[Limit|Market] order must not specify stopPrice</code></td></tr></tbody></table>
 
 ### **Samples**
 

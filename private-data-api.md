@@ -25,7 +25,7 @@ Each `orderMassStatus`response includes`lastTrackingNumber`, the `trackingNumber
 \
 Note: There are no request parameters.
 
-<table><thead><tr><th width="234">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>OrderStatus</strong></td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpOrderId</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>orderType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>side</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>instrument</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>quantity</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>price</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td><mark style="color:blue;">NEW</mark> stopPrice</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>timeInForce</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>expiryDate</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>orderTimestamp</td><td>Order creation timestamp (in nanoseconds) in GMT</td></tr><tr><td>marketModel</td><td><p>A - (Auction) when order was placed during auction</p><p>T - (Trading) when order was placed on continues trading mode<br><mark style="color:blue;">CHANGED</mark> UA- (Unscheduled Auction) when order was placed during auction after halt or autoHalt</p></td></tr><tr><td><p><mark style="color:red;">To be deprecated</mark></p><p>userId</p></td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td><p><mark style="color:red;">To be deprecated</mark></p><p>accountId</p></td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>parties</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>accountType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>filledQuantity</td><td>Total filled quantity</td></tr><tr><td>filledPrice</td><td>Weighted average filled price for all fills on that order <span class="math">Sum(event.executedQuantity * event.executedPrice)/Sum(event.executedQuantity)</span></td></tr><tr><td>remainingOpenQuantity</td><td><p>Remaining open quantity.</p><p><span class="math">quantity - filledQuantity - removedQuantity</span></p></td></tr><tr><td>removedQuantity</td><td>Quantity that was removed with modifyOrder request</td></tr><tr><td>lastEventTimestamp</td><td>Last order event timestamp (in nanoseconds) in GMT</td></tr><tr><td>lastEventId</td><td>Last event that was used to calculate order state</td></tr><tr><td>mpId</td><td>MP Id</td></tr><tr><td>mpName</td><td>MP name </td></tr></tbody></table>
+<table><thead><tr><th width="234">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>OrderStatus</strong></td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpOrderId</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>orderType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>side</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>instrument</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>quantity</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>price</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>stopPrice</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>timeInForce</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>expiryDate</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>orderTimestamp</td><td>Order creation timestamp (in nanoseconds) in GMT</td></tr><tr><td>marketModel</td><td><p>A - (Auction) when order was placed during auction</p><p>T - (Trading) when order was placed on continues trading mode<br>UA- (Unscheduled Auction) when order was placed during auction after halt or autoHalt</p></td></tr><tr><td><p><mark style="color:red;">To be deprecated</mark></p><p>userId</p></td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td><p><mark style="color:red;">To be deprecated</mark></p><p>accountId</p></td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>parties</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>accountType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>filledQuantity</td><td>Total filled quantity</td></tr><tr><td>filledPrice</td><td>Weighted average filled price for all fills on that order <span class="math">Sum(event.executedQuantity * event.executedPrice)/Sum(event.executedQuantity)</span></td></tr><tr><td>remainingOpenQuantity</td><td><p>Remaining open quantity.</p><p><span class="math">quantity - filledQuantity - removedQuantity</span></p></td></tr><tr><td>removedQuantity</td><td>Quantity that was removed with modifyOrder request</td></tr><tr><td>lastEventTimestamp</td><td>Last order event timestamp (in nanoseconds) in GMT</td></tr><tr><td>lastEventId</td><td>Last event that was used to calculate order state</td></tr><tr><td>mpId</td><td>MP Id</td></tr><tr><td>mpName</td><td>MP name </td></tr><tr><td><mark style="color:blue;">NEW</mark> status</td><td><p>the status of the order.</p><ul><li>Active - as long as still on the book </li><li>Suspended - an order not yet injected into the order book.</li></ul></td></tr></tbody></table>
 
 ### **Error Codes**
 
@@ -69,7 +69,8 @@ Note: There are no request parameters.
     "lastEventTimestamp": 1617875864297023000,
     "lastEventId": 33,
     "mpId": 1958681073,
-    "mpName": "Participant1"
+    "mpName": "Participant1",
+    "status": "Active"
   }
 }
 ```
@@ -387,7 +388,7 @@ Available messages in that API:&#x20;
 
 ### **Error Codes**
 
-<table><thead><tr><th width="186">Code</th><th>Message</th></tr></thead><tbody><tr><td>1</td><td><code>Exchange is unavailable</code></td></tr><tr><td>2</td><td><code>Stream disconnected</code></td></tr><tr><td>1007</td><td><code>Invalid session</code></td></tr><tr><td>1008</td><td><mark style="color:blue;">CHANGED</mark> <code>Insufficient permissions</code><br><del><code>This apiKey doesn’t have the right permission</code></del></td></tr><tr><td>1200</td><td><code>General error</code></td></tr><tr><td>1201</td><td><code>Wrong trackingNumber</code></td></tr></tbody></table>
+<table><thead><tr><th width="186">Code</th><th>Message</th></tr></thead><tbody><tr><td>1</td><td><code>Exchange is unavailable</code></td></tr><tr><td>2</td><td><code>Stream disconnected</code></td></tr><tr><td>1007</td><td><code>Invalid session</code></td></tr><tr><td>1008</td><td><code>Insufficient permissions</code></td></tr><tr><td>1200</td><td><code>General error</code></td></tr><tr><td>1201</td><td><code>Wrong trackingNumber</code></td></tr></tbody></table>
 
 
 
@@ -451,31 +452,30 @@ Available messages in that API:&#x20;
 ```javascript
 {
   "q": "v1/exchange.market/trades",
-  "sid": 16,
+  "sid": 14,
   "d": {
-    "eventId": 27,
-    "timestamp": 1662906852364973300,
-    "actionType": "TradeReport",
-    "mpId": 2087505339,
-    "mpName": "mp1",
-    "instrumentId": 963,
-    "instrument": "ABC1",
+    "actionType": "MatchedTrade",
+    "timestamp": 1690096334129503000,
+    "trackingNumber": 1127207840,
+    "mpId": 2087505414,
+    "mpName": "yael",
+    "instrumentId": 5,
+    "instrument": "yael",
     "side": "Buy",
-    "price": 1.1234,
+    "price": 3602879701896397,
     "quantity": 10,
-    "tradeId": 5,
-    "tradingMode": "ON",
-    "accountType": "Client",
-    "parties": [
-      {
-        "id": "1234",
-        "source": "D",
-        "role": 38
-      }
-    ],
-    "tradeType": "Block",
-    "tradeDate": "2022-09-11",
-    "trackingNumber": 217819392
+    "tradeId": 6,
+    "tradingMode": "CT",
+    "makerTaker": "Maker",
+    "tradeDate": "2023-07-23",
+    "multiLegReportingType": "IndividualLeg",
+    "tradeLegRefId": 1,
+    "multiLegDifferentialPrice": 10000,
+    "multiLegStrategyInstrumentId": 14837,
+    "multiLegStrategyInstrument": "Spread",
+    "multiLegStrategyTradeId": 11,
+    "multiLegStrategyOrderId": 21,
+    "multiLegStrategyMpOrderId": 1564403702311
   }
 }
 ```
@@ -538,7 +538,7 @@ Consumers can decide how to consume strategies trades.
 \
 On Individual legs model, each trade will be sent with the following parameters:
 
-<table><thead><tr><th width="356.3333333333333">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>tradeLegRefId</td><td>leg index</td></tr><tr><td>multiLegDifferentialPrice</td><td>Parent trade price</td></tr><tr><td>multiLegStrategyInstrumentId</td><td>Parent trade instrument Id</td></tr><tr><td>multiLegStrategyTradeId</td><td>Parent trade Id</td></tr></tbody></table>
+<table><thead><tr><th width="356.3333333333333">Parameter</th><th>Description</th></tr></thead><tbody><tr><td>tradeLegRefId</td><td>leg index</td></tr><tr><td>multiLegDifferentialPrice</td><td>Parent trade price</td></tr><tr><td>multiLegStrategyInstrumentId</td><td>Parent trade instrument Id</td></tr><tr><td>multiLegStrategyTradeId</td><td>Parent trade Id</td></tr><tr><td><mark style="color:blue;">NEW</mark> <br>multiLegStrategyInstrument</td><td>Parent instrument symbol</td></tr><tr><td><mark style="color:blue;">NEW</mark> <br>multiLegStrategyOrderId</td><td>Parent orderId</td></tr><tr><td><mark style="color:blue;">NEW</mark> <br>multiLegStrategyMpOrderId</td><td>Parent mpOrderId</td></tr></tbody></table>
 
 #### Samples
 

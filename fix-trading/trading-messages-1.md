@@ -45,18 +45,41 @@ Using MultiLegReportingType(442) = 3 (Multi-leg security) on the TradeCaptureRep
 
 **Option 2**
 
-Using MultiLegReportingType(442) = 2 (Individual leg of a multi-leg security) on the TradeCaptureReportRequest (AD) tow trade reports will be sent:
+Using MultiLegReportingType(442) = 2 (Individual leg of a multi-leg security) on the TradeCaptureReportRequest (AD) two trade reports will be sent:
 
 * Trade Report 1:&#x20;
   * Symbol (55) = ABC-Feb23
   * MultiLegReportingType (442) = 2 (Individual leg of a multi-leg security)&#x20;
   * tradeLegRefId (824) = 1&#x20;
   * multiLegDifferentialPrice (1522) = Trade price of the strategy&#x20;
-* Trade Report 2:&#x20;
-  * Symbol (55) = ABC-Mar23&#x20;
-  * MultiLegReportingType (442) = 2 (Individual leg of a multi-leg security)&#x20;
-  * tradeLegRefId (824) = 2&#x20;
-  * multiLegDifferentialPrice (1522) = Trade price of the strategy
+*   Trade Report 2:&#x20;
+
+    * Symbol (55) = ABC-Mar23&#x20;
+    * MultiLegReportingType (442) = 2 (Individual leg of a multi-leg security)&#x20;
+    * tradeLegRefId (824) = 2&#x20;
+    * multiLegDifferentialPrice (1522) = Trade price of the strategy
+
+
+
+<mark style="color:blue;">**NEW**</mark>** How To Associate Individual Leg Trade Report To The Parent Trade and Order -**
+
+* Case placed 2 sell orders with quantity 1, OrderID (37) = 11 & 12
+* Then placed 1 buy order with quantity 2 on the same price as sell orders, OrderID (37) = 13
+* Let's consider that 2 sell orders were filled by this buy order.
+
+In this case we shall receive:
+
+* For sell order #11:
+  * Fill ExecutionReport for strategy TrdMatchID (880) =1 and OrderID (37) = 11
+  * 2 TradeCaptureReport legs messages where TradeLinkID (820) = 1  and RelatedOrderID(2887)  = 11
+* For sell order #12:
+  * Fill ExecutionReport for strategy TrdMatchID (880) =2 and OrderID (37) = 12
+  * 2 TradeCaptureReport legs messages where TradeLinkID (820) = 2 and RelatedOrderID(2887)  = 12
+* For buy order's:
+  * 1 fill ExecutionReport for strategy TrdMatchID (880) =1 and OrderID (37) = 13
+  * 1 fill ExecutionReport for strategy TrdMatchID (880) =2 and OrderID (37) = 13
+  * 2 TradeCaptureReport legs messages where TradeLinkID (820) = 1 and RelatedOrderID(2887)  = 13
+  * 2 TradeCaptureReport legs messages where TradeLinkID (820) = 2 and RelatedOrderID(2887)  = 1
 
 **Trade Cancellation**&#x20;
 
@@ -163,7 +186,7 @@ Trade cancellation trade reports works exactly the same as trade report.
 {% tab title="INDIVIDUAL LEG " %}
 {% code overflow="wrap" %}
 ```
- 8=FIXT.1.1|9=242|35=AE|49=EXBERRY|56=user|34=54|52=20230606-13:48:38.291875|568=1686059315662|912=N|487=0|828=99|55=bonds|32=2.0|31=-190.0|75=20230606|60=20230606-13:46:34.083207|552=1|54=1|453=1|448=user|447=D|452=7|797=Y|570=N|1003=5|442=2|824=2|1522=200.0|10=041|
+8=FIXT.1.1|9=385|35=AE|49=EXBERRY|56=MP|34=16|52=20230723-06:51:29.294782|568=2|912=N|487=0|828=0|55=INS1|32=15.0|31=3602879701896396.8|75=20230723|60=20230723-06:51:29.279568|552=1|54=1|453=3|448=123456|447=D|452=38|448=ABCD|447=D|452=12|448=USER|447=D|452=7|1003=5|73=2|2887=20|2888=1|2887=1690095087437|2888=2|797=Y|570=N|442=2|824=1|1522=10.0|820=10|1647=1|1648=99|1649=Spread|1650=14837|1651=99|10=019|
 ```
 {% endcode %}
 {% endtab %}
@@ -179,5 +202,5 @@ Trade cancellation trade reports works exactly the same as trade report.
 
 
 
-<table><thead><tr><th width="99">Tag</th><th width="223">Name</th><th width="103">Required</th><th>Description</th></tr></thead><tbody><tr><td>568</td><td>TradeRequestID</td><td>Y</td><td>From request </td></tr><tr><td>912</td><td>LastRptRequested</td><td>Y</td><td>Indicates if this is the last record (applicable for snapshots only)</td></tr><tr><td>487</td><td>TradeReportTransType</td><td>Y</td><td><p>Trade Report message transaction type </p><p><strong>0 (New)</strong>: execution or trade entry </p><p><strong>1 (Cancel)</strong> : Trade cancellation</p></td></tr><tr><td>828</td><td>TrdType</td><td>N</td><td><p>Only when TradeReportTransType = 0</p><p><strong>0 (Regular trade)</strong>: For order book trades </p><p><strong>1 (Block trade)</strong>: For trade entry where type = Block </p><p><strong>2 (EFP)</strong>: For trade entry where type = EFRP </p><p><strong>99</strong> : For trade entry where type = Other</p></td></tr><tr><td>797</td><td>CopyMsgIndicator</td><td>Y</td><td>Indicates drop copy, always “Y”</td></tr><tr><td>570</td><td>PreviouslyReported</td><td>Y</td><td>Always “N”</td></tr><tr><td>1003</td><td>TradeId</td><td>Y</td><td>Trade Id (Match Id) </td></tr><tr><td>552</td><td>NoSides</td><td>Y</td><td>Always 1 (One Side)</td></tr><tr><td>37</td><td>OrderID</td><td>N</td><td>Order Id<br><code>Changed</code> Only when TrdType = 0 (Regular trade) <br>For both TradeReportTransType 0 (New) and 1(Cancel)</td></tr><tr><td>11</td><td>ClOrdID</td><td>N</td><td>ClOrdID of the order<br><code>Changed</code> Only when TrdType = 0 (Regular trade)<br>For both TradeReportTransType 0 (New) and 1(Cancel) </td></tr><tr><td><p><mark style="color:red;">Deprecated</mark></p><p><del>41</del></p></td><td><del>OrigClOrdID</del></td><td><del>N</del></td><td><del>Ignore</del></td></tr><tr><td>32</td><td>LastQty</td><td>N</td><td>Trade amount </td></tr><tr><td>31</td><td>LastPx</td><td>N</td><td>Trade price </td></tr><tr><td>55</td><td>Symbol</td><td>N</td><td>Instrument symbol</td></tr><tr><td>54</td><td>Side</td><td>N</td><td><p>1= Buy</p><p>2 = Sell</p></td></tr><tr><td>44</td><td>Price</td><td>N</td><td>Order price</td></tr><tr><td>60</td><td>TransactTime</td><td>Y</td><td>Event timestamp in microseconds in UTC Format YYYYmmDD-hh:mm:ss.000000</td></tr><tr><td>75</td><td>TradeDate</td><td>Y</td><td>Trade date. Format: YYYYMMDD</td></tr><tr><td>581</td><td>AccountType</td><td>N</td><td><p>Account type </p><p>1 = Client </p><p>3 = House</p></td></tr><tr><td>+</td><td>Parties</td><td>N</td><td>This is party information related to the submitter of the request.<br>See <a href="trading-messages.md#new-parties-component">here </a>for more details </td></tr><tr><td>442</td><td>MultiLegReportingType</td><td>N</td><td><p>Will be shown for strategy trades only - per request parameter   </p><p>Will be shown for strategy trades only (per request):</p><p>1 - Single security - outright trade </p><p>2 - Individual leg of a multi-leg security </p><p>3 - Multi-leg security - the strategy trade of multi-leg security</p></td></tr><tr><td>824</td><td>tradeLegRefId</td><td>N</td><td>Only when MultiLegReportingType(442) = 2, will show leg index (leg1→1, leg2→ 2 etc)</td></tr><tr><td>1522</td><td>multiLegDifferentialPrice</td><td>N</td><td>Only when MultiLegReportingType(442) = 2, will show parent trade price</td></tr></tbody></table>
+<table><thead><tr><th width="99">Tag</th><th width="223">Name</th><th width="103">Required</th><th>Description</th></tr></thead><tbody><tr><td>568</td><td>TradeRequestID</td><td>Y</td><td>From request </td></tr><tr><td>912</td><td>LastRptRequested</td><td>Y</td><td>Indicates if this is the last record (applicable for snapshots only)</td></tr><tr><td>487</td><td>TradeReportTransType</td><td>Y</td><td><p>Trade Report message transaction type </p><p><strong>0 (New)</strong>: execution or trade entry </p><p><strong>1 (Cancel)</strong> : Trade cancellation</p></td></tr><tr><td>828</td><td>TrdType</td><td>N</td><td><p>Only when TradeReportTransType = 0</p><p><strong>0 (Regular trade)</strong>: For order book trades </p><p><strong>1 (Block trade)</strong>: For trade entry where type = Block </p><p><strong>2 (EFP)</strong>: For trade entry where type = EFRP </p><p><strong>99</strong> : For trade entry where type = Other</p></td></tr><tr><td>797</td><td>CopyMsgIndicator</td><td>Y</td><td>Indicates drop copy, always “Y”</td></tr><tr><td>570</td><td>PreviouslyReported</td><td>Y</td><td>Always “N”</td></tr><tr><td>1003</td><td>TradeId</td><td>Y</td><td>Trade Id (Match Id) </td></tr><tr><td>552</td><td>NoSides</td><td>Y</td><td>Always 1 (One Side)</td></tr><tr><td>37</td><td>OrderID</td><td>N</td><td>Order Id<br><code>Changed</code> Only when TrdType = 0 (Regular trade) <br>For both TradeReportTransType 0 (New) and 1(Cancel)</td></tr><tr><td>11</td><td>ClOrdID</td><td>N</td><td>ClOrdID of the order<br><code>Changed</code> Only when TrdType = 0 (Regular trade)<br>For both TradeReportTransType 0 (New) and 1(Cancel) </td></tr><tr><td><p><mark style="color:red;">Deprecated</mark></p><p><del>41</del></p></td><td><del>OrigClOrdID</del></td><td><del>N</del></td><td><del>Ignore</del></td></tr><tr><td>32</td><td>LastQty</td><td>N</td><td>Trade amount </td></tr><tr><td>31</td><td>LastPx</td><td>N</td><td>Trade price </td></tr><tr><td>55</td><td>Symbol</td><td>N</td><td>Instrument symbol</td></tr><tr><td>54</td><td>Side</td><td>N</td><td><p>1= Buy</p><p>2 = Sell</p></td></tr><tr><td>44</td><td>Price</td><td>N</td><td>Order price</td></tr><tr><td>60</td><td>TransactTime</td><td>Y</td><td>Event timestamp in microseconds in UTC Format YYYYmmDD-hh:mm:ss.000000</td></tr><tr><td>75</td><td>TradeDate</td><td>Y</td><td>Trade date. Format: YYYYMMDD</td></tr><tr><td>581</td><td>AccountType</td><td>N</td><td><p>Account type </p><p>1 = Client </p><p>3 = House</p></td></tr><tr><td><mark style="color:blue;">NEW</mark> 73</td><td>NoOrders</td><td>N</td><td><p>Only when MultiLegReportingType(442) = 2, </p><p>Indicates number of orders to be combined.</p><p>Will always be 2 </p></td></tr><tr><td><mark style="color:blue;">NEW</mark> <br>>2887</td><td>RelatedOrderID</td><td>N</td><td><p>Only when NoOrders(73) >0<br></p><p>Identifier of a related order.</p><ul><li>If RelatedOrderIDSource(2888) = 1 (Order identifier) → Parent orderId</li><li>If RelatedOrderIDSource(2888) = 2 (Client order identifier) →  Parent ClOrderId (=mpOrderId)</li></ul></td></tr><tr><td><mark style="color:blue;">NEW</mark> > 2888</td><td>RelatedOrderIDSource</td><td>N</td><td><p>Only when NoOrders(73) >0<br>Describes the source of the identifier that RelatedOrderID(2887) represents.</p><p>1 = Order identifier</p><p>2 = Client order identifier</p></td></tr><tr><td><mark style="color:blue;">NEW</mark> 1647</td><td>NoRelatedInstruments</td><td>N</td><td><p>Only when MultiLegReportingType(442) = 2, shows number of related instruments</p><p>Will always be 1</p></td></tr><tr><td><mark style="color:blue;">NEW</mark> <br>>1648</td><td>RelatedInstrumentType</td><td>N</td><td><p>Only when NoRelatedInstruments(1647) >0<br>The type of instrument relationship</p><p>99 (Custom: Multi-leg security)</p></td></tr><tr><td><mark style="color:blue;">NEW</mark> <br>>1649</td><td>RelatedSymbol</td><td>N</td><td>Only when NoRelatedInstruments(1647) >0<br>Parent Symbol</td></tr><tr><td><mark style="color:blue;">NEW</mark> <br>>1650</td><td>RelatedSecurityID</td><td>N</td><td>Only when NoRelatedInstruments(1647) >0<br>Parent instrumentId</td></tr><tr><td><mark style="color:blue;">NEW</mark> <br>>1651</td><td>RelatedSecurityIDSource</td><td>N</td><td><p>Only when NoRelatedInstruments(1647) >0<br>Identifies class or source of the RelatedSecurityID (1650) value.</p><p>99 (Custom)</p></td></tr><tr><td>+</td><td>Parties</td><td>N</td><td>This is party information related to the submitter of the request.<br>See <a href="trading-messages.md#new-parties-component">here </a>for more details </td></tr><tr><td>442</td><td>MultiLegReportingType</td><td>N</td><td><p>Will be shown for strategy trades only - per request parameter   </p><p>Will be shown for strategy trades only (per request):</p><p>1 - Single security - outright trade </p><p>2 - Individual leg of a multi-leg security </p><p>3 - Multi-leg security - the strategy trade of multi-leg security</p></td></tr><tr><td>824</td><td>tradeLegRefId</td><td>N</td><td>Only when MultiLegReportingType(442) = 2, will show leg index (leg1→1, leg2→ 2 etc)</td></tr><tr><td>1522</td><td>multiLegDifferentialPrice</td><td>N</td><td>Only when MultiLegReportingType(442) = 2, will show parent trade price</td></tr></tbody></table>
 

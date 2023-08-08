@@ -59,6 +59,10 @@ Cases where realBookState = False&#x20;
 
 During auctions trading - system will publish realBookState similarly as on non auction period, consumer will need to calculate this on its side as follow: till auction crossing is completed real book state = False
 
+
+
+For an edge case in CBR - see more [here](https://documenter.getpostman.com/view/6229811/TzCV3jcq#46843413-c6ad-44c0-8d67-e18ef719b365)
+
 {% hint style="info" %}
 `qualifier: v2/exchange.market/orderBookDepth`
 {% endhint %}
