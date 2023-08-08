@@ -2,6 +2,8 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## 2023-08-08✔️
+
 * **FIX GW-**
   * Adding 20029(Custom tag) to Market Data Snapshot Full Refresh _(MsgType = W) Ticker Data_ - identify last message of the snapshot
   * Deprecate 20001 and 20002
