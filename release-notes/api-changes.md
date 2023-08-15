@@ -2,6 +2,10 @@
 
 ## Coming Soon... :hammer\_pick:
 
+* <mark style="color:red;">To be deprecated -</mark>
+  * realBookState field in the orderBookDepth
+  * Tag 20028 in FIX GW that show the realBookState&#x20;
+
 ## 2023-08-08✔️
 
 * **FIX GW-**
