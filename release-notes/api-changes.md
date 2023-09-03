@@ -2,9 +2,16 @@
 
 ## Coming Soon... :hammer\_pick:
 
-* <mark style="color:red;">To be deprecated -</mark>
-  * realBookState field in the orderBookDepth
-  * Tag 20028 in FIX GW that show the realBookState&#x20;
+<mark style="color:red;">Deprecation -</mark>
+
+* realBookState field in the orderBookDepth
+* Tag 20028 in FIX GW that show the realBookState&#x20;
+
+**FIX GW -**
+
+* Changed the response of Market Data Request _(MsgType = V):_ MDEntryType=A(Imbalance) request.
+* Changed the order of the fields in the security list (y)
+* Bugfix related to MDEntryTime(273) value in MarketDataIncrementalRefresh(35=X)
 
 ## 2023-08-08✔️
 
