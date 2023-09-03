@@ -13,6 +13,7 @@
   * Deprecate 20001 and 20002
   * Removed MDEntrySize(271) from MarketDataIncrementalRefresh_(MsgType = X) when_ MDUpdateAction(279) = 2 (Delete)
   * Adding TargetParties to OrderMassCancelRequest _(MsgType = q)_
+  * Adding TargetParties to OrderMassCancelReport _(MsgType = r)_
   * Adding to the TradeCaptureRepoet(AE) new fields to individual legs reports to allow association on the individual leg trade report to the multi leg strategy execution report.
 * **WS -**
   * Adding targetParties to [massCancel](../trading-api.md#masscancel)
