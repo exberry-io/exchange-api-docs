@@ -2,6 +2,10 @@
 
 ## Coming Soon... :hammer\_pick:
 
+
+
+## 2023-09-19 ✔️
+
 <mark style="color:red;">Deprecation -</mark>
 
 * realBookState field in the orderBookDepth
@@ -12,6 +16,11 @@
 * Changed the response of Market Data Request _(MsgType = V):_ MDEntryType=A(Imbalance) request.
 * Changed the order of the fields in the security list (y)
 * Bugfix related to MDEntryTime(273) value in MarketDataIncrementalRefresh(35=X)
+
+**WS -**
+
+* Bugfix related to removedQty of messageType=Add executionReports
+* Bugfix related to userId of messageType=Add executionReport of replaceOrder
 
 ## 2023-08-08✔️
 
