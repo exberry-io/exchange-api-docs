@@ -1,10 +1,25 @@
 # API Changes
 
-## Coming Soon... :hammer\_pick:
+## v1.19.0 (TBD) :hammer\_pick:
 
-...
+**FIX GW -**
 
-## 2023-09-19 ✔️
+* Added supporting the replaceOrder behavior of the WebSocket to OrderCancelReplaceRequest _(MsgType = G)_
+* _Adding_ tag 110 (MinQty) to -
+  * New Order Single (D)
+  * Execution Reports (8)
+* Added a session level validation for number of repeating groups in FIX messages
+  * In case Market Data Request (V) sent with NoRelatedSym(146) is not equal to actual repeating group instances Till now -Market Data Request Reject (Y) was sent,  From now Reject (3) will be sent
+
+**WS -**
+
+* Added supporting the modifyOrder behavior of the WebSocket to replaceOrder. In case replaceOrder is being used only for reducing order remaining open quantity, from now on it will not trigger cancellation and placing new order (with priority lose) but it will result same order with same priority with reduced quantity&#x20;
+* Adding the minQuantity field  and new validations to-
+  * Place Order
+  * Replace Order
+  * Execution Reports
+
+## v1.18.0 (2023-09-19)  ✔️
 
 <mark style="color:red;">Deprecation -</mark>
 
@@ -22,7 +37,7 @@
 * Bugfix related to removedQty of messageType=Add executionReports
 * Bugfix related to userId of messageType=Add executionReport of replaceOrder
 
-## 2023-08-08✔️
+## v1.17.0 (2023-08-08)✔️
 
 * **FIX GW-**
   * Adding 20029(Custom tag) to Market Data Snapshot Full Refresh _(MsgType = W) Ticker Data_ - identify last message of the snapshot
@@ -60,7 +75,7 @@
 
 ## 2023-06-21✔️
 
-### FIX API
+FIX API
 
 * Additions to the security list (Y)-
   * New field - LegSymbol (600)  in addition to the existing LegSecurityID(602) that identify the legs of a strategy instrument.&#x20;
@@ -72,13 +87,13 @@
 * Removed tag 20028(Custom tag) that identifies if this tag represents real book state or a temporary non-real book state from Market Data Snapshot Full Refresh (MsgType = W) as all results will always be real book state.&#x20;
 * Fixing the ExecType(150) in reject in ER(8) of response to OrderMassStatusRequest(AF) - from "l" (lowercase “L”) to “I” (uppercase "I")
 
-### WS API
+WS API
 
 * Adding to the [Reporting API -Trades ](../reporting-api.md#trades-v2)
   * New filter - Trade date
 * _Adding a new field to the orderBookDepth -_ realBookState this field identify if this event represents real book state or a temporary non-real book state.&#x20;
 
-### _Stop & StopLimit_
+_Stop & StopLimit_
 
 From this version new order types were added: Stop & Stop Limit, you can now place and cancel stop and stop limit orders. \
 Those order types are available on both WS and FIX APIs.
@@ -106,7 +121,7 @@ Those order types are available on both WS and FIX APIs.
 
 This field MultiLegReportingType is **always** sent
 
-### FIX API
+FIX API
 
 * Market Data:
   * Symbol is now mandatory in  <mark style="color:green;">Market by Order Full Depth</mark> and <mark style="color:green;">Auction Indicative Equilibrium Price</mark> in Market Data Request (V)
@@ -137,7 +152,7 @@ This field MultiLegReportingType is **always** sent
       On TradeCaptureReportRequest (AD) you should now specify 2 or 3. \
 
 
-### Trading API
+Trading API
 
 New Time In Force was added for limit order - **DAY** - Order will be automatically canceled when trading day is closed. Can be used for both FIX and WS APIs.
 
