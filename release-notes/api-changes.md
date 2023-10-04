@@ -1,6 +1,6 @@
 # API Changes
 
-## &#x20;Coming Soon:hammer\_pick:
+## Coming Soon... :hammer\_pick:
 
 ## v1.19.0 (2023-10-04)  ✔️
 
