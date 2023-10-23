@@ -2,6 +2,28 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## v1.20.0 (TBD)&#x20;
+
+**FIX GW -**
+
+* Adding to the Execution Reports(8) cancel reason (in tag 58)
+* Changed the order expiration `ExecutionReport(8)`, `ExecType(150)` value from `Canceled(4)` to `Expired(C)`
+* Bug fix on market data “Time & Sale” API on strategy allocated leg trades to properly display AggressorSide(2446)
+
+**WS -**
+
+* Adding to the Execution Reports cancel reason
+* Deprecate below APIs
+  * `v1/exchange.reporting/mp/trades`
+  * `v1/exchange.market/orderBookDepth`
+  * `v1/exchange.market/orderBookState`
+* Deprecate `userId` and `accountId` fields from below APIs
+  * `v1/exchange.market/placeOrder`
+  * `v1/exchange.reporting/mp/orders`
+  * `v2/exchange.reporting/mp/trades`
+  * `v1/exchange.market/massOrderStatus`
+  * `v1/exchange.market/executionReports`
+
 ## v1.19.0 (2023-10-04)  ✔️
 
 **FIX GW -**
