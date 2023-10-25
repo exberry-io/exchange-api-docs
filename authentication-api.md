@@ -13,11 +13,7 @@ qualifier: `exchange.market/createSession`
 
 ### **Request**
 
-| Parameter | Type           | Description                                                                                                                                                                                                                                                                                                                                                       |
-| --------- | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| apiKey    | String         | Unique market participant API key provided by exchange operator                                                                                                                                                                                                                                                                                                   |
-| timestamp | Unix timestamp | Login timestamp in milliseconds, must be now in GMT                                                                                                                                                                                                                                                                                                               |
-| signature | String         | <p><code>HMAC SHA256 signature</code> computed using provided <code>secret</code> key and message body.<br>Example:<br><code>Message</code> = <code>"apiKey":"1234567abcdz","timestamp":"1558941516123"</code><br><code>secret</code> = <code>MySecretKey</code><br><code>signature = 265cfbc40c22355d6c1ecc1f3a1e87e8c46954db9096a7bd6967241dd8bc65b6</code></p> |
+<table><thead><tr><th width="141.33333333333331">Parameter</th><th width="157">Type</th><th>Description</th></tr></thead><tbody><tr><td>apiKey</td><td>String</td><td>Unique market participant API key provided by exchange operator</td></tr><tr><td>timestamp</td><td>Unix timestamp</td><td>Login timestamp in milliseconds, must be now in GMT</td></tr><tr><td>signature</td><td>String</td><td><code>HMAC SHA256 signature</code> computed using provided <code>secret</code> key and message body.<br>Example:<br><code>Message</code> = <code>"apiKey":"1234567abcdz","timestamp":"1558941516123"</code><br><code>secret</code> = <code>MySecretKey</code><br><code>signature = 265cfbc40c22355d6c1ecc1f3a1e87e8c46954db9096a7bd6967241dd8bc65b6</code></td></tr></tbody></table>
 
 How to compute the signature
 
@@ -28,12 +24,7 @@ echo -n '"apiKey":"1234567abcdz","timestamp":"1558941516123"' | openssl dgst -sh
 
 ### **Error Codes**
 
-| Code | Message                       |
-| ---- | ----------------------------- |
-| 6000 | `Authentication failed`       |
-| 6001 | `Wrong timestamp`             |
-| 6002 | `Missing fields: [Fieldname]` |
-| 6003 | `Create session failed`       |
+<table><thead><tr><th width="141">Code</th><th>Message</th></tr></thead><tbody><tr><td>6000</td><td><code>Authentication failed</code></td></tr><tr><td>6001</td><td><code>Wrong timestamp</code></td></tr><tr><td>6002</td><td><code>Missing fields: [Fieldname]</code></td></tr><tr><td>6003</td><td><code>Create session failed</code></td></tr></tbody></table>
 
 ### **Samples**
 
