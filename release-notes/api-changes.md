@@ -2,7 +2,7 @@
 
 ## Coming Soon... :hammer\_pick:
 
-## v1.20.0 (TBD)&#x20;
+## v1.20.0 (2023-10-25)✔️&#x20;
 
 **FIX GW -**
 
