@@ -2,6 +2,31 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## v1.21.0 (TBD)
+
+**FIX GW -**&#x20;
+
+* Added `WorkingIndicator(636)`, Changed `ExecType(150)` and `OrdStatus(39)` of `ExecutionReport(8)` messages of suspended Stop/StopLimit orders.   &#x20;
+* Added `ExpireDate(432)` to `NewOrderSingle(D)`, `OrderCancelReplaceRequest(G)` and `ExecutionReport(8)`
+* Increased the total number of tags supported to 256.
+* Bugfix related to `OrdStatus (39)` of `ExecutionReport(8)` of partially filled orders. `OrdStatus (39)` was `New(0)` before the fix, it was corrected as `Partially filled(1)`.
+* Bugfix related to `OrderQty(38)` of `ExecType(150)=4(Canceled)` `ExecutionReport(8)` , `CumQty(14)` value has been incorrectly reported as `OrderQty(38)` before the fix.
+* Changed the error message of minimum and maximum quantity validation messages of Orders
+
+
+
+**WS -**
+
+* Added expiryDay to `placeOrder`, `replaceOrder`,   `v1/exchange.market/executionReports` and `v1/exchange.reporting/mp/orders` &#x20;
+* Adding validation for party.source field of `placeOrder`, `massCancel`. Allowed values: alphanumeric \[0-9,a-z,A-Z].
+* Adding validation for party.id field of `placeOrder`, `massCancel`. Allowed values: alphanumeric \[a-z,A-Z,0-9,”.”,”-”,”^”,”/””=”, “ ”].
+* Bugfix related to creating WS sessions.
+* Bugfix related to validating minimum order quantity in `modifyOrder`
+* Changed the error message of minimum and maximum quantity validation messages of Orders
+* Bugfix related to `lastMessage: "Y"` indicator of the instrumentList API
+
+
+
 ## v1.20.0 (2023-10-25)✔️&#x20;
 
 **FIX GW -**
