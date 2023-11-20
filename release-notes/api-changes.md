@@ -2,12 +2,13 @@
 
 ## Coming Soon... :hammer\_pick:
 
-## v1.21.0 (TBD)
+## v1.21.0 (2023-11-20) ✔️
 
 **FIX GW -**&#x20;
 
 * Added `WorkingIndicator(636)`, Changed `ExecType(150)` and `OrdStatus(39)` of `ExecutionReport(8)` messages of suspended Stop/StopLimit orders.   &#x20;
 * Added `ExpireDate(432)` to `NewOrderSingle(D)`, `OrderCancelReplaceRequest(G)` and `ExecutionReport(8)`
+* Added Leg trades for `ExecutionReport(8)`. The new messages are optional and should be subscribed to via `Logon(A)` Message.
 * Increased the total number of tags supported to 256.
 * Bugfix related to `OrdStatus (39)` of `ExecutionReport(8)` of partially filled orders. `OrdStatus (39)` was `New(0)` before the fix, it was corrected as `Partially filled(1)`.
 * Bugfix related to `OrderQty(38)` of `ExecType(150)=4(Canceled)` `ExecutionReport(8)` , `CumQty(14)` value has been incorrectly reported as `OrderQty(38)` before the fix.
@@ -24,8 +25,6 @@
 * Bugfix related to validating minimum order quantity in `modifyOrder`
 * Changed the error message of minimum and maximum quantity validation messages of Orders
 * Bugfix related to `lastMessage: "Y"` indicator of the instrumentList API
-
-
 
 ## v1.20.0 (2023-10-25)✔️&#x20;
 
