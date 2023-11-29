@@ -2,6 +2,22 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## v1.22.0 (TBD)
+
+**FIX GW -**&#x20;
+
+* Proper sequencing of replacements and modifications: Changed the behavior of `OrderCancelReplaceRequest(G)`. The system replaces the `ClOrdID(11)` of the order with the value received in `OrderCancelReplaceRequest(G)`
+* Changed the `ExecType(150)` of the `ExecutionReport(8)` sent when an order is replaced as `ExecType(150)=5(Replaced)`. It was `0(New)` before the change.
+* Added RFQ trades to `Time & Sales` Market Data updates.
+* Added MDEntryType(269)=q(RFQ volume) to `Ticker` Market Data updates
+* Bugfix to add `ExpireDate(432)` to FIX `ExecType(150)=I(OrderStatus)` `ExecutionReport(8)`.
+* Added `TradeCaptureReport(AE)` messages for RFQ trades
+* Bugfix to remove the `WorkingIndicator(636)` from `I(OrderStatus)` `ExecutionReport(8)` messages of partially filled Stop/Stop Limit orders. `WorkingIndicator(636) = Y` was populated before the fix.
+
+**WS -**
+
+* Added Underscore`_`  and colon `:` to the allowed characters of the `party.id` field of `placeOrder` and `massCancel`.
+
 ## v1.21.0 (2023-11-20) ✔️
 
 **FIX GW -**&#x20;
