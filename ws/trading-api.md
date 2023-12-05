@@ -1,4 +1,4 @@
-# Trading API
+# Trading
 
 ## placeOrder
 
@@ -45,7 +45,7 @@ qualifier: `v1/exchange.market/placeOrder`
 
 Party specification:&#x20;
 
-<table><thead><tr><th width="112">Name</th><th width="165.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>String</td><td>Party id<br>Max length = 20 <br><mark style="color:blue;">(NEW v1.21.0)</mark>  Allowed characters [a-z,A-Z,0-9,”.”,”-”,”^”,”/””=”, “ ”]</td></tr><tr><td>source</td><td>Char</td><td>Party source<br><mark style="color:blue;">(NEW v1.21.0)</mark>  Allowed characters [0-9,a-z,A-Z]</td></tr><tr><td>role</td><td>Int</td><td>Party role </td></tr></tbody></table>
+<table><thead><tr><th width="112">Name</th><th width="165.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>String</td><td>Party id<br>Max length = 20 <br><mark style="color:blue;">(CHANGED v1.22.0)</mark>  Allowed characters [a-z,A-Z,0-9,”.”,”-”,”^”,”/””=”, “ ”,"_",":"]</td></tr><tr><td>source</td><td>Char</td><td>Party source<br><mark style="color:blue;">(NEW v1.21.0)</mark>  Allowed characters [0-9,a-z,A-Z]</td></tr><tr><td>role</td><td>Int</td><td>Party role </td></tr></tbody></table>
 
 Sample:
 
@@ -272,7 +272,7 @@ qualifier: `v1/exchange.market/massCancel`
 
 targetParty specification:&#x20;
 
-<table><thead><tr><th width="180">Name</th><th width="120.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>TargetParty id</td></tr><tr><td>source</td><td>char</td><td>TargetParty source</td></tr><tr><td>role</td><td>int</td><td>TargetParty role</td></tr></tbody></table>
+<table><thead><tr><th width="180">Name</th><th width="120.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>string</td><td>TargetParty id<br><mark style="color:blue;">(CHANGED v1.22.0)</mark>  Allowed characters [a-z,A-Z,0-9,”.”,”-”,”^”,”/””=”, “ ”,"_", ":"]</td></tr><tr><td>source</td><td>char</td><td>TargetParty source<br><mark style="color:blue;">(NEW v1.21.0)</mark>  Allowed characters [0-9,a-z,A-Z]</td></tr><tr><td>role</td><td>int</td><td>TargetParty role</td></tr></tbody></table>
 
 
 

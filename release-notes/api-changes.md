@@ -2,7 +2,7 @@
 
 ## Coming Soon... :hammer\_pick:
 
-## v1.22.0 (TBD)
+## v1.22.0 (2023-12-05)✔️
 
 **FIX GW -**&#x20;
 
@@ -111,9 +111,9 @@
   * Adding TargetParties to OrderMassCancelReport _(MsgType = r)_
   * Adding to the TradeCaptureRepoet(AE) new fields to individual legs reports to allow association on the individual leg trade report to the multi leg strategy execution report.
 * **WS -**
-  * Adding targetParties to [massCancel](../trading-api.md#masscancel)
-  * Adding to [trades ](../private-data-api.md#trades)and [trades history API](../reporting-api.md#trades-v2) new fields to the trade report to allow association on the individual leg trade report to the multi leg strategy execution report.
-  * Adding to the [massOrderStatus ](../private-data-api.md#massorderstatus)- status field
+  * Adding targetParties to [massCancel](../ws/trading-api.md#masscancel)
+  * Adding to [trades ](../ws/private-data-api.md#trades)and [trades history API](../ws/reporting-api.md#trades-v2) new fields to the trade report to allow association on the individual leg trade report to the multi leg strategy execution report.
+  * Adding to the [massOrderStatus ](../ws/private-data-api.md#massorderstatus)- status field
 * #### Stop & Stop Limit - Auction & CBR-&#x20;
   * Injections rules: till this version, auctions execution didn't trigger Stop & Stop Limit. From now on, auctions execution will trigger Stop & Stop Limit as follow:
     * For E**quilibrium Price** auctions: After the auction, system will trigger the orders according to the auction price
@@ -123,7 +123,7 @@
 ## 2023-07-12✔️
 
 * **Stop & Stop Limit**
-  * Adding a new field stopPrice to [massOrderStatus ](../private-data-api.md#massorderstatus)message.
+  * Adding a new field stopPrice to [massOrderStatus ](../ws/private-data-api.md#massorderstatus)message.
   * Allow to replace and modify Stop & Stop Limit orders
     * adding to the replace new field (stopPrice)
     * delete this validation `Not allowed on stop or stop limit orders` from the modify and replace
@@ -153,7 +153,7 @@ FIX API
 
 WS API
 
-* Adding to the [Reporting API -Trades ](../reporting-api.md#trades-v2)
+* Adding to the [Reporting API -Trades ](../ws/reporting-api.md#trades-v2)
   * New filter - Trade date
 * _Adding a new field to the orderBookDepth -_ realBookState this field identify if this event represents real book state or a temporary non-real book state.&#x20;
 
@@ -251,7 +251,7 @@ Note: Next version we will allow configuration whether this new TIF is allowed o
   * userId
   * accountId
   * Note: those fields are still supported, Exberry operation team will coordinate the deprecation with Exberry clients.&#x20;
-* Few valiodation messaged were updated in [Trading API ](../trading-api.md)&#x20;
+* Few valiodation messaged were updated in [Trading API ](../ws/trading-api.md)&#x20;
 
 
 
@@ -289,7 +289,7 @@ Note: Next version we will allow configuration whether this new TIF is allowed o
 
 ## 2023-01-03 ✔️
 
-* New Filter in   [Trades Reports](../reporting-api.md#trades-v2)&#x20;
+* New Filter in   [Trades Reports](../ws/reporting-api.md#trades-v2)&#x20;
 
 ```
   "q": "v2/exchange.reporting/mp/trades",
@@ -307,7 +307,7 @@ Note: Next version we will allow configuration whether this new TIF is allowed o
 ```
 
 * New `errorCode` on `Trades V2` API - 1001
-* New filters in [orders](../reporting-api.md#orders)
+* New filters in [orders](../ws/reporting-api.md#orders)
 
 ```
 {
@@ -334,7 +334,7 @@ Note: Next version we will allow configuration whether this new TIF is allowed o
 
 * New FIX Drop Copy Client initiated message : [Mass Order Status Request ](../fix-trading/trading-messages-1.md#ordermassstatusrequest-af)
 * Place Order validation that price must ne positive was removed
-* New Filters in   [Trades Reports](../reporting-api.md#trades-v2)  &#x20;
+* New Filters in   [Trades Reports](../ws/reporting-api.md#trades-v2)  &#x20;
 
 ```
   "q": "v2/exchange.reporting/mp/trades",
@@ -367,7 +367,7 @@ Trading API
 
     ### Orders&#x20;
 
-    On [#massorderstatus](../private-data-api.md#massorderstatus "mention")and [#orders](../reporting-api.md#orders "mention") new fields are added
+    On [#massorderstatus](../ws/private-data-api.md#massorderstatus "mention")and [#orders](../ws/reporting-api.md#orders "mention") new fields are added
 
     * &#x20;parties&#x20;
     * accountType
@@ -667,7 +667,7 @@ Samples:
   * New tags on NewOrderSingle (MsgType = D) and ExecutionReport (MsgType = 8)
     * AccountType (581)&#x20;
     * Parties component
-* On [#trades-v2](../reporting-api.md#trades-v2 "mention")new field was added: `tradeDate`
+* On [#trades-v2](../ws/reporting-api.md#trades-v2 "mention")new field was added: `tradeDate`
 * New API: Get Settlement Prices to retrieve the settlement prices for all instruments or for a specific list of instruments.&#x20;
 
 {% tabs %}
@@ -822,7 +822,7 @@ on `executionReports` and `massOrderStatus` those fields were added:
 
 Trade Entry️ enable to report about trades that were done between market participants out of the order book.&#x20;
 
-This is going to impact [#orderbookdepth](../market-data.md#orderbookdepth "mention") and [#executionreports](../private-data-api.md#executionreports "mention")
+This is going to impact [#orderbookdepth](../ws/market-data.md#orderbookdepth "mention") and [#executionreports](../ws/private-data-api.md#executionreports "mention")
 
 {% tabs %}
 {% tab title="orderBookDepth" %}
@@ -886,7 +886,7 @@ This is going to impact [#orderbookdepth](../market-data.md#orderbookdepth "ment
 
 Trade cancellation enable to cancel trades that were done on the last business day .&#x20;
 
-This is going to impact [#orderbookdepth](../market-data.md#orderbookdepth "mention") and [#executionreports](../private-data-api.md#executionreports "mention")
+This is going to impact [#orderbookdepth](../ws/market-data.md#orderbookdepth "mention") and [#executionreports](../ws/private-data-api.md#executionreports "mention")
 
 
 
@@ -950,7 +950,7 @@ This is going to impact [#orderbookdepth](../market-data.md#orderbookdepth "ment
 
 
 **Reporting - Trades API**\
-New version is going to be release to [#trades](../reporting-api.md#trades "mention") API.\
+New version is going to be release to [#trades](../ws/reporting-api.md#trades "mention") API.\
 Previous version is still supported but will not include new developments, we encourage you to migrate to the new version.  &#x20;
 
 {% hint style="info" %}
@@ -1098,7 +1098,7 @@ Additional changes:
 
 `replaceOrder` API is now available, it allows cancel and add new order in a single command.
 
-See [#replaceorder](../trading-api.md#replaceorder "mention") for more details.
+See [#replaceorder](../ws/trading-api.md#replaceorder "mention") for more details.
 
 ## 2022-05-11✔️
 
@@ -1112,7 +1112,7 @@ The new versions are available on:
 {% endhint %}
 
 This version includes market events, now you can get real time messages when trading is being halted / resumed, when market is open / closed and more.\
-See [here ](../market-data.md#instrument-status-message-1)for more details.
+See [here ](../ws/market-data.md#instrument-status-message-1)for more details.
 
 {% hint style="warning" %}
 The old endpoints (v1) are still up and running, but will be deprecated in one of the next releases.\
@@ -1151,8 +1151,8 @@ Changes:
 
 Additions:
 
-* [Private API](../private-data-api.md) to get your own detailed orders data on a simple way.
-* [Admin API ](../admin-api.md)for the entire administration activity can now be done via an API.
+* [Private API](../ws/private-data-api.md) to get your own detailed orders data on a simple way.
+* [Admin API ](../other/admin-api.md)for the entire administration activity can now be done via an API.
 
 ## 2021-03-10 ✔️
 
