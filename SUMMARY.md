@@ -24,11 +24,11 @@
 * [RFQ API](other/rfq-api/README.md)
   * [Introduction](other/rfq-api/introduction.md)
   * [Workflows](other/rfq-api/workflows.md)
-  * [Initiator Trading API](other/rfq-api/initiator-trading-api.md)
-  * [Dealer Trading API](other/rfq-api/dealer-trading-api.md)
-  * [Market Data API](other/rfq-api/market-data-api.md)
-  * [Private Data API](other/rfq-api/private-data-api.md)
-  * [Reporting API](other/rfq-api/reporting-api.md)
+  * [Initiator Trading](other/rfq-api/initiator-trading.md)
+  * [Dealer Trading](other/rfq-api/dealer-trading.md)
+  * [Market Data](other/rfq-api/market-data.md)
+  * [Private Data](other/rfq-api/private-data.md)
+  * [Reporting](other/rfq-api/reporting.md)
 
 ## Release Notes
 

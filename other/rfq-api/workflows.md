@@ -6,7 +6,7 @@ This section has all RFQ workflows supported by the excahnge.
 
 ### Initiator Creates an RFQ
 
-1. The [submitRFQ](initiator-trading-api.md#submitrfq) API is used to create a new RFQ in the exchange.&#x20;
+1. The [submitRFQ](initiator-trading.md#submitrfq) API is used to create a new RFQ in the exchange.&#x20;
 2. If the request is successful,&#x20;
    1. New RFQ is disseminated to all MPs via the orderBookDepth stream.
    2. In addition, initiator gets the New RFQ via executionReports stream.
@@ -30,7 +30,7 @@ sequenceDiagram
 
 ### Initiator cancels an RFQ
 
-1. The [cancelRFQ](initiator-trading-api.md#cancelrfq) API is used by the RFQ initiator to cancel an RFQ. The system automatically cancels all active Quotes related to an RFQ when it is cancelled.
+1. The [cancelRFQ](initiator-trading.md#cancelrfq) API is used by the RFQ initiator to cancel an RFQ. The system automatically cancels all active Quotes related to an RFQ when it is cancelled.
 2. If the request is successful,&#x20;
    1. Quote cancellations are disseminated to the initiator of the RFQ and dealers with active Quotes via executionReports stream.&#x20;
    2. All MPs get the RFQ cancellation via the orderBookDepth stream.&#x20;
@@ -59,7 +59,7 @@ sequenceDiagram
 
 ### Initiator accepts(hits/lifts) a Quote
 
-1. The [acceptQuote](initiator-trading-api.md#acceptquote) API is used by the RFQ initiator to accept a Quote received.
+1. The [acceptQuote](initiator-trading.md#acceptquote) API is used by the RFQ initiator to accept a Quote received.
 2. If the request is successful,&#x20;
    1. Quote related quote executions are disseminated to the initiator of the RFQ and dealer of the Quote via the executionReports stream.&#x20;
    2. All active non executed quotes are cancelled by the system and disseminated to the initiator of the RFQ and dealer of the Quote via the executionReports stream.
@@ -97,7 +97,7 @@ sequenceDiagram
 
 ### Dealer replies to an RFQ
 
-1. The [submitQuote](dealer-trading-api.md#submitquote) API is used to respond to an RFQ by creating a new Quote in the exchange. Multiple Quotes can be created for a single RFQ.
+1. The [submitQuote](dealer-trading.md#submitquote) API is used to respond to an RFQ by creating a new Quote in the exchange. Multiple Quotes can be created for a single RFQ.
 2. If the request is successful: New Quotes are disseminated to the initiator of the RFQ and the dealer via executionReports stream.
 
 ```mermaid
@@ -120,7 +120,7 @@ sequenceDiagram
 
 ### Dealer Cancels a Quote
 
-1. The [cancelQuote](dealer-trading-api.md#cancelquote) API is used by the Quote dealer to cancel a Quote.&#x20;
+1. The [cancelQuote](dealer-trading.md#cancelquote) API is used by the Quote dealer to cancel a Quote.&#x20;
 2. If the request is successful, Cancellations are disseminated to the initiator of the RFQ and the dealer via executionReports stream.
 
 ```mermaid
