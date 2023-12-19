@@ -2,6 +2,18 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## v1.23.0 (TBD)
+
+**FIX GW -**&#x20;
+
+* Removed the `ExecType(150)=0(New)`, `ExecutionReport(8)` sent when an accepted or triggered(stop/stop limit) order partially executed at entry to the book and the `LeavesQty(151)` rests on the book.
+* Added `Scope(546)` to the `MarketDataRequest(V)` of Ticker data.
+* Added `multiLegReportingType(442)` to the `MarketDataIncrementalRefresh(X)` of Time & Sales data.
+
+**WS**&#x20;
+
+* Bugfix related to the `quantity` of `executionReports` when the `Quantity Precision` of the instrument was changed. The `quantity` had a value of Scientific Notationdivided by the number of decimal places added to the precision before the fix.
+
 ## v1.22.0 (2023-12-05)✔️
 
 **FIX GW -**&#x20;
