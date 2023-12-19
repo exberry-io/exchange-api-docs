@@ -10,9 +10,14 @@
 * Added `Scope(546)` to the `MarketDataRequest(V)` of Ticker data.
 * Added `multiLegReportingType(442)` to the `MarketDataIncrementalRefresh(X)` of Time & Sales data.
 
-**WS**&#x20;
+**WS -**
 
-* Bugfix related to the `quantity` of `executionReports` when the `Quantity Precision` of the instrument was changed. The `quantity` had a value of Scientific Notationdivided by the number of decimal places added to the precision before the fix.
+* Bugfix related to the `quantity` of `executionReports` when the `Quantity Precision` of the instrument was changed. The `quantity` had a value of Scientific Notation, before the fix.
+
+**RFQ API** -&#x20;
+
+* Added parties, accountType to QuoteExecuted events of the RFQ initiator. Values are taken from the RFQ.&#x20;
+* Added colon ( : ) and Underscore ( \_ ) to the allowed characters of the party.id field of `submitRFQ`, and `submitQuote`.
 
 ## v1.22.0 (2023-12-05)✔️
 
