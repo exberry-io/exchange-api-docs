@@ -2,7 +2,7 @@
 
 ## Coming Soon... :hammer\_pick:
 
-## v1.23.0 (TBD)
+## v1.23.0 (2023-12-26)✔️
 
 **FIX GW -**&#x20;
 
@@ -18,6 +18,16 @@
 
 * Added parties, accountType to QuoteExecuted events of the RFQ initiator. Values are taken from the RFQ.&#x20;
 * Added colon ( : ) and Underscore ( \_ ) to the allowed characters of the party.id field of `submitRFQ`, and `submitQuote`.
+
+**Self-Trade Prevention**
+
+&#x20;Self-Trade Prevention is now available as optional functionality. \
+It is available via FIX and WS APIs:
+
+* In WS `stpAction` was added to the relevant message
+* In FIX tag 20033 was added to the relevant messages
+
+
 
 ## v1.22.0 (2023-12-05)✔️
 
