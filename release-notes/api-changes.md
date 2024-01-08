@@ -2,6 +2,18 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## v1.24.0 (TBD)
+
+**FIX GW -**&#x20;
+
+* Added support for multiple FIX Sessions for a single MP
+* Added `First delivery date` and `Last delivery date` to the `SecurityList(y)`
+* Added `AggressorSide(2446)` to the `MarketDataIncrementalRefresh` messages of RFQ Trades
+
+**WS -**
+
+* Added `orderId`, `mpOrderId`, and `makerTaker` fields to the `RFQTrade` events of `v1/exchange.market/trades` and `v2/exchange.reporting/mp/trades`&#x20;
+
 ## v1.23.0 (2023-12-26)✔️
 
 **FIX GW -**&#x20;
