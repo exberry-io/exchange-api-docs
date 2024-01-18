@@ -15,7 +15,7 @@ The session and application event models and messages are based on versions FIXT
 Sandbox Configurations:&#x20;
 
 ```json
-"host": "fix-sandbox-shared.staging.exberry-uat.io",
-"port": 8888,
+"host": "fix-gateway.uat.exberry-uat.io",
+"port": 11080,
 "targetCompId": "EXBERRY"
 ```
