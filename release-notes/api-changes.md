@@ -2,13 +2,14 @@
 
 ## Coming Soon... :hammer\_pick:
 
-## v1.24.0 (TBD)
+## v1.24.0 (2024-01-17)✔️
 
 **FIX GW -**&#x20;
 
 * Added support for multiple FIX Sessions for a single MP
 * Added `First delivery date` and `Last delivery date` to the `SecurityList(y)`
 * Added `AggressorSide(2446)` to the `MarketDataIncrementalRefresh` messages of RFQ Trades
+* Bugfix related to Time and Sales updates. `MarketDataIncrementalRefresh(X)` updates were not disseminated when `MarketDepth(264)=1` was on the subscription request.
 
 **WS -**
 
