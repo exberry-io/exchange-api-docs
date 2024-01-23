@@ -1,4 +1,4 @@
-# Market Data API
+# Market Data
 
 ## Building Book State
 
@@ -36,31 +36,6 @@ For anonymous configured streams all the `mpId` and `mpOrderId` data will not be
 
 
 
-#### **Real Book State**
-
-realBookState field indicates whether this event represents real book state or only temporary book state.
-
-* True: This event represent real book state&#x20;
-* False: This event represent temporary book state&#x20;
-
-Sample:\
-orderId 1 Added to the book: Buy 10 units at Price 1.234 (Added event published)\
-orderId 2 Added to the book: Buy 5  units at Price 1.234 (Added event published)
-
-orderId 3 placed : Sell 13 units at Price 1.234\
-System will publish 2 events:
-
-* order3 fully executed with order 1: realBookState = False&#x20;
-* order3 partially executed with order 2: realBookState = True
-
-Cases where realBookState = False&#x20;
-
-* In case execution is part of several executions for a single taker and is not the last one - realBookState=False
-
-During auctions trading - system will publish realBookState similarly as on non auction period, consumer will need to calculate this on its side as follow: till auction crossing is completed real book state = False
-
-
-
 For an edge case in CBR - see more [here](https://documenter.getpostman.com/view/6229811/TzCV3jcq#46843413-c6ad-44c0-8d67-e18ef719b365)
 
 {% hint style="info" %}
@@ -77,25 +52,25 @@ For an edge case in CBR - see more [here](https://documenter.getpostman.com/view
 
 Add Order Message indicates that a new order has been accepted by the exchange and was added to the book.
 
-<table><thead><tr><th width="223">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Sequence identifier per instrument for the event</td></tr><tr><td>messageType</td><td><strong>Add</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>side</td><td>Buy / Sell</td></tr><tr><td>quantity</td><td>Order quantity</td></tr><tr><td>price</td><td>Order price</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr><tr><td>realBookState</td><td>See <a href="market-data.md#real-book-state">here </a></td></tr></tbody></table>
+<table><thead><tr><th width="223">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Sequence identifier per instrument for the event</td></tr><tr><td>messageType</td><td><strong>Add</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>side</td><td>Buy / Sell</td></tr><tr><td>quantity</td><td>Order quantity</td></tr><tr><td>price</td><td>Order price</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### **Order Executed Message**
 
 Order Executed Message indicates that an order on the book is matched with a new coming order in whole or in part. It is possible to receive several Order Executed Messages for a single orderId.
 
-<table><thead><tr><th width="234">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>messageType</td><td><strong>Executed</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>makerMpId</td><td>Resting order market participant ID</td></tr><tr><td>makerMpOrderId</td><td>Resting order market participant order ID</td></tr><tr><td>makerOrderId</td><td>Resting <code>orderId</code></td></tr><tr><td>takerMpId</td><td>Aggressive order market participant ID</td></tr><tr><td>takerMpOrderId</td><td>Aggressive order market participant order ID</td></tr><tr><td>takerOrderId</td><td>Aggressive order ID</td></tr><tr><td>matchId</td><td>Unique ID for the match</td></tr><tr><td>executedQuantity</td><td>Matched quantity</td></tr><tr><td>executedPrice</td><td>Matched price (maker order price).</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr><tr><td>realBookState</td><td>See <a href="market-data.md#real-book-state">here </a></td></tr></tbody></table>
+<table><thead><tr><th width="234">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>messageType</td><td><strong>Executed</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>makerMpId</td><td>Resting order market participant ID</td></tr><tr><td>makerMpOrderId</td><td>Resting order market participant order ID</td></tr><tr><td>makerOrderId</td><td>Resting <code>orderId</code></td></tr><tr><td>takerMpId</td><td>Aggressive order market participant ID</td></tr><tr><td>takerMpOrderId</td><td>Aggressive order market participant order ID</td></tr><tr><td>takerOrderId</td><td>Aggressive order ID</td></tr><tr><td>matchId</td><td>Unique ID for the match</td></tr><tr><td>executedQuantity</td><td>Matched quantity</td></tr><tr><td>executedPrice</td><td>Matched price (maker order price).</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### **Order Cancel Message**
 
 Order Cancel Message indicates that an order on the book is being cancelled. This message also sent in case of market order that was not fully filled.
 
-<table><thead><tr><th width="245">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>Cancelled</strong></td></tr><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>side</td><td>Buy/ Sell</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>cancelledQuantity</td><td>Order cancelled quantity</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr><tr><td>realBookState</td><td>See <a href="market-data.md#real-book-state">here </a></td></tr></tbody></table>
+<table><thead><tr><th width="245">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>Cancelled</strong></td></tr><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>side</td><td>Buy/ Sell</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>cancelledQuantity</td><td>Order cancelled quantity</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### **Order Modify Message**
 
 Order Modify Message indicates that an order on the book is being modified and order quantity was reduced.
 
-<table><thead><tr><th width="256">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>Modified</strong></td></tr><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>removedQuantity</td><td>Order quantity that was removed</td></tr><tr><td>newQuantity</td><td>Remaining open quantity</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr><tr><td>realBookState</td><td>See <a href="market-data.md#real-book-state">here </a></td></tr></tbody></table>
+<table><thead><tr><th width="256">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>Modified</strong></td></tr><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>removedQuantity</td><td>Order quantity that was removed</td></tr><tr><td>newQuantity</td><td>Remaining open quantity</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### **Instrument Status Message**
 
