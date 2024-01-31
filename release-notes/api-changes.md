@@ -2,6 +2,22 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## v1.25.0 (TBD)
+
+General -
+
+* Bugfix related to placing GTD orders. GTD orders placed during auctions with `expiryDay` field were immediately expired by the system before the fix.
+
+**FIX GW -**&#x20;
+
+* Bug fix, MPs were able to temporarily connect when `acceptorCompId` was not set up before the fix.
+* Bugfix related to `MarketDataRequest(V)`. The system returned an incorrect error message for MarketDataRequests with duplicate `MDReqID(262)`.
+
+**WS -**
+
+* Bugfix related to validation of TIF values of new orders. This validation returned an incorrect error message before the fix.
+* Bugfix related to the `v2/exchange.reporting/mp/trades` of implied order trades. mpName field was not included before the fix.
+
 ## v1.24.0 (2024-01-17)✔️
 
 **FIX GW -**&#x20;
