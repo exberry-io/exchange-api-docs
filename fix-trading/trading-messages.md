@@ -45,7 +45,9 @@ Note: On server initiated massages (like ExecutionReport (8) or TradeCaptureRepo
 
 <table><thead><tr><th width="86">Tag</th><th width="149">Name</th><th width="95">Required</th><th>Description</th></tr></thead><tbody><tr><td>453</td><td>NoPartyIDs</td><td>N</td><td>Number of parties </td></tr><tr><td>448</td><td>PartyID</td><td>N</td><td>Required if NoPartyIDs(453) > 0. <br>Identification of the party.</td></tr><tr><td>447</td><td>PartyIDSource</td><td>N</td><td>Required if NoPartyIDs(453) > 0. <br>Used to identify classification source.</td></tr><tr><td>452</td><td>PartyRole</td><td>N</td><td><p>Required if NoPartyIDs(453) > 0. </p><p>Identifies the type of PartyID(448).</p></td></tr></tbody></table>
 
+Mandatory Parties:
 
+<mark style="color:blue;">(NEW v1.25.0)</mark> Specific parties(example, role=8, source=A) can be configured as a mandatory. If configured as mandatory, they will be required in all requests with `parties` field.&#x20;
 
 ### OrderCancelRequest _(MsgType = F)_
 

@@ -2,10 +2,11 @@
 
 ## Coming Soon... :hammer\_pick:
 
-## v1.25.0 (TBD)
+## v1.25.0 (2024-02-07)✔️
 
-General -
+**General -**
 
+* Added support for Configurable Mandatory Fields (Account Type and Specific Parties)
 * Bugfix related to placing GTD orders. GTD orders placed during auctions with `expiryDay` field were immediately expired by the system before the fix.
 
 **FIX GW -**&#x20;
