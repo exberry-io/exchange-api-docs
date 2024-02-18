@@ -2,6 +2,21 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## v1.26.0 (TBD)
+
+**General -**
+
+* Adding new value for the cancel reason in the execution report - `CancelOrderOnBehalf`
+
+**FIX GW -**&#x20;
+
+* Added `tradingModels=CLOB` validation for `NewOrderSingle(D)`
+* Bugfix, an incorrect `SequenceReset(4)` message was sent by the system when a `ResendRequest(2)` is received with `BeginSeqNo(7)` belonging to an `ExecutionReport(8)`.
+
+**WS -**
+
+* Added `tradingModels=CLOB` validation for `placeOrder`
+
 ## v1.25.0 (2024-02-07)✔️
 
 **General -**
