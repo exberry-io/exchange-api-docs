@@ -2,7 +2,7 @@
 
 ## Coming Soon... :hammer\_pick:
 
-## v1.26.0 (TBD)
+## v1.26.0 (2024-02-28)✔️
 
 **General -**
 
@@ -10,12 +10,12 @@
 
 **FIX GW -**&#x20;
 
-* Added `tradingModels=CLOB` validation for `NewOrderSingle(D)`
-* Bugfix, an incorrect `SequenceReset(4)` message was sent by the system when a `ResendRequest(2)` is received with `BeginSeqNo(7)` belonging to an `ExecutionReport(8)`.
+* Added `Order is not allowed` validation for `NewOrderSingle(D)`for RFQ only instrument.&#x20;
+* Bugfix, an incorrect `SequenceReset(4)` message was sent by the system when a `ResendRequest(2)` is received with `BeginSeqNo(7)` belonging to an `ExecutionReport(8)`
 
 **WS -**
 
-* Added `tradingModels=CLOB` validation for `placeOrder`
+* Added `Order is not allowed` validation for `placeOrder` for RFQ only instrument
 
 ## v1.25.0 (2024-02-07)✔️
 
