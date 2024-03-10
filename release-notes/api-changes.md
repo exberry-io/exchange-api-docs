@@ -2,6 +2,18 @@
 
 ## Coming Soon... :hammer\_pick:
 
+## v1.27.0 (TBD)
+
+**General -**
+
+* Changed the error message returned when configured mandatory parties are missing (to specify the missing party) in WS `placeOrder`, `submitRFQ`, `submitQuote`, and FIX `NewOrderSingle(D)`.
+* Changed the logic used to populate `makerTaker` values of implied order trades.
+* Adding new value to cancel reason - `MassCancelOnBehalf` to be used when Admin user mass cancel orders.
+
+**WS -**
+
+* Bugfix related to `InstrumentStatus` messages of `exchange.market/orderBookDepth`. Before the fix, `instrument` field was not sent in the message disseminated when the instrument was created.
+
 ## v1.26.0 (2024-02-28)✔️
 
 **General -**
