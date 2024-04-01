@@ -111,7 +111,7 @@ The calendar End Of Day Message indicates that the end-of-day for a specific cal
 {% tab title="Subscription" %}
 ```javascript
 {
-  "q": "v1/exchange.market/orderBookDepth",
+  "q": "v2/exchange.market/orderBookDepth",
   "sid": 10,
   "d": {
       "trackingNumber": 100
@@ -123,7 +123,7 @@ The calendar End Of Day Message indicates that the end-of-day for a specific cal
 {% tab title="Add" %}
 ```javascript
 {
-  "q": "v1/exchange.market/orderBookDepth",
+  "q": "v2/exchange.market/orderBookDepth",
   "sid": 10,
   "d": {
     "eventId": 29969,
@@ -146,7 +146,7 @@ The calendar End Of Day Message indicates that the end-of-day for a specific cal
 {% tab title="Cancelled" %}
 ```javascript
 {
-  "q": "v1/exchange.market/orderBookDepth",
+  "q": "v2/exchange.market/orderBookDepth",
   "sid": 10,
   "d": {
     "eventId": 29969,
@@ -168,7 +168,7 @@ The calendar End Of Day Message indicates that the end-of-day for a specific cal
 {% tab title="Executed" %}
 ```javascript
 {
-  "q": "v1/exchange.market/orderBookDepth",
+  "q": "v2/exchange.market/orderBookDepth",
   "sid": 10,
   "d": {
     "eventId": 29969,
@@ -194,7 +194,7 @@ The calendar End Of Day Message indicates that the end-of-day for a specific cal
 {% tab title="Modified" %}
 ```javascript
 {
-  "q": "v1/exchange.market/orderBookDepth",
+  "q": "v2/exchange.market/orderBookDepth",
   "sid": 10,
   "d": {
     "eventId": 279,
@@ -236,7 +236,7 @@ The calendar End Of Day Message indicates that the end-of-day for a specific cal
 {% tab title="AuctionIndicativeEP" %}
 ```javascript
 {
-  "q": "v1/exchange.market/orderBookDepth",
+  "q": "v2/exchange.market/orderBookDepth",
   "sid": 11,
   "d": {
     "eventId": 433,
@@ -259,7 +259,7 @@ The calendar End Of Day Message indicates that the end-of-day for a specific cal
 {% tab title="TradeReport" %}
 ```javascript
 {
-  "q": "v1/exchange.market/orderBookDepth",
+  "q": "v2/exchange.market/orderBookDepth",
   "sid": 10,
   "d": {
     "eventId": 29969,
@@ -281,7 +281,7 @@ The calendar End Of Day Message indicates that the end-of-day for a specific cal
 {% tab title="TradeCancel" %}
 ```javascript
 {
-  "q": "v1/exchange.market/orderBookDepth",
+  "q": "v2/exchange.market/orderBookDepth",
   "sid": 10,
   "d": {
     "eventId": 29969,
@@ -353,7 +353,7 @@ qualifier:`v2/exchange.market/orderBookState`
 {% tab title="Subscription" %}
 ```javascript
 {
-  "q": "v1/exchange.market/orderBookState",
+  "q": "v2/exchange.market/orderBookState",
   "sid": 100,
   "d": {}
 }
@@ -363,7 +363,7 @@ qualifier:`v2/exchange.market/orderBookState`
 {% tab title="Resting Orders" %}
 ```javascript
 {
-  "q": "v1/exchange.market/orderBookState",
+  "q": "v2/exchange.market/orderBookState",
   "sid": 100,
   "d": {
     "orderId": 908,
@@ -395,7 +395,7 @@ qualifier:`v2/exchange.market/orderBookState`
 {% tab title="lastTrackingNumber" %}
 ```javascript
 {
-  "q": "v1/exchange.market/orderBookState",
+  "q": "v2/exchange.market/orderBookState",
   "sid": 100,
   "d": {
     "lastTrackingNumber": 161888
