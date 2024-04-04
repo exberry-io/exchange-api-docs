@@ -1,6 +1,12 @@
 # API Changes
 
-## Coming Soon... :hammer\_pick:
+## v1.28.0 (Coming Soon)
+
+**General -**
+
+* Implied Order generation for `Spread` and `Strip` instruments.&#x20;
+* Added a configurable Price Band Validation for `Spread` and `Strip` instruments and a Leg Trade Price Adjustment for `Spread` Instruments.
+* Adding new value to cancel reason - `ReplaceOrderOnBehalf` to be used when Admin user replace orders.
 
 ## v1.27.0 (2024-04-01) ✔️
 
