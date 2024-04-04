@@ -4,7 +4,7 @@ Private data API enables market participants to receive additional copies of the
 
 **Data Eligibility**&#x20;
 
-Private data API can be consumed for single market participant (MP) or for group of MPs that are pre-configured by exchange operations team.
+Private data API can be consumed for single market participant (MP) or for group of MPs that are pre-configured by exchange operations team.&#x20;
 
 Notes:
 
@@ -117,7 +117,7 @@ qualifier: `v1/exchange.market/executionReports`
 
 
 
-<table><thead><tr><th width="307">Cancel Reason</th><th>Description</th></tr></thead><tbody><tr><td>CancelRequest</td><td>As a result of cancelOrder request</td></tr><tr><td>ReplaceRequest</td><td>As a result of replaceOrder request</td></tr><tr><td>MassCancelRequest</td><td>As a result of massCancel request</td></tr><tr><td>Expiration</td><td>As a result of GTD, DAY &#x26; GAA order expiration</td></tr><tr><td>ImmediateOrder</td><td>As a result of order with TIF IOC or FOK that can not be immediately executed according to exact condition (e.g. IOC that can be partially executed, yet, the residual quantity will be canceled) </td></tr><tr><td>DailyPriceBandBreachMassCancel</td><td>As a result of cancel/reject order according to Daily Price Band</td></tr><tr><td>TickPriceBandBreachMassCancel</td><td>As a result of cancel/reject order according to Tick Price Band</td></tr><tr><td>CancelOnDisconnect</td><td>As a result of cancellation according to COD</td></tr><tr><td>InjectionRejected</td><td>As a result of cancel/reject order according to validation during injection</td></tr><tr><td>InstrumentExpiration</td><td>As a result of a stop date that has passed its time</td></tr><tr><td>BlockedMP</td><td>As a result of blocking the MP</td></tr><tr><td>STPIncomingOrder</td><td>As a result of cancel/reject order according to STP action of cancel incoming order</td></tr><tr><td>STPRestingOrder</td><td>As a result of cancel/reject order according to STP action of cancel resting order</td></tr><tr><td>STPBothOrders</td><td>As a result of cancel/reject order according to STP action of cancel both orders</td></tr><tr><td><mark style="color:blue;">(NEW v1.26.0)</mark>  CancelOrderOnBehalf </td><td>As a result of CancelOrder request from admin user</td></tr><tr><td><mark style="color:blue;">(NEW v1.27.0)</mark>  MassCancelOnBehalf</td><td>As a result of a MassCancel request from admin user</td></tr></tbody></table>
+<table><thead><tr><th width="307">Cancel Reason</th><th>Description</th></tr></thead><tbody><tr><td>CancelRequest</td><td>As a result of cancelOrder request</td></tr><tr><td>ReplaceRequest</td><td>As a result of replaceOrder request</td></tr><tr><td>MassCancelRequest</td><td>As a result of massCancel request</td></tr><tr><td>Expiration</td><td>As a result of GTD, DAY &#x26; GAA order expiration</td></tr><tr><td>ImmediateOrder</td><td>As a result of order with TIF IOC or FOK that can not be immediately executed according to exact condition (e.g. IOC that can be partially executed, yet, the residual quantity will be canceled) </td></tr><tr><td>DailyPriceBandBreachMassCancel</td><td>As a result of cancel/reject order according to Daily Price Band</td></tr><tr><td>TickPriceBandBreachMassCancel</td><td>As a result of cancel/reject order according to Tick Price Band</td></tr><tr><td><mark style="color:blue;">(NEW v1.28.0)</mark>  LegsPriceBandBreachMassCancel </td><td>As a result of cancel/reject order according to Leg Price Band</td></tr><tr><td>CancelOnDisconnect</td><td>As a result of cancellation according to COD</td></tr><tr><td>InjectionRejected</td><td>As a result of cancel/reject order according to validation during injection</td></tr><tr><td>InstrumentExpiration</td><td>As a result of a stop date that has passed its time</td></tr><tr><td>BlockedMP</td><td>As a result of blocking the MP</td></tr><tr><td>STPIncomingOrder</td><td>As a result of cancel/reject order according to STP action of cancel incoming order</td></tr><tr><td>STPRestingOrder</td><td>As a result of cancel/reject order according to STP action of cancel resting order</td></tr><tr><td>STPBothOrders</td><td>As a result of cancel/reject order according to STP action of cancel both orders</td></tr><tr><td><mark style="color:blue;">(NEW v1.26.0)</mark>  CancelOrderOnBehalf </td><td>As a result of CancelOrder request from admin user</td></tr><tr><td><mark style="color:blue;">(NEW v1.27.0)</mark>  MassCancelOnBehalf</td><td>As a result of a MassCancel request from admin user</td></tr><tr><td><mark style="color:blue;">(NEW v1.28.0)</mark>  ReplaceOrderOnBehalf</td><td>As a result of replaceOrder request from admin user</td></tr><tr><td><mark style="color:blue;">(NEW v1.28.0)</mark>  <br>BaseOrderChanged</td><td>When an implied order is canceled due to change in base orders (for example, base order canceled, filled, etc.)</td></tr></tbody></table>
 
 ### **Error Codes**
 
@@ -530,9 +530,7 @@ Available messages in that API:&#x20;
 Strategies trades are sent on `trades` API by 2 models:
 
 * Individual leg of a multi-leg security: reports the underlying legs of the strategy
-*   Multi-leg security - reports the strategy trade as is
-
-
+* Multi-leg security - reports the strategy trade as is
 
 Consumers can decide how to consume strategies trades.
 
@@ -630,6 +628,39 @@ On Individual legs model, each trade will be sent with the following parameters:
   }
 }
 ```
+{% endtab %}
+
+{% tab title="MultiLegSecurity" %}
+<pre class="language-json"><code class="lang-json">//MultiLegSecurity trade for the side without an order 
+//(in case of implied out trade)
+
+<strong>{
+</strong>  "q": "v1/exchange.market/trades",
+  "sid": 3,
+  "d": {
+    "actionType": "MatchedTrade",
+    "timestamp": 1711625611194461400,
+    "trackingNumber": 1075309280,
+    "eventId": 64,
+    "mpId": -1,
+    "mpName": "System",
+    "instrumentId": 22730,
+    "instrument": "1SP1",
+    "side": "Sell",
+    "price": 1,
+    "quantity": 5,
+    "tradeId": 12,
+    "tradingMode": "CT",
+    "makerTaker": "Maker",
+    "tradeDate": "2024-03-28",
+    "multiLegReportingType": "MultiLegSecurity"
+  }
+}
+
+
+
+
+</code></pre>
 {% endtab %}
 {% endtabs %}
 
