@@ -1,6 +1,6 @@
 # API Changes
 
-## v1.28.0 (Coming Soon)
+## v1.28.0 (2024-04-16) ✔️
 
 **General -**
 
