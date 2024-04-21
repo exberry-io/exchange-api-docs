@@ -1,5 +1,11 @@
 # API Changes
 
+## v1.29.0 (2024-04-23)
+
+**General -**
+
+* Added `contractSize` of Option, Strategy and Futures instruments to the maxOrderValue validation
+
 ## v1.28.0 (2024-04-16) ✔️
 
 **General -**
