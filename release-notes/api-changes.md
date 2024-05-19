@@ -1,6 +1,12 @@
 # API Changes
 
-## v1.29.0 (2024-04-23)
+## v1.30.0 (TBD)
+
+**General -**
+
+* Added `Orders` and `Quotes` with negative prices to the `maxOrderValue` validation.
+
+## v1.29.0 (2024-04-23) ✔️
 
 **General -**
 
