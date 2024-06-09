@@ -6,6 +6,10 @@
 
 * Added `Orders` and `Quotes` with negative prices to the `maxOrderValue` validation.
 
+**WS -**
+
+* Added `targetEntities` to the `massCancel`
+
 ## v1.29.0 (2024-04-23) ✔️
 
 **General -**
