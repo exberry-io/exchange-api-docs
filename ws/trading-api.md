@@ -259,7 +259,7 @@ qualifier: `v1/exchange.market/cancelOrder`
 
 ## massCancel
 
-The `massCancel` API is used to cancel all the active order and suspended orders for specific instrument for specific market participant.
+The `massCancel` API is used to cancel all the active order and suspended orders, <mark style="color:blue;">(NEW v1.30.0)</mark> active RFQs and Quotes for specific instrument for specific market participant.
 
 MPs can specify the targetParties they wish to target the mass order cancel by specifying the targetParties.&#x20;
 
@@ -286,7 +286,7 @@ qualifier: `v1/exchange.market/massCancel`
 
 ### **Request**
 
-<table><thead><tr><th width="182">Parameter</th><th width="185.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>instrument</td><td>String</td><td>Instrument identifier</td></tr><tr><td>targetParties<br><code>optional</code></td><td>[] TargetParty Objects</td><td>Array of party objects, see details below.<br>Max number of targetParties =20 </td></tr></tbody></table>
+<table><thead><tr><th width="182">Parameter</th><th width="185.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>instrument</td><td>String</td><td>Instrument identifier</td></tr><tr><td>targetParties<br><code>optional</code></td><td>[] TargetParty Objects</td><td>Array of party objects, see details below.<br>Max number of targetParties =20 </td></tr><tr><td><mark style="color:blue;">(NEW v1.30.0)</mark><br>targetEntities<br><code>optional</code></td><td>[] Enum</td><td><p>The system cancels the type of active entities mentioned in the request.<br></p><p>Array of below values:</p><p><code>Order</code> - cancels all orders</p><p><code>RFQ</code> - cancels all RFQs and all active quotes belong to them</p><p><code>Quote</code> - cancels all Quotes<br><br>If not exist, system considers as <code>targetEntities = [‘Order’]</code></p></td></tr></tbody></table>
 
 targetParty specification:&#x20;
 
@@ -296,7 +296,7 @@ targetParty specification:&#x20;
 
 ### **Response**
 
-<table><thead><tr><th width="192">Parameter</th><th width="96.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>numberOfOrders</td><td>Int</td><td>Number of orders that were cancelled</td></tr></tbody></table>
+<table><thead><tr><th width="192">Parameter</th><th width="96.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>numberOfOrders<br><mark style="color:blue;">(CHANGED v1.30.0)</mark> <code>optional</code></td><td>Int</td><td>Number of orders that were cancelled, will be returned only in case it was targeted on request.</td></tr><tr><td><mark style="color:blue;">(NEW v1.30.0)</mark><br>numberOfRfqs<br><code>optional</code></td><td>Int</td><td>Number of RFQs that were cancelled, will be returned only in case it was targeted on request.</td></tr><tr><td><mark style="color:blue;">(NEW v1.30.0)</mark><br>numberOfQuotes<br><code>optional</code></td><td>Int</td><td>Number of Quotes that were cancelled, will be returned only in case it was targeted on request.</td></tr></tbody></table>
 
 ### **Error Codes**
 
@@ -311,7 +311,8 @@ targetParty specification:&#x20;
   "q": "v1/exchange.market/massCancel",
   "sid": 1,
   "d": {
-    "instrument": "ABC"
+    "instrument": "ABC",
+    "targetEntities": ["Order", "RFQ"]
   }
 }
 ```
@@ -323,7 +324,8 @@ targetParty specification:&#x20;
   "q": "v1/exchange.market/massCancel",
   "sid": 1,
   "d": {
-    "numberOfOrders": 5
+    "numberOfOrders": 5,
+    "numberOfRfqs": 7
   }
 }
 ```
