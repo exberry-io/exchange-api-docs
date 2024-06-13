@@ -25,7 +25,7 @@ qualifier: `v1/`exchange.reporting/mp/orders
 
 `orders` response provides close to real time list of all current orders for the requested period with the entire details of those orders.
 
-<table><thead><tr><th width="252">Field</th><th>Description</th></tr></thead><tbody><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpOrderId</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>instrumentId</td><td>Instrument identifier</td></tr><tr><td>instrument</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>mpId</td><td>Market participant identifier</td></tr><tr><td>mpName</td><td>Market participant name</td></tr><tr><td>status</td><td>Order status: Active/ Executed/Cancelled</td></tr><tr><td>orderType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>side</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>price</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>quantity</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>timeInForce</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>expiryDate</td><td>Optional<br>Order expiry date (GMT)<br>Format: YYYY-MM-DDThh:mm:ss</td></tr><tr><td><mark style="color:blue;">(NEW v1.21.0)</mark><br>expiryDay</td><td>Optional<br>Order expiry day<br>format: YYYY-MM-DD</td></tr><tr><td>createdAt</td><td>Order creation timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</td></tr><tr><td>filledPrice</td><td>Weighted average filled price for all fills on that order <span class="math">Sum(event.executedQuantity * event.executedPrice)/Sum(event.executedQuantity)</span></td></tr><tr><td>filledQuantity</td><td>Total filled quantity</td></tr><tr><td>remainingOpenQuantity</td><td><p>Remaining open quantity.</p><p><span class="math">quantity - filledQuantity - removedQuantity</span></p></td></tr><tr><td>removedQuantity</td><td>Quantity that was removed with modifyOrder request</td></tr><tr><td>marketModel</td><td><p>A - (Auction) when order was placed during auction</p><p>T - (Trading) when order was placed on continues trading mode<br>UA- (Unscheduled Auction) when order was placed during auction after halt or autoHalt</p></td></tr><tr><td><p><mark style="color:red;">Deprecated (v1.20.0)</mark></p><p>userId</p></td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td><p><mark style="color:red;">Deprecated (v1.20.0)</mark></p><p>accountId</p></td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>parties</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>accountType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>lastEventTimestamp</td><td>Last order event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</td></tr><tr><td>lastEventId</td><td>Last event that was used to calculate order state</td></tr><tr><td>stopPrice</td><td>The price at which the order will be injected to the market. </td></tr><tr><td>minQuantity <code>optional</code></td><td>Minimum quantity of an IOC order to be executed.</td></tr><tr><td><mark style="color:blue;">(NEW v1.20.0)</mark> <br>cancelReason</td><td><p>Optional</p><p>The reason of the cancellation. Refer <a href="private-data-api.md#cancel-reason">here</a> for values.</p></td></tr><tr><td><p><mark style="color:blue;">(NEW v1.23.0)</mark></p><p>stpAction</p></td><td><p>Optional</p><p>From place order request </p></td></tr></tbody></table>
+<table><thead><tr><th width="252">Field</th><th>Description</th></tr></thead><tbody><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpOrderId</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>instrumentId</td><td>Instrument identifier</td></tr><tr><td>instrument</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>mpId</td><td>Market participant identifier</td></tr><tr><td>mpName</td><td>Market participant name</td></tr><tr><td>status</td><td>Order status: Active/ Executed/Cancelled</td></tr><tr><td>orderType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>side</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>price</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>quantity</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>timeInForce</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>expiryDate</td><td>Optional<br>Order expiry date (GMT)<br>Format: YYYY-MM-DDThh:mm:ss</td></tr><tr><td>expiryDay</td><td>Optional<br>Order expiry day<br>format: YYYY-MM-DD</td></tr><tr><td>createdAt</td><td>Order creation timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</td></tr><tr><td>filledPrice</td><td>Weighted average filled price for all fills on that order <span class="math">Sum(event.executedQuantity * event.executedPrice)/Sum(event.executedQuantity)</span></td></tr><tr><td>filledQuantity</td><td>Total filled quantity</td></tr><tr><td>remainingOpenQuantity</td><td><p>Remaining open quantity.</p><p><span class="math">quantity - filledQuantity - removedQuantity</span></p></td></tr><tr><td>removedQuantity</td><td>Quantity that was removed with modifyOrder request</td></tr><tr><td>marketModel</td><td><p>A - (Auction) when order was placed during auction</p><p>T - (Trading) when order was placed on continues trading mode<br>UA- (Unscheduled Auction) when order was placed during auction after halt or autoHalt</p></td></tr><tr><td>parties</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>accountType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>lastEventTimestamp</td><td>Last order event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</td></tr><tr><td>lastEventId</td><td>Last event that was used to calculate order state</td></tr><tr><td>stopPrice</td><td>The price at which the order will be injected to the market. </td></tr><tr><td>minQuantity <code>optional</code></td><td>Minimum quantity of an IOC order to be executed.</td></tr><tr><td>cancelReason</td><td><p>Optional</p><p>The reason of the cancellation. Refer <a href="private-data-api.md#cancel-reason">here</a> for values.</p></td></tr><tr><td>stpAction</td><td><p>Optional</p><p>From place order request </p></td></tr></tbody></table>
 
 ### **Error Codes**
 
@@ -355,72 +355,5 @@ See description and field details on Private Data API [**#Strategies/ Multi Legs
 {% endtabs %}
 
 
-
-## <mark style="color:red;">(Deprecated v1.20.0)</mark> Trades V1 &#x20;
-
-Any participant can use the `trades` API to retrieve the full list of all its own trades.\
-Each execution will be represented as 2 trades.
-
-Note: `userId` and `accountId` will be populated with values only for orders captured after Dec 14 2021
-
-{% hint style="info" %}
-qualifier: `v1/`exchange.reporting/mp/trades
-{% endhint %}
-
-### Request
-
-<table><thead><tr><th width="152.33333333333331">Parameter</th><th width="192">Type</th><th>Description</th></tr></thead><tbody><tr><td>dateFrom</td><td>DateTime (GMT)</td><td>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>dateTo</td><td>DateTime (GMT)</td><td>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr></tbody></table>
-
-### **Response**
-
-`trades` response provides close to real time list of all trades for the requested period with the entire details of those trades.
-
-<table><thead><tr><th width="217">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Event identifier of the execution</td></tr><tr><td>timestamp</td><td>Execution event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpOrderId</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>mpId</td><td>Market participant identifier</td></tr><tr><td>mpName</td><td>Market participant name</td></tr><tr><td>instrumentId</td><td>Instrument identifier</td></tr><tr><td>instrument</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>side</td><td>Buy/ Sell</td></tr><tr><td>executedPrice</td><td>Trade price</td></tr><tr><td>executedQuantity</td><td>Trade amount</td></tr><tr><td>matchId</td><td>Match identifier</td></tr><tr><td>tradingMode</td><td><p>IA - (Scheduled Intraday Auction) -When execution was as part of auction</p><p>CT (Continuous Trading) - When execution was done on a regular trading mode</p></td></tr><tr><td>userId</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>accountId</td><td>Same as in <code>placeOrder</code> request</td></tr></tbody></table>
-
-### **Error Codes**
-
-<table><thead><tr><th width="171">Code</th><th>Message</th></tr></thead><tbody><tr><td>1</td><td><code>Temporary failure to retrieve this data</code></td></tr><tr><td>1007</td><td><code>Invalid session</code></td></tr><tr><td>1008</td><td><code>Insufficient permissions</code></td></tr><tr><td>1001</td><td><code>Wrong [FieldName] format</code> or<br><code>dateTo must be greater than dateFrom</code></td></tr></tbody></table>
-
-### **Samples**
-
-{% tabs %}
-{% tab title="Request" %}
-```javascript
-{
-  "d": {
-    "dateFrom": "2021-12-15T00:00:01",
-    "dateTo": "2021-12-16T00:00:01"
-  },
-  "q": "v1/exchange.reporting/mp/trades",
-  "sid": 10
-}
-```
-{% endtab %}
-
-{% tab title="Response" %}
-```javascript
-{
-  "q": "v1/exchange.reporting/mp/trades",
-  "sid": 10,
-  "d": {
-    "eventId": 927,
-    "timestamp": "2021-12-15T21:02:45.189982",
-    "orderId": 645,
-    "mpOrderId": 1632496974889,
-    "mpId": 1958681073,
-    "mpName": "Participant1",
-    "instrumentId": 14,
-    "instrument": "INS1",
-    "side": "Buy",
-    "executedPrice": 100.5,
-    "executedQuantity": 1.25,
-    "matchId": 415,
-    "tradingMode": "CT",
-    "userId": "UATUserTest1"
-  }
-}
-```
-{% endtab %}
-{% endtabs %}
 
 ##
