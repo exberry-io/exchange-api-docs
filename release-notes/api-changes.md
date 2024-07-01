@@ -1,5 +1,25 @@
 # API Changes
 
+## v1.31.0 (TBD)
+
+**General -**
+
+* Added the ability for MPs to report trades. (Currently available only via WS API)
+* Allow mass cancellation across all instruments
+
+**WS -**
+
+* Added MP Trade Reporting APIs
+  * `exchange.market/createTradeReport`
+  * `exchange.market/cancelAllegedTradeReport`
+  * `exchange.reporting/mp/allegedTrades`
+* Added `targetScope` to the `massCancel` to define the cancel scope
+* Added `AllegedTrade` to the `targetEntities` of the `massCancel`
+
+**FIX GW -**&#x20;
+
+* Added `MassCancelRequestType(530)=7(Cancel all orders)` to the `OrderMassCancelRequest(q)`
+
 ## v1.30.0 (2024-06-19)✔️
 
 **General -**
