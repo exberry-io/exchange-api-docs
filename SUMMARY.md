@@ -29,6 +29,11 @@
   * [Market Data](other/rfq-api/market-data.md)
   * [Private Data](other/rfq-api/private-data.md)
   * [Reporting](other/rfq-api/reporting.md)
+* [(NEW v1.31.0) Trade Reporting](other/trade-reporting/README.md)
+  * [Introduction](other/trade-reporting/introduction.md)
+  * [Trade Report API](other/trade-reporting/trade-report-api.md)
+  * [Private Data](other/trade-reporting/private-data.md)
+  * [Reporting](other/trade-reporting/reporting.md)
 
 ## Release Notes
 

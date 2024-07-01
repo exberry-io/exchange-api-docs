@@ -14,7 +14,7 @@ Note: This API is accessible via a separated websocket endpoint, not the one use
 Any participant can use the `orders` API to retrieve the full list of all its own orders .
 
 {% hint style="info" %}
-qualifier: `v1/`exchange.reporting/mp/orders
+qualifier: `v1/exchange.reporting/mp/orders`
 {% endhint %}
 
 ### Request
@@ -82,6 +82,8 @@ qualifier: `v1/`exchange.reporting/mp/orders
 ```
 {% endtab %}
 {% endtabs %}
+
+
 
 ## Trades v2&#x20;
 
@@ -356,4 +358,3 @@ See description and field details on Private Data API [**#Strategies/ Multi Legs
 
 
 
-##
