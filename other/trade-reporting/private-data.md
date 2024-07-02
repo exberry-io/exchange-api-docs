@@ -2,6 +2,51 @@
 
 Refer [here](../../ws/private-data-api.md) for more details on Private Data APIs.
 
+
+
+Private data messages allows to get real time updates on alleged trade reported as well as querying for any active alleged trade pending to be matched.&#x20;
+
+```mermaid
+sequenceDiagram
+title: Private Data Messages - No Match
+    actor mp1 as MP1
+    participant exberry as Exberry
+    actor mp2 as MP2
+        mp1 ->> exberry: createTradeReport<br>(flow=AllegedSystemMatch, externalTradeId=1)
+        exberry ->> mp1: executionReports/AllegedTradeCreated
+        exberry ->> mp2: executionReports/AllegedTradeCreated
+        
+        mp2 ->> exberry: createTradeReport<br>(flow=AllegedSystemMatch, externalTradeId=2)
+        exberry ->> mp2: executionReports/AllegedTradeCreated
+        exberry ->> mp1: executionReports/AllegedTradeCreated
+
+        mp2 ->> exberry: massOrderStatus
+        exberry ->> mp2: massOrderStatus/AllegedTradeStatus <br> (externalTradeId=1)
+        exberry ->> mp2: massOrderStatus/AllegedTradeStatus <br> (externalTradeId=2)
+```
+
+```mermaid
+sequenceDiagram
+title: Private Data Messages - Match
+  actor mp1 as MP1
+    participant exberry as Exberry
+    actor mp2 as MP2
+
+
+        mp1 ->> exberry: createTradeReport<br>(flow=AllegedSystemMatch)
+        exberry ->> mp1: executionReports/AllegedTradeCreated
+        exberry ->> mp2: executionReports/AllegedTradeCreated
+       
+        mp2 ->> exberry: createTradeReport<br>(flow=AllegedSystemMatch)
+        exberry ->> exberry: Alleged Trade Match
+        exberry ->> mp1: executionReports/TradeReport
+        exberry ->> mp2: executionReports/TradeReport
+        exberry ->> mp1: trades/TradeReport
+        exberry ->> mp2: trades/TradeReport
+    
+
+```
+
 ## massOrderStatus
 
 Market participant of both sides can use the `massOrderStatus` API to retrieve the current status of all active Alleged Trades.
@@ -9,6 +54,8 @@ Market participant of both sides can use the `massOrderStatus` API to retrieve t
 {% hint style="info" %}
 qualifier: `v1/exchange.market/massOrderStatus`
 {% endhint %}
+
+
 
 ### **Response**
 
@@ -87,6 +134,8 @@ Refer [here](../../ws/private-data-api.md#error-codes) for the error codes.
 ```
 {% endtab %}
 {% endtabs %}
+
+
 
 ## **executionReports**
 
