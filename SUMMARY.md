@@ -21,19 +21,24 @@
 ## Other
 
 * [Admin API](other/admin-api.md)
-* [RFQ API](other/rfq-api/README.md)
-  * [Introduction](other/rfq-api/introduction.md)
-  * [Workflows](other/rfq-api/workflows.md)
-  * [Initiator Trading](other/rfq-api/initiator-trading.md)
-  * [Dealer Trading](other/rfq-api/dealer-trading.md)
-  * [Market Data](other/rfq-api/market-data.md)
-  * [Private Data](other/rfq-api/private-data.md)
-  * [Reporting](other/rfq-api/reporting.md)
+* [RFQ](other/rfq/README.md)
+  * [Introduction](other/rfq/introduction.md)
+  * [Workflows](other/rfq/workflows.md)
+  * [Initiator Trading](other/rfq/initiator-trading.md)
+  * [Dealer Trading](other/rfq/dealer-trading.md)
+  * [Market Data](other/rfq/market-data.md)
+  * [Private Data](other/rfq/private-data.md)
+  * [Reporting](other/rfq/reporting.md)
 * [(NEW v1.31.0) Trade Reporting](other/trade-reporting/README.md)
   * [Introduction](other/trade-reporting/introduction.md)
   * [Trade Report API](other/trade-reporting/trade-report-api.md)
   * [Private Data](other/trade-reporting/private-data.md)
   * [Reporting](other/trade-reporting/reporting.md)
+* [Business Features](other/business-features/README.md)
+  * [(NEW v1.28.0) Implied Orders](other/business-features/new-v1.28.0-implied-orders/README.md)
+    * [Introduction](other/business-features/new-v1.28.0-implied-orders/introduction.md)
+    * [Common Rules](other/business-features/new-v1.28.0-implied-orders/common-rules.md)
+    * [APIs](other/business-features/new-v1.28.0-implied-orders/apis.md)
 
 ## Release Notes
 
