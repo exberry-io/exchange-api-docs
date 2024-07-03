@@ -322,7 +322,7 @@ The calendar End Of Day Message indicates that the end-of-day for a specific cal
 This stream provides close to real time snapshot of order book state for all traded instruments.\
 The result are the list of:
 
-* All instruments and their current status
+* All  active instruments&#x20;
 * All orders currently resting on the book, it is not aggregated by price level.
 
 Each `orderBookState`stream will be closed with `lastTrackingNumber`, the `trackingNumber`of the last event used as part of returned book state, this can be used as input in `orderBookDepth`to be able start consume from that point.\
@@ -341,7 +341,7 @@ qualifier:`v2/exchange.market/orderBookState`
 
 #### Instrument Status Message
 
-<table><thead><tr><th width="225">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>InstrumentStatus</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>tradingStatus</td><td>Trade/ Halt</td></tr><tr><td>marketStatus</td><td>Opened/ Closed/ AuctionCall/ AuctionCrossing</td></tr><tr><td>status</td><td>Active/ Disabled</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
+<table><thead><tr><th width="225">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>InstrumentStatus</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>tradingStatus</td><td>Trade/ Halt</td></tr><tr><td>marketStatus</td><td>Opened/ Closed/ AuctionCall/ AuctionCrossing</td></tr><tr><td>status</td><td>Active</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 ### **Error Codes**
 
