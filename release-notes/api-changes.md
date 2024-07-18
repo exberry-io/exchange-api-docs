@@ -1,5 +1,15 @@
 # API Changes
 
+## v1.32.0 (TBD)
+
+**General -**
+
+* New [cancel reasons](../ws/private-data-api.md#cancel-reason) added&#x20;
+
+**WS -**
+
+* Apply new sorting in the[ trades report](../ws/reporting-api.md#trades-v2)&#x20;
+
 ## v1.31.0 (2024-07-16)✔️
 
 **General -**
