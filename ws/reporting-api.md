@@ -102,6 +102,12 @@ qualifier: `v2/`exchange.reporting/mp/trades
 
 `trades` response provides close to real time list of all trades data for the requested period with the entire details of those trades.
 
+<mark style="color:blue;">NEW v1.32.0</mark> The response is sorted by:
+
+* timestamp (desc)
+* instrumentId (desc)
+* eventId (desc)
+
 Each record will be one of the following `actionType`:
 
 * MatchedTrade for order book trade&#x20;
