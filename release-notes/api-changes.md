@@ -1,5 +1,32 @@
 # API Changes
 
+## v1.33.0 (TBD)
+
+**Market order during auction is now supported by system-**
+
+* Trading APIs
+  * Adding new validations and changing existing in [place order](../ws/trading-api.md#error-codes)&#x20;
+  * Adding new validation to the [modify order](../ws/trading-api.md#error-codes-3)
+  * Adding new validations and changing existing in [replace order](../ws/trading-api.md#error-codes-4)
+* Market Data APIs
+  * price will be empty in **`Add`** message for market orders during auction in [orderBookDepth](../ws/market-data.md#add-order-message)
+  * New definition of  **`AuctionIndicativeEP`** message with market orders during auction in [orderBookDepth](../ws/market-data.md#auction-indicative-equilibrium-price-message)
+  * price will be empty for market orders during auction in [orderBookState](../ws/market-data.md#order-message)
+  * FIX API changes
+    * Adding 2 new values in MDEntryType(269) to Market Data Incremental Refresh _(MsgType = X) and_ Market Data Snapshot Full Refresh _(MsgType = W)_
+
+**WS API-**
+
+* Apply new sorting in the [OrderBookState](../ws/market-data.md#orderbookstate)
+* Apply new filter mpOrderId in [Orders Report](../ws/reporting-api.md#orders)
+* Order ID does not depend on a specific instrument in [Orders Report](../ws/reporting-api.md#orders) filters&#x20;
+* Change in the instrument status message in [OrderBook](../ws/market-data.md#orderbookstate)[Depth](../ws/market-data.md#orderbookdepth) - in `tradingStatus` and `marketStatus` for instrument becomes active.&#x20;
+
+FIX API-
+
+* Sorting snapshot of MBOFD
+* Data eligibility for trading and drop copy API to support account specific connection&#x20;
+
 ## v1.32.0 (2024-08-07)✔️
 
 **General -**
