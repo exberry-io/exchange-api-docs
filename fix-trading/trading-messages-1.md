@@ -5,7 +5,7 @@ There are 2 drop copy services provided by Exberry:
 * **Execution Reports**: To receive a real-time copy of each eligible Execution Report immediately after it is published.
 * **Trade Capture Reports**: To receive information on the order book trades as well as trade entries along with notifications of any trade cancel. Trades are availble for the last day only , details of trades on previous trading days are not available here.
 
-**Data Eligibility**&#x20;
+### **Data Eligibility**&#x20;
 
 Drop copy can be published for single market participant (MP) or for group of MPs that are pre-configured by exchange operations team.
 
@@ -15,7 +15,14 @@ MP name will always be added as additional party with the below parameters:
 * 452 (PartyRole) = 7 (Entering Firm)&#x20;
 * 447 (PartyIDSource) = D (Custom)
 
-**Subscription**&#x20;
+### <mark style="color:blue;">(NEW v1.33.0)</mark> Account Assignment
+
+An account can be assigned at API Key level. If assigned,&#x20;
+
+* system adds the relevant party/targetParty (id=accountId, role=1001, source=D)(if not already exist), to the [Trading Messages](trading-messages.md) of the API Key.
+* only the activity relevnt to the account is visible for the API Key.
+
+### **Subscription**&#x20;
 
 * **Execution Reports**: No need to subscribe, assuming the credentials provided by operations team include the right permission, the Execution Reports will start to be published  once sessions is properly initiated.&#x20;
 * **Trade Capture Reports**: Explicit subscription is required, see below for more details, successful subscription will occur only if the appropriate permission was granted to connection credentials. &#x20;
