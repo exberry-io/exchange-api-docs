@@ -1,6 +1,24 @@
 # API Changes
 
-## v1.33.0 (TBD)
+## v1.34.0 (TBD)
+
+**General-**&#x20;
+
+* Added Reserve orders (iceberg and hidden)
+* Added `tradingCutoffs` for off-exchange trade reporting
+* `indicativePriceEvents`: the message was sent per interval even if nothing was changed. Starting this version it will be published only in case of a change in one of the parameters.&#x20;
+
+**FIX API-**
+
+* Documentation only:
+  * Added Order replaced with an immediate partial/full execution to FIX [Order Lifecycle Scenarios](../fix-trading/trading-messages.md#order-lifecycle-scenarios)
+  * Added Trade Entry Minimum Quantity array in the security list, which was previously undocumented and introduced in version 1.18.0.
+
+**WS API-**&#x20;
+
+* Data eligibility for Trading and Private Data APIs to support account specific connection&#x20;
+
+## v1.33.0 (2024-08-21)✔️
 
 **Market order during auction is now supported by system-**
 
@@ -22,7 +40,7 @@
 * Order ID does not depend on a specific instrument in [Orders Report](../ws/reporting-api.md#orders) filters&#x20;
 * Change in the instrument status message in [OrderBook](../ws/market-data.md#orderbookstate)[Depth](../ws/market-data.md#orderbookdepth) - in `tradingStatus` and `marketStatus` for instrument becomes active.&#x20;
 
-FIX API-
+**FIX API-**
 
 * Sorting snapshot of MBOFD
 * Data eligibility for trading and drop copy API to support account specific connection&#x20;
