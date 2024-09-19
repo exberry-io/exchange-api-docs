@@ -19,8 +19,10 @@ MP name will always be added as additional party with the below parameters:
 
 An account can be assigned at API Key level. If assigned,&#x20;
 
-* system adds the relevant party/targetParty (id=accountId, role=1001, source=D)(if not already exist), to the [Trading Messages](trading-messages.md) of the API Key.
-* only the activity relevnt to the account is visible for the API Key.
+* system adds the relevant party/targetParty (id=accountId, role=1001, source=D)(if not already exist), to the below requests of the API Key.
+  * [NewOrderSingle(D)](trading-messages.md#newordersingle-msgtype-d)
+  * [OrderMassCancelRequest(q)](trading-messages.md#ordermasscancelrequest-msgtype-q)
+* only the entities/activity relevant to the account is visible for the API Key.
 
 ### **Subscription**&#x20;
 

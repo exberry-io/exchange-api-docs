@@ -5,7 +5,7 @@
 **General-**&#x20;
 
 * Added Reserve orders (iceberg and hidden)
-* Added `tradingCutoffs` for off-exchange trade reporting
+* Added `tradingCutoffs` for trade reporting
 * `indicativePriceEvents`: the message was sent per interval even if nothing was changed. Starting this version it will be published only in case of a change in one of the parameters.&#x20;
 
 **FIX API-**
