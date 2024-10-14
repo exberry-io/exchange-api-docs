@@ -1,5 +1,21 @@
 # API Changes
 
+## v1.35.0 (2024-10-21)
+
+**General-**&#x20;
+
+* Added new cancel reason - [CBRBreach](../ws/private-data-api.md#cancel-reason)
+* Added `displayMethod=Random` to the reserve orders.
+* Added implied order generation using reserve orders&#x20;
+
+**WS API-**&#x20;
+
+* Added new filters to the Trades report - mpOrderId & orderId
+
+**FIX API-**
+
+* Added a new field to the ticker in the Market Data Snapshot Full Refresh (W) and Market Data Request (V) - `p = Tick Reference price`
+
 ## v1.34.0 (2024-09-25)✔️
 
 **General-**&#x20;
