@@ -6,6 +6,7 @@ The exchange supports below `displayMethods`:
 
 * **DisplayQuantity** - displays the displayQuantity initially and replenishment
 * **Hidden** - Fully hidden order (`displayQuantity=0`)
+* <mark style="color:blue;">(NEW v1.35.0)</mark> **Random** - Displays the quantity in displayQuantity initially, then a quantity between `displayLowQuantity` and `displayHighQuantity` when replenished
 
 
 
@@ -18,7 +19,8 @@ The exchange supports below `displayMethods`:
   * orderType : Limit and StopLimit
   * timeInForce : GTC/ GTD/ DAY
   * during continues trading only (system mass cancels reserve orders during auctions)
-* Reserve orders are not supported when implied orders are configured for an instrument or its legs.
+* <mark style="color:red;">(REMOVED v1.35.0)</mark> ~~Reserve orders are not supported when implied orders are configured for an instrument or its legs.~~
+* <mark style="color:blue;">(NEW v1.35.0)</mark> Refer [here](new-v1.28.0-implied-orders/) for the behavior in case of implied orders.
 * order priority,
   * when multiple orders at the same price, display quantity has a higher priority than the hidden quantity.&#x20;
   * within the display and hidden quantities, time priority of display and hidden is considered separately.

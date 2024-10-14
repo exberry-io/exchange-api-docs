@@ -1,6 +1,7 @@
 # Common Rules
 
-* Implied orders are generated using all non-implied orders at best bid and best ask prices. (aka BBO = Best Bid Offer)
+* Implied orders are generated using all non-implied orders at best <mark style="color:blue;">(NEW v1.35.0)</mark> visible bid and best <mark style="color:blue;">(NEW v1.35.0)</mark> visible ask prices. (aka BBO = Best Bid Offer)
+* <mark style="color:blue;">(NEW v1.35.0)</mark> In case of reserve orders, only the visible quantity is used to generate implied orders.
 * Implied Orders trade only with non-implied orders, therefore, Implied Orders are not generated when they are tradable with resting implied orders
 * Implied Orders are generated only when the parent instrument and all its leg instruments:
   * Market is Open for continues trading&#x20;

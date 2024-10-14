@@ -35,6 +35,7 @@
   * [Private Data](other/trade-reporting/private-data.md)
   * [Reporting](other/trade-reporting/reporting.md)
 * [Business Features](other/business-features/README.md)
+  * [Time In Force](other/business-features/time-in-force.md)
   * [Stop and Stop Limit Orders](other/business-features/stop-and-stop-limit-orders.md)
   * [(NEW v1.34.0) Reserve Orders](other/business-features/new-v1.34.0-reserve-orders.md)
   * [Self-Trade Prevention (STP)](other/business-features/self-trade-prevention-stp.md)
