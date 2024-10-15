@@ -21,10 +21,10 @@ Order types:
 
 * **Limit**: Order is being sent with a specific price. A buy order will be executed with the requested price or lower price a sell order will be executed with the requested price or higher price.
 * **Market**: Order is attempted filled at the best price in the market. Partial filled is allowed. In case not all the amount can be filled, the residual amount will be cancelled.
-* **Stop**: A Stop Order is a Market Order that will remain Suspended (will not be entered into order book) until the stop price is reached. Once triggered, it will be treated similar to a regular Market Order. ([Here](trading-api.md#stop-and-stop-limit-orders))
-* **StopLimit**: A Stop Limit Order is a Limit Order that will remain Suspended (will not be entered into order book) until the stop price is reached. Once triggered, a Stop Limit Order will be treated as a regular Limit Order. ([Here](trading-api.md#stop-and-stop-limit-orders))
+* **Stop**: A Stop Order is a Market Order that will remain Suspended (will not be entered into order book) until the stop price is reached. Once triggered, it will be treated similar to a regular Market Order. ([Here](../other/business-features/stop-and-stop-limit-orders.md))
+* **StopLimit**: A Stop Limit Order is a Limit Order that will remain Suspended (will not be entered into order book) until the stop price is reached. Once triggered, a Stop Limit Order will be treated as a regular Limit Order. ([Here](../other/business-features/stop-and-stop-limit-orders.md))
 
-For more details about the **time in force** - see [here](../other/business-features/)
+For more details about the **time in force** - see [here](../other/business-features/time-in-force.md)
 
 
 
