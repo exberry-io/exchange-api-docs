@@ -1,6 +1,13 @@
 # API Changes
 
-## v1.35.0 (2024-10-21)
+## v1.36.0 (2024-11-12)
+
+**General-**&#x20;
+
+* Added supporting reserve orders during auctions.
+* Auction Indicative Price Events are now published on real time when change occur on order book
+
+## v1.35.0 (2024-10-21)✔️
 
 **General-**&#x20;
 
