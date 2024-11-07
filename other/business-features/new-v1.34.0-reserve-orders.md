@@ -18,7 +18,7 @@ The exchange supports below `displayMethods`:
 * Reserve orders are supported with
   * orderType : Limit and StopLimit
   * timeInForce : GTC/ GTD/ DAY
-  * during continues trading only (system mass cancels reserve orders during auctions)
+  * during continues trading <mark style="color:blue;">(NEW v1.36.0)</mark> and auctions <mark style="color:red;">(REMOVED v1.36.0)</mark> ~~only (system mass cancels reserve orders during auctions)~~
 * <mark style="color:red;">(REMOVED v1.35.0)</mark> ~~Reserve orders are not supported when implied orders are configured for an instrument or its legs.~~
 * <mark style="color:blue;">(NEW v1.35.0)</mark> Refer [here](new-v1.28.0-implied-orders/) for the behavior in case of implied orders.
 * order priority,
@@ -26,3 +26,10 @@ The exchange supports below `displayMethods`:
   * within the display and hidden quantities, time priority of display and hidden is considered separately.
   * the display quantity loses time priority each time it replenishes.
 * Replenishment is accomplished by canceling the existing order and generating a new one (system carries forward the mpOrderId)
+
+### (NEW v1.36.0) Auctions
+
+* Both display and hidden quantities of reserve orders are eligible to be traded during auctions.
+* The total order quantity is visible via [AuctionIndicativeEP](../../ws/market-data.md#auction-indicative-equilibrium-price-message) market data messages.
+* If applicable, replenishment of orders occurs as the final step of the auction crossing.
+* The display quantity of an order could be a taker since all orders will be rested on the book prior to the crossing.

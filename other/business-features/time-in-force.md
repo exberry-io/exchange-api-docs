@@ -2,12 +2,18 @@
 
 Available "Time In Force" :
 
-* **GTC** - Good Till Cancel (resting on book till cancellation)
-* **GTD** - Good Till Date (at given time (expiryDate) order will be automatically cancelled).
-* **FOK** - Fill Or Kill (all or nothing)
-* **IOC** - Immediate Or Cancelled (allows partial fills)
-* **GAA** - Good At Auction can be captured only during auctions and will expire after auction in case it was not filled .
-* **DAY** - Order will be automatically cancelled when trading day is closed.&#x20;
+* **GTC** - Good Till Cancel
+  * &#x20;Order is resting on the book until cancellation or execution&#x20;
+* **GTD** - Good Till Date&#x20;
+  * &#x20;Order is resting on the book until cancellation or execution or expiry date or  expiry date & time (where order will be automatically cancelled)
+* **FOK** - Fill Or Kill&#x20;
+  * &#x20;Partial fill is not allowed. In case not all the amount can be immediately filled, the entire order amount will be cancelled.
+* **IOC** - Immediate Or Cancelled&#x20;
+  * Partial fill is allowed. The amount that can be immediately filled is filled, the residual amount is cancelled.
+* **GAA** - Good At Auction&#x20;
+  * can be captured only during auctions and will be cancelled after auction in case it was not filled .
+* **DAY**&#x20;
+  * Order will be automatically cancelled when trading day is closed.&#x20;
 
 Availability During Continuous Trading:
 
