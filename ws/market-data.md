@@ -85,7 +85,7 @@ Order Modify Message indicates that an order on the book is being modified and o
 
 <table><thead><tr><th width="256">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>Modified</strong></td></tr><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>removedQuantity</td><td>Order quantity that was removed</td></tr><tr><td>newQuantity</td><td>Remaining open quantity</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
-#### <mark style="color:blue;">**(NEW v1.34.0)**</mark>** NonDisplayTrade Message**
+#### <mark style="color:blue;">**(NEW v1.34.0)**</mark>**&#x20;NonDisplayTrade Message**
 
 NonDisplayTrade message indicates a match with a resting hidden quantity of an order. This message is the same as the “Executed” message and must be treated identically except that there is no impact on visible book state.&#x20;
 
@@ -120,7 +120,7 @@ Notes:&#x20;
 * When creating new instrument the first message will contain `tradingStatus` and status, those will be followed with separate event for `marketStatus`
 * <mark style="color:blue;">NEW v1.33.0</mark> When changing instrument status from "Disabled" to "Active",  `tradingStatus` and `marketStatus` will be sent on the same message along with `status`&#x20;
 
-<table><thead><tr><th width="267">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>InstrumentStatus</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>tradingStatus</td><td>Trade/ Halt</td></tr><tr><td>marketStatus</td><td>Opened/ Closed/ AuctionCall/ AuctionCrossing</td></tr><tr><td>status</td><td>Active/ Disabled</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
+<table><thead><tr><th width="267">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>InstrumentStatus</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td><mark style="color:blue;">NEW v1.37</mark> previousSymbol</td><td>In case symbol was changed, the previous symbol of the instrument</td></tr><tr><td>tradingStatus</td><td>Trade/ Halt</td></tr><tr><td>marketStatus</td><td>Opened/ Closed/ AuctionCall/ AuctionCrossing</td></tr><tr><td>status</td><td>Active/ Disabled</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### Calendar End Of Day Message
 

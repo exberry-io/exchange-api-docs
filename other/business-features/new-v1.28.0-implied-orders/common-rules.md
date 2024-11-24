@@ -14,5 +14,8 @@
 * Implied Orders are generated under the ownership of the system(mpId=-1). Therefore, no MP will receive execution reports of Implied Orders.
 * `executionReports` and `trades` of the system can be retrieved via MP Groups of [Private Data](../../../ws/private-data-api.md) and [Reporting](../../../ws/reporting-api.md) APIs.
 * Implied Orders and their changes are visible to all MPs via Market Data subscriptions and will be distributed as a regular market data entry.
+* <mark style="color:blue;">NEW v1.37</mark> When there is a CBR of potential execution:
+  * Implied orders are generated only when the order does not lead to an execution that would cause a breach.
+  * Resting implied orders are canceled if they become executable with an incoming order that causes a breach or leads to a breach in a base instrument.
 
 Note: The orders used to generate implied orders are referred to as “Base Orders”.

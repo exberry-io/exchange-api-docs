@@ -9,7 +9,8 @@ Implied orders enhance the liquidity of the exchange by generating orders into a
 ### List of strategies supporting implied orders:
 
 1. Spreads
-2. Strips
+2. <mark style="color:blue;">(CHANGED 1.37.0)</mark> Strip (Equal Price)
+3. <mark style="color:blue;">(NEW 1.37.0)</mark> Strip (Average Price)
 
 ### Implied order types supported by the system:
 
