@@ -8,9 +8,9 @@ Implied orders enhance the liquidity of the exchange by generating orders into a
 
 ### List of strategies supporting implied orders:
 
-1. Spreads
-2. <mark style="color:blue;">(CHANGED 1.37.0)</mark> Strip (Equal Price)
-3. <mark style="color:blue;">(NEW 1.37.0)</mark> Strip (Average Price)
+1. Spreads - Simultaneous purchase and sale (or vice versa) for 2 instruments, can be used for calendar spread as well as inter commodity spread.
+2. <mark style="color:blue;">(CHANGED 1.37.0)</mark> Strip (Equal Price) - Simultaneous purchase or sale of all leg instruments at the same price.
+3. <mark style="color:blue;">(NEW 1.37.0)</mark> Strip (Average Price) - Simultaneous purchase or sale of all leg instruments at the average of the price of the legs.
 
 ### Implied order types supported by the system:
 
