@@ -1,6 +1,22 @@
 # API Changes
 
-## v1.36.0 (2024-11-12)
+## v1.37.0 (TBD)
+
+**General-**&#x20;
+
+* Support new types of [CBRs ](https://documenter.getpostman.com/view/6229811/TzCV3jcq#46843413-c6ad-44c0-8d67-e18ef719b365)with implied orders
+* Added `legPriceBands` validation to Strip(Average Price) instruments
+* Added implied order generation for Strip(Average Price) instruments
+
+**WS API-**&#x20;
+
+* Adding a new field to the [Instrument Status Message](../ws/market-data.md#instrument-status-message) in [#orderbookdepth](api-changes.md#orderbookdepth "mention")- `previousSymbol`
+
+**FIX API-**
+
+* `ExecutionReport(8)` messages related to order adjustments due to corporate actions are generated under the same `ClOrdID(11)`.
+
+## v1.36.0 (2024-11-12)✔️
 
 **General-**&#x20;
 
@@ -310,7 +326,7 @@ It is available via FIX and WS APIs:
 * **FIX GW-**
   * Adding 20029(Custom tag) to Market Data Snapshot Full Refresh _(MsgType = W) Ticker Data_ - identify last message of the snapshot
   * Deprecate 20001 and 20002
-  * Removed MDEntrySize(271) from MarketDataIncrementalRefresh_(MsgType = X) when_ MDUpdateAction(279) = 2 (Delete)
+  * Removed MDEntrySize(271) from MarketDataIncrementalRefres&#x68;_(MsgType = X) when_ MDUpdateAction(279) = 2 (Delete)
   * Adding TargetParties to OrderMassCancelRequest _(MsgType = q)_
   * Adding TargetParties to OrderMassCancelReport _(MsgType = r)_
   * Adding to the TradeCaptureRepoet(AE) new fields to individual legs reports to allow association on the individual leg trade report to the multi leg strategy execution report.
@@ -349,7 +365,7 @@ FIX API
   * New field - LegSymbol (600)  in addition to the existing LegSecurityID(602) that identify the legs of a strategy instrument.&#x20;
   * Tick size data is now part of the message: fields (20031, 20032, 20033)
 * Changing the formula of tag OrderQty(38) in executionReports(8) to be - Original Order Qty- Removed Qty, till now it was always original quantity so in case of order modification system was not comply with `LeavesQty(151) = OrderQty(38) - CumQty(14)`
-* &#x20;Market Data Snapshot Full Refresh _(MsgType = W)_ and Market Data Incremental Refresh _(MsgType =_ X_)_
+* &#x20;Market Data Snapshot Full Refresh _(MsgType = W)_ and Market Data Incremental Refresh _(MsgType =_ &#x58;_)_
   * <mark style="color:red;">Deprecation</mark> of OrderId(37)&#x20;
   * Addition of MDEntryID(278)  to replace OrderId(37)
 * Removed tag 20028(Custom tag) that identifies if this tag represents real book state or a temporary non-real book state from Market Data Snapshot Full Refresh (MsgType = W) as all results will always be real book state.&#x20;
@@ -431,7 +447,7 @@ Note: Next version we will allow configuration whether this new TIF is allowed o
 * New fields in the Security list _(MsgType = y)_
 * Adding a new field to Market Data Snapshot Full Refresh _(MsgType = W) -_ NumberOfOrders (346) for MBP message
 * _Adding to_ MDUpdateAction(279) **Time & Sales -** 2 = Delete: When an trade is canceled (Market Data Incremental Refresh _(MsgType = X)_)
-* _Only instruments that are active will be returned (_Market Data Request _(MsgType = V))_
+* _Only instruments that are active will be returned (_&#x4D;arket Data Request _(MsgType = V))_
 
 ## 2023-03-01✔️
 
@@ -463,7 +479,7 @@ Note: Next version we will allow configuration whether this new TIF is allowed o
 
 ## 2023-02-08 ✔️
 
-* New section added: Market Data for FIX GW - see [here ](https://app.gitbook.com/o/okJjrZYa0IvDclrhKkAo/s/-M-yqzGakbR2s9rOe4nu/\~/changes/vh4Utk97DRg2Npf936du/fix-trading/market-data)
+* New section added: Market Data for FIX GW - see [here ](https://app.gitbook.com/o/okJjrZYa0IvDclrhKkAo/s/-M-yqzGakbR2s9rOe4nu/~/changes/vh4Utk97DRg2Npf936du/fix-trading/market-data)
   * Market Data
   * Security List
   * Security Status
