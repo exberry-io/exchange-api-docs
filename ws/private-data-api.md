@@ -34,7 +34,9 @@ qualifier: `v1/exchange.market/massOrderStatus`
 
 `orderMassStatus` response provides close to real time list of all current active orders with the entire details of those orders.\
 \
-Each `orderMassStatus`response includes`lastTrackingNumber`, the `trackingNumber`of the last event used to generate the orders list, this can be used as input in `executionReports`to be able start consume events from that point.\
+Each `orderMassStatus`response includes`lastTrackingNumber`, the `trackingNumber`of the last event used to generate the orders list, this can be used as input in `executionReports`to be able start consume events from that point.
+
+<mark style="color:blue;">NEW v1.38.0</mark> The response is sorted by Instrument and then OrderID.\
 \
 Note: There are no request parameters.
 

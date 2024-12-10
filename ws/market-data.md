@@ -392,7 +392,7 @@ The result are the list of:
 
 Each `orderBookState`stream will be closed with `lastTrackingNumber`, the `trackingNumber`of the last event used as part of returned book state, this can be used as input in `orderBookDepth`to be able start consume from that point.
 
-&#x20;<mark style="color:blue;">NEW v1.33.0</mark> The response is sorted by price and time.\
+&#x20;<mark style="color:blue;">NEW v1.33.0</mark> The response is sorted by price and time <mark style="color:blue;">NEW v1.38.0</mark> and side.\
 \
 Note: There are no request parameters.
 
