@@ -1,6 +1,15 @@
 # API Changes
 
-## v1.37.0 (2024-12-03)
+## v1.38.0 (TBD)
+
+**General-**&#x20;
+
+* Added Market to Limit Orders
+* Adding another sorting to the [order book state](../ws/market-data.md#orderbookstate)
+* Apply new sorting in the [Mass Order Status](../ws/private-data-api.md#massorderstatus)
+* Added supporting ASCII (32 -126) characters for party.id and targetParty.id fields.
+
+## v1.37.0 (2024-12-03)✔️
 
 **General-**&#x20;
 
