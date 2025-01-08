@@ -64,6 +64,14 @@ The exchange supports below `displayMethods`:
   * within the display and hidden quantities, time priority of display and hidden is considered separately.
   * the display quantity loses time priority each time it replenishes.
 * Replenishment is accomplished by canceling the existing order and generating a new one (system carries forward the mpOrderId)
+* <mark style="color:blue;">(NEW v1.39.0)</mark> Modification of orders:
+  * Reduction of quantities is allowed for all displayMethods with some limitations.&#x20;
+  * Delta.quantity must be ≥ Delta.displayQuantity
+  * Reducing DisplayQuantity is optional and available only with displayMethods=DisplayQuantity.&#x20;
+  * displayLowQuantity and displayHighQuantity can’t be changed.
+* <mark style="color:blue;">(NEW v1.39.0)</mark> Replacement of orders:
+  * displayMethod can’t be changed during replacement.&#x20;
+  * replaceOrder behavior is similar to the behavior of other order types.
 
 ### (NEW v1.36.0) Auctions
 
