@@ -1,5 +1,12 @@
 # API Changes
 
+## v1.39.0 (2025-01-09)
+
+**General-**&#x20;
+
+* Added supporting Modify/Replace reserve orders
+* Enhance the logic used to populate `cancelReason` in case of Self-Trade Prevention
+
 ## v1.38.0 (2024-12-24)✔️
 
 **General-**&#x20;
