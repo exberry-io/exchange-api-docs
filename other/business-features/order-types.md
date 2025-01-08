@@ -69,6 +69,14 @@ The exchange supports below `displayMethods`:
   * Delta.quantity must be ≥ Delta.displayQuantity
   * Reducing DisplayQuantity is optional and available only with displayMethods=DisplayQuantity.&#x20;
   * displayLowQuantity and displayHighQuantity can’t be changed.
+  * In case the displayQuantity is not changed,
+    * Quantity is reduced from workingHiddenQuantity first, any remaining reductions are reduced from workingDisplayQuantity
+  * In case the displayQuantity is changed:
+    * if workingDisplayQuantity <= new displayQuantity:
+      * new display quantity will apply only at the next replenishment(if applicable).
+      * system reduces the workingHiddenQuantity
+    * if workingDisplayQuantity > new displayQuantity:
+      * system reduces the workingDisplayQuantity first, any remaining reduction is reduced from the workingHiddenQuantity
 * <mark style="color:blue;">(NEW v1.39.0)</mark> Replacement of orders:
   * displayMethod can’t be changed during replacement.&#x20;
   * replaceOrder behavior is similar to the behavior of other order types.
