@@ -1,6 +1,14 @@
 # API Changes
 
-## v1.39.0 (2025-01-09)
+## v1.40.0 (TBD)
+
+**FIX API-**&#x20;
+
+* Enhanced STP to support different scopes within MPs.
+* Tagged some fields in `MarketDataRequest(V)` and `MarketDataSnapshot(W)` as to be deprecated.
+* TransactTime (60) was missing in the documentation of ExecutionReports and was added.
+
+## v1.39.0 (2025-01-09)✔️
 
 **General-**&#x20;
 
