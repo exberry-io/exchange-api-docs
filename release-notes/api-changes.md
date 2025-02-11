@@ -1,21 +1,24 @@
 # API Changes
 
-## v1.40.0 (TBD)
+## v1.40.0 (2025-02-19)
 
-**FIX API-**&#x20;
+**General-**
 
 * Enhanced STP to support different scopes within MPs.
+
+**FIX  API-**
+
 * Tagged some fields in `MarketDataRequest(V)` and `MarketDataSnapshot(W)` as to be deprecated.
 * TransactTime (60) was missing in the documentation of ExecutionReports and was added.
 
-## v1.39.0 (2025-01-09)✔️
+## v1.39.0 (2025-01-09)
 
 **General-**&#x20;
 
 * Added supporting Modify/Replace reserve orders
 * Enhance the logic used to populate `cancelReason` in case of Self-Trade Prevention
 
-## v1.38.0 (2024-12-24)✔️
+## v1.38.0 (2024-12-24)
 
 **General-**&#x20;
 
@@ -24,7 +27,7 @@
 * Apply new sorting in the [Mass Order Status](../ws/private-data-api.md#massorderstatus)
 * Added supporting ASCII (32 -126) characters for party.id and targetParty.id fields.
 
-## v1.37.0 (2024-12-03)✔️
+## v1.37.0 (2024-12-03)
 
 **General-**&#x20;
 
@@ -40,14 +43,14 @@
 
 * `ExecutionReport(8)` messages related to order adjustments due to corporate actions are generated under the same `ClOrdID(11)`.
 
-## v1.36.0 (2024-11-12)✔️
+## v1.36.0 (2024-11-12)
 
 **General-**&#x20;
 
 * Added supporting reserve orders during auctions.
 * Auction Indicative Price Events are now published on real time when change occur on order book
 
-## v1.35.0 (2024-10-21)✔️
+## v1.35.0 (2024-10-21)
 
 **General-**&#x20;
 
@@ -63,7 +66,7 @@
 
 * Added a new field to the ticker in the Market Data Snapshot Full Refresh (W) and Market Data Request (V) - `p = Tick Reference price`
 
-## v1.34.0 (2024-09-25)✔️
+## v1.34.0 (2024-09-25)
 
 **General-**&#x20;
 
@@ -81,7 +84,7 @@
 
 * Data eligibility for Trading and Private Data APIs to support account specific connection&#x20;
 
-## v1.33.0 (2024-08-21)✔️
+## v1.33.0 (2024-08-21)
 
 **Market order during auction is now supported by system-**
 
@@ -108,7 +111,7 @@
 * Sorting snapshot of MBOFD
 * Data eligibility for trading and drop copy API to support account specific connection&#x20;
 
-## v1.32.0 (2024-08-07)✔️
+## v1.32.0 (2024-08-07)
 
 **General -**
 
@@ -118,7 +121,7 @@
 
 * Apply new sorting in the[ trades report](../ws/reporting-api.md#trades-v2)&#x20;
 
-## v1.31.0 (2024-07-16)✔️
+## v1.31.0 (2024-07-16)
 
 **General -**
 
@@ -138,7 +141,7 @@
 
 * Added `MassCancelRequestType(530)=7(Cancel all orders)` to the `OrderMassCancelRequest(q)`
 
-## v1.30.0 (2024-06-19)✔️
+## v1.30.0 (2024-06-19)
 
 **General -**
 
@@ -148,13 +151,13 @@
 
 * Added `targetEntities` to the `massCancel`
 
-## v1.29.0 (2024-04-23) ✔️
+## v1.29.0 (2024-04-23)&#x20;
 
 **General -**
 
 * Added `contractSize` of Option, Strategy and Futures instruments to the maxOrderValue validation
 
-## v1.28.0 (2024-04-16) ✔️
+## v1.28.0 (2024-04-16)&#x20;
 
 **General -**
 
@@ -162,7 +165,7 @@
 * Added a configurable Price Band Validation for `Spread` and `Strip` instruments and a Leg Trade Price Adjustment for `Spread` Instruments.
 * Adding new value to cancel reason - `ReplaceOrderOnBehalf` to be used when Admin user replace orders.
 
-## v1.27.0 (2024-04-01) ✔️
+## v1.27.0 (2024-04-01)&#x20;
 
 **General -**
 
@@ -174,7 +177,7 @@
 
 * Bugfix related to `InstrumentStatus` messages of `exchange.market/orderBookDepth`. Before the fix, `instrument` field was not sent in the message disseminated when the instrument was created.
 
-## v1.26.0 (2024-02-28)✔️
+## v1.26.0 (2024-02-28)
 
 **General -**
 
@@ -189,7 +192,7 @@
 
 * Added `Order is not allowed` validation for `placeOrder` for RFQ only instrument
 
-## v1.25.0 (2024-02-07)✔️
+## v1.25.0 (2024-02-07)
 
 **General -**
 
@@ -206,7 +209,7 @@
 * Bugfix related to validation of TIF values of new orders. This validation returned an incorrect error message before the fix.
 * Bugfix related to the `v2/exchange.reporting/mp/trades` of implied order trades. mpName field was not included before the fix.
 
-## v1.24.0 (2024-01-17)✔️
+## v1.24.0 (2024-01-17)
 
 **FIX GW -**&#x20;
 
@@ -219,7 +222,7 @@
 
 * Added `orderId`, `mpOrderId`, and `makerTaker` fields to the `RFQTrade` events of `v1/exchange.market/trades` and `v2/exchange.reporting/mp/trades`&#x20;
 
-## v1.23.0 (2023-12-26)✔️
+## v1.23.0 (2023-12-26)
 
 **FIX GW -**&#x20;
 
@@ -246,7 +249,7 @@ It is available via FIX and WS APIs:
 
 
 
-## v1.22.0 (2023-12-05)✔️
+## v1.22.0 (2023-12-05)
 
 **FIX GW -**&#x20;
 
@@ -262,7 +265,7 @@ It is available via FIX and WS APIs:
 
 * Added Underscore`_`  and colon `:` to the allowed characters of the `party.id` field of `placeOrder` and `massCancel`.
 
-## v1.21.0 (2023-11-20) ✔️
+## v1.21.0 (2023-11-20)&#x20;
 
 **FIX GW -**&#x20;
 
@@ -286,7 +289,7 @@ It is available via FIX and WS APIs:
 * Changed the error message of minimum and maximum quantity validation messages of Orders
 * Bugfix related to `lastMessage: "Y"` indicator of the instrumentList API
 
-## v1.20.0 (2023-10-25)✔️&#x20;
+## v1.20.0 (2023-10-25)&#x20;
 
 **FIX GW -**
 
@@ -308,7 +311,7 @@ It is available via FIX and WS APIs:
   * `v1/exchange.market/massOrderStatus`
   * `v1/exchange.market/executionReports`
 
-## v1.19.0 (2023-10-04)  ✔️
+## v1.19.0 (2023-10-04) &#x20;
 
 **FIX GW -**
 
@@ -327,7 +330,7 @@ It is available via FIX and WS APIs:
   * Replace Order
   * Execution Reports
 
-## v1.18.0 (2023-09-19)  ✔️
+## v1.18.0 (2023-09-19) &#x20;
 
 <mark style="color:red;">Deprecation -</mark>
 
@@ -345,7 +348,7 @@ It is available via FIX and WS APIs:
 * Bugfix related to removedQty of messageType=Add executionReports
 * Bugfix related to userId of messageType=Add executionReport of replaceOrder
 
-## v1.17.0 (2023-08-08)✔️
+## v1.17.0 (2023-08-08)
 
 * **FIX GW-**
   * Adding 20029(Custom tag) to Market Data Snapshot Full Refresh _(MsgType = W) Ticker Data_ - identify last message of the snapshot
@@ -364,7 +367,7 @@ It is available via FIX and WS APIs:
     * For **Price & Time** auctions: System will check the highest and lowest price of executed prices and will trigger accordingly.&#x20;
   * Trigger the Stop & Stop Limit orders even in case the order is about to trigger a CBR that will halt the trading or trigger an auction.&#x20;
 
-## 2023-07-12✔️
+## 2023-07-12
 
 * **Stop & Stop Limit**
   * Adding a new field stopPrice to [massOrderStatus ](../ws/private-data-api.md#massorderstatus)message.
@@ -381,7 +384,7 @@ It is available via FIX and WS APIs:
 * Fix the TrdType(828) from 99 to 0 for individual leg trade on [#tradecapturereport-ae](../fix-trading/trading-messages-1.md#tradecapturereport-ae "mention")
 * Changing the MarketModal value- from RA(Resume Auction) to UA (Unscheduled Auction)
 
-## 2023-06-21✔️
+## 2023-06-21
 
 FIX API
 
@@ -417,13 +420,13 @@ Those order types are available on both WS and FIX APIs.
   * Orders
 * Adding a new message type to ExecutionReport  - Suspended
 
-## 2023-06-15✔️
+## 2023-06-15
 
 * We made some cosmetic changes to the MD FIX documentation.&#x20;
   * To make MBP more clear we added that MBP requires at least BID and ASK&#x20;
   * We added the valid values to marketDepth(264) in Time & Sales and to the Auction Indicative Equilibrium Price (Imbalance)
 
-## 2023-06-06✔️
+## 2023-06-06
 
 **Note!** From this version, there is a change in the Trades API (Both on Private Data API and Reporting API),&#x20;
 
@@ -466,14 +469,14 @@ New Time In Force was added for limit order - **DAY** - Order will be automatica
 
 Note: Next version we will allow configuration whether this new TIF is allowed or not.&#x20;
 
-## 2023-03-22✔️
+## 2023-03-22
 
 * New fields in the Security list _(MsgType = y)_
 * Adding a new field to Market Data Snapshot Full Refresh _(MsgType = W) -_ NumberOfOrders (346) for MBP message
 * _Adding to_ MDUpdateAction(279) **Time & Sales -** 2 = Delete: When an trade is canceled (Market Data Incremental Refresh _(MsgType = X)_)
 * _Only instruments that are active will be returned (_&#x4D;arket Data Request _(MsgType = V))_
 
-## 2023-03-01✔️
+## 2023-03-01
 
 * New Market Data requests are now supported:
   * Market by Order Full Depth
@@ -501,7 +504,7 @@ Note: Next version we will allow configuration whether this new TIF is allowed o
 
 &#x20;
 
-## 2023-02-08 ✔️
+## 2023-02-08&#x20;
 
 * New section added: Market Data for FIX GW - see [here ](https://app.gitbook.com/o/okJjrZYa0IvDclrhKkAo/s/-M-yqzGakbR2s9rOe4nu/~/changes/vh4Utk97DRg2Npf936du/fix-trading/market-data)
   * Market Data
@@ -525,13 +528,13 @@ Note: Next version we will allow configuration whether this new TIF is allowed o
     * 200001 - userId
     * 200002 - accountId&#x20;
 
-## 2023-01-18 ✔️
+## 2023-01-18&#x20;
 
 * New field in ExecutionReport - ClOrdID(11)
 * The Rejected Execution Report can now be associated with the NewOrderSingle message. (By using ClOrdID (11) or OrigClOrdID(41))
 * OrigClOrdID(41) is now optional in  ExecutionReport&#x20;
 
-## 2023-01-03 ✔️
+## 2023-01-03&#x20;
 
 * New Filter in   [Trades Reports](../ws/reporting-api.md#trades-v2)&#x20;
 
@@ -572,9 +575,7 @@ Note: Next version we will allow configuration whether this new TIF is allowed o
 * New trading mode and market model.
 * On rejected ExecutionReport _(MsgType = 8) :_  Side (54) = 1 (Buy)
 
-##
-
-## 2022-12-06✔️
+## 2022-12-06
 
 * New FIX Drop Copy Client initiated message : [Mass Order Status Request ](../fix-trading/trading-messages-1.md#ordermassstatusrequest-af)
 * Place Order validation that price must ne positive was removed
@@ -596,7 +597,7 @@ Note: Next version we will allow configuration whether this new TIF is allowed o
 
 * New errorCode on `createSession` API - 6003&#x20;
 
-## 2022-11-21✔️
+## 2022-11-21
 
 Trading API
 
@@ -729,7 +730,7 @@ Strategy Leg Trade Sample
 
 ##
 
-## 2022-11-01✔️
+## 2022-11-01
 
 * [#tradecapturereport-ae](../fix-trading/trading-messages-1.md#tradecapturereport-ae "mention") now support Snapshot + Updates (Subscribe)
 * EOD event is now being published on 2 APIs:
@@ -768,7 +769,7 @@ trades:
 }
 ```
 
-## 2022-10-03✔️
+## 2022-10-03
 
 Drop Copy for FIX GW - see [here](../fix-trading/trading-messages-1.md)&#x20;
 
@@ -904,7 +905,7 @@ Samples:
 {% endtab %}
 {% endtabs %}
 
-## 2022-09-13✔️
+## 2022-09-13
 
 * On FIX API:
   * LOGON message can now be sent with a simple password authentication&#x20;
@@ -955,7 +956,7 @@ Samples:
 {% endtab %}
 {% endtabs %}
 
-## 2022-08-31✔️
+## 2022-08-31
 
 * Market Participant Group - The ability to access all private data API for a group of market participants, or all market participants.&#x20;
 * [New fields in placeOrder , exeutionReports and massOrderStatus](api-changes.md#place-order-and-execution-reports-and-massorderstatus)
@@ -1338,13 +1339,13 @@ Additional changes:
 
 
 
-## 2022-05-16✔️
+## 2022-05-16
 
 `replaceOrder` API is now available, it allows cancel and add new order in a single command.
 
 See [#replaceorder](../ws/trading-api.md#replaceorder "mention") for more details.
 
-## 2022-05-11✔️
+## 2022-05-11
 
 Introduce new version of `orderBookDepth` and `orderBookState`
 
@@ -1366,18 +1367,18 @@ New features/ fixes will be introduced only for the new version.
 Please update your systems to work with the new endpoints.
 {% endhint %}
 
-## 2021-12-14✔️
+## 2021-12-14
 
 Reporting API is now available allow easy retrieval of orders and trades
 
-## 2021-10-04✔️
+## 2021-10-04
 
 `orderBookDepth` and `executionReports` :
 
 * Now have a dedicated `errorCode:2` for case the active stream is being disconnected.
 * Bug fix regarding sorting
 
-## 2021-06-29 ✔️
+## 2021-06-29&#x20;
 
 Additions:
 
@@ -1391,14 +1392,14 @@ Changes:
   * Instrument symbol can now contains .(dot) and -(hyphen)
   * Calendar.tradingDays is now optional to allow auctions only trading schedule
 
-## 2021-05-13 ✔️
+## 2021-05-13&#x20;
 
 Additions:
 
 * [Private API](../ws/private-data-api.md) to get your own detailed orders data on a simple way.
 * [Admin API ](../other/admin-api.md)for the entire administration activity can now be done via an API.
 
-## 2021-03-10 ✔️
+## 2021-03-10&#x20;
 
 Additions:
 
@@ -1408,11 +1409,11 @@ Additions:
 * New `placeOrder` validations (tick size, price collar, max order value and max book depth).
 * Add `accountId` as optional parameter to `placeOrder`
 
-## 2020-11-12 ✔️
+## 2020-11-12&#x20;
 
 Websocket endpoint changed to be `wss://exchange-gateway-uat.exchange.uat.exberry.io`
 
-## 2020-11-11 ✔️
+## 2020-11-11&#x20;
 
 **Additions:**
 
@@ -1470,20 +1471,20 @@ The old fields names are available on old version endpoints only (it is required
 
 * Generic error message errorCode 1 `Exchange is unavailable`
 
-## 2020-08-26 ✔️
+## 2020-08-26&#x20;
 
 **Added**
 
 * New Trading API method `massCancel`to cancel all resting orders for the relevant market participant.
 * IOC & FOK are now supported in limit order (and not only market order).
 
-## 2020-06-28 ✔️
+## 2020-06-28&#x20;
 
 **Added**
 
 * New Market Data API method `orderBookState`to retrieve snapshot of order book state.
 
-## 2020-06-24 ✔️
+## 2020-06-24&#x20;
 
 **Added**
 
