@@ -1,5 +1,9 @@
 # API Changes
 
+## v1.40.0 (2025-03-03)
+
+* Documentation change only to elaborate on tag 442 (MultiLegReportingType) on FIX API
+
 ## v1.40.0 (2025-02-19)
 
 **General-**
