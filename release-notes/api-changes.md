@@ -1,8 +1,29 @@
 # API Changes
 
-## v1.40.0 (2025-03-03)
+## v1.41.0 (2025-03-11)
 
+**General-**
+
+* Added new [`timeInForce` ](../other/business-features/time-in-force.md)values&#x20;
+  * `OPG`(At the Opening)
+  * `ATC`(At The Close)
 * Documentation change only to elaborate on tag 442 (MultiLegReportingType) on FIX API
+
+**WS API-**
+
+* Changed the mandatoryParties validation of MP trade reporting flow=AllegedSystemMatch.
+* Added `filledPrice` to `Add`, `Executed`, `Modified`, `Cancelled` and `Suspended` `executionReport`  messages
+* Added new `tradeType` values to `TradeReport` messages of `orderBookDepth` and `exchange.reporting/mp/trades`
+* Changed some modifyOrder error messages
+
+**FIX API-**
+
+* Added order created timestamp to the `ExecutionReport(8)` messages.
+* Added `AggressorIndicator(1057)` to `TradeCaptureReport(AE)`
+* Added `AvgPx(6)` to the `ExecutionReport(8)` messages
+* <mark style="color:red;">Deprecated</mark> `MDEntryType(269)` values: `v`, `o`, `f`, `g`, and `q` from `MarketDataRequest(V)` and `MarketDataSnapshot(W)`
+* Added new `TrdType(828)` values to `TradeCaptureReport(AE)` messages
+* Added new values for tags `20035` and `20039` of `SecurityList(y)` messages (with new trade type values)&#x20;
 
 ## v1.40.0 (2025-02-19)
 
