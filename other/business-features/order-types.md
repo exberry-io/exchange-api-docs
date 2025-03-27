@@ -46,7 +46,7 @@ The exchange supports below `displayMethods`:
 
 * **DisplayQuantity** - displays the displayQuantity initially and replenishment
 * **Hidden** - Fully hidden order (`displayQuantity=0`)
-* <mark style="color:blue;">(NEW v1.35.0)</mark> **Random** - Displays the quantity in displayQuantity initially, then a quantity between `displayLowQuantity` and `displayHighQuantity` when replenished
+* **Random** - Displays the quantity in displayQuantity initially, then a quantity between `displayLowQuantity` and `displayHighQuantity` when replenished
 
 ### **General Rules:**
 
@@ -56,15 +56,14 @@ The exchange supports below `displayMethods`:
 * Reserve orders are supported with
   * orderType : Limit and StopLimit
   * timeInForce : GTC/ GTD/ DAY
-  * during continues trading <mark style="color:blue;">(NEW v1.36.0)</mark> and auctions <mark style="color:red;">(REMOVED v1.36.0)</mark> ~~only (system mass cancels reserve orders during auctions)~~
-* <mark style="color:red;">(REMOVED v1.35.0)</mark> ~~Reserve orders are not supported when implied orders are configured for an instrument or its legs.~~
-* <mark style="color:blue;">(NEW v1.35.0)</mark> Refer [here](new-v1.28.0-implied-orders/) for the behavior in case of implied orders.
+  * during continues trading and auctions
+* Refer [here](implied-orders/) for the behavior in case of implied orders.
 * order priority,
   * when multiple orders at the same price, display quantity has a higher priority than the hidden quantity.&#x20;
   * within the display and hidden quantities, time priority of display and hidden is considered separately.
   * the display quantity loses time priority each time it replenishes.
 * Replenishment is accomplished by canceling the existing order and generating a new one (system carries forward the mpOrderId)
-* <mark style="color:blue;">(NEW v1.39.0)</mark> Modification of orders:
+* Modification of orders:
   * Reduction of quantities is allowed for all displayMethods with some limitations.&#x20;
   * Delta.quantity must be ≥ Delta.displayQuantity
   * Reducing DisplayQuantity is optional and available only with displayMethods=DisplayQuantity.&#x20;
@@ -77,11 +76,11 @@ The exchange supports below `displayMethods`:
       * system reduces the workingHiddenQuantity
     * if workingDisplayQuantity > new displayQuantity:
       * system reduces the workingDisplayQuantity first, any remaining reduction is reduced from the workingHiddenQuantity
-* <mark style="color:blue;">(NEW v1.39.0)</mark> Replacement of orders:
+* Replacement of orders:
   * displayMethod can’t be changed during replacement.&#x20;
   * replaceOrder behavior is similar to the behavior of other order types.
 
-### (NEW v1.36.0) Auctions
+### Auctions
 
 * Both display and hidden quantities of reserve orders are eligible to be traded during auctions.
 * The total order quantity is visible via [AuctionIndicativeEP](../../ws/market-data.md#auction-indicative-equilibrium-price-message) market data messages.
@@ -90,7 +89,7 @@ The exchange supports below `displayMethods`:
 
 
 
-## (NEW v1.38) Market to Limit Orders
+## Market to Limit Orders
 
 * Order that executes with the best available price of the contra side of the order book at entry.
 * After executing up to the maximum quantity possible, any remaining quantity rests on the order book as a limit order, with a limit price equal to the executed price at entry.

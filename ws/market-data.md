@@ -21,7 +21,7 @@ There are few message types used to get real time market data:
 * **Cancelled**&#x20;
 * **Executed**&#x20;
 * **Modified**&#x20;
-* <mark style="color:blue;">(NEW v1.34.0)</mark> **NonDisplayTrade**
+* **NonDisplayTrade**
 * **TradeReport**&#x20;
 * **TradeCancel**&#x20;
 * **InstrumentStatus**&#x20;
@@ -39,7 +39,7 @@ eventId of the orderBookDepth messages are not sequential. There can be missing 
 Exchange can configure this stream to be anonymous or pseudonymous (mp`Id` is published but not any other market participant details).\
 For anonymous configured streams all the `mpId` and `mpOrderId` data will not be published, except to the market participant that placed the order which will see only its own `mpId` and `mpOrderId` data.
 
-<mark style="color:blue;">(NEW v1.34.0)</mark> Below messages are generated only for orders with display quantities.
+Below messages are generated only for orders with display quantities.
 
 * #### **Add**
 * #### **Executed**
@@ -63,7 +63,7 @@ For an edge case in CBR - see more [here](https://documenter.getpostman.com/view
 
 Add Order Message indicates that a new order has been accepted by the exchange and was added to the book.
 
-<table><thead><tr><th width="223">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>messageType</td><td><strong>Add</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>side</td><td>Buy / Sell</td></tr><tr><td>quantity</td><td>Order quantity</td></tr><tr><td>price</td><td>Order price<br><mark style="color:blue;">NEW v1.33.0</mark> will be empty for market order only during auction</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
+<table><thead><tr><th width="223">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>messageType</td><td><strong>Add</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>side</td><td>Buy / Sell</td></tr><tr><td>quantity</td><td>Order quantity</td></tr><tr><td>price</td><td>Order price<br>will be empty for market order only during auction</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### **Order Cancel Message**
 
@@ -85,7 +85,7 @@ Order Modify Message indicates that an order on the book is being modified and o
 
 <table><thead><tr><th width="256">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>Modified</strong></td></tr><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>removedQuantity</td><td>Order quantity that was removed</td></tr><tr><td>newQuantity</td><td>Remaining open quantity</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
-#### <mark style="color:blue;">**(NEW v1.34.0)**</mark>**&#x20;NonDisplayTrade Message**
+#### **NonDisplayTrade Message**
 
 NonDisplayTrade message indicates a match with a resting hidden quantity of an order. This message is the same as the “Executed” message and must be treated identically except that there is no impact on visible book state.&#x20;
 
@@ -118,9 +118,9 @@ This message specify only the data that was actually changed, to get the snapsho
 Notes:&#x20;
 
 * When creating new instrument the first message will contain `tradingStatus` and status, those will be followed with separate event for `marketStatus`
-* <mark style="color:blue;">NEW v1.33.0</mark> When changing instrument status from "Disabled" to "Active",  `tradingStatus` and `marketStatus` will be sent on the same message along with `status`&#x20;
+* When changing instrument status from "Disabled" to "Active",  `tradingStatus` and `marketStatus` will be sent on the same message along with `status`&#x20;
 
-<table><thead><tr><th width="267">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>InstrumentStatus</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td><mark style="color:blue;">NEW v1.37</mark> previousSymbol</td><td>In case symbol was changed, the previous symbol of the instrument</td></tr><tr><td>tradingStatus</td><td>Trade/ Halt</td></tr><tr><td>marketStatus</td><td>Opened/ Closed/ AuctionCall/ AuctionCrossing</td></tr><tr><td>status</td><td>Active/ Disabled</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
+<table><thead><tr><th width="267">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>InstrumentStatus</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>previousSymbol</td><td>In case symbol was changed, the previous symbol of the instrument</td></tr><tr><td>tradingStatus</td><td>Trade/ Halt</td></tr><tr><td>marketStatus</td><td>Opened/ Closed/ AuctionCall/ AuctionCrossing</td></tr><tr><td>status</td><td>Active/ Disabled</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### Calendar End Of Day Message
 
@@ -137,7 +137,7 @@ This message is sent only on real time during auctions and will not be sent if s
 
 In case there is no order on one of the side the price and quantity fields will be shown with 0
 
-<mark style="color:blue;">NEW v1.33.0</mark> For market orders during an auction, system will send the `bestBuyQuantity / bestSellQuantity` corresponding to the market order, if it exists, without a price.&#x20;
+For market orders during an auction, system will send the `bestBuyQuantity / bestSellQuantity` corresponding to the market order, if it exists, without a price.&#x20;
 
 <table><thead><tr><th width="264">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>messageType</td><td><strong>AuctionIndicativeEP</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>IndicativePrice</td><td>The indicative price upon which the paired shares and the imbalance quantity are based</td></tr><tr><td>pairedQuantity</td><td>The quantity to be matched at the current indicative price</td></tr><tr><td>imbalanceQuantity</td><td>The absolute value of quantity that would remain unexecuted at the current indicative price.</td></tr><tr><td>imbalanceSide</td><td><p>Buy - Buy side imbalance</p><p>Sell - Sell side imbalance</p><p>None - No imbalance</p><p>NA - no indicative price</p></td></tr><tr><td>bestBuyPrice</td><td>In case of No match - the highest buy order price</td></tr><tr><td>bestBuyQuantity</td><td>In case of No match - the highest buy order quantity</td></tr><tr><td>bestSellPrice</td><td>In case of No match - the lowest sell order price</td></tr><tr><td>bestSellQuantity</td><td>In case of No match - the lowest sell order quantity</td></tr></tbody></table>
 
@@ -253,7 +253,7 @@ In case there is no order on one of the side the price and quantity fields will 
 ```
 {% endtab %}
 
-{% tab title="(NEW v1.34.0) NonDisplayTrade" %}
+{% tab title="NonDisplayTrade" %}
 ```json
 {
   "q": "v2/exchange.market/orderBookDepth",
@@ -388,11 +388,11 @@ This stream provides close to real time snapshot of order book state for all tra
 The result are the list of:
 
 * All  active instruments&#x20;
-* All orders currently resting on the book, it is not aggregated by price level. <mark style="color:blue;">(NEW v1.34.0)</mark> messages are not generated for hidden quantites of orders.
+* All orders currently resting on the book, it is not aggregated by price level. Messages are not generated for hidden quantites of orders.
 
 Each `orderBookState`stream will be closed with `lastTrackingNumber`, the `trackingNumber`of the last event used as part of returned book state, this can be used as input in `orderBookDepth`to be able start consume from that point.
 
-&#x20;<mark style="color:blue;">NEW v1.33.0</mark> The response is sorted by price and time <mark style="color:blue;">NEW v1.38.0</mark> and side.\
+&#x20;The response is sorted by price and time and side.\
 \
 Note: There are no request parameters.
 
@@ -404,7 +404,7 @@ qualifier:`v2/exchange.market/orderBookState`
 
 #### **Order Message**
 
-<table><thead><tr><th width="207.33333333333331">Parameter</th><th width="135">Type</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td>String</td><td><strong>Order</strong></td></tr><tr><td>orderId</td><td>Long</td><td>Exchange Order ID</td></tr><tr><td>side</td><td>String</td><td>Buy or Sell</td></tr><tr><td>instrument</td><td>String</td><td>Instrument identifier</td></tr><tr><td>quantity</td><td>Decimal</td><td>Order quantity<br><mark style="color:blue;">(NEW v1.34.0)</mark> In case of Iceberg orders, working display quantity</td></tr><tr><td>price</td><td>Decimal</td><td>Order price<br><mark style="color:blue;">NEW v1.33.0</mark> will be empty for market order only during auction</td></tr><tr><td>lastTrackingNumber</td><td>Long</td><td>Last event trackingNumber</td></tr></tbody></table>
+<table><thead><tr><th width="207.33333333333331">Parameter</th><th width="135">Type</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td>String</td><td><strong>Order</strong></td></tr><tr><td>orderId</td><td>Long</td><td>Exchange Order ID</td></tr><tr><td>side</td><td>String</td><td>Buy or Sell</td></tr><tr><td>instrument</td><td>String</td><td>Instrument identifier</td></tr><tr><td>quantity</td><td>Decimal</td><td>Order quantity<br>In case of Iceberg orders, working display quantity</td></tr><tr><td>price</td><td>Decimal</td><td>Order price<br>will be empty for market order only during auction</td></tr><tr><td>lastTrackingNumber</td><td>Long</td><td>Last event trackingNumber</td></tr></tbody></table>
 
 #### Instrument Status Message
 

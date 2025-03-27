@@ -15,7 +15,7 @@ MP name will always be added as additional party with the below parameters:
 * 452 (PartyRole) = 7 (Entering Firm)&#x20;
 * 447 (PartyIDSource) = D (Custom)
 
-### <mark style="color:blue;">(NEW v1.33.0)</mark> Account Assignment
+### Account Assignment
 
 An account can be assigned at API Key level. If assigned,&#x20;
 

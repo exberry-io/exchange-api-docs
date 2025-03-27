@@ -29,7 +29,7 @@
   * [Market Data](other/rfq/market-data.md)
   * [Private Data](other/rfq/private-data.md)
   * [Reporting](other/rfq/reporting.md)
-* [(NEW v1.31.0) Trade Reporting](other/trade-reporting/README.md)
+* [Trade Reporting](other/trade-reporting/README.md)
   * [Introduction](other/trade-reporting/introduction.md)
   * [Trade Report API](other/trade-reporting/trade-report-api.md)
   * [Private Data](other/trade-reporting/private-data.md)
@@ -38,10 +38,10 @@
   * [Order Types](other/business-features/order-types.md)
   * [Time In Force](other/business-features/time-in-force.md)
   * [Self-Trade Prevention (STP)](other/business-features/self-trade-prevention-stp.md)
-  * [(NEW v1.28.0) Implied Orders](other/business-features/new-v1.28.0-implied-orders/README.md)
-    * [Introduction](other/business-features/new-v1.28.0-implied-orders/introduction.md)
-    * [Common Rules](other/business-features/new-v1.28.0-implied-orders/common-rules.md)
-    * [APIs](other/business-features/new-v1.28.0-implied-orders/apis.md)
+  * [Implied Orders](other/business-features/implied-orders/README.md)
+    * [Introduction](other/business-features/implied-orders/introduction.md)
+    * [Common Rules](other/business-features/implied-orders/common-rules.md)
+    * [APIs](other/business-features/implied-orders/apis.md)
 
 ## Release Notes
 
