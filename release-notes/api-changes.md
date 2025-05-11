@@ -1,5 +1,11 @@
 # API Changes
 
+## v1.43.0 (2025-05-14)
+
+**WS API-**
+
+* Added `makerTaker` field to WebSocket `executionReports`
+
 ## v1.41.0 (2025-03-11)
 
 **General-**
