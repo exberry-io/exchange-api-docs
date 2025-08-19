@@ -1,5 +1,12 @@
 # API Changes
 
+## v1.46.0 (2025-08-26)
+
+**General-**
+
+* Multiple smantic changes and cleanups&#x20;
+* Changed the account id party definition to `party.role=24` and `party.source=P`
+
 ## v1.43.0 (2025-05-14)
 
 **WS API-**
