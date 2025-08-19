@@ -1,8 +1,10 @@
 # Table of contents
 
+* [Welcome](README.md)
+
 ## webscoket API  <a href="#ws" id="ws"></a>
 
-* [Introduction](README.md)
+* [General Guidelines](<README (1).md>)
 * [Authentication](ws/authentication-api.md)
 * [Trading](ws/trading-api.md)
 * [Market Data](ws/market-data.md)

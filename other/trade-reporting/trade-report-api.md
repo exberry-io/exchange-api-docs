@@ -13,7 +13,7 @@ An invalid `createTradeReport` request is rejected with an error message.&#x20;
 
 
 {% hint style="info" %}
-qualifier: `v1/exchange.market/createTradeReport`
+qualifier: v1/exchange.market/createTradeReport
 {% endhint %}
 
 ### **Request**
@@ -22,7 +22,7 @@ The request has all fields of Admin API[ Trade Entry](https://documenter.getpost
 
 In case `AllegedSystemMatch`, MPs can populate `parties` and `accountType` only for their side of the trade.
 
-<table><thead><tr><th width="175">Parameter</th><th width="115.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>flow</td><td>Enum</td><td><p>One of the below options:</p><ul><li>LockedIn - trade is locked-in and no additional action is required from counterparty MP</li><li>AllegedSystemMatch - the trade should be matched by the system with an Alleged Trade reported by the counterparty MP</li></ul></td></tr><tr><td>externalTradeId <code>optional</code></td><td>Long</td><td><p>Unique identifier assigned by the MPs for a trade.<br></p><p>Required for flow=AllegedSystemMatch</p><p>Optional for flow=LockedIn(no functional use, just external id for reference)</p><p></p><p>Value can’t be reused by the reported MP of an alleged trade for the same instrument, to create another alleged trade, only when the alleged trade is Active.</p></td></tr></tbody></table>
+<table><thead><tr><th width="152">Parameter</th><th width="87.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>flow</td><td>Enum</td><td><p>One of the below options:</p><ul><li>LockedIn - trade is locked-in and no additional action is required from counterparty MP</li><li>AllegedSystemMatch - the trade should be matched by the system with an Alleged Trade reported by the counterparty MP</li></ul></td></tr><tr><td>externalTradeId <code>optional</code></td><td>Long</td><td><p>Unique identifier assigned by the MPs for a trade.<br></p><p>Required for flow=AllegedSystemMatch</p><p>Optional for flow=LockedIn(no functional use, just external id for reference)</p><p></p><p>Value can’t be reused by the reported MP of an alleged trade for the same instrument, to create another alleged trade, only when the alleged trade is Active.</p></td></tr></tbody></table>
 
 ### **Response (**&#x4C;ockedIn)
 
@@ -42,7 +42,7 @@ Same as Amin API Trade Entry with the exceptions below.
 
 
 
-### Sample:
+### Samples
 
 {% tabs %}
 {% tab title="Request-LockedIn" %}
@@ -171,7 +171,7 @@ A response is received with `allegedTradeId` if the request is valid and the can
 
 
 {% hint style="info" %}
-qualifier: `v1/exchange.market/cancelAllegedTradeReport`
+qualifier: v1/exchange.market/cancelAllegedTradeReport
 {% endhint %}
 
 ### **Request**
@@ -188,7 +188,7 @@ qualifier: `v1/exchange.market/cancelAllegedTradeReport`
 
 
 
-### Sample:
+### Samples
 
 {% tabs %}
 {% tab title="Request" %}

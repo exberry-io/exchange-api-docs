@@ -44,8 +44,6 @@ Below exceptions are applicable to the `makerTaker` field of [Trades](../../../w
 
 ## Reporting
 
-
-
 The MP Group All contains the implied order events generated under the ownership of the system(mpId=-1).
 
 Refer [here](../../../ws/reporting-api.md) for mde details on Reporting APIs.
@@ -53,8 +51,6 @@ Refer [here](../../../ws/reporting-api.md) for mde details on Reporting APIs.
 ## Example
 
 Base orders: ordid1, ordid2, Implied out order: ordid3
-
-
 
 **InstA(Leg1)**
 
@@ -77,7 +73,7 @@ When: InstB gets a new Buy order (quantity=4, price=10.03, ordid5, mpid5). Syste
 
 
 
-### Samples: Order Book Depth API
+### Samples: Order Book Depth
 
 {% tabs %}
 {% tab title="InstAB" %}
@@ -152,7 +148,7 @@ When: InstB gets a new Buy order (quantity=4, price=10.03, ordid5, mpid5). Syste
 
 
 
-### Samples: Trades API
+### Samples: Trades
 
 {% tabs %}
 {% tab title="InstAB" %}

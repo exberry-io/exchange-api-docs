@@ -1,17 +1,2 @@
----
-layout:
-  title:
-    visible: true
-  description:
-    visible: false
-  tableOfContents:
-    visible: true
-  outline:
-    visible: false
-  pagination:
-    visible: true
----
+# RFQ
 
-# RFQ API
-
-This section covers details related to RFQ APIs.

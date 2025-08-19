@@ -1,4 +1,4 @@
-# Authentication API
+# Authentication
 
 ## createSession
 
@@ -8,12 +8,12 @@ Prior to any exchange API call you must create a valid session, this session rem
 A single WebSocket connection can have single active session at a time.
 
 {% hint style="info" %}
-qualifier: `exchange.market/createSession`
+qualifier: exchange.market/createSession
 {% endhint %}
 
 ### **Request**
 
-<table><thead><tr><th width="141.33333333333331">Parameter</th><th width="157">Type</th><th>Description</th></tr></thead><tbody><tr><td>apiKey</td><td>String</td><td>Unique market participant API key provided by exchange operator</td></tr><tr><td>timestamp</td><td>Unix timestamp</td><td>Login timestamp in milliseconds, must be now in GMT</td></tr><tr><td>signature</td><td>String</td><td><code>HMAC SHA256 signature</code> computed using provided <code>secret</code> key and message body.<br>Example:<br><code>Message</code> = <code>"apiKey":"1234567abcdz","timestamp":"1558941516123"</code><br><code>secret</code> = <code>MySecretKey</code><br><code>signature = 265cfbc40c22355d6c1ecc1f3a1e87e8c46954db9096a7bd6967241dd8bc65b6</code></td></tr></tbody></table>
+<table><thead><tr><th width="121.33333333333331">Parameter</th><th width="144">Type</th><th>Description</th></tr></thead><tbody><tr><td>apiKey</td><td>String</td><td>Unique market participant API key provided by exchange operator</td></tr><tr><td>timestamp</td><td>Unix timestamp</td><td>Login timestamp in milliseconds, must be now in GMT</td></tr><tr><td>signature</td><td>String</td><td><code>HMAC SHA256 signature</code> computed using provided <code>secret</code> key and message body.<br>Example:<br><code>Message</code> = <code>"apiKey":"1234567abcdz","timestamp":"1558941516123"</code><br><code>secret</code> = <code>MySecretKey</code><br><code>signature = 265cfbc40c22355d6c1ecc1f3a1e87e8c46954db9096a7bd6967241dd8bc65b6</code></td></tr></tbody></table>
 
 How to compute the signature
 
@@ -30,7 +30,7 @@ echo -n '"apiKey":"1234567abcdz","timestamp":"1558941516123"' | openssl dgst -sh
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```json
 {
         "q":"exchange.market/createSession",
         "sid":15,
@@ -44,7 +44,7 @@ echo -n '"apiKey":"1234567abcdz","timestamp":"1558941516123"' | openssl dgst -sh
 {% endtab %}
 
 {% tab title="Success Response" %}
-```javascript
+```json
 {
         "q":"exchange.market/createSession",
         "sid":15,
@@ -54,7 +54,7 @@ echo -n '"apiKey":"1234567abcdz","timestamp":"1558941516123"' | openssl dgst -sh
 {% endtab %}
 
 {% tab title="Failure Response" %}
-```javascript
+```json
 {
   "sig": 2,
   "q": "exchange.market/createSession",

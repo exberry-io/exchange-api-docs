@@ -3,27 +3,25 @@
 Reporting API enables market participants to easily retrieve orders and executions data.\
 This API is close to real time API, allows to access historical data as well up to date data.
 
-**Data Eligibility**&#x20;
+Data Eligibility is the same as defined in [Private Data API](private-data-api.md#data-eligibility).
 
-Reporting API can be consumed for single market participant (MP) or for group of MPs that are pre-configured by exchange operations team.
 
-Note: This API is accessible via a separated websocket endpoint, not the one used for Trading & Market Data API.
 
-### Account Assignment
+Note: This API uses a dedicated WebSocket endpoint, separate from the one used for the Trading and Market Data APIs.
 
-Refer [here](private-data-api.md#new-v1.34.0-account-assignment) for more details.
+
 
 ## Orders
 
-Any participant can use the `orders` API to retrieve the full list of all its own orders .
+&#x20;`orders` API is used to retrieve the full list of orders .
 
 {% hint style="info" %}
-qualifier: `v1/exchange.reporting/mp/orders`
+qualifier: v1/exchange.reporting/mp/orders
 {% endhint %}
 
 ### Request
 
-<table><thead><tr><th width="164.33333333333331">Parameter</th><th width="193">Type</th><th>Description</th></tr></thead><tbody><tr><td>dateFrom</td><td>DateTime (GMT)</td><td>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>dateTo</td><td>DateTime (GMT)</td><td>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>status</td><td>eNum</td><td><p>Order status (Active/ Executed/Cancelled/<mark style="color:blue;">NEW</mark> Suspended )</p><p>Empty Status = All statuses</p></td></tr><tr><td>instruments </td><td>[]String</td><td>Search for orders by symbol</td></tr><tr><td>mpId </td><td>int</td><td>Search for orders by MP ID.</td></tr><tr><td>orderId </td><td>int</td><td>Search for orders by order ID.</td></tr><tr><td>mpOrderId</td><td>int </td><td>Search for orders by MP order ID.</td></tr></tbody></table>
+<table><thead><tr><th width="164.33333333333331">Parameter</th><th width="193">Type</th><th>Description</th></tr></thead><tbody><tr><td>dateFrom</td><td>DateTime (GMT)</td><td>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>dateTo</td><td>DateTime (GMT)</td><td>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>status</td><td>eNum</td><td><p>Order status (Active/ Executed/ Cancelled/ Suspended )</p><p>Empty Status = All statuses</p></td></tr><tr><td>instruments </td><td>[]String</td><td>Search for orders by symbol</td></tr><tr><td>mpId </td><td>int</td><td>Search for orders by MP ID</td></tr><tr><td>accountIds</td><td>[]String</td><td><p>Array of account Ids </p><p>Search for account ids (party.role=1001 and party.source=D) <mark style="color:blue;">(NEW v1.46.0)</mark> OR (id=accountId, role=24, source=P)</p></td></tr><tr><td>orderId </td><td>int</td><td>Search for orders by order ID</td></tr><tr><td>mpOrderId</td><td>int </td><td>Search for orders by MP order ID</td></tr></tbody></table>
 
 ### **Response**
 
@@ -39,7 +37,7 @@ qualifier: `v1/exchange.reporting/mp/orders`
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```json
 {
   "q": "v1/exchange.reporting/mp/orders",
   "sid": 12,
@@ -56,7 +54,7 @@ qualifier: `v1/exchange.reporting/mp/orders`
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
+```json
 {
   "q": "v1/exchange.reporting/mp/orders",
   "sid": 10,
@@ -91,16 +89,17 @@ qualifier: `v1/exchange.reporting/mp/orders`
 
 ## Trades v2&#x20;
 
-Any participant can use the `trades` API to retrieve the full list of all its own trades data.\
-Each execution will be represented as 2 trades.
+&#x20;`trades` API is used to retrieve the full list of trades.
+
+Each trade is captured as two separate records — one representing the buyer side and one representing the seller side.
 
 {% hint style="info" %}
-qualifier: `v2/`exchange.reporting/mp/trades
+qualifier: v2/exchange.reporting/mp/trades
 {% endhint %}
 
 ### Request
 
-<table><thead><tr><th width="152.33333333333331">Parameter</th><th width="170">Type</th><th>Description</th></tr></thead><tbody><tr><td>dateFrom</td><td>DateTime (GMT)</td><td>Search for trades where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>dateTo</td><td>DateTime (GMT)</td><td>Search for trades where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>instruments </td><td>[]String</td><td>Search for trades by symbol</td></tr><tr><td>mpId </td><td>Int</td><td>Search for trades by MP ID.</td></tr><tr><td>tradeId </td><td>Int</td><td>Search for trades by tradeId. </td></tr><tr><td>actionTypes</td><td>[]eNum</td><td><p>Search for trades by actionType.<br>Any combinations of the below values:</p><ul><li>“MatchedTrade”</li><li>“TradeReport”</li><li>“TradeCancel”</li></ul><p>Empty = All</p></td></tr><tr><td><p></p><p>multiLegReportingTypes </p></td><td>[]eNum</td><td><p>Search for trades by multiLegReportingTypes.<br>Any combinations of the below values:</p><ul><li>"MultiLegSecurity"</li><li>“IndividualLeg”</li><li>“SingleSecurity”</li></ul><p>Empty = All</p></td></tr><tr><td>tradeDate</td><td>Date</td><td><p>Search for the executions by the trade date of the reports.</p><p><br>Format: YYYY-MM-DD</p></td></tr><tr><td>mpOrderId</td><td>Int</td><td>Search for the trades by mpOrderId</td></tr><tr><td>orderId</td><td>Int</td><td>Search for the trades by orderId</td></tr></tbody></table>
+<table><thead><tr><th width="122.33333333333331">Parameter</th><th width="154">Type</th><th>Description</th></tr></thead><tbody><tr><td>dateFrom</td><td>DateTime (GMT)</td><td>Search for trades where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>dateTo</td><td>DateTime (GMT)</td><td>Search for trades where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>instruments </td><td>[]String</td><td>Search for trades by symbol</td></tr><tr><td>mpId </td><td>Int</td><td>Search for trades by MP ID.</td></tr><tr><td>accountIds</td><td>[]String</td><td><p>Array of account Ids </p><p>Search for account ids (party.role=1001 and party.source=D) <mark style="color:blue;">(NEW v1.46.0)</mark> OR (id=accountId, role=24, source=P)</p></td></tr><tr><td>tradeId </td><td>Int</td><td>Search for trades by tradeId. </td></tr><tr><td>actionTypes</td><td>[]eNum</td><td><p>Search for trades by actionType.<br>Any combinations of the below values:</p><ul><li>“MatchedTrade”</li><li>“TradeReport”</li><li>“TradeCancel”</li></ul><p>Empty = All</p></td></tr><tr><td><p></p><p>multiLegReportingTypes </p></td><td>[]eNum</td><td><p>Search for trades by multiLegReportingTypes.<br>Any combinations of the below values:</p><ul><li>"MultiLegSecurity"</li><li>“IndividualLeg”</li><li>“SingleSecurity”</li></ul><p>Empty = All</p></td></tr><tr><td>tradeDate</td><td>Date</td><td><p>Search for the executions by the trade date of the reports.</p><p><br>Format: YYYY-MM-DD</p></td></tr><tr><td>mpOrderId</td><td>Int</td><td>Search for the trades by mpOrderId</td></tr><tr><td>orderId</td><td>Int</td><td>Search for the trades by orderId</td></tr></tbody></table>
 
 ### **Response**
 
@@ -190,7 +189,7 @@ Each record will be one of the following `actionType`:
 {% endtab %}
 
 {% tab title="TradeReport " %}
-```javascript
+```json
 {
   "q": "v2/exchange.reporting/mp/trades",
   "sid": 10,

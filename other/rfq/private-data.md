@@ -7,7 +7,7 @@ Refer [here](../../ws/private-data-api.md) for mde details on Private Data APIs.
 Any participant can use the `massOrderStatus` API to retrieve the current status of all its own active RFQs and Quotes.
 
 {% hint style="info" %}
-qualifier: `v1/exchange.market/massOrderStatus`
+qualifier: v1/exchange.market/massOrderStatus
 {% endhint %}
 
 ### **Response**
@@ -167,12 +167,12 @@ There are few message types used in this API:
   * QuoteExecuted
 
 {% hint style="info" %}
-qualifier: `v1/exchange.market/executionReports`
+qualifier: v1/exchange.market/executionReports
 {% endhint %}
 
 ### **Request** <a href="#request" id="request"></a>
 
-<table><thead><tr><th width="180">Parameter</th><th width="110.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>trackingNumber <code>optional</code></td><td>Long</td><td><p>Determines the starting point of stream. </p><p>• When set to 0 - Stream will start from first event ever</p><p>• When empty - Stream will start from the next upcoming event</p><p>• When set to specific <code>trackingNumber</code>- Stream will start from the next event after the given <code>trackingNumber</code></p></td></tr></tbody></table>
+<table><thead><tr><th width="180">Parameter</th><th width="110.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>trackingNumber <code>optional</code></td><td>Long</td><td>Same as defined in executionReports <a data-mention href="private-data.md#request">#request</a></td></tr></tbody></table>
 
 ### **Response** <a href="#response-1" id="response-1"></a>
 
@@ -200,7 +200,7 @@ Refer [here](../../ws/private-data-api.md#trades) for more details on Trades API
 
 ### **Request**
 
-<table><thead><tr><th width="170.33333333333331">Parameter</th><th width="84">Type</th><th width="483.66666666666674">Description</th></tr></thead><tbody><tr><td>trackingNumber <code>optional</code></td><td>Long</td><td><p>Determines the starting point of stream.<br>• When set to 0 - Stream will start from first event ever</p><p>• When empty - Stream will start from the next upcoming event</p><p>• When set to specific <code>trackingNumber</code>- Stream will start from the next event after the given <code>trackingNumber</code></p></td></tr></tbody></table>
+<table><thead><tr><th width="170.33333333333331">Parameter</th><th width="84">Type</th><th width="483.66666666666674">Description</th></tr></thead><tbody><tr><td>trackingNumber <code>optional</code></td><td>Long</td><td>Same as defined in executionReports <a data-mention href="private-data.md#request">#request</a></td></tr></tbody></table>
 
 
 

@@ -2,45 +2,47 @@
 
 Private data API enables market participants to receive additional copies of the trading activity. This interface may also be used by participants to download the current status of all their active orders.
 
-**Data Eligibility**&#x20;
+## Data **Eligibility**&#x20;
 
 Private data API can be consumed for single market participant (MP) or for group of MPs that are pre-configured by exchange operations team.&#x20;
-
-Notes:
-
-* Empty field will not be included in the message
 
 ### Account Assignment
 
 An account can be assigned at API Key level. If assigned,&#x20;
 
-* system adds the relevant party/targetParty (id=accountId, role=1001, source=D)(if not already exist), to the below requests of the API Key.
+* System adds the relevant party/targetParty <mark style="color:blue;">(CHANGED v1.46.0)</mark> ~~(id=accountId, role=1001, source=D)~~ (id=accountId, role=24, source=P) (if not already exist), to the below requests of the API Key.
   * [placeOrder](trading-api.md#placeorder)
   * [massCancel](trading-api.md#masscancel)
   * [createTradeReport](../other/trade-reporting/trade-report-api.md#createtradereport)
   * [submitRFQ](../other/rfq/initiator-trading.md#submitrfq)
   * [submitQuote](../other/rfq/dealer-trading.md#submitquote)
-* only the entities/activity relevant to the account is visible for the API Key.
+* Only the data relevant to the account is visible for the API Key.
+
+
+
+Technical Note:
+
+* Empty field will not be included in the message
 
 ## massOrderStatus
 
-Any participant can use the `massOrderStatus` API to retrieve the current status of all its own active orders.
+`massOrderStatus` API is used to retrieve the current status of all its own active orders.
 
 {% hint style="info" %}
-qualifier: `v1/exchange.market/massOrderStatus`
+qualifier: v1/exchange.market/massOrderStatus
 {% endhint %}
 
 ### **Response**
 
-`orderMassStatus` response provides close to real time list of all current active orders with the entire details of those orders.\
+The response provides close to real time list of all current active orders with the entire details of those orders.\
 \
-Each `orderMassStatus`response includes`lastTrackingNumber`, the `trackingNumber`of the last event used to generate the orders list, this can be used as input in `executionReports`to be able start consume events from that point.
+In addition the response includes`lastTrackingNumber`, this the `trackingNumber` of the last event used to generate the orders list, this can be used as input in `executionReports` to be able start consume events from that point.
 
-The response is sorted by Instrument and then OrderID.\
+The response is sorted by instrument and orderID.\
 \
 Note: There are no request parameters.
 
-<table><thead><tr><th width="234">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>OrderStatus</strong></td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpOrderId</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>orderType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>side</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>instrument</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>quantity</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>price</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>stopPrice</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>timeInForce</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>expiryDate</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>orderTimestamp</td><td>Order creation timestamp (in nanoseconds) in GMT</td></tr><tr><td>marketModel</td><td><p>A - (Auction) when order was placed during auction</p><p>T - (Trading) when order was placed on continues trading mode<br>UA- (Unscheduled Auction) when order was placed during auction after halt or autoHalt</p></td></tr><tr><td>parties</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>accountType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>filledQuantity</td><td>Total filled quantity</td></tr><tr><td>filledPrice</td><td>Weighted average filled price for all fills on that order <span class="math">Sum(event.executedQuantity * event.executedPrice)/Sum(event.executedQuantity)</span></td></tr><tr><td>remainingOpenQuantity</td><td><p>Remaining open quantity.</p><p><span class="math">quantity - filledQuantity - removedQuantity</span></p></td></tr><tr><td>removedQuantity</td><td>Quantity that was removed with modifyOrder request</td></tr><tr><td>displayMethod</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>displayQuantity</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>workingDisplayQuantity</td><td>Current workingDisplayQuantity</td></tr><tr><td>workingHiddenQuantity</td><td>Current workingHiddenQuantity</td></tr><tr><td>displayLowQuantity</td><td>​​The lower quantity limit to randomise the display quantity at replenishment</td></tr><tr><td>displayHighQuantity</td><td>​​The upper quantity limit to randomise the display quantity at replenishment</td></tr><tr><td>lastEventTimestamp</td><td>Last order event timestamp (in nanoseconds) in GMT</td></tr><tr><td>lastEventId</td><td>Last event that was used to calculate order state</td></tr><tr><td>mpId</td><td>MP Id</td></tr><tr><td>mpName</td><td>MP name </td></tr><tr><td>status</td><td><p>the status of the order.</p><ul><li>Active - as long as still on the book </li><li>Suspended - an order not yet injected into the order book.</li></ul></td></tr></tbody></table>
+<table><thead><tr><th width="205">Field</th><th width="564">Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>OrderStatus</strong></td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpOrderId</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>orderType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>side</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>instrument</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>quantity</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>price</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>stopPrice</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>timeInForce</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>expiryDate</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>orderTimestamp</td><td>Order creation timestamp (in nanoseconds) in GMT</td></tr><tr><td>marketModel</td><td><p>A - (Auction) when order was placed during auction</p><p>T - (Trading) when order was placed on continues trading mode<br>UA- (Unscheduled Auction) when order was placed during non scheduled auction </p></td></tr><tr><td>parties</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>accountType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>filledQuantity</td><td>Total filled quantity</td></tr><tr><td>filledPrice</td><td>Weighted average filled price for all fills on that order <span class="math">Sum(event.executedQuantity * event.executedPrice)/Sum(event.executedQuantity)</span></td></tr><tr><td>remainingOpenQuantity</td><td><p>Remaining open quantity.</p><p><span class="math">quantity - filledQuantity - removedQuantity</span></p></td></tr><tr><td>removedQuantity</td><td>Quantity that was removed with modifyOrder request</td></tr><tr><td>displayMethod</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>displayQuantity</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>workingDisplayQuantity</td><td>Current workingDisplayQuantity</td></tr><tr><td>workingHiddenQuantity</td><td>Current workingHiddenQuantity</td></tr><tr><td>displayLowQuantity</td><td>​​The lower quantity limit to randomise the display quantity at replenishment</td></tr><tr><td>displayHighQuantity</td><td>​​The upper quantity limit to randomise the display quantity at replenishment</td></tr><tr><td>lastEventTimestamp</td><td>Last order event timestamp (in nanoseconds) in GMT</td></tr><tr><td>lastEventId</td><td>Last event that was used to calculate order state</td></tr><tr><td>mpId</td><td>MP Id</td></tr><tr><td>mpName</td><td>MP name </td></tr><tr><td>status</td><td><p>the status of the order.</p><ul><li>Active - as long as still on the book </li><li>Suspended - an order not yet injected into the order book.</li></ul></td></tr></tbody></table>
 
 ### **Error Codes**
 
@@ -50,7 +52,7 @@ Note: There are no request parameters.
 
 {% tabs %}
 {% tab title="Subscription" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/massOrderStatus",
   "sid": 100,
@@ -60,7 +62,7 @@ Note: There are no request parameters.
 {% endtab %}
 
 {% tab title="Active Order" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/massOrderStatus",
   "sid": 102,
@@ -91,7 +93,7 @@ Note: There are no request parameters.
 {% endtab %}
 
 {% tab title="lastTrackingNumber" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/massOrderStatus",
   "sid": 102,
@@ -105,7 +107,7 @@ Note: There are no request parameters.
 
 ## **executionReports**
 
-Any participant can use the `executionReports`API to subscribe to its own orders and trades events.\
+`executionReports` API is used to subscribe to real time orders and trades events.\
 There are few message types used in this API:
 
 * **Add**
@@ -117,20 +119,18 @@ There are few message types used in this API:
 * **Suspended**
 
 {% hint style="info" %}
-qualifier: `v1/exchange.market/executionReports`
+qualifier: v1/exchange.market/executionReports
 {% endhint %}
 
 ### **Request**
 
-<table><thead><tr><th width="184.33333333333331">Parameter</th><th width="98">Type</th><th>Description</th></tr></thead><tbody><tr><td>trackingNumber <code>optional</code></td><td>Long</td><td><p>Determines the starting point of stream.<br>• When set to 0 - Stream will start from first event ever</p><p>• When empty - Stream will start from the next upcoming event</p><p>• When set to specific <code>trackingNumber</code>- Stream will start from the next event after the given <code>trackingNumber</code><br>  - There may be scenarios where multiple events share the same tracking number, if the same MP is involved on both sides of a trade. Therefore, it is recommended in a recovery (after a disconnection), to subscribe using the second-most-recent tracking number and handle duplicates.</p></td></tr></tbody></table>
+<table><thead><tr><th width="150.33333333333331">Parameter</th><th width="77">Type</th><th>Description</th></tr></thead><tbody><tr><td>trackingNumber <code>optional</code></td><td>Long</td><td><p>Defines the starting point of the stream.</p><p>Supported values:</p><ul><li><code>0</code> – Starts the stream from the very first event in the system</li><li><em>Empty</em> – Starts from the next upcoming event</li><li>Specific <code>trackingNumber</code> – Starts from the event immediately following the provided tracking number</li></ul><p>Notes:</p><ul><li>In certain scenarios, multiple events may share the same tracking number, for example when the same market participant (MP) is involved on both sides of a trade.</li><li><p>For reliable recovery (e.g., after a disconnection), it is recommended to:</p><ul><li>Subscribe using the second-most-recent <code>trackingNumber</code></li><li>Implement duplicate event h<strong>andling</strong> logic</li></ul></li></ul></td></tr></tbody></table>
 
 ### **Response**
 
 <table><thead><tr><th width="155.33333333333331">Message Type</th><th width="218">Field</th><th>Description</th></tr></thead><tbody><tr><td>All</td><td>messageType</td><td><p>One of the below values:</p><ul><li><strong>Add</strong></li><li><strong>Cancelled</strong></li><li><strong>Executed</strong></li><li><strong>Modified</strong></li><li><strong>TradeReport</strong></li><li><strong>TradeCancel</strong></li><li><strong>Suspended</strong></li></ul></td></tr><tr><td>All</td><td>side</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>All</td><td>instrument</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>All</td><td>quantity</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>All</td><td>price</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>All</td><td>mpId</td><td>MP Id</td></tr><tr><td>All</td><td>mpName</td><td>MP name </td></tr><tr><td>All</td><td>accountType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>All</td><td>parties</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>All</td><td>eventId</td><td>Sequence identifier per instrument for the event</td></tr><tr><td>All</td><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>All</td><td>trackingNumber</td><td>Event tracking number</td></tr><tr><td>Add <br>Cancelled Executed Modified<br>Suspended</td><td>orderId</td><td>Exchange order ID</td></tr><tr><td>Add <br>Cancelled Executed Modified<br>Suspended</td><td>mpOrderId</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>Add <br>Cancelled Executed Modified<br>Suspended</td><td>orderType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>Add <br>Cancelled Executed Modified<br>Suspended</td><td>timeInForce</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>Add <br>Cancelled Executed Modified<br>Suspended</td><td>expiryDate</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>Add <br>Cancelled Executed Modified<br>Suspended</td><td>expiryDay</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>Add <br>Cancelled Executed Modified<br>Suspended</td><td>orderTimestamp</td><td>Order creation timestamp (in nanoseconds) in GMT</td></tr><tr><td>Add <br>Cancelled Executed Modified<br>Suspended</td><td>marketModel</td><td><p>A - (Auction) when order was placed during auction</p><p>T - (Trading) when order was placed on continues trading mode<br>UA- (Unscheduled Auction) when order was placed during auction after halt or autoHalt</p></td></tr><tr><td>Add <br>Cancelled Executed Modified<br>Suspended</td><td>filledQuantity</td><td>Total filled quantity</td></tr><tr><td><mark style="color:blue;">(NEW v1.41.0)</mark><br>Add <br>Executed Modified Cancelled  Suspended</td><td>filledPrice</td><td>Weighted average filled price for all fills on that order<br><br><span class="math">Sum(event.executedQuantity * event.executedPrice)/Sum(event.executedQuantity)</span></td></tr><tr><td>Add <br>Cancelled Executed Modified<br>Suspended</td><td>remainingOpenQuantity</td><td><p>Remaining open quantity.</p><p><span class="math">quantity - filledQuantity - removedQuantity</span></p></td></tr><tr><td>Add <br>Cancelled Executed Modified<br>Suspended</td><td>removedQuantity</td><td>Quantity that was removed with modifyOrder request</td></tr><tr><td>Add <br>Cancelled Executed Modified<br>Suspended</td><td>stopPrice</td><td>The price at which the order will be injected to the market. </td></tr><tr><td><p>Add</p><p>Executed</p><p>Modified</p><p>Cancelled</p><p>Suspended</p></td><td>displayMethod</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td><p>Add</p><p>Executed</p><p>Modified</p><p>Cancelled</p><p>Suspended</p></td><td>displayQuantity</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td><p>Add</p><p>Executed</p><p>Modified</p><p>Cancelled</p></td><td>workingDisplayQuantity</td><td>workingDisplayQuantity at the end of event</td></tr><tr><td><p>Add</p><p>Executed</p><p>Modified</p><p>Cancelled</p></td><td>workingHiddenQuantity</td><td>workingHiddenQuantity at the end of event</td></tr><tr><td><p>Add</p><p>Executed</p><p>Modified</p><p>Cancelled<br>Suspended</p></td><td>displayLowQuantity</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td><p>Add</p><p>Executed</p><p>Modified</p><p>Cancelled<br>Suspended</p></td><td>displayHighQuantity</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>Executed</td><td>lastFilledQuantity</td><td>Matched quantity</td></tr><tr><td>Executed</td><td>lastFilledPrice</td><td>Matched price (maker order price).</td></tr><tr><td><mark style="color:blue;">(NEW v1.43.0)</mark><br>Executed</td><td>makerTaker</td><td>Same as<a href="private-data-api.md#trades"> trades API</a></td></tr><tr><td>Executed<br>TradeReport<br>TradeCancel</td><td>mathchId</td><td>Unique ID for the match</td></tr><tr><td>Executed<br>TradeReport<br>TradeCancel</td><td>tradingMode</td><td>IA - (Scheduled Intraday Auction) -When execution was as part of auction<br>CT -  (Continuous Trading) - When execution was done on a regular trading<br>ON -  Trade Reporting (On Exchange)<br>UA- (Unscheduled Auction) - When execution was as part of auction after halt or autoHalt</td></tr><tr><td>Cancelled</td><td>cancelledQuantity</td><td>The cancelled quantity in the current cancelled event</td></tr><tr><td>Cancelled</td><td>cancelReason</td><td><p>Reason of the cancellation</p><p>Refer <a href="private-data-api.md#cancel-reason">here</a> for values.</p></td></tr><tr><td>Modified</td><td>lastRemovedQuantity</td><td>Removed quantity on current event</td></tr><tr><td>Modified</td><td>lastRemovedWorkingDisplayQuantity</td><td>Removed Working Display Quantity on current event</td></tr><tr><td>Modified</td><td>lastRemovedWorkingHiddenQuantity</td><td>Removed Working Hidden Quantity on current event</td></tr><tr><td>TradeReport<br>TradeCancel</td><td>tradeType</td><td><mark style="color:blue;">(CHANGED v1.41.0)</mark> <del>EFRP/Block/Other</del> Refer <a href="https://documenter.getpostman.com/view/6229811/TzCV3jcq#909a5a9c-3385-43af-9569-ea3168a331e9">Admin API Trade Entry</a>/type field for values; all values are supported.<br>On TradeCancel it will be shown only for TradeReport cancellation </td></tr><tr><td><p>Add </p><p>Executed Modified Cancelled OrderStatus Suspended</p></td><td>minQuantity</td><td>Minimum Quantity for executed</td></tr><tr><td><p>Add </p><p>Executed Modified Cancelled OrderStatus Suspended</p></td><td>stpAction</td><td>Same as in <code>placeOrder</code> request</td></tr></tbody></table>
 
 ### **Cancel Reason**
-
-
 
 <table><thead><tr><th width="307">Cancel Reason</th><th>Description</th></tr></thead><tbody><tr><td>CancelRequest</td><td>As a result of cancelOrder request</td></tr><tr><td>ReplaceRequest</td><td>As a result of replaceOrder request</td></tr><tr><td>MassCancelRequest</td><td>As a result of massCancel request</td></tr><tr><td>Expiration</td><td>As a result of GTD, DAY &#x26; GAA order expiration</td></tr><tr><td>ImmediateOrder</td><td>As a result of order with TIF IOC or FOK that can not be immediately executed according to exact condition (e.g. IOC that can be partially executed, yet, the residual quantity will be canceled) </td></tr><tr><td>DailyPriceBandBreachMassCancel</td><td>As a result of cancel/reject order according to Daily Price Band</td></tr><tr><td>TickPriceBandBreachMassCancel</td><td>As a result of cancel/reject order according to Tick Price Band</td></tr><tr><td>LegsPriceBandBreachMassCancel </td><td>As a result of cancel/reject order according to Leg Price Band</td></tr><tr><td>CancelOnDisconnect</td><td>As a result of cancellation according to COD</td></tr><tr><td>InjectionRejected</td><td>As a result of cancel/reject order according to validation during injection</td></tr><tr><td>InstrumentExpiration</td><td>As a result of a stop date that has passed its time</td></tr><tr><td>BlockedMP</td><td>As a result of blocking the MP</td></tr><tr><td>STPIncomingOrder</td><td>As a result of cancel/reject order according to STP action of cancel incoming order</td></tr><tr><td>STPRestingOrder</td><td>As a result of cancel/reject order according to STP action of cancel resting order</td></tr><tr><td>STPBothOrders</td><td>As a result of cancel/reject order according to STP action of cancel both orders</td></tr><tr><td>CancelOrderOnBehalf </td><td>As a result of CancelOrder request from admin user</td></tr><tr><td>MassCancelOnBehalf</td><td>As a result of a MassCancel request from admin user</td></tr><tr><td>ReplaceOrderOnBehalf</td><td>As a result of replaceOrder request from admin user</td></tr><tr><td>BaseOrderChanged</td><td>When an implied order is canceled due to change in base orders (for example, base order canceled, filled, etc.)</td></tr><tr><td>CorporateAction</td><td>Canceled due to a corporate action</td></tr><tr><td>ReserveOrderReplenishment</td><td>Reserve order canceled to replenish the display quantity</td></tr><tr><td>NotSupported</td><td>Used for cancellations related to scenarios to be handled in the future.</td></tr><tr><td>CBRBreach</td><td>As a result of cancel/reject order according of CBR trigger</td></tr></tbody></table>
 
@@ -142,7 +142,7 @@ qualifier: `v1/exchange.market/executionReports`
 
 {% tabs %}
 {% tab title="Subscription" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/executionReports",
   "sid": 104,
@@ -154,7 +154,7 @@ qualifier: `v1/exchange.market/executionReports`
 {% endtab %}
 
 {% tab title="Add" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/executionReports",
   "sid": 104,
@@ -185,7 +185,7 @@ qualifier: `v1/exchange.market/executionReports`
 {% endtab %}
 
 {% tab title="Cancelled" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/executionReports",
   "sid": 104,
@@ -217,7 +217,7 @@ qualifier: `v1/exchange.market/executionReports`
 {% endtab %}
 
 {% tab title="Executed" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/executionReports",
   "sid": 104,
@@ -253,7 +253,7 @@ qualifier: `v1/exchange.market/executionReports`
 {% endtab %}
 
 {% tab title="Modified" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/executionReports",
   "sid": 104,
@@ -317,7 +317,7 @@ qualifier: `v1/exchange.market/executionReports`
 
 {% tabs %}
 {% tab title="TradeReport" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/executionReports",
   "sid": 121,
@@ -349,7 +349,7 @@ qualifier: `v1/exchange.market/executionReports`
 {% endtab %}
 
 {% tab title="TradeCancel" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/executionReports",
   "sid": 121,
@@ -393,12 +393,12 @@ Available messages in that API:&#x20;
 * calendarEndOfDay: for End Of Day event
 
 {% hint style="info" %}
-`qualifier: v1/exchange.market/trades`
+qualifier: v1/exchange.market/trades
 {% endhint %}
 
 ### **Request**
 
-<table><thead><tr><th width="173.33333333333331">Parameter</th><th width="98">Type</th><th>Description</th></tr></thead><tbody><tr><td>trackingNumber <code>optional</code></td><td>Long</td><td><p>Determines the starting point of stream.<br>• When set to 0 - Stream will start from first event ever</p><p>• When empty - Stream will start from the next upcoming event</p><p>• When set to specific <code>trackingNumber</code>- Stream will start from the next event after the given <code>trackingNumber</code><br>  - There may be scenarios where multiple events share the same tracking number, if the same MP is involved on both sides of a trade. Therefore, it is recommended in a recovery (after a disconnection), to subscribe using the second-most-recent tracking number and handle duplicates.</p></td></tr></tbody></table>
+<table><thead><tr><th width="173.33333333333331">Parameter</th><th width="98">Type</th><th>Description</th></tr></thead><tbody><tr><td>trackingNumber <code>optional</code></td><td>Long</td><td>Same as defined in executionReports<a data-mention href="private-data-api.md#request">#request</a></td></tr></tbody></table>
 
 ### **Response**
 
@@ -471,7 +471,7 @@ Available messages in that API:&#x20;
 {% endtab %}
 
 {% tab title="TradeReport " %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/trades",
   "sid": 14,
@@ -529,7 +529,7 @@ Available messages in that API:&#x20;
 {% endtab %}
 
 {% tab title="EOD" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/trades",
   "sid": 14,

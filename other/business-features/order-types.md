@@ -18,7 +18,7 @@ Once Stop / StopLimit orders are triggered and injected to the order book it wil
 
 
 
-### Stop & StopLimit Trigger Rules:
+### Trigger Rules
 
 The Stop and StopLimit orders will be injected into the order book by those rules:
 
@@ -38,7 +38,7 @@ The Stop and StopLimit orders will be injected into the order book by those rule
 
 
 
-## (NEW v1.34.0) Reserve Orders
+## Reserve Orders
 
 Reserve orders support a display(visible) and a hidden quantity. Only the display quantity is visible to MPs via public market data feeds. Each time the display quantity is fully executed, the next portion from the hidden quantity is moved to the display quantity. This is called replenishment of the order.&#x20;
 
@@ -48,7 +48,7 @@ The exchange supports below `displayMethods`:
 * **Hidden** - Fully hidden order (`displayQuantity=0`)
 * **Random** - Displays the quantity in displayQuantity initially, then a quantity between `displayLowQuantity` and `displayHighQuantity` when replenished
 
-### **General Rules:**
+### **General**
 
 * The full quantity(both display and hidden quantities) of the reserve order is eligible to trade with resting orders at entry.
 * After executing up to the maximum possible at the entry, the order rests on the book subjected to the maximum of `displayQuantity`

@@ -1,4 +1,4 @@
-# Reporting API
+# Reporting
 
 Refer [here](../../ws/reporting-api.md) for mde details on Reporting APIs.
 
@@ -7,12 +7,12 @@ Refer [here](../../ws/reporting-api.md) for mde details on Reporting APIs.
 Initiators can use the `rfqs` API to retrieve the full list of all their own RFQs .
 
 {% hint style="info" %}
-qualifier: `v1/`exchange.reporting/mp/rfqs
+qualifier: v1/exchange.reporting/mp/rfqs
 {% endhint %}
 
 ### Request
 
-<table><thead><tr><th width="164.33333333333331">Parameter</th><th width="193">Type</th><th>Description</th></tr></thead><tbody><tr><td>dateFrom</td><td>DateTime (GMT)</td><td>Optional<br>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>dateTo</td><td>DateTime (GMT)</td><td>Optional<br>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>status</td><td>eNum</td><td><p>Optional<br>RFQ status (Active/Cancelled/Ended)</p><p>Empty Status = All statuses</p></td></tr><tr><td>instruments </td><td>String</td><td><p>Optional </p><p>Search for the RFQs of that instrument.</p><p>Mandatory if rfqId is sent.</p></td></tr><tr><td>mpId </td><td>Int</td><td>Optional<br>Search for orders by MP ID.</td></tr><tr><td>rfqId</td><td>Int</td><td>Optional<br>Search for orders by RFQ ID.</td></tr><tr><td>accountIds</td><td>[]String</td><td><p>Optional</p><p>Array of account Ids </p><p>Search for account ids (party.role=1001 and party.source=D)</p></td></tr><tr><td>orderBy</td><td>Object</td><td><p>Optional</p><p>object with 2 parameters:</p><ul><li>field (String)</li><li>direction (Asc, Desc) direction</li></ul><p>If nothing or invalid field was sent the default is [createdAt, Desc]</p></td></tr><tr><td>limit</td><td>Int</td><td><p>Optional</p><p>How many records to include in each page </p><p>If nothing was sent default is 25</p><p>Max value = 100</p></td></tr><tr><td>offset</td><td>Int</td><td><p>Optional</p><p>Which record to start send from (if you want page 3 and there are 50 records per page offset should be 150) </p><p>If nothing was sent default is 0 (=first record)</p></td></tr></tbody></table>
+<table><thead><tr><th width="126.33333333333331">Parameter</th><th width="160">Type</th><th width="463.6666666666667">Description</th></tr></thead><tbody><tr><td>dateFrom</td><td>DateTime (GMT)</td><td>Optional<br>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>dateTo</td><td>DateTime (GMT)</td><td>Optional<br>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>status</td><td>eNum</td><td><p>Optional<br>RFQ status (Active/Cancelled/Ended)</p><p>Empty Status = All statuses</p></td></tr><tr><td>instruments </td><td>String</td><td><p>Optional </p><p>Search for the RFQs of that instrument.</p><p>Mandatory if rfqId is sent.</p></td></tr><tr><td>mpId </td><td>Int</td><td>Optional<br>Search for orders by MP ID.</td></tr><tr><td>rfqId</td><td>Int</td><td>Optional<br>Search for orders by RFQ ID.</td></tr><tr><td>accountIds</td><td>[]String</td><td><p>Optional</p><p>Array of account Ids </p><p>Search for account ids (party.role=1001 and party.source=D) <mark style="color:blue;">(NEW v1.46.0)</mark> OR (id=accountId, role=24, source=P)</p></td></tr><tr><td>orderBy</td><td>Object</td><td><p>Optional</p><p>object with 2 parameters:</p><ul><li>field (String)</li><li>direction (Asc, Desc) </li></ul><p>If nothing or invalid field was sent the default is [createdAt, Desc]</p></td></tr><tr><td>limit</td><td>Int</td><td><p>Optional</p><p>How many records to include in each page </p><p>If nothing was sent default is 25</p><p>Max value = 100</p></td></tr><tr><td>offset</td><td>Int</td><td><p>Optional</p><p>Which record to start send from (if you want page 3 and there are 50 records per page offset should be 150) </p><p>If nothing was sent default is 0 (=first record)</p></td></tr></tbody></table>
 
 
 
@@ -30,7 +30,7 @@ qualifier: `v1/`exchange.reporting/mp/rfqs
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```json
 {
   "q": "v1/exchange.reporting/mp/rfqs",
   "sid": 10,
@@ -44,7 +44,7 @@ qualifier: `v1/`exchange.reporting/mp/rfqs
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
+```json
 {
   "q": "v1/exchange.reporting/mp/rfqs",
   "sid": 10,
@@ -93,12 +93,12 @@ qualifier: `v1/`exchange.reporting/mp/rfqs
 Dealers can use the `quotes` API to retrieve the full list of all their own Quotes.&#x20;
 
 {% hint style="info" %}
-qualifier: `v1/`exchange.reporting/mp/quotes
+qualifier: v1/exchange.reporting/mp/quotes
 {% endhint %}
 
 ### Request
 
-<table><thead><tr><th width="164.33333333333331">Parameter</th><th width="193">Type</th><th>Description</th></tr></thead><tbody><tr><td>dateFrom</td><td>DateTime (GMT)</td><td>Optional<br>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>dateTo</td><td>DateTime (GMT)</td><td>Optional<br>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>status</td><td>eNum</td><td><p>Optional<br>RFQ status (Active/Executed/Cancelled)</p><p>Empty Status = All statuses</p></td></tr><tr><td>instruments </td><td>String</td><td><p>Optional </p><p>Search for the RFQs of that instrument.</p><p>Mandatory if rfqId or quoteId is sent.</p></td></tr><tr><td>mpId </td><td>Int</td><td>Optional<br>Search for orders by MP ID.</td></tr><tr><td>rfqId</td><td>Int</td><td>Optional<br>Search for orders by RFQ ID.</td></tr><tr><td>quoteId</td><td>Int</td><td>Optional <br>Search for the Quotes by Quote ID.</td></tr><tr><td>accountIds</td><td>[]String</td><td><p>Optional</p><p>Array of account Ids </p><p>Search for account ids (party.role=1001 and party.source=D)</p></td></tr><tr><td>orderBy</td><td>Object</td><td><p>Optional</p><p>object with 2 parameters:</p><ul><li>field (String)</li><li>direction (Asc, Desc) direction</li></ul><p>If nothing or invalid field was sent the default is [createdAt, Desc]</p></td></tr><tr><td>limit</td><td>Int</td><td><p>Optional</p><p>How many records to include in each page </p><p>If nothing was sent default is 25</p><p>Max value = 100</p></td></tr><tr><td>offset</td><td>Int</td><td><p>Optional</p><p>Which record to start send from (if you want page 3 and there are 50 records per page offset should be 150) </p><p>If nothing was sent default is 0 (=first record)</p></td></tr></tbody></table>
+<table><thead><tr><th width="119.33333333333331">Parameter</th><th width="140">Type</th><th>Description</th></tr></thead><tbody><tr><td>dateFrom</td><td>DateTime (GMT)</td><td>Optional<br>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>dateTo</td><td>DateTime (GMT)</td><td>Optional<br>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>status</td><td>eNum</td><td><p>Optional<br>RFQ status (Active/Executed/Cancelled)</p><p>Empty Status = All statuses</p></td></tr><tr><td>instruments </td><td>String</td><td><p>Optional </p><p>Search for the RFQs of that instrument.</p><p>Mandatory if rfqId or quoteId is sent.</p></td></tr><tr><td>mpId </td><td>Int</td><td>Optional<br>Search for orders by MP ID.</td></tr><tr><td>rfqId</td><td>Int</td><td>Optional<br>Search for orders by RFQ ID.</td></tr><tr><td>quoteId</td><td>Int</td><td>Optional <br>Search for the Quotes by Quote ID.</td></tr><tr><td>accountIds</td><td>[]String</td><td><p>Optional</p><p>Array of account Ids </p><p>Search for account ids (party.role=1001 and party.source=D) <mark style="color:blue;">(NEW v1.46.0)</mark> OR (id=accountId, role=24, source=P)</p></td></tr><tr><td>orderBy</td><td>Object</td><td><p>Optional</p><p>object with 2 parameters:</p><ul><li>field (String)</li><li>direction (Asc, Desc) </li></ul><p>If nothing or invalid field was sent the default is [createdAt, Desc]</p></td></tr><tr><td>limit</td><td>Int</td><td><p>Optional</p><p>How many records to include in each page </p><p>If nothing was sent default is 25</p><p>Max value = 100</p></td></tr><tr><td>offset</td><td>Int</td><td><p>Optional</p><p>Which record to start send from (if you want page 3 and there are 50 records per page offset should be 150) </p><p>If nothing was sent default is 0 (=first record)</p></td></tr></tbody></table>
 
 
 
