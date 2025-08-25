@@ -4,8 +4,12 @@
 
 **General-**
 
-* Multiple smantic changes and cleanups&#x20;
+* Multiple semantic changes and cleanups&#x20;
 * Changed the account id party definition to `party.role=24` and `party.source=P`
+
+**FIX API-**
+
+* Changed the uniqueness of `ClOrdID(11)` to `SenderCompID(49)` level
 
 ## v1.43.0 (2025-05-14)
 
