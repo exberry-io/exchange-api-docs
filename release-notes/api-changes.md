@@ -1,5 +1,15 @@
 # API Changes
 
+## v1.47.0 (TBD)
+
+New trade type was added to capture "Trade Reversal"&#x20;
+
+* **WS API-**
+  * Added new `tradeType` value to `TradeReport` messages of `orderBookDepth` and `exchange.reporting/mp/trades`&#x20;
+* **FIX API-**
+  * Added new `TrdType(828)` value to `TradeCaptureReport(AE)` messages&#x20;
+  * Added new values for tags `20035` and `20039` of `SecurityList(y)` messages (with new trade type values)&#x20;
+
 ## v1.46.0 (2025-08-26)
 
 **General-**
