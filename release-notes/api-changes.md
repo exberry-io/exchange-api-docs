@@ -2,7 +2,7 @@
 
 ## v1.47.0 (TBD)
 
-New trade type was added to capture "Trade Reversal"&#x20;
+New trade type was added to capture "Trade Reversal":&#x20;
 
 * **WS API-**
   * Added new `tradeType` value to `TradeReport` messages of `orderBookDepth` and `exchange.reporting/mp/trades`&#x20;

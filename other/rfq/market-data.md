@@ -1,4 +1,4 @@
-# Market Data API
+# Market Data
 
 Refer [here](../../ws/market-data.md) for more details on Market Data API.
 
@@ -7,7 +7,7 @@ Refer [here](../../ws/market-data.md) for more details on Market Data API.
 The `orderBookDepth` stream provides RFQ data. This stream is public and all consumers receive the messages simultaneously.
 
 {% hint style="info" %}
-`qualifier: v2/exchange.market/orderBookDepth`
+qualifier: v2/exchange.market/orderBookDepth
 {% endhint %}
 
 ### **Request**
@@ -137,7 +137,7 @@ There are additional messages in the stream, refer [here](../../ws/market-data.m
 Note: There are no request parameters.
 
 {% hint style="info" %}
-qualifier:`v2/exchange.market/orderBookState`
+qualifier:v2/exchange.market/orderBookState
 {% endhint %}
 
 ### **Response**
@@ -202,6 +202,4 @@ Refer [here](../../ws/market-data.md#error-codes-1) for the error codes
 ```
 {% endtab %}
 {% endtabs %}
-
-###
 

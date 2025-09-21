@@ -16,7 +16,7 @@ In case a response is not received within the timeout window, user can
 `mpQuoteId` is a unique identifier and should not be used for more than one Quote. Note: system might accept already used `mpQuoteId` after predefined period but it is not recommended to use same `mpQuoteId` twice.
 
 {% hint style="info" %}
-qualifier: `v1/exchange.market/submitQuote`
+qualifier: v1/exchange.market/submitQuote
 {% endhint %}
 
 
@@ -148,7 +148,7 @@ In case a response is not received within the timeout window, user can
    * Success in case that previous request was not accepted
 
 {% hint style="info" %}
-qualifier: `v1/exchange.market/cancelQuote`
+qualifier: v1/exchange.market/cancelQuote
 {% endhint %}
 
 

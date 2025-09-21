@@ -16,7 +16,7 @@ In case a response is not received within the timeout window, user can
 `mpRfqId` is a unique identifier and should not be used for more than one RFQ. Note: system might accept already used `mpRfqId` after predefined period but it is not recommended to use same `mpRfqId` twice.
 
 {% hint style="info" %}
-qualifier: `v1/exchange.market/submitRFQ`
+qualifier: v1/exchange.market/submitRFQ
 {% endhint %}
 
 ### **Request**
@@ -208,7 +208,7 @@ In case a response is not received within the timeout window, user can
    * Success in case that previous request was not accepted
 
 {% hint style="info" %}
-qualifier: `v1/exchange.market/acceptQuote`
+qualifier: v1/exchange.market/acceptQuote
 {% endhint %}
 
 

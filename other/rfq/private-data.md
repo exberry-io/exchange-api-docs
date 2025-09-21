@@ -266,5 +266,3 @@ Refer [here](../../ws/private-data-api.md#error-codes-2) for the error codes
 ```
 {% endtab %}
 {% endtabs %}
-
-###
