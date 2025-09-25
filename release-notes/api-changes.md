@@ -1,6 +1,6 @@
 # API Changes
 
-## v1.47.0 (TBD)
+## v1.47.0 (2025-09-25)
 
 New trade type was added to capture "Trade Reversal":&#x20;
 
