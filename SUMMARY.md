@@ -39,6 +39,7 @@
 * [Business Features](other/business-features/README.md)
   * [Order Types](other/business-features/order-types.md)
   * [Time In Force](other/business-features/time-in-force.md)
+  * [Replace Order](other/business-features/replace-order.md)
   * [Self-Trade Prevention (STP)](other/business-features/self-trade-prevention-stp.md)
   * [Implied Orders](other/business-features/implied-orders/README.md)
     * [Introduction](other/business-features/implied-orders/introduction.md)

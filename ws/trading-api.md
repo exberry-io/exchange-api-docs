@@ -288,7 +288,7 @@ targetParty specification:&#x20;
 {% endtab %}
 {% endtabs %}
 
-## modifyOrder
+## modifyOrder <mark style="color:red;">(NEW v1.48.0 To be Deprecated)</mark>
 
 The `modifyOrder` API is used to reduce the order quantity without losing the time priority.
 
@@ -361,11 +361,8 @@ qualifier: v1/exchange.market/modifyOrder
 
 ## replaceOrder
 
-The `replaceOrder` API is used to change a few of the order parameters in a single command for order which is resting on the book.&#x20;
-
-In case the request is eligible for [modification](trading-api.md#modifyorder)  (other fields may present with the same values as the original order or be omitted from request), the system modifies the existing order, the behavior is similar to [modifyOrder](trading-api.md#modifyorder).
-
-Any other request would result in the system canceling the existing order and creating a new one. This will result in losing the time priority as it cancels the previous order and places a new one.
+<mark style="color:blue;">(CHANGED v1.48.0)</mark> \
+Refer [replace-order.md](../other/business-features/replace-order.md "mention") for mre details.&#x20;
 
 If you send a valid order to be replaced, you should receive a response that confirms the action.
 
@@ -381,7 +378,7 @@ qualifier: v1/exchange.market/replaceOrder
 
 ### **Response**
 
-<table><thead><tr><th width="189.33333333333331">Parameter</th><th width="150">Type</th><th>Description</th></tr></thead><tbody><tr><td>originalOrderId</td><td>Long</td><td>Exchange Order ID of the original order</td></tr><tr><td>newOrderId</td><td>Long</td><td>Exchange Order ID of the new order</td></tr></tbody></table>
+<table><thead><tr><th width="189.33333333333331">Parameter</th><th width="150">Type</th><th>Description</th></tr></thead><tbody><tr><td><mark style="color:blue;">(NEW v1.48.0)</mark><br>orderId</td><td>Long</td><td>Exchange Order ID</td></tr><tr><td><p><mark style="color:red;">(To be deprecated)</mark></p><p>originalOrderId</p></td><td>Long</td><td>Exchange Order ID of the original order<br><mark style="color:blue;">(NEW v1.48.0)</mark> originalOrderId and newOrderId have the same value</td></tr><tr><td><mark style="color:red;">(To be deprecated)</mark><br>newOrderId</td><td>Long</td><td>Exchange Order ID of the new order<br><mark style="color:blue;">(NEW v1.48.0)</mark> originalOrderId and newOrderId have the same value</td></tr></tbody></table>
 
 ### **Error Codes**
 
@@ -407,13 +404,15 @@ qualifier: v1/exchange.market/replaceOrder
 
 {% tab title="Success Response" %}
 ```json
+//CHANGED v1.48.0
 {
-  "q": "v1/exchange.market/replaceOrder",
-  "sid": 1,
-  "d": {
-    "originalOrderId": 709,
-    "newOrderId": 710
-  }
+    "q": "v1/exchange.market/replaceOrder",
+    "sid": 6,
+    "d": {
+        "orderId": 11,
+        "originalOrderId": 11,
+        "newOrderId": 11
+    }
 }
 ```
 {% endtab %}

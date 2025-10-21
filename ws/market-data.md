@@ -81,9 +81,9 @@ Order Executed Message indicates that an order on the book is matched with a new
 
 #### **Order Modify Message**
 
-Order Modify Message indicates that an order on the book is being modified and order quantity was reduced.
+Order Modify Message indicates that an order on the book is being modified <mark style="color:blue;">(NEW v1.48.0)</mark> (without losing priority) or replaced (losing priority) <mark style="color:red;">(REMOVED 1.48.0)</mark> ~~and order quantity was reduced.~~
 
-<table><thead><tr><th width="256">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>Modified</strong></td></tr><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>removedQuantity</td><td>Order quantity that was removed</td></tr><tr><td>newQuantity</td><td>Remaining open quantity</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
+<table><thead><tr><th width="256">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>Modified</strong></td></tr><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td><mark style="color:blue;">(NEW v1.48.0)</mark> side</td><td>Buy/ Sell</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td><mark style="color:red;">(REMOVED v1.48.0)</mark><br><del>removedQuantity</del></td><td><del>Order quantity that was removed</del></td></tr><tr><td>newQuantity</td><td>Remaining open quantity</td></tr><tr><td><mark style="color:blue;">(NEW v1.48.0)</mark><br>price</td><td>Order price</td></tr><tr><td><mark style="color:blue;">(NEW v1.48.0)</mark><br>lostPriority</td><td><p>Indicates if replaced/modified order has caused an order to lose priority.</p><p>Allowed values:</p><ul><li>true - order has lost time priority </li><li>false - order has not lost time priority </li></ul></td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### **NonDisplayTrade Message**
 
@@ -232,8 +232,28 @@ For market orders during an auction, system will send the `bestBuyQuantity / bes
 {% endtab %}
 
 {% tab title="Modified" %}
-```json
-{
+<pre class="language-json"><code class="lang-json"><strong>//NEW v1.48.0
+</strong>{
+  "q": "v2/exchange.market/orderBookDepth",
+  "sid": 15,
+  "d": {
+    "messageType": "Modified",
+    "eventTimestamp": 1760967019875993000,
+    "eventId": 59,
+    "trackingNumber": 507888608,
+    "instrument": "AMZ",
+    "orderId": 27,
+    "mpId": 20,
+    "mpOrderId": 1760966630572,
+    "side": "Buy",
+    "newQuantity": 80,
+    "price": 30,
+    "lostPriority": false
+  }
+}
+
+<strong>//REMOVED v1.48.0
+</strong>{
   "q": "v2/exchange.market/orderBookDepth",
   "sid": 10,
   "d": {
@@ -245,12 +265,13 @@ For market orders during an auction, system will send the `bestBuyQuantity / bes
     "mpId": 1958681073,
     "mpOrderId": 2003,
     "orderId": 192,
-    "removedQuantity": 0.8,
+    "removedQuantity": 0.8, REMOVED v1.48.0
     "newQuantity": 0.5,
     "realBookState": true
   }
 }
-```
+
+</code></pre>
 {% endtab %}
 
 {% tab title="NonDisplayTrade" %}
