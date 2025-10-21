@@ -1,14 +1,38 @@
 # API Changes
 
+## v1.48.0 (2025-10-23)
+
+**General-**
+
+* Changed the behavior of replace order
+* Added Trade Adjustment feature
+
+**WS API-**
+
+* Added `linkId` to `trades` and `executionReports`&#x20;
+* Added `tickReferencePrice` to `trades`&#x20;
+* Added `orderId` to the response of `replaceOrder`
+* Removed `removedQuantity`, `lastRemovedQuantity`, `lastRemovedWorkingDisplayQuantity`, and `lastRemovedWorkingHiddenQuantity` from `executionReports`
+* Added `lostPriority` to  `executionReports/Modified` and `orderBookDepth/Modified` messages.
+* Added `side` and `price` and removed `removedQuantity` to/from  `orderBookDepth/Modified` messages.
+
+**FIX API-**
+
+* Added `OrigTradeID` to `TradeCaptureReport(AE)`
+* Added `PriorityIndicator(638)` to `ExecutionReport(8)`&#x20;
+
 ## v1.47.0 (2025-09-25)
 
 New trade type was added to capture "Trade Reversal":&#x20;
 
-* **WS API-**
-  * Added new `tradeType` value to `TradeReport` messages of `orderBookDepth` and `exchange.reporting/mp/trades`&#x20;
-* **FIX API-**
-  * Added new `TrdType(828)` value to `TradeCaptureReport(AE)` messages&#x20;
-  * Added new values for tags `20035` and `20039` of `SecurityList(y)` messages (with new trade type values)&#x20;
+**WS API-**
+
+* Added new `tradeType` value to `TradeReport` messages of `orderBookDepth` and `exchange.reporting/mp/trades`&#x20;
+
+**FIX API-**
+
+* Added new `TrdType(828)` value to `TradeCaptureReport(AE)` messages&#x20;
+* Added new values for tags `20035` and `20039` of `SecurityList(y)` messages (with new trade type values)&#x20;
 
 ## v1.46.0 (2025-08-26)
 
