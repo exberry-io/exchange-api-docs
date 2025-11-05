@@ -1,5 +1,61 @@
 # API Changes
 
+## v1.49.0 (2025-11-06)
+
+[authentication-api.md](../ws/authentication-api.md "mention")page was enhanced with updated explanation about participants entities and the different ways to create sessions.&#x20;
+
+***
+
+To improve performance, a new version of the API has been released. We recommend migrating to this new version.\
+The previous version remains available for now, and we will provide advance notice several months before it is deprecated.
+
+The main change in the new version is that, instead of returning an unlimited number of records in a single response, data is now returned in **pages**.\
+Each request retrieves a limited set of results, and multiple requests may be needed to obtain the full dataset.
+
+[#orders-v2-latest](../ws/reporting-api.md#orders-v2-latest "mention")
+
+Additional changes:&#x20;
+
+Request:\
+\- status changed to be statuses\
+\- new parameters added: orderBy, limit, offset\
+\- new validation added: In case orderId or mpOrderId is sent: instruments must contain exactly 1 entry
+
+Response:\
+Structure changed from single message for each order to single message for all relevant orders\
+From
+
+```json
+{
+    "q": "v1/exchange.reporting/mp/orders",
+    "sid": 10,
+    "d": {...
+        }
+}
+```
+
+To
+
+```json
+{
+  "q": "v2/exchange.reporting/mp/orders",
+  "sid": 10,
+  "d": {
+    "orders": [...],
+    "count": 574
+  }
+}
+```
+
+[#trades-v3-latest](../ws/reporting-api.md#trades-v3-latest "mention")
+
+Request:\
+\- new parameters added: orderBy, limit, offset
+
+Response:\
+Structure changed from single message for each order to single message for all relevant orders\
+From
+
 ## v1.48.0 (2025-10-23)
 
 **General-**
