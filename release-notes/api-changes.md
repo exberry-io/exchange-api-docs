@@ -1,5 +1,24 @@
 # API Changes
 
+## v1.50.0 (2025-11-XX)
+
+**General-**
+
+* Added block account feature.
+* Added `cancelReason` `BlockedAccount`
+
+**WS API-**
+
+* Added "News" message as part of [#orderbookdepth](../ws/market-data.md#orderbookdepth "mention") and [#executionreports](api-changes.md#executionreports "mention")
+* Added `metadata` as optional property for [#placeorder](../ws/trading-api.md#placeorder "mention")
+* Added `orderId` and `mpOrderId` to the `executionReports`  and `trades` messages related to Trade Adjustment and Trade Cancellation.
+
+**FIX API-**
+
+* Added FIX `ExecutionReports(8)` for CLOB Trade Adjustments and Cancellations. Added `ExecRefID(19)` to them.&#x20;
+
+
+
 ## v1.49.0 (2025-11-06)
 
 [authentication-api.md](../ws/authentication-api.md "mention")page was enhanced with updated explanation about participants entities and the different ways to create sessions.&#x20;

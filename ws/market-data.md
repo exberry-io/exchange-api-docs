@@ -26,6 +26,7 @@ There are few message types used to get real time market data:
 * **TradeCancel**&#x20;
 * **InstrumentStatus**&#x20;
 * **calendarEndOfDay**
+* <mark style="color:blue;">NEW 1.50</mark> **News**
 
 There is 1 message types used to get indicative prices during auctions:
 
@@ -46,8 +47,6 @@ Below messages are generated only for orders with display quantities.
 * **Cancelled**
 
 
-
-For an edge case in CBR - see more [here](https://documenter.getpostman.com/view/6229811/TzCV3jcq#46843413-c6ad-44c0-8d67-e18ef719b365)
 
 {% hint style="info" %}
 qualifier: v2/exchange.market/orderBookDepth
@@ -128,8 +127,6 @@ The calendar End Of Day Message indicates that the end-of-day for a specific cal
 
 <table><thead><tr><th width="229">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>calendarEndOfDay</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds)</td></tr><tr><td>calendarId</td><td>Calendar Id</td></tr><tr><td>calendarName</td><td>Calendar name</td></tr><tr><td>eodDate</td><td><p>The trade date of the day that was closed.</p><p>Format: yyyy-mm-dd</p></td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
-
-
 #### **Auction Indicative Equilibrium Price Message**
 
 Auction Indicative Equilibrium Price Message publish the indicative equilibrium price during an auction.\
@@ -140,6 +137,12 @@ In case there is no order on one of the side the price and quantity fields will 
 For market orders during an auction, system will send the `bestBuyQuantity / bestSellQuantity` corresponding to the market order, if it exists, without a price.&#x20;
 
 <table><thead><tr><th width="264">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>messageType</td><td><strong>AuctionIndicativeEP</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>IndicativePrice</td><td>The indicative price upon which the paired shares and the imbalance quantity are based</td></tr><tr><td>pairedQuantity</td><td>The quantity to be matched at the current indicative price</td></tr><tr><td>imbalanceQuantity</td><td>The absolute value of quantity that would remain unexecuted at the current indicative price.</td></tr><tr><td>imbalanceSide</td><td><p>Buy - Buy side imbalance</p><p>Sell - Sell side imbalance</p><p>None - No imbalance</p><p>NA - no indicative price</p></td></tr><tr><td>bestBuyPrice</td><td>In case of No match - the highest buy order price</td></tr><tr><td>bestBuyQuantity</td><td>In case of No match - the highest buy order quantity</td></tr><tr><td>bestSellPrice</td><td>In case of No match - the lowest sell order price</td></tr><tr><td>bestSellQuantity</td><td>In case of No match - the lowest sell order quantity</td></tr></tbody></table>
+
+#### News Message <mark style="color:blue;">(New v1.50)</mark>
+
+The news message is published when the exchange operator submits it.
+
+<table><thead><tr><th width="229">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>News</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds)</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr><tr><td>id</td><td>News id </td></tr><tr><td>message</td><td>News message </td></tr></tbody></table>
 
 ### **Error Codes**
 
@@ -397,6 +400,22 @@ For market orders during an auction, system will send the `bestBuyQuantity / bes
     "calendarName": "NewCalendar",
     "eodDate": "2023-04-17",
     "trackingNumber": 407807712
+  }
+}
+```
+{% endtab %}
+
+{% tab title="News" %}
+```json
+{
+  "q": "v2/exchange.market/orderBookDepth",
+  "sid": 10,
+  "d": {
+    "messageType": "News",
+    "eventTimestamp": 1763050048890147800,
+    "trackingNumber": 580050560,
+    "id": 456,
+    "message": "Sample message"
   }
 }
 ```
