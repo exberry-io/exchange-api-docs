@@ -47,14 +47,17 @@ Beyond the core entities, the system supports defining additional parties or att
 ```mermaid
 graph TD
  A(MP Group 1) -->B(MP 1)
-   A -->C(MP 2)
+   A --> C(MP 2)
     B -->D(Account 1)
     B -->E(Account 2)
     C -->F(Account 3)
     C -->H(Account 4)
- X(MP Group 2) -->G(MP 3)
-    G(MP 3) -->N(Account 5)
-    G(MP 3) -->P(Account 6)
+    D --- Q(Trader 1)
+    E --- Q(Trader 1)
+    E --- R(Trader 2)
+    F --- r(Trader 3)
+
+ 
 
 ```
 

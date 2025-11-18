@@ -21,7 +21,7 @@
 
 ## v1.49.0 (2025-11-06)
 
-[authentication-api.md](../ws/authentication-api.md "mention")page was enhanced with updated explanation about participants entities and the different ways to create sessions.&#x20;
+[authentication-api.md](../ws/authentication-api.md "mention") page was enhanced with updated explanation about participants entities and the different ways to create sessions.&#x20;
 
 ***
 
