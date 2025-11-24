@@ -1,5 +1,11 @@
 # API Changes
 
+## v1.50.1 (2025-11-24)
+
+**WS API-**
+
+* Added `metadata` as optional property for [#replaceorder](../ws/trading-api.md#replaceorder "mention")
+
 ## v1.50.0 (2025-11-20)
 
 **General-**
@@ -611,8 +617,7 @@ FIX API
       * 2 - Individual leg of a multi-leg security
       * 3 - Multi-leg security - the parent trade of multi-leg security
 
-      On TradeCaptureReportRequest (AD) you should now specify 2 or 3. \
-
+      On TradeCaptureReportRequest (AD) you should now specify 2 or 3. <br>
 
 Trading API
 
@@ -758,8 +763,7 @@ Trading API
     * On Order Cancel Reject (msgType=9) in case of failure: OrdStatus(39) was missing, now will have the value 8 = Rejected
     * On Execution Report (msgType=8) in case of rejection OrderID(37) was missing, now will have the value -1
 
-    \
-
+    <br>
 
     ### Orders&#x20;
 

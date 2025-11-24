@@ -35,7 +35,7 @@ Refer [here](../../ws/private-data-api.md#error-codes) for the error codes.
 
 {% tabs %}
 {% tab title="Subscription" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/massOrderStatus",
   "sid": 100,
@@ -45,7 +45,7 @@ Refer [here](../../ws/private-data-api.md#error-codes) for the error codes.
 {% endtab %}
 
 {% tab title="Active RFQ" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/massOrderStatus",
   "sid": 13,
@@ -134,7 +134,7 @@ Refer [here](../../ws/private-data-api.md#error-codes) for the error codes.
 {% endtab %}
 
 {% tab title="lastTrackingNumber" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/massOrderStatus",
   "sid": 102,
@@ -216,7 +216,7 @@ Refer [here](../../ws/private-data-api.md#error-codes-2) for the error codes
 
 {% tabs %}
 {% tab title="Subscription" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/trades",
   "sid": 16,
@@ -228,7 +228,7 @@ Refer [here](../../ws/private-data-api.md#error-codes-2) for the error codes
 {% endtab %}
 
 {% tab title="RFQTrade" %}
-```javascript
+```json
 {
   "q": "v1/exchange.market/trades",
   "sid": 3,

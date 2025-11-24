@@ -116,7 +116,7 @@ qualifier: v1/exchange.reporting/mp/quotes
 
 {% tabs %}
 {% tab title="Request" %}
-```javascript
+```json
 {
   "q": "v1/exchange.reporting/mp/quotes",
   "sid": 10,
@@ -130,7 +130,7 @@ qualifier: v1/exchange.reporting/mp/quotes
 {% endtab %}
 
 {% tab title="Response" %}
-```javascript
+```json
 {
   "q": "v1/exchange.reporting/mp/quotes",
   "sid": 10,
@@ -172,6 +172,4 @@ qualifier: v1/exchange.reporting/mp/quotes
 ```
 {% endtab %}
 {% endtabs %}
-
-
 
