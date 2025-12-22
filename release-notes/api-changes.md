@@ -1,5 +1,17 @@
 # API Changes
 
+## v1.51.0 (2025-12-23)
+
+**WS API-**
+
+* Added supporting flow=ThirdPartyLockedIn for MP Trade Reporting
+* Deprecated `modifyOrder`&#x20;
+* Added `settlementDate` and `periodCode` to the `instrumentList` and `instrumentListWithPagination`
+
+**FIX API-**
+
+* Added `SettlDate(64)` and `20041(Custom tag-periodCode)` for the `SecurityList(y)` message.
+
 ## v1.50.1 (2025-11-24)
 
 **WS API-**
