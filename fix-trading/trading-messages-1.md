@@ -9,6 +9,8 @@ There are 2 drop copy services provided by Exberry:
 
 Drop copy can be published for single market participant (MP) or for group of MPs that are pre-configured by exchange operations team.
 
+<mark style="color:blue;">(NEW v1.51.0)</mark> In case of ThirdPartyLockedIn MP trade reporting, TradeReports are returned to their Reporting MP in addition to Buy MP and Sell MP.
+
 MP name will always be added as additional party with the below parameters:
 
 * 448 (PartyID) = MP Name&#x20;
@@ -106,7 +108,7 @@ Trade cancellation trade reports works exactly the same as trade report.
 
 ### Request/ Response Messages
 
-<table><thead><tr><th width="177">Message</th><th width="184">Success Message</th><th>Failure Message</th><th>No Result</th></tr></thead><tbody><tr><td><a href="https://docs.exberry.io/fix-trading/trading-messages-1#tradecapturereportrequest-ad">TradeCaptureReportRequest</a>(AD)</td><td><ul><li>TradeCaptureReportRequestAck (Accepted)(AQ)</li></ul><ul><li>TradeCaptureReport(AE)</li></ul></td><td><ul><li>TradeCaptureReportRequestAck (Rejected)(AQ)</li></ul></td><td><ul><li>TradeCaptureReportRequestAck(Success)(AQ)</li><li>TradeCaptureReportRequestAck(Rejected)(AQ)</li></ul></td></tr><tr><td><a href="https://docs.exberry.io/fix-trading/trading-messages-1#ordermassstatusrequest-af">OrderMassStatusRequest</a>(AF)</td><td><ul><li>Execution Reports(8)</li></ul></td><td><p>One of the below:</p><ul><li>BusinessMessageReject(j)</li><li>Reject(3)</li></ul></td><td><ul><li>Execution Reports (Rejected status)(8)</li></ul></td></tr></tbody></table>
+<table><thead><tr><th width="177">Message</th><th width="184">Success Message</th><th>Failure Message</th><th>No Result</th></tr></thead><tbody><tr><td><a href="https://docs.exberry.io/fix-trading/trading-messages-1#tradecapturereportrequest-ad">TradeCaptureReportRequest</a>(AD)</td><td><ul><li>TradeCaptureReportRequestAck (Accepted)(AQ)</li><li>TradeCaptureReport(AE)</li></ul></td><td><ul><li>TradeCaptureReportRequestAck (Rejected)(AQ)</li></ul></td><td><ul><li>TradeCaptureReportRequestAck(Success)(AQ)</li><li>TradeCaptureReportRequestAck(Rejected)(AQ)</li></ul></td></tr><tr><td><a href="https://docs.exberry.io/fix-trading/trading-messages-1#ordermassstatusrequest-af">OrderMassStatusRequest</a>(AF)</td><td><ul><li>Execution Reports(8)</li></ul></td><td><p>One of the below:</p><ul><li>BusinessMessageReject(j)</li><li>Reject(3)</li></ul></td><td><ul><li>Execution Reports (Rejected status)(8)</li></ul></td></tr></tbody></table>
 
 ## Messages Specifications
 

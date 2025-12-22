@@ -22,7 +22,7 @@ The request has all fields of Admin API[ Trade Entry](https://documenter.getpost
 
 In case `AllegedSystemMatch`, MPs can populate `parties` and `accountType` only for their side of the trade.
 
-<table><thead><tr><th width="152">Parameter</th><th width="87.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>flow</td><td>Enum</td><td><p>One of the below options:</p><ul><li>LockedIn - trade is locked-in and no additional action is required from counterparty MP</li><li>AllegedSystemMatch - the trade should be matched by the system with an Alleged Trade reported by the counterparty MP</li></ul></td></tr><tr><td>externalTradeId <code>optional</code></td><td>Long</td><td><p>Unique identifier assigned by the MPs for a trade.<br></p><p>Required for flow=AllegedSystemMatch</p><p>Optional for flow=LockedIn(no functional use, just external id for reference)</p><p></p><p>Value can’t be reused by the reported MP of an alleged trade for the same instrument, to create another alleged trade, only when the alleged trade is Active.</p></td></tr></tbody></table>
+<table><thead><tr><th width="152">Parameter</th><th width="87.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>flow</td><td>Enum</td><td><p>One of the below options:</p><ul><li>LockedIn - trade is locked-in and no additional action is required from counterparty MP</li><li>AllegedSystemMatch - the trade should be matched by the system with an Alleged Trade reported by the counterparty MP</li><li><mark style="color:blue;">(NEW v1.51.0)</mark> ThirdPartyLockedIn - Third-party reporting of Locked-In Trades</li></ul></td></tr><tr><td>externalTradeId <code>optional</code></td><td>Long</td><td><p>Unique identifier assigned by the MPs for a trade.<br></p><p>Required for flow=AllegedSystemMatch</p><p>Optional for flow=LockedIn/<mark style="color:blue;">(NEW v1.51.0)</mark> ThirdPartyLockedIn(no functional use, just external id for reference)</p><p></p><p>Value can’t be reused by the reported MP of an alleged trade for the same instrument, to create another alleged trade, only when the alleged trade is Active.</p></td></tr></tbody></table>
 
 ### **Response (**&#x4C;ockedIn)
 
@@ -38,7 +38,7 @@ In case `AllegedSystemMatch`, MPs can populate `parties` and `accountType` only 
 
 Same as Amin API Trade Entry with the exceptions below.
 
-<table><thead><tr><th width="128">Code</th><th>Message</th></tr></thead><tbody><tr><td>100</td><td><mark style="color:blue;">(NEW v1.41.0)</mark> <code>Party of source = [ConfiguredParty.source] and role=[ConfiguredParty.role] is required on [Side] side</code></td></tr><tr><td>1001</td><td><code>Wrong [FieldName]</code> </td></tr><tr><td>1002</td><td><code>externalTradeId is already in use</code></td></tr><tr><td>1007</td><td><code>Invalid session</code></td></tr><tr><td>1008</td><td><code>Insufficient permissions</code></td></tr><tr><td>1010</td><td><code>Instrument [Instrument] not found</code> or<br><code>[mpName] not found</code></td></tr><tr><td>1011</td><td><code>Permission denied for this instrument</code></td></tr><tr><td>1020</td><td><code>Unsupported counterparty</code> or<br><code>Unsupported flow</code><br><code>Values for [FieldName] not allowed for counterparty side</code></td></tr><tr><td>1032</td><td><code>Party is not allowed</code><br><code>Account not found</code></td></tr></tbody></table>
+<table><thead><tr><th width="128">Code</th><th>Message</th></tr></thead><tbody><tr><td>100</td><td><mark style="color:blue;">(NEW v1.41.0)</mark> <code>Party of source = [ConfiguredParty.source] and role=[ConfiguredParty.role] is required on [Side] side</code></td></tr><tr><td>1001</td><td><code>Wrong [FieldName]</code> </td></tr><tr><td>1002</td><td><code>externalTradeId is already in use</code></td></tr><tr><td>1007</td><td><code>Invalid session</code></td></tr><tr><td>1008</td><td><code>Insufficient permissions</code></td></tr><tr><td>1010</td><td><code>Instrument [Instrument] not found</code> or<br><code>[mpName] not found</code></td></tr><tr><td>1011</td><td><code>Permission denied for this instrument</code></td></tr><tr><td>1020</td><td><code>Unsupported counterparty</code> <br><code>Unsupported flow</code><br><code>Values for [FieldName] not allowed for counterparty side</code><br><code>At least one side of the trade should be the reporting MP</code></td></tr><tr><td>1032</td><td><p><code>Party is not allowed</code><br></p><p><code>Account not found</code></p></td></tr></tbody></table>
 
 
 
@@ -119,10 +119,47 @@ Same as Amin API Trade Entry with the exceptions below.
 {% endcode %}
 {% endtab %}
 
+{% tab title="(NEW v1.51.0) Request-ThirdPartyLockedIn" %}
+```json
+{
+  "q": "v1/exchange.market/createTradeReport",
+  "sid": 19,
+  "d": {
+    "type": "EFP",
+    "flow": "ThirdPartyLockedIn",
+    "price": 0.01,
+    "quantity": 1,
+    "instrument": "GOLD/USD",
+    "externalTradeId": 3322,
+    "buy": {
+      "mpName": "JPM1",
+      "parties": [
+        {
+          "id": "5838",
+          "role": 24,
+          "source": "P"
+        }
+      ]
+    },
+    "sell": {
+      "mpName": "JPM3",
+      "parties": [
+        {
+          "id": "518",
+          "role": 24,
+          "source": "P"
+        }
+      ]
+    }
+  }
+}
+```
+{% endtab %}
+
 {% tab title="Success Response" %}
 {% code overflow="wrap" %}
 ```json
-// LockedIn
+// LockedIn & (NEW v1.51.0) ThirdPartyLockedIn
 {
   "q": "v1/exchange.market/createTradeReport",
   "sid": 1,
@@ -140,6 +177,8 @@ Same as Amin API Trade Entry with the exceptions below.
     "allegedTradeId": 9
   }
 }
+
+
 ```
 {% endcode %}
 {% endtab %}

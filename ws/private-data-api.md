@@ -6,6 +6,8 @@ Private data API enables market participants to receive additional copies of the
 
 Private data API can be consumed for single market participant (MP) or for group of MPs that are pre-configured by exchange operations team.&#x20;
 
+<mark style="color:blue;">(NEW v1.51.0)</mark> In case of ThirdPartyLockedIn MP trade reporting, TradeReports are returned to their Reporting MP in addition to Buy MP and Sell MP.
+
 ### Account Assignment
 
 An account can be assigned at API Key level. If assigned,&#x20;

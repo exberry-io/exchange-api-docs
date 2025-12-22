@@ -33,8 +33,7 @@ An MP Group is an optional grouping mechanism that combines multiple Market Part
 
 * Commonly used when a clearing firm supervises multiple trading members, or when firms require consolidated data across several MPs.
 * Access and management of MP groups can be done via API.
-* This feature enables aggregated views across related participants.\
-
+* This feature enables aggregated views across related participants.<br>
 
 #### Additional Order-Level Parties
 

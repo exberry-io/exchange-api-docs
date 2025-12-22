@@ -289,7 +289,7 @@ targetParty specification:&#x20;
 {% endtab %}
 {% endtabs %}
 
-## modifyOrder <mark style="color:red;">(NEW v1.48.0 To be Deprecated)</mark>
+## modifyOrder <mark style="color:red;">(NEW v1.51.0 Deprecated)</mark>
 
 The `modifyOrder` API is used to reduce the order quantity without losing the time priority.
 
