@@ -1,5 +1,11 @@
 # API Changes
 
+## v1.52.0 (2026-02-02)
+
+**FIX API-**
+
+* Added custom tags `20042`, `20043`, `20044`, `20045` to `SecurityList(y)` for price limits in absolute value
+
 ## v1.51.0 (2025-12-23)
 
 **WS API-**
