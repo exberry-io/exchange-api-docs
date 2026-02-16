@@ -1,5 +1,11 @@
 # API Changes
 
+## v1.53.0 (2026-02-18)
+
+**General-**
+
+* Added Market If Touched (MIT) and Limit If Touched (LIT) order types.
+
 ## v1.52.0 (2026-02-03)
 
 **FIX API-**
