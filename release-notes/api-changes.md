@@ -8,6 +8,8 @@
 
 ## v1.52.0 (2026-02-03)
 
+## v1.52.0 (2026-02-03)
+
 **FIX API-**
 
 * Added custom tags `20042`, `20043`, `20044`, `20045` to `SecurityList(y)` for price limits in absolute value

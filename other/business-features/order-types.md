@@ -1,42 +1,71 @@
 # Order Types
 
-## Stop and Stop Limit Orders
+## **Limit**&#x20;
 
-### General
+A Limit order is an order to trade at a defined price(limit price) or better. Buy orders execute at or below the limit price. Sell orders execute at or above the limit price.
 
-Stop & StopLimit are not allowed to be placed during an auction.&#x20;
+## Market
 
-Replacement of Stop & StopLimit is allowed only before injection.&#x20;
+A market order is an order to buy or sell immediately at the best available prices. In case of a partial fill, the remaining order quantity is cancelled without resting on the book.
 
-Stop and StopLimit are not being published in the MD APIs and only shown in Private Data APIs:
+## Stop, Stop Limit, <mark style="color:blue;">(NEW v1.53.0)</mark> MIT and LIT
 
-* Mass Order Status (WS) / Order Mass Status Request (FIX)
-* Execution Reports (Both WS and FIX)
-* Order History (WS & Admin UI)
+### Stop and MIT
 
-Once Stop / StopLimit orders are triggered and injected to the order book it will published in the MD like any regular order.
+Stop/ Market If Touched is an order that stays in Suspended state (not eligible to trade) until the stop price is reached. Once triggered, it will behave similar to a Market Order.&#x20;
 
+### Stop Limit and LIT
 
+Stop Limi/ Limit If Touched is an order that stays in Suspended state (not eligible to trade) until the stop price is reached. Once triggered, it will behave similar to a Limit Order.
 
-### Trigger Rules
+### Usage
 
-The Stop and StopLimit orders will be injected into the order book by those rules:
+| Usage                         | Order Types           |
+| ----------------------------- | --------------------- |
+| Stop loss (long positions)    | Sell Stop, StopLimit  |
+| Stop loss (short positions)   | Buy MIT, LIT          |
+| Take Profit (long positions)  | Sell MIT, LIT         |
+| Take Profit (short positions) | Buy Stop, StopLimit   |
 
-* For buy orders → In case the stopPrice is lower or equal to the market price
-* For sell orders → In case the stopPrice is higher or equal to the market price
-* An incoming Stop / StopLimit Order will be injected immediately  if the stop price is already met.
-  * Order will be immediately injected only in case there was an order book execution since last time market opened. (so on 24/7 it will always take last execution and non 24 hours calendars it will only use executed trade since today market open.)
-* If taker order is executed against multiple resting orders, The Stop / StopLimit orders must be injected into order book only after place (taker) order operation is completed. If during any execution, the stop price is triggered, the order must be injected into order book. Even in case that after place (taker) order operation is completed the price has changed and it no longer meets the rules of the trigger, the order will still be injected into the book.
-* System will inject orders that were triggered only when the marketStatus = "Opened" & tradingStatus = "Trade".
-  * When it might happen:
+### Common Rules
+
+* Not allowed to be placed during an auction.&#x20;
+* Replacement is allowed only before triggering.&#x20;
+* Not published in the MD APIs before triggering and only shown in Private Data APIs
+  * Mass Order Status (WS) / Order Mass Status Request (FIX)
+  * Execution Reports (Both WS and FIX)
+  * Order History (WS & Admin UI)
+
+When triggered and injected to the order book it will published in MD like any regular order.
+
+#### Trigger Rules
+
+| Order Types                                 | Trigger Condition         |
+| ------------------------------------------- | ------------------------- |
+| <p>Buy Stop, StopLimit<br>Sell MIT, LIT</p> | Stop Price ≤ Market Price |
+| <p>Sell Stop, StopLimit<br>Buy MIT, LIT</p> | Stop Price ≥ Market Price |
+
+* An incoming order will be injected immediately if the trigger condition is already met.
+  * Only in case there was an order book execution since last market opened time. (On 24/7 it will always take last execution and non 24 hours calendars it will only use executed trade since today market open.)
+* If taker order is executed against multiple resting orders, the Stop / StopLimit / MIT / LIT orders are injected into order book only after place (taker) order operation is complete. In case of multiple execution at multiple price levels, all orders met the trigger conditions are injected irrespective of whether the last execution price meets the trigger condition or not.&#x20;
+* System injects orders that were triggered only when the marketStatus = "Opened" & tradingStatus = "Trade".
+  * When it occurs:
     * on auction ends and it changes the market status from `AuctionCrossing` to `Opened`
     * on auto calendar event (start time) and the market status changes to `Opened`
     * on manual calendar changes and the market status changes to `Opened`
     * on manual resume and the trading status changes to `TRADE`
     * on auto resume and the trading status changes to `TRADE`
-* After auction system will triggered Stop and Stop Limit orders according to the auction price (for Equilibrium Price Auctions) or according to the highest and lowest execution prices (for Price & Time Auction)
+* After auction, the system triggers Stop, StopLimit, MIT, LIT orders according to the auction price (for Equilibrium Price Auctions) or according to the highest and lowest execution prices (for Price & Time Auction)
 
+## Market to Limit Orders
 
+* Order that executes with the best available price of the contra side of the order book at entry.
+* After executing up to the maximum quantity possible, any remaining quantity rests on the order book as a limit order, with a limit price equal to the executed price at entry.
+* Supported timeInForce : GTC/ GTD/ DAY/ IOC/ FOK
+* Supported trading Mode:&#x20;
+  1. continues trading&#x20;
+  2. auction (only already resting orders are supported)
+* Replacement of the order is not allowed. Modification is allowed.
 
 ## Reserve Orders
 
@@ -54,7 +83,7 @@ The exchange supports below `displayMethods`:
 * After executing up to the maximum possible at the entry, the order rests on the book subjected to the maximum of `displayQuantity`
 * System replenishes the display quantity when it is fully executed.
 * Reserve orders are supported with
-  * orderType : Limit and StopLimit
+  * orderType : Limit, StopLimit and LIT
   * timeInForce : GTC/ GTD/ DAY
   * during continues trading and auctions
 * Refer [here](implied-orders/) for the behavior in case of implied orders.
@@ -87,14 +116,3 @@ The exchange supports below `displayMethods`:
 * If applicable, replenishment of orders occurs as the final step of the auction crossing.
 * The display quantity of an order could be a taker since all orders will be rested on the book prior to the crossing.
 
-
-
-## Market to Limit Orders
-
-* Order that executes with the best available price of the contra side of the order book at entry.
-* After executing up to the maximum quantity possible, any remaining quantity rests on the order book as a limit order, with a limit price equal to the executed price at entry.
-* Supported timeInForce : GTC/ GTD/ DAY/ IOC/ FOK
-* Supported trading Mode:&#x20;
-  1. continues trading&#x20;
-  2. auction (only already resting orders are supported)
-* Replacement of the order is not allowed. Modification is allowed.
