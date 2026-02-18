@@ -111,8 +111,7 @@ Trade Cancel Message indicates that a Trade was canceled.&#x20;
 #### **Instrument Status Message**
 
 Instrument Status Message indicates that instrument status was changed.\
-This message specify only the data that was actually changed, to get the snapshot of current instruments status you should use `orderBookState`\
-
+This message specify only the data that was actually changed, to get the snapshot of current instruments status you should use `orderBookState`<br>
 
 Notes:&#x20;
 
