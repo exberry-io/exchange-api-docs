@@ -10,7 +10,7 @@ qualifier: v1/exchange.reporting/mp/holdingsSummary
 
 ### Request
 
-<table><thead><tr><th width="164.33333333333331">Parameter</th><th width="105.2222900390625">Type</th><th>Description</th></tr></thead><tbody><tr><td>groupBy <code>optional</code></td><td>eNum</td><td><p>One of the below options:</p><p>- MP: aggregation will be by MP</p><p>- Account: aggregation will be by account<br></p><p>Group by will always be by asset &#x26; eod date, and in addition the above selection</p></td></tr><tr><td>eodDateFrom  <code>optional</code></td><td>Date</td><td>Search for the holdings that EOD date ≥ eodDateFrom <br>Format: YYYY-MM-DD</td></tr><tr><td>eodDateTo  <code>optional</code></td><td>Date</td><td>Search for the holdings that EOD date&#x3C; eodDateTo<br>Format: YYYY-MM-DD</td></tr><tr><td>mpId  <code>optional</code></td><td>int</td><td>Search for the holdings by MP Id</td></tr><tr><td>ledgerAaccountId  <code>optional</code></td><td>int</td><td>Search for the holdings by ledger account id</td></tr><tr><td>assetId  <code>optional</code></td><td>int</td><td>Search for the holdings by asset Id</td></tr><tr><td>limit  <code>optional</code></td><td>int </td><td><p>How many records to include in each page </p><p></p><p>If nothing was sent default is 25</p><p>Max value = 100</p></td></tr><tr><td>offset  <code>optional</code></td><td>int</td><td><p>Which record to start send from (if you want page 3 and there are 50 records per page offset should be 150) </p><p>If nothing was sent default is 0 (=first record)</p></td></tr></tbody></table>
+<table><thead><tr><th width="164.33333333333331">Parameter</th><th width="105.2222900390625">Type</th><th>Description</th></tr></thead><tbody><tr><td>groupBy <code>optional</code></td><td>eNum</td><td><p>One of the below options:</p><p>- MP: aggregation will be by MP</p><p>- Account: aggregation will be by account<br></p><p>Group by will always be by asset &#x26; eod date, and in addition the above selection</p></td></tr><tr><td>eodDateFrom  <code>optional</code></td><td>Date</td><td>Search for the holdings that EOD date ≥ eodDateFrom <br>Format: YYYY-MM-DD</td></tr><tr><td>eodDateTo  <code>optional</code></td><td>Date</td><td>Search for the holdings that EOD date&#x3C; eodDateTo<br>Format: YYYY-MM-DD</td></tr><tr><td>mpId  <code>optional</code></td><td>int</td><td>Search for the holdings by MP Id</td></tr><tr><td>ledgerAccountId  <code>optional</code></td><td>int</td><td>Search for the holdings by ledger account id</td></tr><tr><td>assetId  <code>optional</code></td><td>int</td><td>Search for the holdings by asset Id</td></tr><tr><td>limit  <code>optional</code></td><td>int </td><td><p>How many records to include in each page </p><p></p><p>If nothing was sent default is 25</p><p>Max value = 100</p></td></tr><tr><td>offset  <code>optional</code></td><td>int</td><td><p>Which record to start send from (if you want page 3 and there are 50 records per page offset should be 150) </p><p>If nothing was sent default is 0 (=first record)</p></td></tr></tbody></table>
 
 ### **Response**
 
@@ -124,7 +124,7 @@ qualifier:v1/exchange.reporting/mp/transactions
 
 ### Request
 
-<table><thead><tr><th width="164.33333333333331">Parameter</th><th width="123">Type</th><th>Description</th></tr></thead><tbody><tr><td>dateFrom <code>optional</code></td><td>DateTime</td><td>Search for the transactions that Timestamp ≥ dateFrom<br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>dateTo <code>optional</code></td><td>DateTime</td><td>Search for the transactions that Timestamp &#x3C; dateTo<br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>assetId <code>optional</code></td><td>int</td><td>Search by assetId</td></tr><tr><td>mpId <code>optional</code></td><td>int</td><td>Search by mpId</td></tr><tr><td>ledgerAaccountId <code>optional</code></td><td>int</td><td>Search by Ledger account id</td></tr><tr><td>transactionId <code>optional</code></td><td>int</td><td>Search by transactionId</td></tr><tr><td>transactionTypes <code>optional</code></td><td>eNum[]</td><td><p>Search by list of transaction types.</p><p></p><p>Any combination of the below values:</p><p>- Deposit</p><p>- Withdrawal</p><p>- Adjustment</p><p>- Trade</p><p>- DvP</p><p>- RvP</p><p>- FoP</p><p>- CashTransfer</p><p>- DvD</p><p></p><p>Empty = All except:</p><p>- ReserveBalance </p><p>- ReleaseBalance</p></td></tr><tr><td>limit <code>optional</code></td><td>int </td><td><p>How many records to include in each page </p><p></p><p>If nothing was sent default is 25</p><p>Max value = 100</p></td></tr><tr><td>offset <code>optional</code></td><td>int</td><td><p>Which record to start send from (if you want page 3 and there are 50 records per page offset should be 150) </p><p>If nothing was sent default is 0 (=first record)</p></td></tr></tbody></table>
+<table><thead><tr><th width="164.33333333333331">Parameter</th><th width="123">Type</th><th>Description</th></tr></thead><tbody><tr><td>dateFrom <code>optional</code></td><td>DateTime</td><td>Search for the transactions that Timestamp ≥ dateFrom<br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>dateTo <code>optional</code></td><td>DateTime</td><td>Search for the transactions that Timestamp &#x3C; dateTo<br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>assetId <code>optional</code></td><td>int</td><td>Search by assetId</td></tr><tr><td>mpId <code>optional</code></td><td>int</td><td>Search by mpId</td></tr><tr><td>ledgerAccountId <code>optional</code></td><td>int</td><td>Search by Ledger account id</td></tr><tr><td>transactionId <code>optional</code></td><td>int</td><td>Search by transactionId</td></tr><tr><td>transactionTypes <code>optional</code></td><td>eNum[]</td><td><p>Search by list of transaction types.</p><p></p><p>Any combination of the below values:</p><p>- Deposit</p><p>- Withdrawal</p><p>- Adjustment</p><p>- Trade</p><p>- DvP</p><p>- RvP</p><p>- FoP</p><p>- CashTransfer</p><p>- DvD</p><p></p><p>Empty = All except:</p><p>- ReserveBalance </p><p>- ReleaseBalance</p></td></tr><tr><td>limit <code>optional</code></td><td>int </td><td><p>How many records to include in each page </p><p></p><p>If nothing was sent default is 25</p><p>Max value = 100</p></td></tr><tr><td>offset <code>optional</code></td><td>int</td><td><p>Which record to start send from (if you want page 3 and there are 50 records per page offset should be 150) </p><p>If nothing was sent default is 0 (=first record)</p></td></tr></tbody></table>
 
 ### **Response**
 
@@ -577,6 +577,136 @@ qualifier: v1/exchange.reporting/mp/allegedTransfers
   }
 }
     "count": 3
+  }
+}
+```
+{% endtab %}
+{% endtabs %}
+
+
+
+## <mark style="color:blue;">(NEW v1.54)</mark> Fees
+
+&#x20;`Fees` API is used to retrieve a list of Fees.
+
+{% hint style="info" %}
+qualifier: v1/exchange.reporting/mp/fees
+{% endhint %}
+
+### Request
+
+<table><thead><tr><th width="164.33333333333331">Parameter</th><th width="105.2222900390625">Type</th><th>Description</th></tr></thead><tbody><tr><td>groupBy <code>optional</code></td><td>eNum</td><td><p>One of the below options:<br>- Type: Group by: Date, MP, Account, Type and FeeAsset</p><p>- Account: Group by: Date, MP, Account, FeeAsset</p><p>- MP: Group by: Date, MP and FeeAsset</p><p></p><p>If not sent, do not group and response with entries as recorded in system:<br>- Recurring fees: Date, MP, Account, Type, SubType, feeAssetId and ,targetEentity<br>- Manual fee entries</p></td></tr><tr><td>dateFrom  <code>optional</code></td><td>Date</td><td>search for the fees that date ≥ dateFrom<br>Format: YYYY-MM-DD</td></tr><tr><td>dateTo  <code>optional</code></td><td>Date</td><td>search for the fees that date&#x3C; dateTo<br>Format: YYYY-MM-DD</td></tr><tr><td>mpId  <code>optional</code></td><td>int</td><td>Search for the fees by MP (by ID)</td></tr><tr><td>ledgerAccountId  <code>optional</code></td><td>int</td><td>Search for the fees by ledger account id</td></tr><tr><td>feeAssetId  <code>optional</code></td><td>int</td><td>Search for the fees by fee asset (by ID)</td></tr><tr><td>types <code>optional</code></td><td>[ ]eNum</td><td>Search for the fees by types</td></tr><tr><td>subTypes <code>optional</code></td><td>[ ]eNum</td><td>Search for the fees by sub-types</td></tr><tr><td>orderBy <code>optional</code></td><td>object</td><td><p>Optional</p><p>object with 2 parameters:<br>- field (String)<br>- direction (Asc, Desc) direction<br></p><p>Allowed values for field:<br>- date<br>- mpId<br>- ledgerAccountId<br></p><p>If nothing or invalid field / direction was sent the default is [date, Asc, ledgerAccountId Asc]</p></td></tr><tr><td>limit  <code>optional</code></td><td>int </td><td><p>How many records to include in each page </p><p></p><p>If nothing was sent default is 25</p><p>Max value = 100</p></td></tr><tr><td>offset  <code>optional</code></td><td>int</td><td><p>Which record to start send from (if you want page 3 and there are 50 records per page offset should be 150) </p><p>If nothing was sent default is 0 (=first record)</p></td></tr></tbody></table>
+
+### **Response**
+
+&#x20;`Fees` response provides list of all fees for the requested dates.
+
+<table><thead><tr><th width="199.7777099609375">Field</th><th>Description</th></tr></thead><tbody><tr><td>date</td><td>Date of the fee<br>Format: YYYY-MM-DD</td></tr><tr><td>mpId</td><td>MP Id</td></tr><tr><td>mpName</td><td>MP Name</td></tr><tr><td>ledgerAccountId</td><td>Id of the Ledger Account that the asset balance is held</td></tr><tr><td>ledgerAccountName</td><td>Ledger account name</td></tr><tr><td>type</td><td><p>Type</p><p>Available values:<br>- Trading<br>- Transaction<br>- Storage<br>- Manual</p></td></tr><tr><td>subType</td><td><p>SubType</p><p>Available values:</p><p>When type=Trading<br>- CLOB<br>- RFQ<br>- Type values of <a href="https://documenter.getpostman.com/view/6229811/TzCV3jcq#909a5a9c-3385-43af-9569-ea3168a331e9">Trade Entry</a><br><br>When type=Transaction: transactionTypes of <a href="reporting.md#transactions">Transactions</a><br><br>When type=Manual<br>- DeliveryCharge<br>- Rebate<br>- Other</p></td></tr><tr><td>description</td><td>Description of the manual fee entry</td></tr><tr><td>fee</td><td><p>Fee</p><p>Value is summed in case of group by</p></td></tr><tr><td>feeAssetId</td><td>Fee Asset ID</td></tr><tr><td>feeAssetName</td><td>Fee Asset Name</td></tr></tbody></table>
+
+### **Error Codes**
+
+<table><thead><tr><th width="152">Code</th><th>Message</th></tr></thead><tbody><tr><td>1</td><td><code>Temporary failure to retrieve this data</code></td></tr><tr><td>1001</td><td><code>Wrong [FieldName] format</code> <br><code>dateTo must be greater than dateFrom</code></td></tr><tr><td>1007</td><td><code>Invalid session</code></td></tr><tr><td>1008</td><td><code>Insufficient permissions</code></td></tr></tbody></table>
+
+### **Samples**
+
+{% tabs %}
+{% tab title="Request" %}
+```json
+{
+  "q": "v1/exchange.reporting/mp/fees",
+  "sid": 53,
+  "d": {
+    "dateFrom": "2026-03-01",
+    "ledgerAccountId": "826",
+    "groupBy": "Type",
+    "types": [
+      "Trading",
+      "Transaction",
+      "Storage",
+      "Manual"
+    ],
+    "limit": 25,
+    "offset": 0
+  }
+}
+```
+{% endtab %}
+
+{% tab title="Response" %}
+```json
+{
+  "q": "v1/exchange.reporting/mp/fees",
+  "sid": 53,
+  "d": {
+    "fees": [
+      {
+        "date": "2026-03-05",
+        "mpId": 15,
+        "mpName": "JPM2",
+        "ledgerAccountId": 826,
+        "ledgerAccountName": "Acc6",
+        "type": "Storage",
+        "fee": 0.04,
+        "feeAssetId": 44,
+        "feeAssetName": "USD"
+      },
+      {
+        "date": "2026-03-06",
+        "mpId": 15,
+        "mpName": "JPM2",
+        "ledgerAccountId": 826,
+        "ledgerAccountName": "Acc6",
+        "type": "Storage",
+        "fee": 0.04,
+        "feeAssetId": 44,
+        "feeAssetName": "USD"
+      },
+      {
+        "date": "2026-03-07",
+        "mpId": 15,
+        "mpName": "JPM2",
+        "ledgerAccountId": 826,
+        "ledgerAccountName": "Acc6",
+        "type": "Storage",
+        "fee": 0.04,
+        "feeAssetId": 44,
+        "feeAssetName": "USD"
+      },
+      {
+        "date": "2026-03-08",
+        "mpId": 15,
+        "mpName": "JPM2",
+        "ledgerAccountId": 826,
+        "ledgerAccountName": "Acc6",
+        "type": "Storage",
+        "fee": 0.04,
+        "feeAssetId": 44,
+        "feeAssetName": "USD"
+      },
+      {
+        "date": "2026-03-09",
+        "mpId": 15,
+        "mpName": "JPM2",
+        "ledgerAccountId": 826,
+        "ledgerAccountName": "Acc6",
+        "type": "Storage",
+        "fee": 0.04,
+        "feeAssetId": 44,
+        "feeAssetName": "USD"
+      },
+      {
+        "date": "2026-03-10",
+        "mpId": 15,
+        "mpName": "JPM2",
+        "ledgerAccountId": 826,
+        "ledgerAccountName": "Acc6",
+        "type": "Storage",
+        "fee": 0.04,
+        "feeAssetId": 44,
+        "feeAssetName": "USD"
+      }
+    ],
+    "count": 6
   }
 }
 ```

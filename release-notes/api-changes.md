@@ -1,5 +1,15 @@
 # API Changes
 
+## v1.54.0 (2026-03-17)
+
+**Ledger-**
+
+* Added [#new-v1.54-fees](../other/business-features/ledger/participant-apis/reporting.md#new-v1.54-fees "mention")
+
+**FIX API-**
+
+* Added `ContractMultiplierUnit(1435)`, `Custom tag(20046)`, and `PriceUnitOfMeasure(1191)` to `SecurityList(y)`&#x20;
+
 ## v1.53.0 (2026-02-18)
 
 **General-**
