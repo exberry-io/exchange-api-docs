@@ -96,5 +96,17 @@ List of balances
 }
 ```
 {% endtab %}
+
+{% tab title="Empty Response" %}
+```json
+{
+  "q": "v1/exchange.ledger/accountBalance",
+  "sid": 55,
+  "d": {
+    "balances": []
+  }
+}
+```
+{% endtab %}
 {% endtabs %}
 
