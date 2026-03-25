@@ -23,9 +23,9 @@ Stop Limi/ Limit If Touched is an order that stays in Suspended state (not eligi
 | Usage                         | Order Types           |
 | ----------------------------- | --------------------- |
 | Stop loss (long positions)    | Sell Stop, StopLimit  |
-| Stop loss (short positions)   | Buy MIT, LIT          |
+| Stop loss (short positions)   | Buy Stop, StopLimit   |
 | Take Profit (long positions)  | Sell MIT, LIT         |
-| Take Profit (short positions) | Buy Stop, StopLimit   |
+| Take Profit (short positions) | Buy MIT, LIT          |
 
 ### Common Rules
 
