@@ -1,5 +1,15 @@
 # API Changes
 
+## v1.55.0 (2026-04-08)
+
+**General-**
+
+* System automatically adds the trader account party if it is not already in the request.
+
+**FIX API-**
+
+* Added  `Custom tag(20047)`, `Custom tag(20048)` and `Custom tag(20049)` to `SecurityList(y)` to support price bands per trade type&#x20;
+
 ## v1.54.0 (2026-03-17)
 
 **Ledger-**

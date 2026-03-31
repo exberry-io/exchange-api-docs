@@ -10,14 +10,13 @@ Private data API can be consumed for single market participant (MP) or for group
 
 ### Account Assignment
 
-An account can be assigned at API Key level. If assigned,&#x20;
-
-* System adds the relevant party/targetParty <mark style="color:blue;">(CHANGED v1.46.0)</mark> ~~(id=accountId, role=1001, source=D)~~ (id=accountId, role=24, source=P) (if not already exist), to the below requests of the API Key.
+* An account can be assigned at API Key level. If assigned, the system adds the relevant party/targetParty <mark style="color:blue;">(CHANGED v1.46.0)</mark> ~~(id=accountId, role=1001, source=D)~~ (id=accountId, role=24, source=P) (if not already exist), to the below requests of the API Key.
   * [placeOrder](trading-api.md#placeorder)
   * [massCancel](trading-api.md#masscancel)
   * [createTradeReport](../other/trade-reporting/trade-report-api.md#createtradereport)
   * [submitRFQ](../other/rfq/initiator-trading.md#submitrfq)
   * [submitQuote](../other/rfq/dealer-trading.md#submitquote)
+* <mark style="color:blue;">(NEW v1.55.0)</mark> In case of a trader session in case the trader is associated with a single account, the system automatically adds the account party (id=accountId, role=24, source=P) (if not already exist) object to the parties.
 * Only the data relevant to the account is visible for the API Key.
 
 
