@@ -10,6 +10,10 @@
 
 * Added  `Custom tag(20047)`, `Custom tag(20048)` and `Custom tag(20049)` to `SecurityList(y)` to support price bands per trade type&#x20;
 
+WS API-
+
+* Fix typos in [#orderbookstate](../ws/market-data.md#orderbookstate "mention")
+
 ## v1.54.0 (2026-03-17)
 
 **Ledger-**

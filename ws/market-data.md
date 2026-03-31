@@ -443,11 +443,11 @@ qualifier:v2/exchange.market/orderBookState
 
 #### **Order Message**
 
-<table><thead><tr><th width="207.33333333333331">Parameter</th><th width="135">Type</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td>String</td><td><strong>Order</strong></td></tr><tr><td>orderId</td><td>Long</td><td>Exchange Order ID</td></tr><tr><td>side</td><td>String</td><td>Buy or Sell</td></tr><tr><td>instrument</td><td>String</td><td>Instrument identifier</td></tr><tr><td>quantity</td><td>Decimal</td><td>Order quantity<br>In case of Iceberg orders, working display quantity</td></tr><tr><td>price</td><td>Decimal</td><td>Order price<br>will be empty for market order only during auction</td></tr><tr><td>lastTrackingNumber</td><td>Long</td><td>Last event trackingNumber</td></tr></tbody></table>
+<table><thead><tr><th width="172.88887532552081">Parameter</th><th width="135">Type</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td>String</td><td><strong>Order</strong></td></tr><tr><td>orderId</td><td>Long</td><td>Exchange Order ID</td></tr><tr><td>side</td><td>String</td><td>Buy or Sell</td></tr><tr><td>instrument</td><td>String</td><td>Instrument symbol</td></tr><tr><td>quantity</td><td>Decimal</td><td>Order quantity<br>In case of Iceberg orders, working display quantity</td></tr><tr><td>price</td><td>Decimal</td><td>Order price<br>will be empty for market order only during auction</td></tr></tbody></table>
 
 #### Instrument Status Message
 
-<table><thead><tr><th width="225">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>InstrumentStatus</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>tradingStatus</td><td>Trade/ Halt</td></tr><tr><td>marketStatus</td><td>Opened/ Closed/ AuctionCall/ AuctionCrossing</td></tr><tr><td>status</td><td>Active</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
+<table><thead><tr><th width="192.77783203125">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>InstrumentStatus</strong></td></tr><tr><td>instrumentId</td><td>Instrument Id</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>tradingStatus</td><td>Trade/ Halt</td></tr><tr><td>marketStatus</td><td>Opened/ Closed/ AuctionCall/ AuctionCrossing</td></tr><tr><td>status</td><td>Active</td></tr></tbody></table>
 
 ### **Error Codes**
 
@@ -472,11 +472,12 @@ qualifier:v2/exchange.market/orderBookState
   "q": "v2/exchange.market/orderBookState",
   "sid": 100,
   "d": {
-    "orderId": 908,
+    "messageType": "Order",
+    "orderId": 5,
     "side": "Buy",
-    "instrument": "AMZ",
-    "quantity": 551.3,
-    "price": 155.33
+    "instrument": "Demo1001",
+    "quantity": 0.8,
+    "price": 123
   }
 }
 ```
@@ -489,10 +490,11 @@ qualifier:v2/exchange.market/orderBookState
   "sid": 100,
   "d": {
     "messageType": "InstrumentStatus",
-    "instrument": "INS1",
-    "tradingStatus": "Trade",
+    "instrumentId": 4165,
+    "instrument": "Demo10",
+    "tradingStatus": "TRADE",
     "marketStatus": "Opened",
-    "status": "Active"
+    "status": "ACTIVE"
   }
 }
 ```
