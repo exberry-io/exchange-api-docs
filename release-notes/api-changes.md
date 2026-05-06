@@ -1,5 +1,21 @@
 # API Changes
 
+## v1.56.0 (2026-05-XX)
+
+**FIX API-**
+
+* Add New Tags on `NewOrderSingle`  , both will be populated into parties element in system:&#x20;
+  * 50 (sendersubID)&#x20;
+  * 1 (Account)
+
+**General-**
+
+* A new Position module that tracks positions on MP and Account levels fully integrated with the existing matching engine.
+* Added supporting Binary Event Contract instruments&#x20;
+* Enhanced the functionality of implied orders. The system considers beneficial ownership when generating implied orders, and prevents self-trades via implied orders.
+* Added additional details to the price band validation error message.
+* Added **System** account to the [LEDGER](../other/business-features/ledger/)
+
 ## v1.55.0 (2026-04-08)
 
 **General-**
@@ -10,7 +26,7 @@
 
 * Added  `Custom tag(20047)`, `Custom tag(20048)` and `Custom tag(20049)` to `SecurityList(y)` to support price bands per trade type&#x20;
 
-WS API-
+**WS API-**
 
 * Fix typos in [#orderbookstate](../ws/market-data.md#orderbookstate "mention")
 
