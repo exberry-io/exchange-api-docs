@@ -47,6 +47,7 @@
     * [APIs](other/business-features/implied-orders/apis.md)
   * [Ledger](other/business-features/ledger/README.md)
     * [Participant APIs](other/business-features/ledger/participant-apis/README.md)
+      * [Trading](other/business-features/ledger/participant-apis/trading.md)
       * [Account Balance](other/business-features/ledger/participant-apis/account-balance.md)
       * [Transaction Requests](other/business-features/ledger/participant-apis/transaction-requests.md)
       * [Alleged Transfers](other/business-features/ledger/participant-apis/alleged-transfers.md)
@@ -54,7 +55,15 @@
       * [Reporting](other/business-features/ledger/participant-apis/reporting.md)
     * [Admin API](other/business-features/ledger/admin-api/README.md)
       * [Asset](other/business-features/ledger/admin-api/asset.md)
+      * [Account](other/business-features/ledger/admin-api/account.md)
       * [Operations](other/business-features/ledger/admin-api/operations.md)
+  * [(NEW v1.56.0) Positions](other/business-features/new-v1.56.0-positions/README.md)
+    * [Admin API](other/business-features/new-v1.56.0-positions/admin-api/README.md)
+      * [Account](other/business-features/new-v1.56.0-positions/admin-api/account.md)
+      * [MP](other/business-features/new-v1.56.0-positions/admin-api/mp.md)
+    * [Reporting](other/business-features/new-v1.56.0-positions/reporting.md)
+  * [(NEW v1.56.0) Binary Event Contracts](other/business-features/new-v1.56.0-binary-event-contracts/README.md)
+    * [Trading](other/business-features/new-v1.56.0-binary-event-contracts/trading.md)
 
 ## Release Notes
 

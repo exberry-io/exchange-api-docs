@@ -1,6 +1,6 @@
 # Reporting
 
-Refer [here](../../ws/reporting-api.md) for mde details on Reporting APIs.
+Refer [here](../../ws/reporting-api.md) for more details on Reporting APIs.
 
 ## RFQs
 
