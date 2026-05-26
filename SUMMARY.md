@@ -57,13 +57,15 @@
       * [Asset](other/business-features/ledger/admin-api/asset.md)
       * [Account](other/business-features/ledger/admin-api/account.md)
       * [Operations](other/business-features/ledger/admin-api/operations.md)
-  * [(NEW v1.56.0) Positions](other/business-features/new-v1.56.0-positions/README.md)
-    * [Admin API](other/business-features/new-v1.56.0-positions/admin-api/README.md)
-      * [Account](other/business-features/new-v1.56.0-positions/admin-api/account.md)
-      * [MP](other/business-features/new-v1.56.0-positions/admin-api/mp.md)
-    * [Reporting](other/business-features/new-v1.56.0-positions/reporting.md)
-  * [(NEW v1.56.0) Binary Event Contracts](other/business-features/new-v1.56.0-binary-event-contracts/README.md)
-    * [Trading](other/business-features/new-v1.56.0-binary-event-contracts/trading.md)
+  * [Positions](other/business-features/positions/README.md)
+    * [Admin API](other/business-features/positions/admin-api/README.md)
+      * [Account](other/business-features/positions/admin-api/account.md)
+      * [MP](other/business-features/positions/admin-api/mp.md)
+    * [Reporting](other/business-features/positions/reporting.md)
+  * [Binary Event Contracts](other/business-features/binary-event-contracts/README.md)
+    * [Trading](other/business-features/binary-event-contracts/trading.md)
+    * [Admin API](other/business-features/binary-event-contracts/admin-api/README.md)
+      * [Resolve Binary Event Contract](other/business-features/binary-event-contracts/admin-api/resolve-binary-event-contract.md)
 
 ## Release Notes
 

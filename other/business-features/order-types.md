@@ -16,7 +16,7 @@ Stop/ Market If Touched is an order that stays in Suspended state (not eligible 
 
 ### Stop Limit and LIT
 
-Stop Limi/ Limit If Touched is an order that stays in Suspended state (not eligible to trade) until the stop price is reached. Once triggered, it will behave similar to a Limit Order.
+Stop Limit/ Limit If Touched is an order that stays in Suspended state (not eligible to trade) until the stop price is reached. Once triggered, it will behave similar to a Limit Order.
 
 ### Usage
 

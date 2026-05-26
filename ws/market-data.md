@@ -28,25 +28,22 @@ There are few message types used to get real time market data:
 * **calendarEndOfDay**
 * <mark style="color:blue;">NEW 1.50</mark> **News**
 
-There is 1 message types used to get indicative prices during auctions:
+There is 1 message type used to get indicative prices during auctions:
 
 * **AuctionIndicativeEP**
 
-**eventId**
-
+**eventId**\
 eventId of the orderBookDepth messages are not sequential. There can be missing eventId values due to activities related to reserve orders, and suspended orders.&#x20;
 
 **Anonymous vs Pseudonymous**\
 Exchange can configure this stream to be anonymous or pseudonymous (mp`Id` is published but not any other market participant details).\
 For anonymous configured streams all the `mpId` and `mpOrderId` data will not be published, except to the market participant that placed the order which will see only its own `mpId` and `mpOrderId` data.
 
-Below messages are generated only for orders with display quantities.
+Below messages are generated only for orders with display quantities:
 
-* #### **Add**
-* #### **Executed**
-* **Cancelled**
-
-
+* **Add**&#x20;
+* **Cancelled**&#x20;
+* **Executed**&#x20;
 
 {% hint style="info" %}
 qualifier: v2/exchange.market/orderBookDepth
@@ -54,7 +51,7 @@ qualifier: v2/exchange.market/orderBookDepth
 
 ### **Request**
 
-<table><thead><tr><th width="146.33333333333331">Parameter</th><th width="75">Type</th><th width="483.66666666666674">Description</th></tr></thead><tbody><tr><td>trackingNumber <code>optional</code></td><td>Long</td><td>Same as defined in executionReports<a data-mention href="market-data.md#request">#request</a></td></tr></tbody></table>
+<table><thead><tr><th width="146.33333333333331">Parameter</th><th width="75">Type</th><th width="483.66666666666674">Description</th></tr></thead><tbody><tr><td>trackingNumber <code>optional</code></td><td>Long</td><td>Same as defined in executionReports <a data-mention href="market-data.md#request">#request</a></td></tr></tbody></table>
 
 ### **Response**
 
@@ -62,7 +59,7 @@ qualifier: v2/exchange.market/orderBookDepth
 
 Add Order Message indicates that a new order has been accepted by the exchange and was added to the book.
 
-<table><thead><tr><th width="223">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>messageType</td><td><strong>Add</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>side</td><td>Buy / Sell</td></tr><tr><td>quantity</td><td>Order quantity</td></tr><tr><td>price</td><td>Order price<br>will be empty for market order only during auction</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
+<table><thead><tr><th width="223">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>messageType</td><td><strong>Add</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td>side</td><td>Buy / Sell</td></tr><tr><td>quantity</td><td>Order quantity</td></tr><tr><td>price</td><td>Order price<br>Will be empty for market order only during auction</td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### **Order Cancel Message**
 
@@ -82,7 +79,7 @@ Order Executed Message indicates that an order on the book is matched with a new
 
 Order Modify Message indicates that an order on the book is being modified <mark style="color:blue;">(NEW v1.48.0)</mark> (without losing priority) or replaced (losing priority) <mark style="color:red;">(REMOVED 1.48.0)</mark> ~~and order quantity was reduced.~~
 
-<table><thead><tr><th width="256">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>Modified</strong></td></tr><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td><mark style="color:blue;">(NEW v1.48.0)</mark> side</td><td>Buy/ Sell</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td><mark style="color:red;">(REMOVED v1.48.0)</mark><br><del>removedQuantity</del></td><td><del>Order quantity that was removed</del></td></tr><tr><td>newQuantity</td><td>Remaining open quantity</td></tr><tr><td><mark style="color:blue;">(NEW v1.48.0)</mark><br>price</td><td>Order price</td></tr><tr><td><mark style="color:blue;">(NEW v1.48.0)</mark><br>lostPriority</td><td><p>Indicates if replaced/modified order has caused an order to lose priority.<br>Allowed values:</p><ul><li>true - order has lost time priority </li><li>false - order has not lost time priority </li></ul></td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
+<table><thead><tr><th width="256">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>Modified</strong></td></tr><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td><mark style="color:blue;">(NEW v1.48.0)</mark> side</td><td>Buy/ Sell</td></tr><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpId</td><td>Market participant ID</td></tr><tr><td>mpOrderId</td><td>Market participant order ID</td></tr><tr><td><mark style="color:red;">(REMOVED v1.48.0)</mark><br><del>removedQuantity</del></td><td><del>Order quantity that was removed</del></td></tr><tr><td>newQuantity</td><td>Remaining open quantity</td></tr><tr><td><mark style="color:blue;">(NEW v1.48.0)</mark><br>price</td><td>Order price</td></tr><tr><td><mark style="color:blue;">(NEW v1.48.0)</mark><br>lostPriority</td><td>Indicates if replaced/modified order has caused an order to lose priority.<br>Allowed values:<br>- true: order has lost time priority<br>- false: order has not lost time priority </td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### **NonDisplayTrade Message**
 
@@ -135,7 +132,7 @@ In case there is no order on one of the side the price and quantity fields will 
 
 For market orders during an auction, system will send the `bestBuyQuantity / bestSellQuantity` corresponding to the market order, if it exists, without a price.&#x20;
 
-<table><thead><tr><th width="264">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>messageType</td><td><strong>AuctionIndicativeEP</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>IndicativePrice</td><td>The indicative price upon which the paired shares and the imbalance quantity are based</td></tr><tr><td>pairedQuantity</td><td>The quantity to be matched at the current indicative price</td></tr><tr><td>imbalanceQuantity</td><td>The absolute value of quantity that would remain unexecuted at the current indicative price.</td></tr><tr><td>imbalanceSide</td><td><p>Buy - Buy side imbalance</p><p>Sell - Sell side imbalance</p><p>None - No imbalance</p><p>NA - no indicative price</p></td></tr><tr><td>bestBuyPrice</td><td>In case of No match - the highest buy order price</td></tr><tr><td>bestBuyQuantity</td><td>In case of No match - the highest buy order quantity</td></tr><tr><td>bestSellPrice</td><td>In case of No match - the lowest sell order price</td></tr><tr><td>bestSellQuantity</td><td>In case of No match - the lowest sell order quantity</td></tr></tbody></table>
+<table><thead><tr><th width="264">Field</th><th>Description</th></tr></thead><tbody><tr><td>eventId</td><td>Identifier for the event, unique per instrument</td></tr><tr><td>messageType</td><td><strong>AuctionIndicativeEP</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds) in GMT</td></tr><tr><td>instrument</td><td>Instrument symbol</td></tr><tr><td>IndicativePrice</td><td>The indicative price upon which the paired shares and the imbalance quantity are based</td></tr><tr><td>pairedQuantity</td><td>The quantity to be matched at the current indicative price</td></tr><tr><td>imbalanceQuantity</td><td>The absolute value of quantity that would remain unexecuted at the current indicative price.</td></tr><tr><td>imbalanceSide</td><td>Buy - Buy side imbalance<br>Sell - Sell side imbalance<br>None - No imbalance<br>NA - no indicative price</td></tr><tr><td>bestBuyPrice</td><td>In case of No match - the highest buy order price</td></tr><tr><td>bestBuyQuantity</td><td>In case of No match - the highest buy order quantity</td></tr><tr><td>bestSellPrice</td><td>In case of No match - the lowest sell order price</td></tr><tr><td>bestSellQuantity</td><td>In case of No match - the lowest sell order quantity</td></tr></tbody></table>
 
 #### News Message <mark style="color:blue;">(New v1.50)</mark>
 
@@ -200,8 +197,7 @@ The news message is published when the exchange operator submits it.
     "mpId": 2,
     "mpOrderId": 1569161878394,
     "cancelledQuantity": 2.2,
-    "trackingNumber": 200,
-    "realBookState": true
+    "trackingNumber": 200
   }
 }
 ```

@@ -12,7 +12,7 @@
 * Added `targetEntityId` and `targetEntityName` to the [#new-v1.54-fees](../other/business-features/ledger/participant-apis/reporting.md#new-v1.54-fees "mention")&#x20;
 * Added `transactionType=Settlement` to [#transactions](../other/business-features/ledger/participant-apis/reporting.md#transactions "mention")
 
-[new-v1.56.0-binary-event-contracts](../other/business-features/new-v1.56.0-binary-event-contracts/ "mention")
+[binary-event-contracts](../other/business-features/binary-event-contracts/ "mention")
 
 * Added Resolve Binary Event Contract
 
