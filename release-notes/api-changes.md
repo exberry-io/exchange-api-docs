@@ -1,5 +1,21 @@
 # API Changes
 
+## v1.57.0 (2026-07-02)
+
+**FIX API-**
+
+* Added `MDEntryID(278)` to the `MarketDataIncrementalRefresh(X)` messages of `MDEntryType(269)=2(Trade)`
+* Bug fix in `SecurityList(y)` , values were switched for `SettlMethod(1193)`
+
+**Ledger-**&#x20;
+
+* Added `targetEntityId` and `targetEntityName` to the [#new-v1.54-fees](../other/business-features/ledger/participant-apis/reporting.md#new-v1.54-fees "mention")&#x20;
+* Added `transactionType=Settlement` to [#transactions](../other/business-features/ledger/participant-apis/reporting.md#transactions "mention")
+
+[new-v1.56.0-binary-event-contracts](../other/business-features/new-v1.56.0-binary-event-contracts/ "mention")
+
+* Added Resolve Binary Event Contract
+
 ## v1.56.0 (2026-05-12)
 
 **FIX API-**
