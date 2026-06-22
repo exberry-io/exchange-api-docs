@@ -1,6 +1,20 @@
 # API Changes
 
-## v1.57.0 (2026-07-04)
+## v1.58.0 (2026-06-24)
+
+**FIX API-**
+
+* Added `Symbol(55)`, parties related fields and corrected the `Side(54)` value of `Rejected(150=8)`  `ExecutionReport(8)` messages
+
+**WS API-**
+
+* Added `realizedPNL` , `unrealizedPNL` , and `marketPrice` to [positions](../other/business-features/positions/ "mention") Report&#x20;
+
+[binary-event-contracts](../other/business-features/binary-event-contracts/ "mention")
+
+* Added creation of EOD positions and clearing the current positions at Resolve Binary Event Contract
+
+## v1.57.0 (2026-06-04)
 
 **FIX API-**
 
