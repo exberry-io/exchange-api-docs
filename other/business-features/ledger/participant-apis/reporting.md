@@ -4,6 +4,8 @@
 
 &#x20;`Holdings Summary` API is used to retrieve a list of holdings.
 
+<mark style="color:blue;">(NEW v1.59.0)</mark> The API doesn’t return entries when eodHoldings=0
+
 {% hint style="info" %}
 qualifier: v1/exchange.reporting/mp/holdingsSummary
 {% endhint %}

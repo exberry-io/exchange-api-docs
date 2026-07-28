@@ -1,5 +1,24 @@
 # API Changes
 
+## v1.59.0 (2026-XX-XX)
+
+**WS API-**
+
+* Added updatedFrom, updatedTo and parties filters to the [#orders-v2-latest](../ws/reporting-api.md#orders-v2-latest "mention")
+* Added parties filter to the [#trades-v3-latest](../ws/reporting-api.md#trades-v3-latest "mention")
+* Bugfix for below APIs to apply the default `limit` & `offset` when they are not included in the request. Before the fix, the APIs return all results.
+  * `v2/exchange.reporting/mp/orders`
+  * `v3/exchange.reporting/mp/trades`
+  * `v1/exchange.reporting/mp/positions`
+* Changed the behavior of the below APIs not to return entries when values are zero
+  * `v1/exchange.reporting/mp/holdingsSummary`
+  * `v1/exchange.reporting/mp/positions`
+* Added rounding to `grossLongAvgPrice,` `grossShortAvgPrice`, `netAvgPrice`, `realizedPNL`, and `unrealizedPNL`  in `v1/exchange.reporting/mp/positions`
+
+**Admin API (Ledger) -**
+
+* Added `status` to Asset
+
 ## v1.58.0 (2026-06-24)
 
 **FIX API-**
