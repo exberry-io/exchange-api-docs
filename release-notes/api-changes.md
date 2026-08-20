@@ -1,5 +1,13 @@
 # API Changes
 
+## v1.60.0 (2026-08-XX)
+
+**WS API-**
+
+* Fixed `OrderBookState` so that modified suspended orders are no longer disseminated. Previously, modified suspended orders were disseminated incorrectly.
+* Added clearing positions for instruments with `stopDate` (except Binary Event Contracts).
+* Documentation correction `CbrBreach` instead of `CBRBreach` in [#cancel-reason](../ws/private-data-api.md#cancel-reason "mention")
+
 ## v1.59.0 (2026-07-30)
 
 **WS API-**

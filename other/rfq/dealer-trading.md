@@ -45,7 +45,7 @@ Sample:
 
 Party specification:&#x20;
 
-<table><thead><tr><th width="112">Name</th><th width="165.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>String</td><td>Party id<br>Max length = 20 </td></tr><tr><td>source</td><td>Char</td><td>Party source</td></tr><tr><td>role</td><td>Int</td><td>Party role </td></tr></tbody></table>
+<table><thead><tr><th width="112">Name</th><th width="165.33333333333331">Type</th><th>Description</th></tr></thead><tbody><tr><td>id</td><td>String</td><td>Party id<br>Max length = 20 <br>Allowed characters ASCII (32 -126)</td></tr><tr><td>source</td><td>Char</td><td>Party source</td></tr><tr><td>role</td><td>Int</td><td>Party role </td></tr></tbody></table>
 
 Sample:
 
