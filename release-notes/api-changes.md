@@ -1,5 +1,17 @@
 # API Changes
 
+## v1.61.0 (2026-10-05)
+
+**WS API-**
+
+* Added Post-only orders:
+  * Added `instructions` field to [placeOrder](../ws/trading-api.md#placeorder), [executionReports](../ws/private-data-api.md#executionreports) and [orders](../ws/reporting-api.md#orders-v2-latest) APIs
+* Added `tradeDate` to the `calendarEndOfDay` of [orderBookDepth](../ws/market-data.md#orderbookdepth)
+
+**FIX API-**
+
+* Bugfix for `MarketDataIncrementalRefresh(X)` - `Trade(269=2)` messages generated in case of trades via implied orders
+
 ## v1.60.0 (2026-08-25)
 
 **WS API-**

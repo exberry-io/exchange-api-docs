@@ -116,3 +116,12 @@ The exchange supports below `displayMethods`:
 * If applicable, replenishment of orders occurs as the final step of the auction crossing.
 * The display quantity of an order could be a taker since all orders will be rested on the book prior to the crossing.
 
+
+
+## <mark style="color:blue;">(NEW v1.61.0)</mark> Post-only Orders
+
+* Post-only orders allow MPs to act as liquidity providers without becoming liquidity takers.
+* If a post-only order would execute immediately, even partially, when entered, replaced, or injected from a suspended status, the system cancels the order.
+* Post-only orders are supported only for Limit, StopLimit, LIT with time in force GTC, DAY, and GTD orders.
+* New post-only orders are not allowed during auctions.
+

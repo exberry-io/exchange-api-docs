@@ -121,7 +121,7 @@ Notes:&#x20;
 
 The calendar End Of Day Message indicates that the end-of-day for a specific calendar is triggered.
 
-<table><thead><tr><th width="229">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>calendarEndOfDay</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds)</td></tr><tr><td>calendarId</td><td>Calendar Id</td></tr><tr><td>calendarName</td><td>Calendar name</td></tr><tr><td>eodDate</td><td><p>The trade date of the day that was closed.</p><p>Format: yyyy-mm-dd</p></td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
+<table><thead><tr><th width="229">Field</th><th>Description</th></tr></thead><tbody><tr><td>messageType</td><td><strong>calendarEndOfDay</strong></td></tr><tr><td>eventTimestamp</td><td>Event timestamp (in nanoseconds)</td></tr><tr><td>calendarId</td><td>Calendar Id</td></tr><tr><td>calendarName</td><td>Calendar name</td></tr><tr><td>eodDate</td><td><p>The trade date of the day that was closed.</p><p>Format: yyyy-mm-dd</p></td></tr><tr><td><mark style="color:blue;">(NEW v1.61.0)</mark><br>tradeDate</td><td><p>Current Trade Date of the calendar.</p><p>Format yyyy-mm-dd</p></td></tr><tr><td>trackingNumber</td><td>Event tracking number</td></tr></tbody></table>
 
 #### **Auction Indicative Equilibrium Price Message**
 
@@ -394,6 +394,7 @@ The news message is published when the exchange operator submits it.
     "calendarId": 123,
     "calendarName": "NewCalendar",
     "eodDate": "2023-04-17",
+    "tradeDate": "2023-04-18", // NEW 1.61.0
     "trackingNumber": 407807712
   }
 }
