@@ -1,0 +1,23 @@
+$schema: https://api.gitbook.com/gitbook-docs.yaml
+site:
+  title: Exberry Docs
+  structure:
+    - type: space
+      key: space-1
+      title: WebSocket / FIX
+      path: main
+      default: true
+      content:
+        directory: ./main
+    - type: space
+      key: space-2
+      title: WebSocket Market Data
+      path: md
+      content:
+        directory: ./md
+    - type: space
+      key: space-3
+      title: "Admin API "
+      path: admin-api
+      content:
+        directory: ./admin-api
