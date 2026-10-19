@@ -1,5 +1,13 @@
 # API Changes
 
+### v1.62.0(2026-10-XX)
+
+* Added `bidAskLegAllocationPrice` field to Strategy Instruments
+
+{% hint style="info" %}
+Open API specs: [https://registry.scalar.com/@exberry/apis/exberry-admin-open-api@1.62.0](https://registry.scalar.com/@exberry/apis/exberry-admin-open-api@1.62.0)
+{% endhint %}
+
 ### v1.61.0(2026-10-05)
 
 * Added `instructions` field to Operations/Place Order
