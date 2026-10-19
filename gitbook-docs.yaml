@@ -21,10 +21,3 @@ site:
       path: admin-api
       content:
         directory: ./admin-api
-    - type: space
-      key: space-4
-      title: API Reference
-      path: api-reference
-      draft: true
-      content:
-        directory: ./api-reference
