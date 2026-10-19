@@ -94,13 +94,13 @@ qualifier: v2/exchange.reporting/mp/orders
 
 ### Request
 
-<table><thead><tr><th width="131.33333333333331">Parameter</th><th width="131">Type</th><th>Description</th></tr></thead><tbody><tr><td>dateFrom</td><td>DateTime (GMT)</td><td>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>dateTo</td><td>DateTime (GMT)</td><td>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td><mark style="color:blue;">(NEW v1.59.0)</mark><br>updatedFrom</td><td>DateTime (GMT)</td><td><p>Search for the orders that lastEventTimestamp ≥ updatedFrom </p><p>Format:YYYY-MM-DDThh:mm:ss[.SSS]</p></td></tr><tr><td><mark style="color:blue;">(NEW v1.59.0)</mark><br>updatedTo</td><td>DateTime (GMT)</td><td>Search for the orders that lastEventTimestamp &#x3C; updatedTo<br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>statuses</td><td>[]eNum</td><td>List of order status (Active/ Executed/ Cancelled/ Suspended )<br>Empty Status = All statuses</td></tr><tr><td>instruments </td><td>[]String</td><td>Search for orders by symbol</td></tr><tr><td>mpId </td><td>int</td><td>Search for orders by MP ID</td></tr><tr><td>accountIds</td><td>[]String</td><td><p>Array of account Ids </p><p>Search for account ids (party.role=1001 and party.source=D)  OR (id=accountId, role=24, source=P)</p></td></tr><tr><td><mark style="color:blue;">(NEW v1.59.0)</mark><br>parties</td><td>object</td><td><p>Array of party objects, each single party is built from:<br>- source - Party source<br>- role - Party role<br>- id - Party id</p><p></p><p>In case of multiple objects, system filters orders with all parties</p></td></tr><tr><td>orderId </td><td>int</td><td>Search for orders by order ID</td></tr><tr><td>mpOrderId</td><td>int </td><td>Search for orders by MP order ID</td></tr><tr><td>orderBy</td><td>object</td><td><p>object with 2 parameters:<br>- field (String)<br>- direction (Asc, Desc) direction</p><p>Allowed values for field:<br>- lastEventTimestamp (default) <br>- createdAt</p></td></tr><tr><td>limit</td><td>int</td><td>How many records to include in each page <br>If nothing was sent default is 25<br>Max value = 100</td></tr><tr><td>offset</td><td>int</td><td>Which record to start send from (if you want page 3 and there are 50 records per page offset should be 150)<br>If nothing was sent default is 0 </td></tr></tbody></table>
+<table><thead><tr><th width="131.33333333333331">Parameter</th><th width="131">Type</th><th>Description</th></tr></thead><tbody><tr><td>dateFrom</td><td>DateTime (GMT)</td><td>Search for orders where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>dateTo</td><td>DateTime (GMT)</td><td>Search for orders where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td><mark style="color:blue;">(NEW v1.59.0)</mark><br>updatedFrom</td><td>DateTime (GMT)</td><td><p>Search for the orders that lastEventTimestamp ≥ updatedFrom </p><p>Format:YYYY-MM-DDThh:mm:ss[.SSS]</p></td></tr><tr><td><mark style="color:blue;">(NEW v1.59.0)</mark><br>updatedTo</td><td>DateTime (GMT)</td><td>Search for the orders that lastEventTimestamp &#x3C; updatedTo<br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>statuses</td><td>[]eNum</td><td>List of order status (Active/ Executed/ Cancelled/ Suspended )<br>Empty Status = All statuses</td></tr><tr><td>instruments </td><td>[]String</td><td>Search for orders by symbol</td></tr><tr><td>mpId </td><td>int</td><td>Search for orders by MP ID</td></tr><tr><td>accountIds</td><td>[]String</td><td><p>Array of account Ids </p><p>Search for account ids (party.role=1001 and party.source=D)  OR (id=accountId, role=24, source=P)</p></td></tr><tr><td><mark style="color:blue;">(NEW v1.59.0)</mark><br>parties</td><td>object</td><td><p>Array of party objects, each single party is built from:<br>- source - Party source<br>- role - Party role<br>- id - Party id</p><p></p><p>In case of multiple objects, system filters orders with all parties</p></td></tr><tr><td><mark style="color:blue;">(NEW v1.62.0)</mark><br>side</td><td>eNum</td><td><p>Optional</p><p>Search for  the orders by Side<br>- Buy<br>- Sell</p></td></tr><tr><td>orderId </td><td>int</td><td>Search for orders by order ID</td></tr><tr><td>mpOrderId</td><td>int </td><td>Search for orders by MP order ID</td></tr><tr><td>orderBy</td><td>object</td><td><p>object with 2 parameters:<br>- field (String)<br>- direction (Asc, Desc) direction</p><p>Allowed values for field:<br>- lastEventTimestamp (default) <br>- createdAt</p></td></tr><tr><td>limit</td><td>int</td><td>How many records to include in each page <br>If nothing was sent default is 25<br>Max value = 100</td></tr><tr><td>offset</td><td>int</td><td>Which record to start send from (if you want page 3 and there are 50 records per page offset should be 150)<br>If nothing was sent default is 0 </td></tr></tbody></table>
 
 ### **Response**
 
 `orders` response provides close to real time list of all current orders for the requested period with the entire details of those orders.
 
-<table><thead><tr><th width="204">Field</th><th>Description</th></tr></thead><tbody><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpOrderId</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>instrumentId</td><td>Instrument identifier</td></tr><tr><td>instrument</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>mpId</td><td>Market participant identifier</td></tr><tr><td>mpName</td><td>Market participant name</td></tr><tr><td>status</td><td>Order status: Active/ Executed/Cancelled</td></tr><tr><td>orderType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>side</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>price</td><td>Current order price</td></tr><tr><td>quantity</td><td>Current order quantity </td></tr><tr><td>displayQuantity</td><td>Current order displayQuantity</td></tr><tr><td>displayMethod</td><td>Current order displayMethod</td></tr><tr><td>timeInForce</td><td>Current order timeInForce</td></tr><tr><td>expiryDate  <code>optional</code></td><td>Order expiry date (GMT)<br>Format: YYYY-MM-DDThh:mm:ss</td></tr><tr><td>expiryDay <code>optional</code></td><td>Order expiry day<br>format: YYYY-MM-DD</td></tr><tr><td>createdAt</td><td>Order creation timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</td></tr><tr><td>filledPrice</td><td>Weighted average filled price for all fills on that order <span class="math">Sum(event.executedQuantity * event.executedPrice)/Sum(event.executedQuantity)</span></td></tr><tr><td>filledQuantity</td><td>Total filled quantity</td></tr><tr><td>remainingOpenQuantity</td><td><p>Remaining open quantity</p><p><span class="math">quantity - filledQuantity </span></p></td></tr><tr><td>workingDisplayQuantity</td><td>Current workingDisplayQuantity</td></tr><tr><td>workingHiddenQuantity</td><td>Current workingHiddenQuantity</td></tr><tr><td>displayLowQuantity</td><td>​​The lower quantity limit to randomize the display quantity at replenishment</td></tr><tr><td>displayHighQuantity</td><td>The upper quantity limit to randomize the display quantity at replenishment</td></tr><tr><td>marketModel</td><td><p>A - (Auction) when order was placed during auction</p><p>T - (Trading) when order was placed on continues trading mode<br>UA- (Unscheduled Auction) when order was placed during auction after halt or autoHalt</p></td></tr><tr><td>parties</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>accountType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>lastEventTimestamp</td><td>Last order event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</td></tr><tr><td>lastEventId</td><td>Last event that was used to calculate order state</td></tr><tr><td>stopPrice</td><td>The price at which the order will be injected to the market. </td></tr><tr><td>minQuantity <code>optional</code></td><td>Minimum quantity of an IOC order to be executed.</td></tr><tr><td>cancelReason <code>optional</code></td><td>The reason of the cancellation. Refer <a href="private-data-api.md#cancel-reason">here</a> for values.</td></tr><tr><td>stpAction <code>optional</code></td><td>Current <code>stpAction</code></td></tr><tr><td><mark style="color:blue;">(NEW v1.61.0)</mark><br>instructions <code>optional</code></td><td>Same as in <code>placeOrder</code> request</td></tr></tbody></table>
+<table><thead><tr><th width="204">Field</th><th>Description</th></tr></thead><tbody><tr><td>orderId</td><td>Exchange order ID</td></tr><tr><td>mpOrderId</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>instrumentId</td><td>Instrument identifier</td></tr><tr><td>instrument</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>mpId</td><td>Market participant identifier</td></tr><tr><td>mpName</td><td>Market participant name</td></tr><tr><td>status</td><td>Order status: Active/ Executed/Cancelled</td></tr><tr><td>orderType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>side</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>price</td><td>Current order price</td></tr><tr><td>quantity</td><td>Current order quantity </td></tr><tr><td>displayQuantity</td><td>Current order displayQuantity</td></tr><tr><td>displayMethod</td><td>Current order displayMethod</td></tr><tr><td>timeInForce</td><td>Current order timeInForce</td></tr><tr><td>expiryDate  <code>optional</code></td><td>Order expiry date (GMT)<br>Format: YYYY-MM-DDThh:mm:ss</td></tr><tr><td>expiryDay <code>optional</code></td><td>Order expiry day<br>format: YYYY-MM-DD</td></tr><tr><td>createdAt</td><td>Order creation timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</td></tr><tr><td>filledPrice</td><td>Weighted average filled price for all fills on that order <span class="math">Sum(event.executedQuantity * event.executedPrice)/Sum(event.executedQuantity)</span></td></tr><tr><td>filledQuantity</td><td>Total filled quantity</td></tr><tr><td>remainingOpenQuantity</td><td><p>Remaining open quantity</p><p><span class="math">quantity - filledQuantity </span></p></td></tr><tr><td>workingDisplayQuantity</td><td>Current workingDisplayQuantity</td></tr><tr><td>workingHiddenQuantity</td><td>Current workingHiddenQuantity</td></tr><tr><td>displayLowQuantity</td><td>​​The lower quantity limit to randomize the display quantity at replenishment</td></tr><tr><td>displayHighQuantity</td><td>The upper quantity limit to randomize the display quantity at replenishment</td></tr><tr><td>marketModel</td><td><p>A - (Auction) when order was placed during auction</p><p>T - (Trading) when order was placed on continues trading mode<br>UA- (Unscheduled Auction) when order was placed during auction after halt or autoHalt</p></td></tr><tr><td>parties</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>accountType</td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td>lastEventTimestamp</td><td>Last order event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</td></tr><tr><td>lastEventId</td><td>Last event that was used to calculate order state</td></tr><tr><td>stopPrice</td><td>The price at which the order will be injected to the market. </td></tr><tr><td>minQuantity <code>optional</code></td><td>Minimum quantity of an IOC order to be executed.</td></tr><tr><td>cancelReason <code>optional</code></td><td>The reason of the cancellation. Refer <a href="private-data-api.md#cancel-reason">here</a> for values.</td></tr><tr><td>stpAction <code>optional</code></td><td>Current <code>stpAction</code></td></tr><tr><td><mark style="color:blue;">(NEW v1.61.0)</mark><br>instructions <code>optional</code></td><td>Same as in <code>placeOrder</code> request</td></tr><tr><td><mark style="color:blue;">(NEW v1.62.0)</mark><br>metadata <code>optional</code></td><td>Same as in <code>placeOrder</code> request</td></tr></tbody></table>
 
 ### **Error Codes**
 
@@ -135,53 +135,118 @@ qualifier: v2/exchange.reporting/mp/orders
 {% tab title="Response" %}
 ```json
 {
-  "q": "v2/exchange.reporting/mp/orders",
-  "sid": 10,
+  "q": "v1/exchange.reporting/ops/orders",
+  "sid": 39,
   "d": {
     "orders": [
       {
-        "orderId": 4,
-        "mpOrderId": 1760510973,
-        "instrumentId": 5162,
-        "instrument": "Demo1007",
-        "mpId": 11,
-        "mpName": "MM",
-        "status": "Executed",
-        "orderType": "Market",
-        "side": "Sell",
-        "quantity": 40,
-        "timeInForce": "IOC",
-        "createdAt": "2025-10-15T06:49:34.078198",
-        "filledPrice": 1.34,
-        "filledQuantity": 40,
-        "remainingOpenQuantity": 0,
+        "orderId": 143,
+        "mpOrderId": 1092,
+        "instrumentId": 28,
+        "instrument": "AMZ",
+        "mpId": 20,
+        "mpName": "MP1",
+        "status": "Active",
+        "orderType": "Limit",
+        "side": "Buy",
+        "quantity": 100,
+        "price": 19,
+        "timeInForce": "DAY",
+        "createdAt": "2026-10-19T05:58:19.457258",
+        "filledPrice": 0,
+        "filledQuantity": 0,
+        "remainingOpenQuantity": 100,
         "marketModel": "T",
-        "lastEventTimestamp": "2025-10-15T06:49:34.078198",
-        "lastEventId": 6
+        "accountType": "House",
+        "parties": [
+          {
+            "id": "StringId",
+            "source": "D",
+            "role": 12
+          },
+          {
+            "id": "user123",
+            "source": "P",
+            "role": 25
+          }
+        ],
+        "lastEventTimestamp": "2026-10-19T05:58:19.457258",
+        "lastEventId": 327
       },
       {
-        "orderId": 2,
-        "mpOrderId": 1760510924,
-        "instrumentId": 5162,
-        "instrument": "Demo1007",
-        "mpId": 11,
-        "mpName": "MM",
-        "status": "Executed",
-        "orderType": "Market",
+        "orderId": 141,
+        "mpOrderId": 1090,
+        "instrumentId": 28,
+        "instrument": "AMZ",
+        "mpId": 20,
+        "mpName": "MP1",
+        "status": "Active",
+        "orderType": "Limit",
         "side": "Sell",
-        "quantity": 30,
-        "timeInForce": "IOC",
-        "createdAt": "2025-10-15T06:48:45.381771",
-        "filledPrice": 1.23,
-        "filledQuantity": 30,
+        "quantity": 2,
+        "price": 20,
+        "timeInForce": "DAY",
+        "createdAt": "2026-10-19T05:51:43.056016",
+        "filledPrice": 20,
+        "filledQuantity": 1,
+        "remainingOpenQuantity": 1,
+        "marketModel": "T",
+        "accountType": "House",
+        "parties": [
+          {
+            "id": "StringId",
+            "source": "D",
+            "role": 12
+          },
+          {
+            "id": "user123",
+            "source": "P",
+            "role": 25
+          }
+        ],
+        "lastEventTimestamp": "2026-10-19T05:56:18.313542",
+        "lastEventId": 326,
+        "metadata": "1LOLIHUGU#)&*H)*#HOU#HBD(UHIHOIKoTg21n4ccrc431cre2NLIUYID*YD#"
+      },
+      {
+        "orderId": 142,
+        "mpOrderId": 1091,
+        "instrumentId": 28,
+        "instrument": "AMZ",
+        "mpId": 20,
+        "mpName": "MP1",
+        "status": "Executed",
+        "orderType": "Limit",
+        "side": "Buy",
+        "quantity": 1,
+        "price": 20,
+        "timeInForce": "DAY",
+        "createdAt": "2026-10-19T05:56:18.313542",
+        "filledPrice": 20,
+        "filledQuantity": 1,
         "remainingOpenQuantity": 0,
         "marketModel": "T",
-        "lastEventTimestamp": "2025-10-15T06:48:45.381771",
-        "lastEventId": 2
+        "accountType": "House",
+        "parties": [
+          {
+            "id": "StringId",
+            "source": "D",
+            "role": 12
+          },
+          {
+            "id": "user123",
+            "source": "P",
+            "role": 25
+          }
+        ],
+        "lastEventTimestamp": "2026-10-19T05:56:18.313542",
+        "lastEventId": 326,
+        "metadata": "uh32fonu4o8725y78t398rc1odjpij1UGBYIFIKVYIFKYHOIKoTg21n4ccrc431cre2NLIUYID*YD#"
       }
     ],
-    "count": 574
+    "count": 3
   }
+}
 }
 ```
 {% endtab %}
@@ -477,7 +542,7 @@ qualifier: v3/exchange.reporting/mp/trades
 
 ### Request
 
-<table><thead><tr><th width="122.33333333333331">Parameter</th><th width="154">Type</th><th>Description</th></tr></thead><tbody><tr><td>dateFrom</td><td>DateTime (GMT)</td><td>Search for trades where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>dateTo</td><td>DateTime (GMT)</td><td>Search for trades where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>instruments </td><td>[]String</td><td>Search for trades by symbol</td></tr><tr><td>mpId </td><td>Int</td><td>Search for trades by MP ID.</td></tr><tr><td>accountIds</td><td>[]String</td><td><p>Array of account Ids </p><p>Search for account ids (party.role=1001 and party.source=D)  OR (id=accountId, role=24, source=P)</p></td></tr><tr><td>tradeId </td><td>Int</td><td>Search for trades by tradeId. </td></tr><tr><td>actionTypes</td><td>[]eNum</td><td>Search for trades by actionType.<br>Any combinations of the below values:<br>- MatchedTrade<br>- TradeReport<br>- TradeCancel<br>Empty = All</td></tr><tr><td><p></p><p>multiLegReportingTypes </p></td><td>[]eNum</td><td>Search for trades by multiLegReportingTypes.<br>Any combinations of the below values:<br>- MultiLegSecurity<br>- IndividualLeg<br>- SingleSecurity<br>Empty = All</td></tr><tr><td>tradeDate</td><td>Date</td><td>Search for the executions by the trade date of the reports.<br>Format: YYYY-MM-DD</td></tr><tr><td>mpOrderId</td><td>Int</td><td>Search for the trades by mpOrderId</td></tr><tr><td>orderId</td><td>Int</td><td>Search for the trades by orderId</td></tr><tr><td><mark style="color:blue;">(NEW v1.59.0)</mark><br>parties</td><td>object</td><td><p>Array of party objects, each single party is built from:<br>- source - Party source<br>- role - Party role<br>- id - Party id</p><p></p><p>In case of multiple objects, system filters orders with all parties</p></td></tr><tr><td>orderBy</td><td>Object</td><td><p>object with 2 parameters:<br>- field (String)<br>- direction (Asc, Desc) direction</p><p>Allowed values for field:<br>- timestamp<br><br>If not sent The response is sorted by: timestamp (desc), instrumentId (desc), eventId (desc)</p></td></tr><tr><td>limit</td><td>Int</td><td>How many records to include in each page <br>If nothing was sent default is 25<br>Max value = 100</td></tr><tr><td>offset</td><td>Int</td><td>Which record to start send from (if you want page 3 and there are 50 records per page offset should be 150)<br>If nothing was sent default is 0</td></tr></tbody></table>
+<table><thead><tr><th width="122.33333333333331">Parameter</th><th width="154">Type</th><th>Description</th></tr></thead><tbody><tr><td>dateFrom</td><td>DateTime (GMT)</td><td>Search for trades where <em>Created At ≥ dateFrom</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>dateTo</td><td>DateTime (GMT)</td><td>Search for trades where <em>Created At &#x3C; dateTo</em><br>Format: YYYY-MM-DDThh:mm:ss[.SSS]</td></tr><tr><td>instruments </td><td>[]String</td><td>Search for trades by symbol</td></tr><tr><td>mpId </td><td>Int</td><td>Search for trades by MP ID.</td></tr><tr><td>accountIds</td><td>[]String</td><td><p>Array of account Ids </p><p>Search for account ids (party.role=1001 and party.source=D)  OR (id=accountId, role=24, source=P)</p></td></tr><tr><td>tradeId </td><td>Int</td><td>Search for trades by tradeId. </td></tr><tr><td>actionTypes</td><td>[]eNum</td><td>Search for trades by actionType.<br>Any combinations of the below values:<br>- MatchedTrade<br>- TradeReport<br>- TradeCancel<br>Empty = All</td></tr><tr><td><p></p><p>multiLegReportingTypes </p></td><td>[]eNum</td><td>Search for trades by multiLegReportingTypes.<br>Any combinations of the below values:<br>- MultiLegSecurity<br>- IndividualLeg<br>- SingleSecurity<br>Empty = All</td></tr><tr><td>tradeDate</td><td>Date</td><td>Search for the executions by the trade date of the reports.<br>Format: YYYY-MM-DD</td></tr><tr><td>mpOrderId</td><td>Int</td><td>Search for the trades by mpOrderId</td></tr><tr><td>orderId</td><td>Int</td><td>Search for the trades by orderId</td></tr><tr><td><mark style="color:blue;">(NEW v1.59.0)</mark><br>parties</td><td>object</td><td><p>Array of party objects, each single party is built from:<br>- source - Party source<br>- role - Party role<br>- id - Party id</p><p></p><p>In case of multiple objects, system filters orders with all parties</p></td></tr><tr><td><mark style="color:blue;">(NEW v1.62.0)</mark><br>side</td><td>eNum</td><td>Optional<br>Search for the trades by Side<br>- Buy<br>- Sell</td></tr><tr><td><mark style="color:blue;">(NEW v1.62.0)</mark><br>trackingNumber</td><td>Int</td><td>Optional<br>Search for the trades by trackingNumber</td></tr><tr><td>orderBy</td><td>Object</td><td><p>object with 2 parameters:<br>- field (String)<br>- direction (Asc, Desc) direction</p><p>Allowed values for field:<br>- timestamp<br><br>If not sent The response is sorted by: timestamp (desc), instrumentId (desc), eventId (desc)</p></td></tr><tr><td>limit</td><td>Int</td><td>How many records to include in each page <br>If nothing was sent default is 25<br>Max value = 100</td></tr><tr><td>offset</td><td>Int</td><td>Which record to start send from (if you want page 3 and there are 50 records per page offset should be 150)<br>If nothing was sent default is 0</td></tr></tbody></table>
 
 ### **Response**
 
@@ -489,7 +554,7 @@ Each record will be one of the following `actionType`:
 * TradeReport for trade entry trade
 * TradeCancel for trade cancellation (separate records will be returned for cancellation)
 
-<table><thead><tr><th width="150">Field</th><th width="337">Description</th><th width="100" align="center">Order Book</th><th width="80" align="center">Trade Entry</th><th width="92" align="center">Trade Cancel</th></tr></thead><tbody><tr><td>eventId</td><td> Event Id </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>timestamp</td><td>Trade event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>actionType</td><td><p>MatchedTrade </p><p>TradeReport </p><p>TradeCancel</p></td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>orderId</td><td>Order id initiated the trade </td><td align="center">V</td><td align="center"> </td><td align="center"> </td></tr><tr><td>mpOrderId</td><td>From source order </td><td align="center">V</td><td align="center"> </td><td align="center"> </td></tr><tr><td>mpId</td><td> MP Id </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>mpName</td><td>MP Name </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>instrumentId</td><td> Instrument id </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>Instrument</td><td>instrument symbol</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>side</td><td> Buy/ Sell </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>price</td><td> Trade price </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>quantity</td><td> Trade quantity </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>tradeId</td><td>matchId </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>tradingMode</td><td>IA - (Scheduled Intraday Auction) -When execution was as part of auction CT (Continuous Trading) - When execution was done on a regular trading ON - Trade Reporting (On Exchange)<br>UA- (Unscheduled Auction) - When execution was as part of auction after halt or autoHalt</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>accountType</td><td>Optional, From source order </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>parties</td><td>Optional, From source order </td><td align="center">V</td><td align="center">V</td><td align="center"><code>opt</code></td></tr><tr><td>tradeType</td><td>Refer <a href="https://documenter.getpostman.com/view/6229811/TzCV3jcq#909a5a9c-3385-43af-9569-ea3168a331e9">Admin API Trade Entry</a>/type field for values; all values are supported.</td><td align="center"> </td><td align="center">V</td><td align="center"><code>opt</code></td></tr><tr><td>makerTaker</td><td><strong>Taker</strong> if order was never resting on the book for that trade <br><strong>Maker</strong> if order was resting on the book for that trade</td><td align="center">V</td><td align="center"> </td><td align="center"> </td></tr><tr><td>tradeDate </td><td>Date of the business day of that trade<br>Format: YYY-MM-DD</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>tickReferencePrice</td><td>Tick Reference Price at the time trade is captured in system</td><td align="center">V</td><td align="center">V</td><td align="center"></td></tr><tr><td><br>linkId</td><td>System generated ID to group all events related to a trade adjustment</td><td align="center"></td><td align="center">V<br>(Trade Adj. Only)</td><td align="center">V<br>(Trade Adj. Only)</td></tr><tr><td>multiLegReportingType </td><td><ul><li>SingleSecurity: non strategy</li><li>MultiLegSecurity: strategy </li><li>IndividualLeg: strategy leg </li></ul><p>For more details see <a href="https://docs.exberry.io/private-data-api#strategies-multi-legs-handling">here</a></p></td><td align="center">V</td><td align="center">V</td><td align="center">Per trade</td></tr><tr><td>multiLegStrategyInstrument</td><td><p>For strategy allocated trades only</p><p>Parent instrument symbol</p></td><td align="center">V</td><td align="center">V</td><td align="center">Per trade</td></tr><tr><td>multiLegStrategyOrderId</td><td><p>For strategy allocated trades only</p><p>Parent orderId</p></td><td align="center">V</td><td align="center">V</td><td align="center">Per trade</td></tr><tr><td>multiLegStrategyMpOrderId</td><td><p>For strategy allocated trades only</p><p>Parent mpOrderId</p></td><td align="center">V</td><td align="center">V</td><td align="center">Per trade</td></tr></tbody></table>
+<table><thead><tr><th width="150">Field</th><th width="337">Description</th><th width="100" align="center">Order Book</th><th width="80" align="center">Trade Entry</th><th width="92" align="center">Trade Cancel</th></tr></thead><tbody><tr><td>eventId</td><td> Event Id </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>timestamp</td><td>Trade event timestamp (in microseconds) in GMT<br>Format: YYYY-MM-DDThh:mm:ss.SSSSSS</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>actionType</td><td><p>MatchedTrade </p><p>TradeReport </p><p>TradeCancel</p></td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>orderId</td><td>Order id initiated the trade </td><td align="center">V</td><td align="center"> </td><td align="center"> </td></tr><tr><td>mpOrderId</td><td>From source order </td><td align="center">V</td><td align="center"> </td><td align="center"> </td></tr><tr><td>mpId</td><td> MP Id </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>mpName</td><td>MP Name </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>instrumentId</td><td> Instrument id </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>Instrument</td><td>instrument symbol</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>side</td><td> Buy/ Sell </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>price</td><td> Trade price </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>quantity</td><td> Trade quantity </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>tradeId</td><td>matchId </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>tradingMode</td><td>IA - (Scheduled Intraday Auction) -When execution was as part of auction CT (Continuous Trading) - When execution was done on a regular trading ON - Trade Reporting (On Exchange)<br>UA- (Unscheduled Auction) - When execution was as part of auction after halt or autoHalt</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>accountType</td><td>Optional, From source order </td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>parties</td><td>Optional, From source order </td><td align="center">V</td><td align="center">V</td><td align="center"><code>opt</code></td></tr><tr><td>tradeType</td><td>Refer <a href="https://documenter.getpostman.com/view/6229811/TzCV3jcq#909a5a9c-3385-43af-9569-ea3168a331e9">Admin API Trade Entry</a>/type field for values; all values are supported.</td><td align="center"> </td><td align="center">V</td><td align="center"><code>opt</code></td></tr><tr><td>makerTaker</td><td><strong>Taker</strong> if order was never resting on the book for that trade <br><strong>Maker</strong> if order was resting on the book for that trade</td><td align="center">V</td><td align="center"> </td><td align="center"> </td></tr><tr><td>tradeDate </td><td>Date of the business day of that trade<br>Format: YYY-MM-DD</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr><tr><td>tickReferencePrice</td><td>Tick Reference Price at the time trade is captured in system</td><td align="center">V</td><td align="center">V</td><td align="center"></td></tr><tr><td><br>linkId</td><td>System generated ID to group all events related to a trade adjustment</td><td align="center"></td><td align="center">V<br>(Trade Adj. Only)</td><td align="center">V<br>(Trade Adj. Only)</td></tr><tr><td>multiLegReportingType </td><td><ul><li>SingleSecurity: non strategy</li><li>MultiLegSecurity: strategy </li><li>IndividualLeg: strategy leg </li></ul><p>For more details see <a href="https://docs.exberry.io/private-data-api#strategies-multi-legs-handling">here</a></p></td><td align="center">V</td><td align="center">V</td><td align="center">Per trade</td></tr><tr><td>multiLegStrategyInstrument</td><td><p>For strategy allocated trades only</p><p>Parent instrument symbol</p></td><td align="center">V</td><td align="center">V</td><td align="center">Per trade</td></tr><tr><td>multiLegStrategyOrderId</td><td><p>For strategy allocated trades only</p><p>Parent orderId</p></td><td align="center">V</td><td align="center">V</td><td align="center">Per trade</td></tr><tr><td>multiLegStrategyMpOrderId</td><td><p>For strategy allocated trades only</p><p>Parent mpOrderId</p></td><td align="center">V</td><td align="center">V</td><td align="center">Per trade</td></tr><tr><td><mark style="color:blue;">(NEW v1.62.0)</mark><br>trackingNumber</td><td>Tracking number</td><td align="center">V</td><td align="center">V</td><td align="center">V</td></tr></tbody></table>
 
 ### **Error Codes**
 
@@ -516,52 +581,79 @@ Each record will be one of the following `actionType`:
 {% tab title="MatchedTrade " %}
 ```json
 {
-  "q": "v3/exchange.reporting/mp/trades",
-  "sid": 10,
+  "q": "v1/exchange.reporting/ops/trades",
+  "sid": 137,
   "d": {
     "trades": [
       {
-        "eventId": 9,
-        "timestamp": "2025-10-22T07:58:13.936343",
+        "eventId": 326,
+        "timestamp": "2026-10-19T05:56:18.313542",
         "actionType": "MatchedTrade",
-        "orderId": 3,
-        "mpOrderId": 1761119885,
-        "mpId": 11,
-        "mpName": "MM",
-        "instrumentId": 5155,
-        "instrument": "Demo1000",
-        "side": "Buy",
-        "price": 111,
-        "quantity": 15,
-        "tradeId": 3,
+        "orderId": 141,
+        "mpOrderId": 1090,
+        "mpId": 20,
+        "mpName": "MP1",
+        "instrumentId": 28,
+        "instrument": "AMZ",
+        "side": "Sell",
+        "price": 20,
+        "quantity": 1,
+        "tradeId": 60,
         "tradingMode": "CT",
+        "accountType": "House",
+        "parties": [
+          {
+            "id": "StringId",
+            "source": "D",
+            "role": 12
+          },
+          {
+            "id": "user123",
+            "source": "P",
+            "role": 25
+          }
+        ],
         "makerTaker": "Maker",
-        "tradeDate": "2025-10-22",
-        "tickReferencePrice": 123,
-        "multiLegReportingType": "SingleSecurity"
+        "tradeDate": "2026-10-19",
+        "tickReferencePrice": 20,
+        "multiLegReportingType": "SingleSecurity",
+        "trackingNumber": 10077629664
       },
       {
-        "eventId": 10,
-        "timestamp": "2025-10-15T11:19:03.115418",
+        "eventId": 326,
+        "timestamp": "2026-10-19T05:56:18.313542",
         "actionType": "MatchedTrade",
-        "orderId": 6,
-        "mpOrderId": 1760527142,
-        "mpId": 11,
-        "mpName": "MM",
-        "instrumentId": 5162,
-        "instrument": "Demo1007",
-        "side": "Sell",
-        "price": 1.23,
-        "quantity": 70,
-        "tradeId": 6,
+        "orderId": 142,
+        "mpOrderId": 1091,
+        "mpId": 20,
+        "mpName": "MP1",
+        "instrumentId": 28,
+        "instrument": "AMZ",
+        "side": "Buy",
+        "price": 20,
+        "quantity": 1,
+        "tradeId": 60,
         "tradingMode": "CT",
+        "accountType": "House",
+        "parties": [
+          {
+            "id": "StringId",
+            "source": "D",
+            "role": 12
+          },
+          {
+            "id": "user123",
+            "source": "P",
+            "role": 25}
+        ],
         "makerTaker": "Taker",
-        "tradeDate": "2025-10-15",
-        "tickReferencePrice": 1.34,
-        "multiLegReportingType": "SingleSecurity"
+        "tradeDate": "2026-10-19",
+        "tickReferencePrice": 20,
+        "multiLegReportingType": "SingleSecurity",
+        "trackingNumber": 10077629664
       }
     ],
-    "count": 32
+    "count": 2
   }
 }
 ```
@@ -591,7 +683,8 @@ Each record will be one of the following `actionType`:
         "tradeType": "Block",
         "tradeDate": "2025-10-29",
         "tickReferencePrice": 102.67,
-        "multiLegReportingType": "SingleSecurity"
+        "multiLegReportingType": "SingleSecurity",
+        "trackingNumber": 10077629448
       }
     ],
     "count": 1
@@ -603,30 +696,76 @@ Each record will be one of the following `actionType`:
 {% tab title="TradeCancel " %}
 ```json
 {
-  "q": "v3/exchange.reporting/mp/trades",
-  "sid": 10,
+  "q": "v1/exchange.reporting/ops/trades",
+  "sid": 163,
   "d": {
     "trades": [
       {
-        "eventId": 818,
-        "timestamp": "2025-10-29T15:05:28.396526",
+        "eventId": 328,
+        "timestamp": "2026-10-19T08:31:47.081233",
         "actionType": "TradeCancel",
-        "mpId": 11,
-        "mpName": "MM",
-        "instrumentId": 9,
-        "instrument": "Demo1",
+        "orderId": 142,
+        "mpOrderId": 1091,
+        "mpId": 20,
+        "mpName": "MP1",
+        "instrumentId": 28,
+        "instrument": "AMZ",
         "side": "Buy",
-        "price": 92.43,
-        "quantity": 200,
-        "tradeId": 330,
-        "tradingMode": "ON",
-        "accountType": "Client",
-        "tradeType": "Block",
-        "tradeDate": "2025-10-29",
-        "multiLegReportingType": "SingleSecurity"
+        "price": 20,
+        "quantity": 1,
+        "tradeId": 60,
+        "tradingMode": "CT",
+        "accountType": "House",
+        "parties": [
+          {
+            "id": "veryCoolStringId",
+            "source": "D",
+            "role": 12
+          },
+          {
+            "id": "user123",
+            "source": "P",
+            "role": 25
+          }
+        ],
+        "tradeDate": "2026-10-19",
+        "multiLegReportingType": "SingleSecurity",
+        "trackingNumber": 10090316800
+      },
+      {
+        "eventId": 328,
+        "timestamp": "2026-10-19T08:31:47.081233",
+        "actionType": "TradeCancel",
+        "orderId": 141,
+        "mpOrderId": 1090,
+        "mpId": 20,
+        "mpName": "MP1",
+        "instrumentId": 28,
+        "instrument": "AMZ",
+        "side": "Sell",
+        "price": 20,
+        "quantity": 1,
+        "tradeId": 60,
+        "tradingMode": "CT",
+        "accountType": "House",
+        "parties": [
+          {
+            "id": "veryCoolStringId",
+            "source": "D",
+            "role": 12
+          },
+          {
+            "id": "user123",
+            "source": "P",
+            "role": 25
+          }
+        ],
+        "tradeDate": "2026-10-19",
+        "multiLegReportingType": "SingleSecurity",
+        "trackingNumber": 10090316800
       }
     ],
-    "count": 1
+    "count": 2
   }
 }
 ```
@@ -662,7 +801,8 @@ See description and field details on Private Data API [**#Strategies/ Multi Legs
     "tradingMode": "CT",
     "makerTaker": "Taker",
     "tradeDate": "2022-11-15",
-    "multiLegReportingType": "SingleSecurity"
+    "multiLegReportingType": "SingleSecurity",
+    "trackingNumber": 10077629664
   }
 }
 ```
@@ -694,7 +834,8 @@ See description and field details on Private Data API [**#Strategies/ Multi Legs
     "multiLegStrategyInstrument": "Spread",
     "multiLegStrategyTradeId": 11,
     "multiLegStrategyOrderId": 21,
-    "multiLegStrategyMpOrderId": 1564403702311
+    "multiLegStrategyMpOrderId": 1564403702311,
+    "trackingNumber": 10077629664
   }
 }
 ```
@@ -723,7 +864,8 @@ See description and field details on Private Data API [**#Strategies/ Multi Legs
     "userId": "UserTest1",
     "makerTaker": "Taker",
     "tradeDate": "2022-11-17",
-    "multiLegReportingType": "MultiLegSecurity"
+    "multiLegReportingType": "MultiLegSecurity",
+    "trackingNumber": 10077629664
   }
 }
 ```

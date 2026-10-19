@@ -1,5 +1,20 @@
 # API Changes
 
+## v1.61.0 (2026-10-XX)
+
+**General-**
+
+* Added supporting up to 5 Self-Trade Prevention (STP) Parties
+
+**WS API-**
+
+* Added `side` to the request of [Orders](../ws/reporting-api.md#orders-v2-latest) and [Trades](../ws/reporting-api.md#trades-v3-latest) APIs
+* Added `metadata` to the response of [Orders](../ws/reporting-api.md#orders-v2-latest) API
+* Added `trackingNumber` to the request and response of [Trades](../ws/reporting-api.md#trades-v3-latest) API
+*
+
+&#x20;
+
 ## v1.61.0 (2026-10-05)
 
 **WS API-**
