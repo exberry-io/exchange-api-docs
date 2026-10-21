@@ -1,8 +1,9 @@
 # API Changes
 
-### v1.62.0(2026-10-XX)
+### v1.62.0(2026-10-21)
 
 * Added `bidAskLegAllocationPrice` field to Strategy Instruments
+* Fixed some semantics&#x20;
 
 {% hint style="info" %}
 Open API specs: [https://registry.scalar.com/@exberry/apis/exberry-admin-open-api@1.62.0](https://registry.scalar.com/@exberry/apis/exberry-admin-open-api@1.62.0)
