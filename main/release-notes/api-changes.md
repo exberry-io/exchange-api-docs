@@ -1,6 +1,6 @@
 # API Changes
 
-## v1.62.0 (2026-10-XX)
+## v1.62.0 (2026-10-21)
 
 **General-**
 
@@ -11,6 +11,10 @@
 * Added `side` to the request of [Orders](../ws/reporting-api.md#orders-v2-latest) and [Trades](../ws/reporting-api.md#trades-v3-latest) APIs
 * Added `metadata` to the response of [Orders](../ws/reporting-api.md#orders-v2-latest) API
 * Added `trackingNumber` to the request and response of [Trades](../ws/reporting-api.md#trades-v3-latest) API
+
+**FIX API-**
+
+* New endpoint for Order Entry GW
 
 ## v1.61.0 (2026-10-05)
 

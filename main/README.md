@@ -14,10 +14,13 @@ This documentation will guide you through every aspect of our API, from initial 
 ## Sandbox Configurations
 
 <table><thead><tr><th width="170">API</th><th>Endpoint &#x26; Configurations</th></tr></thead><tbody><tr><td><p>Trading</p><p>Market Data</p><p>Private Data</p></td><td><pre><code>wss://exchange-gateway.uat.exberry-uat.io
-</code></pre></td></tr><tr><td>Reporting </td><td><pre><code>wss://api-gateway.uat.exberry-uat.io
-</code></pre></td></tr><tr><td>FIX</td><td><pre><code>"host": "fix-gateway.uat.exberry-uat.io",
+</code></pre></td></tr><tr><td>Reporting</td><td><pre><code>wss://api-gateway.uat.exberry-uat.io
+</code></pre></td></tr><tr><td>FIX - Market Data/ Drop Copy</td><td><pre><code>"host": "fix-gateway.uat.exberry-uat.io",
 "port": 11080,
 "targetCompId": "EXBERRY"
+</code></pre></td></tr><tr><td><mark style="color:blue;">New v1.62.0</mark><br>FIX - Order Entry </td><td><pre><code>"host": "fixgw-order-entry-0.uat.exberry-uat.io",
+"port": 11080,
+"targetCompId": "EXBERRY
 </code></pre></td></tr></tbody></table>
 
 <br>
